@@ -1,0 +1,3463 @@
+{
+  "timestamp": "2025-06-23T04:17:37.851Z",
+  "summary": {
+    "riseTheme": {
+      "architecture": "Complex CSS + Component-based",
+      "cssFiles": 65,
+      "complexity": "High",
+      "maintainability": "Challenging",
+      "glassCompatibility": "Requires significant modification"
+    },
+    "horizonTheme": {
+      "architecture": "Minimal CSS + JSON-driven",
+      "cssFiles": 0,
+      "complexity": "Low",
+      "maintainability": "Simplified",
+      "glassCompatibility": "Better foundation for custom styling"
+    },
+    "recommendation": {
+      "recommendedApproach": "Pending complete analysis",
+      "reasoning": "Analysis in progress",
+      "migrationSteps": [],
+      "riskAssessment": "TBD"
+    }
+  },
+  "detailed": {
+    "rise": {
+      "cssArchitecture": {
+        "themeCSS": {
+          "stylesheetTags": [
+            "base.css",
+            "component-cart-drawer.css",
+            "component-cart.css",
+            "component-totals.css",
+            "component-price.css",
+            "component-discounts.css"
+          ],
+          "embeddedStyles": [],
+          "inlineStyles": []
+        },
+        "baseCSS": {
+          "name": "base.css",
+          "size": 80382,
+          "lines": 3598,
+          "mediaQueries": 57,
+          "customProperties": 116,
+          "dependencies": {
+            "imports": [],
+            "customProperties": [
+              "var(--color-foreground)",
+              "var(--color-background)",
+              "var(--product-card-corner-radius)",
+              "var(--product-card-border-width)",
+              "var(--product-card-border-opacity)",
+              "var(--product-card-shadow-horizontal-offset)",
+              "var(--product-card-shadow-vertical-offset)",
+              "var(--product-card-shadow-blur-radius)",
+              "var(--product-card-shadow-opacity)",
+              "var(--product-card-shadow-visible)",
+              "var(--product-card-image-padding)",
+              "var(--product-card-text-alignment)",
+              "var(--collection-card-corner-radius)",
+              "var(--collection-card-border-width)",
+              "var(--collection-card-border-opacity)",
+              "var(--collection-card-shadow-horizontal-offset)",
+              "var(--collection-card-shadow-vertical-offset)",
+              "var(--collection-card-shadow-blur-radius)",
+              "var(--collection-card-shadow-opacity)",
+              "var(--collection-card-shadow-visible)",
+              "var(--collection-card-image-padding)",
+              "var(--collection-card-text-alignment)",
+              "var(--blog-card-corner-radius)",
+              "var(--blog-card-border-width)",
+              "var(--blog-card-border-opacity)",
+              "var(--blog-card-shadow-horizontal-offset)",
+              "var(--blog-card-shadow-vertical-offset)",
+              "var(--blog-card-shadow-blur-radius)",
+              "var(--blog-card-shadow-opacity)",
+              "var(--blog-card-shadow-visible)",
+              "var(--blog-card-image-padding)",
+              "var(--blog-card-text-alignment)",
+              "var(--text-boxes-radius)",
+              "var(--text-boxes-border-width)",
+              "var(--text-boxes-border-opacity)",
+              "var(--text-boxes-shadow-horizontal-offset)",
+              "var(--text-boxes-shadow-vertical-offset)",
+              "var(--text-boxes-shadow-blur-radius)",
+              "var(--text-boxes-shadow-opacity)",
+              "var(--text-boxes-shadow-visible)",
+              "var(--media-radius)",
+              "var(--media-border-width)",
+              "var(--media-border-opacity)",
+              "var(--media-shadow-horizontal-offset)",
+              "var(--media-shadow-vertical-offset)",
+              "var(--media-shadow-blur-radius)",
+              "var(--media-shadow-opacity)",
+              "var(--media-shadow-visible)",
+              "var(--page-width)",
+              "var(--spacing-sections-mobile)",
+              "var(--spacing-sections-desktop)",
+              "var(--page-width-margin)",
+              "var(--font-body-scale)",
+              "var(--font-body-family)",
+              "var(--font-body-style)",
+              "var(--font-body-weight)",
+              "var(--font-heading-family)",
+              "var(--font-heading-style)",
+              "var(--font-heading-weight)",
+              "var(--font-heading-scale)",
+              "var(--color-link)",
+              "var(--duration-extra-long)",
+              "var(--ease-out-slow)",
+              "var(--alpha-link)",
+              "var(--duration-short)",
+              "var(--focused-base-outline)",
+              "var(--focused-base-outline-offset)",
+              "var(--focused-base-box-shadow)",
+              "var(--grid-mobile-horizontal-spacing)",
+              "var(--grid-mobile-vertical-spacing)",
+              "var(--grid-desktop-horizontal-spacing)",
+              "var(--grid-desktop-vertical-spacing)",
+              "var(--animation-slide-in)",
+              "var(--color-secondary-button)",
+              "var(--color-secondary-button-text)",
+              "var(--buttons-shadow-horizontal-offset)",
+              "var(--buttons-shadow-vertical-offset)",
+              "var(--buttons-shadow-blur-radius)",
+              "var(--buttons-shadow-opacity)",
+              "var(--buttons-shadow-visible)",
+              "var(--buttons-border-offset)",
+              "var(--buttons-border-opacity)",
+              "var(--buttons-radius-outset)",
+              "var(--buttons-border-width)",
+              "var(--color-button-text)",
+              "var(--color-button)",
+              "var(--alpha-button-background)",
+              "var(--shadow-horizontal-offset)",
+              "var(--shadow-vertical-offset)",
+              "var(--shadow-blur-radius)",
+              "var(--color-shadow)",
+              "var(--shadow-opacity)",
+              "var(--buttons-radius)",
+              "var(--border-offset)",
+              "var(--border-opacity)",
+              "var(--duration-default)",
+              "var(--inputs-radius)",
+              "var(--inputs-border-width)",
+              "var(--inputs-border-opacity)",
+              "var(--inputs-radius-outset)",
+              "var(--inputs-shadow-horizontal-offset)",
+              "var(--inputs-shadow-vertical-offset)",
+              "var(--inputs-shadow-blur-radius)",
+              "var(--inputs-shadow-opacity)",
+              "var(--duration-announcement-bar)",
+              "var(--announcement-translate-from)",
+              "var(--announcement-translate-to)",
+              "var(--header-height)",
+              "var(--inputs-margin-offset)",
+              "var(--popup-corner-radius)",
+              "var(--popup-border-opacity)",
+              "var(--popup-border-width)",
+              "var(--popup-shadow-horizontal-offset)",
+              "var(--popup-shadow-vertical-offset)",
+              "var(--popup-shadow-blur-radius)",
+              "var(--popup-shadow-opacity)",
+              "var(--badge-corner-radius)",
+              "var(--color-badge-background)",
+              "var(--color-badge-border)",
+              "var(--alpha-badge-border)",
+              "var(--color-badge-foreground)",
+              "var(--gradient-background)",
+              "var(--ratio-percent)",
+              "var(--font-body-weight-bold)",
+              "var(--shape--blob-1)",
+              "var(--zoom-in-ratio)",
+              "var(--animation-fade-in)",
+              "var(--animation-order)",
+              "var(--duration-long)",
+              "var(--duration-extended)",
+              "var(--easter-egg)",
+              "var(--duration-medium)",
+              "var(--duration-extra-longer)"
+            ],
+            "references": []
+          }
+        },
+        "componentCSS": [
+          {
+            "name": "component-accordion.css",
+            "size": 1145,
+            "lines": 59,
+            "mediaQueries": 0,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--font-heading-scale)",
+                "var(--color-foreground)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-article-card.css",
+            "size": 2370,
+            "lines": 143,
+            "mediaQueries": 5,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [],
+              "references": []
+            }
+          },
+          {
+            "name": "component-card.css",
+            "size": 14067,
+            "lines": 596,
+            "mediaQueries": 7,
+            "customProperties": 10,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--text-alignment)",
+                "var(--border-radius)",
+                "var(--border-width)",
+                "var(--color-foreground)",
+                "var(--border-opacity)",
+                "var(--shadow-horizontal-offset)",
+                "var(--shadow-vertical-offset)",
+                "var(--shadow-blur-radius)",
+                "var(--color-shadow)",
+                "var(--shadow-opacity)",
+                "var(--image-padding)",
+                "var(--font-body-scale)",
+                "var(--font-heading-scale)",
+                "var(--color-background)",
+                "var(--duration-long)",
+                "var(--duration-short)",
+                "var(--shape--blob-2)",
+                "var(--shape--blob-3)",
+                "var(--shape--blob-4)",
+                "var(--shape--blob-5)",
+                "var(--shape--blob-6)",
+                "var(--shape--blob-1)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-cart-drawer.css",
+            "size": 7371,
+            "lines": 406,
+            "mediaQueries": 4,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)",
+                "var(--duration-default)",
+                "var(--color-button)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-cart-items.css",
+            "size": 5754,
+            "lines": 352,
+            "mediaQueries": 9,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--font-body-scale)",
+                "var(--color-foreground)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-cart-notification.css",
+            "size": 2969,
+            "lines": 124,
+            "mediaQueries": 2,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--popup-corner-radius)",
+                "var(--color-foreground)",
+                "var(--popup-border-opacity)",
+                "var(--popup-border-width)",
+                "var(--popup-shadow-horizontal-offset)",
+                "var(--popup-shadow-vertical-offset)",
+                "var(--popup-shadow-blur-radius)",
+                "var(--color-shadow)",
+                "var(--popup-shadow-opacity)",
+                "var(--duration-short)",
+                "var(--duration-default)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-cart.css",
+            "size": 3339,
+            "lines": 223,
+            "mediaQueries": 3,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)",
+                "var(--inputs-radius)",
+                "var(--font-body-scale)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-collection-hero.css",
+            "size": 2189,
+            "lines": 99,
+            "mediaQueries": 5,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--page-width-margin)",
+                "var(--font-body-scale)",
+                "var(--media-border-width)",
+                "var(--color-foreground)",
+                "var(--media-border-opacity)",
+                "var(--media-radius)",
+                "var(--media-shadow-horizontal-offset)",
+                "var(--media-shadow-vertical-offset)",
+                "var(--media-shadow-blur-radius)",
+                "var(--color-shadow)",
+                "var(--media-shadow-opacity)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-complementary-products.css",
+            "size": 4302,
+            "lines": 162,
+            "mediaQueries": 3,
+            "customProperties": 2,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--shadow-horizontal-offset)",
+                "var(--shadow-blur-radius)",
+                "var(--shadow-visible)",
+                "var(--grid-mobile-vertical-spacing)",
+                "var(--grid-desktop-vertical-spacing)",
+                "var(--focus-outline-padding)",
+                "var(--shadow-padding-top)",
+                "var(--shadow-padding-bottom)",
+                "var(--shadow-padding-sides)",
+                "var(--shadow-padding-sides-negative)",
+                "var(--color-foreground)",
+                "var(--font-heading-scale)",
+                "var(--corner-radius)",
+                "var(--border-width)",
+                "var(--image-padding)",
+                "var(--duration-short)",
+                "var(--text-alignment)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-deferred-media.css",
+            "size": 2559,
+            "lines": 99,
+            "mediaQueries": 1,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--border-radius)",
+                "var(--border-width)",
+                "var(--media-border-width)",
+                "var(--color-foreground)",
+                "var(--media-border-opacity)",
+                "var(--color-background)",
+                "var(--media-radius)",
+                "var(--duration-short)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-discounts.css",
+            "size": 562,
+            "lines": 31,
+            "mediaQueries": 1,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--font-body-scale)",
+                "var(--color-button)",
+                "var(--alpha-button-background)",
+                "var(--color-foreground)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-facets.css",
+            "size": 25694,
+            "lines": 1258,
+            "mediaQueries": 12,
+            "customProperties": 2,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)",
+                "var(--font-body-scale)",
+                "var(--color-background)",
+                "var(--duration-default)",
+                "var(--duration-short)",
+                "var(--font-heading-scale)",
+                "var(--popup-border-width)",
+                "var(--popup-border-opacity)",
+                "var(--popup-corner-radius)",
+                "var(--popup-shadow-horizontal-offset)",
+                "var(--popup-shadow-vertical-offset)",
+                "var(--popup-shadow-blur-radius)",
+                "var(--color-shadow)",
+                "var(--popup-shadow-opacity)",
+                "var(--drawer-border-opacity)",
+                "var(--drawer-border-width)",
+                "var(--drawer-shadow-horizontal-offset)",
+                "var(--drawer-shadow-vertical-offset)",
+                "var(--drawer-shadow-blur-radius)",
+                "var(--drawer-shadow-opacity)",
+                "var(--color-link)",
+                "var(--alpha-link)",
+                "var(--gradient-background)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-image-with-text.css",
+            "size": 11542,
+            "lines": 418,
+            "mediaQueries": 9,
+            "customProperties": 3,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)",
+                "var(--font-body-scale)",
+                "var(--media-radius)",
+                "var(--media-shadow-horizontal-offset)",
+                "var(--media-shadow-vertical-offset)",
+                "var(--media-shadow-blur-radius)",
+                "var(--color-shadow)",
+                "var(--media-shadow-opacity)",
+                "var(--text-boxes-radius)",
+                "var(--text-boxes-shadow-horizontal-offset)",
+                "var(--text-boxes-shadow-vertical-offset)",
+                "var(--text-boxes-shadow-blur-radius)",
+                "var(--text-boxes-shadow-opacity)",
+                "var(--grid-mobile-vertical-spacing)",
+                "var(--grid-desktop-vertical-spacing)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-list-menu.css",
+            "size": 516,
+            "lines": 31,
+            "mediaQueries": 0,
+            "customProperties": 2,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-list-payment.css",
+            "size": 362,
+            "lines": 23,
+            "mediaQueries": 1,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [],
+              "references": []
+            }
+          },
+          {
+            "name": "component-list-social.css",
+            "size": 504,
+            "lines": 33,
+            "mediaQueries": 1,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-localization-form.css",
+            "size": 9758,
+            "lines": 452,
+            "mediaQueries": 5,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--inputs-radius-outset)",
+                "var(--inputs-border-width)",
+                "var(--color-background)",
+                "var(--color-foreground)",
+                "var(--duration-default)",
+                "var(--popup-border-width)",
+                "var(--popup-border-opacity)",
+                "var(--popup-corner-radius)",
+                "var(--popup-shadow-horizontal-offset)",
+                "var(--popup-shadow-vertical-offset)",
+                "var(--popup-shadow-blur-radius)",
+                "var(--color-shadow)",
+                "var(--popup-shadow-opacity)",
+                "var(--duration-short)",
+                "var(--font-body-scale)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-mega-menu.css",
+            "size": 1681,
+            "lines": 88,
+            "mediaQueries": 0,
+            "customProperties": 1,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-background)",
+                "var(--color-foreground)",
+                "var(--font-body-scale)",
+                "var(--duration-short)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-menu-drawer.css",
+            "size": 5411,
+            "lines": 244,
+            "mediaQueries": 4,
+            "customProperties": 4,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)",
+                "var(--duration-default)",
+                "var(--color-background)",
+                "var(--drawer-shadow-horizontal-offset)",
+                "var(--drawer-shadow-vertical-offset)",
+                "var(--drawer-shadow-blur-radius)",
+                "var(--color-shadow)",
+                "var(--drawer-shadow-opacity)",
+                "var(--drawer-border-width)",
+                "var(--drawer-border-opacity)",
+                "var(--font-body-family)",
+                "var(--font-body-style)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-modal-video.css",
+            "size": 1808,
+            "lines": 103,
+            "mediaQueries": 4,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)",
+                "var(--color-background)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-model-viewer-ui.css",
+            "size": 1500,
+            "lines": 43,
+            "mediaQueries": 0,
+            "customProperties": 5,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-background)",
+                "var(--color-foreground)",
+                "var(--duration-short)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-newsletter.css",
+            "size": 1408,
+            "lines": 72,
+            "mediaQueries": 2,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--inputs-border-width)",
+                "var(--color-background)",
+                "var(--color-foreground)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-pagination.css",
+            "size": 1385,
+            "lines": 83,
+            "mediaQueries": 1,
+            "customProperties": 4,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-pickup-availability.css",
+            "size": 3511,
+            "lines": 176,
+            "mediaQueries": 3,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)",
+                "var(--color-background)",
+                "var(--duration-default)",
+                "var(--drawer-border-width)",
+                "var(--drawer-border-opacity)",
+                "var(--drawer-shadow-horizontal-offset)",
+                "var(--drawer-shadow-vertical-offset)",
+                "var(--drawer-shadow-blur-radius)",
+                "var(--color-shadow)",
+                "var(--drawer-shadow-opacity)",
+                "var(--font-body-scale)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-predictive-search.css",
+            "size": 5827,
+            "lines": 226,
+            "mediaQueries": 4,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--popup-border-width)",
+                "var(--color-foreground)",
+                "var(--popup-border-opacity)",
+                "var(--color-background)",
+                "var(--popup-corner-radius)",
+                "var(--popup-shadow-horizontal-offset)",
+                "var(--popup-shadow-vertical-offset)",
+                "var(--popup-shadow-blur-radius)",
+                "var(--color-shadow)",
+                "var(--popup-shadow-opacity)",
+                "var(--font-body-scale)",
+                "var(--font-heading-scale)",
+                "var(--color-link)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-price.css",
+            "size": 1839,
+            "lines": 102,
+            "mediaQueries": 2,
+            "customProperties": 1,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--font-body-scale)",
+                "var(--color-foreground)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-product-model.css",
+            "size": 838,
+            "lines": 45,
+            "mediaQueries": 2,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-product-variant-picker.css",
+            "size": 4619,
+            "lines": 153,
+            "mediaQueries": 2,
+            "customProperties": 3,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--swatch-input--size)",
+                "var(--variant-pills-border-width)",
+                "var(--color-foreground)",
+                "var(--variant-pills-border-opacity)",
+                "var(--color-background)",
+                "var(--variant-pills-radius)",
+                "var(--duration-short)",
+                "var(--variant-pills-shadow-horizontal-offset)",
+                "var(--variant-pills-shadow-vertical-offset)",
+                "var(--variant-pills-shadow-blur-radius)",
+                "var(--color-shadow)",
+                "var(--variant-pills-shadow-opacity)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-progress-bar.css",
+            "size": 590,
+            "lines": 34,
+            "mediaQueries": 0,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)",
+                "var(--duration-extra-longer)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-rating.css",
+            "size": 1196,
+            "lines": 65,
+            "mediaQueries": 1,
+            "customProperties": 6,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)",
+                "var(--rating)",
+                "var(--rating-max)",
+                "var(--rating-decimal)",
+                "var(--font-size)",
+                "var(--letter-spacing)",
+                "var(--color-rating-star)",
+                "var(--percent)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-search.css",
+            "size": 1489,
+            "lines": 75,
+            "mediaQueries": 0,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--inputs-border-width)",
+                "var(--color-foreground)",
+                "var(--color-background)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-show-more.css",
+            "size": 162,
+            "lines": 11,
+            "mediaQueries": 0,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [],
+              "references": []
+            }
+          },
+          {
+            "name": "component-slider.css",
+            "size": 9406,
+            "lines": 378,
+            "mediaQueries": 13,
+            "customProperties": 19,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--page-width)",
+                "var(--grid-desktop-horizontal-spacing)",
+                "var(--shadow-vertical-offset)",
+                "var(--shadow-blur-radius)",
+                "var(--shadow-visible)",
+                "var(--focus-outline-padding)",
+                "var(--shadow-padding-top)",
+                "var(--shadow-padding-bottom)",
+                "var(--desktop-margin-left-first-item)",
+                "var(--color-foreground)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-slideshow.css",
+            "size": 4222,
+            "lines": 202,
+            "mediaQueries": 10,
+            "customProperties": 2,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--text-boxes-border-width)",
+                "var(--color-foreground)",
+                "var(--text-boxes-border-opacity)",
+                "var(--text-boxes-radius)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-swatch-input.css",
+            "size": 3084,
+            "lines": 88,
+            "mediaQueries": 0,
+            "customProperties": 4,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--swatch-input--border-radius)",
+                "var(--duration-short)",
+                "var(--color-foreground)",
+                "var(--color-background)",
+                "var(--swatch-input--size)",
+                "var(--crossed-line--size)",
+                "var(--diagonal--size)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-swatch.css",
+            "size": 778,
+            "lines": 26,
+            "mediaQueries": 0,
+            "customProperties": 3,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--swatch--size)",
+                "var(--swatch--background)",
+                "var(--color-foreground)",
+                "var(--swatch--border-radius)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-totals.css",
+            "size": 501,
+            "lines": 41,
+            "mediaQueries": 1,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--font-heading-scale)"
+              ],
+              "references": []
+            }
+          },
+          {
+            "name": "component-volume-pricing.css",
+            "size": 1208,
+            "lines": 71,
+            "mediaQueries": 0,
+            "customProperties": 0,
+            "dependencies": {
+              "imports": [],
+              "customProperties": [
+                "var(--color-foreground)"
+              ],
+              "references": []
+            }
+          }
+        ],
+        "loadingOrder": [],
+        "dependencies": {},
+        "totalFiles": 65,
+        "totalSize": 372226
+      },
+      "liquidDependencies": {
+        "sections": {
+          "announcement-bar.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "component-slideshow.css",
+              "component-slider.css",
+              "component-list-social.css"
+            ],
+            "jsFiles": [
+              "theme-editor.js"
+            ],
+            "settings": [
+              "section.settings.enable_country_selector",
+              "section.settings.enable_language_selector",
+              "section.settings.color_scheme",
+              "section.settings.show_line_separator",
+              "section.settings.show_social",
+              "section.settings.auto_rotate",
+              "section.settings.change_slides_speed"
+            ]
+          },
+          "apps.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.include_margins"
+            ]
+          },
+          "bulk-quick-order-list.liquid": {
+            "renders": [
+              "quick-order-list"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "quick-order-list.css"
+            ],
+            "jsFiles": [
+              "quick-order-list.js"
+            ],
+            "settings": []
+          },
+          "cart-drawer.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "cart-icon-bubble.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "cart-live-region-text.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "cart-notification-button.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "cart-notification-product.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "collage.liquid": {
+            "renders": [
+              "card-product",
+              "card-collection"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "collage.css",
+              "component-card.css",
+              "component-price.css",
+              "component-modal-video.css",
+              "component-deferred-media.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.color_scheme",
+              "section.settings.heading",
+              "section.settings.heading_size",
+              "section.settings.mobile_layout",
+              "section.settings.desktop_layout",
+              "section.settings.card_styles"
+            ]
+          },
+          "collapsible-content.liquid": {
+            "renders": [
+              "icon-accordion"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "component-accordion.css",
+              "collapsible-content.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.color_scheme",
+              "section.settings.layout",
+              "section.settings.container_color_scheme",
+              "section.settings.image",
+              "section.settings.heading_alignment",
+              "section.settings.caption",
+              "section.settings.heading",
+              "section.settings.heading_size",
+              "section.settings.desktop_layout",
+              "section.settings.image_ratio",
+              "section.settings.open_first_collapsible_row"
+            ]
+          },
+          "collection-list.liquid": {
+            "renders": [
+              "card-collection"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "section-collection-list.css",
+              "component-card.css",
+              "component-slider.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.columns_mobile",
+              "section.settings.swipe_on_mobile",
+              "section.settings.color_scheme",
+              "section.settings.title",
+              "section.settings.show_view_all",
+              "section.settings.heading_size",
+              "section.settings.columns_desktop",
+              "section.settings.image_ratio"
+            ]
+          },
+          "contact-form.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "section-contact-form.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.color_scheme",
+              "section.settings.heading",
+              "section.settings.heading_size"
+            ]
+          },
+          "custom-liquid.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.color_scheme",
+              "section.settings.custom_liquid"
+            ]
+          },
+          "email-signup-banner.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "section-image-banner.css",
+              "component-newsletter.css",
+              "newsletter-section.css",
+              "section-email-signup-banner.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.image_overlay_opacity",
+              "section.settings.image_height",
+              "section.settings.image",
+              "section.settings.desktop_content_alignment",
+              "section.settings.mobile_content_alignment",
+              "section.settings.show_text_below",
+              "section.settings.show_text_box",
+              "section.settings.show_background_image",
+              "section.settings.desktop_content_position",
+              "section.settings.color_scheme"
+            ]
+          },
+          "featured-blog.liquid": {
+            "renders": [
+              "article-card"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "component-slider.css",
+              "component-card.css",
+              "component-article-card.css",
+              "section-featured-blog.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.blog",
+              "section.settings.post_limit",
+              "section.settings.color_scheme",
+              "section.settings.heading",
+              "section.settings.heading_size",
+              "section.settings.show_view_all",
+              "section.settings.columns_desktop",
+              "section.settings.show_image",
+              "section.settings.show_date",
+              "section.settings.show_author"
+            ]
+          },
+          "featured-collection.liquid": {
+            "renders": [
+              "card-product",
+              "card-product"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "component-card.css",
+              "component-price.css",
+              "component-slider.css",
+              "template-collection.css",
+              "mask-blobs.css",
+              "quick-add.css"
+            ],
+            "jsFiles": [
+              "product-form.js",
+              "quick-add.js",
+              "quick-add-bulk.js",
+              "quantity-popover.js",
+              "price-per-item.js",
+              "quick-order-list.js"
+            ],
+            "settings": [
+              "section.settings.image_shape",
+              "section.settings.quick_add",
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.collection",
+              "section.settings.products_to_show",
+              "section.settings.columns_mobile",
+              "section.settings.swipe_on_mobile",
+              "section.settings.enable_desktop_slider",
+              "section.settings.columns_desktop",
+              "section.settings.color_scheme",
+              "section.settings.full_width",
+              "section.settings.title",
+              "section.settings.heading_size",
+              "section.settings.description",
+              "section.settings.show_description",
+              "section.settings.description_style",
+              "section.settings.image_ratio",
+              "section.settings.show_secondary_image",
+              "section.settings.show_vendor",
+              "section.settings.show_rating",
+              "section.settings.show_view_all",
+              "section.settings.view_all_style"
+            ]
+          },
+          "featured-product.liquid": {
+            "renders": [
+              "product-media-gallery",
+              "product-variant-picker",
+              "icon-with-text",
+              "product-media-modal"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "section-main-product.css",
+              "section-featured-product.css",
+              "component-accordion.css",
+              "component-price.css",
+              "component-deferred-media.css",
+              "component-rating.css",
+              "component-volume-pricing.css",
+              "component-product-variant-picker.css",
+              "component-swatch.css",
+              "component-swatch-input.css",
+              "component-product-model.css",
+              "component-model-viewer-ui.css"
+            ],
+            "jsFiles": [
+              "product-info.js",
+              "show-more.js",
+              "price-per-item.js",
+              "product-form.js",
+              "magnify.js",
+              "theme-editor.js",
+              "product-model.js",
+              "product-modal.js",
+              "media-gallery.js"
+            ],
+            "settings": [
+              "section.settings.product",
+              "section.settings.image_zoom",
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.color_scheme",
+              "section.settings.secondary_background",
+              "section.settings.media_size",
+              "section.settings.media_position",
+              "section.settings.constrain_to_viewport"
+            ]
+          },
+          "footer.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "section-footer.css",
+              "component-newsletter.css",
+              "component-list-menu.css",
+              "component-list-payment.css",
+              "component-list-social.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.margin_top",
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.color_scheme",
+              "section.settings.newsletter_enable",
+              "section.settings.enable_follow_on_shop",
+              "section.settings.show_social",
+              "section.settings.newsletter_heading",
+              "section.settings.enable_country_selector",
+              "section.settings.enable_language_selector",
+              "section.settings.payment_enable",
+              "section.settings.show_policy"
+            ]
+          },
+          "header.liquid": {
+            "renders": [
+              "header-search"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "component-list-menu.css",
+              "component-search.css",
+              "component-menu-drawer.css",
+              "component-cart-notification.css",
+              "component-price.css",
+              "component-mega-menu.css"
+            ],
+            "jsFiles": [
+              "cart-notification.js"
+            ],
+            "settings": [
+              "section.settings.menu_type_desktop",
+              "section.settings.sticky_header_type",
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.margin_bottom",
+              "section.settings.color_scheme",
+              "section.settings.show_line_separator",
+              "section.settings.enable_country_selector",
+              "section.settings.enable_language_selector",
+              "section.settings.logo_position",
+              "section.settings.mobile_logo_position",
+              "section.settings.menu",
+              "section.settings.enable_customer_avatar"
+            ]
+          },
+          "image-banner.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "section-image-banner.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.image_height",
+              "section.settings.image",
+              "section.settings.image_overlay_opacity",
+              "section.settings.image_behavior",
+              "section.settings.desktop_content_alignment",
+              "section.settings.mobile_content_alignment",
+              "section.settings.stack_images_on_mobile",
+              "section.settings.image_2",
+              "section.settings.show_text_below",
+              "section.settings.show_text_box",
+              "section.settings.desktop_content_position",
+              "section.settings.color_scheme"
+            ]
+          },
+          "image-with-text.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "component-image-with-text.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.color_scheme",
+              "section.settings.section_color_scheme",
+              "section.settings.content_layout",
+              "section.settings.desktop_image_width",
+              "section.settings.layout",
+              "section.settings.desktop_content_position",
+              "section.settings.height",
+              "section.settings.image",
+              "section.settings.image_behavior",
+              "section.settings.desktop_content_alignment",
+              "section.settings.mobile_content_alignment"
+            ]
+          },
+          "main-404.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "main-account.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "customer.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom"
+            ]
+          },
+          "main-activate-account.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "customer.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom"
+            ]
+          },
+          "main-addresses.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "customer.css"
+            ],
+            "jsFiles": [
+              "customer.js"
+            ],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom"
+            ]
+          },
+          "main-article.liquid": {
+            "renders": [
+              "share-button",
+              "pagination"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "section-blog-post.css"
+            ],
+            "jsFiles": [],
+            "settings": []
+          },
+          "main-blog.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "component-article-card.css",
+              "component-card.css",
+              "section-main-blog.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.layout",
+              "section.settings.image_height",
+              "section.settings.show_image",
+              "section.settings.show_date",
+              "section.settings.show_author"
+            ]
+          },
+          "main-cart-footer.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "component-cart.css",
+              "component-totals.css",
+              "component-price.css",
+              "component-discounts.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.color_scheme"
+            ]
+          },
+          "main-cart-items.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "component-cart.css",
+              "component-cart-items.css",
+              "component-totals.css",
+              "component-price.css",
+              "component-discounts.css",
+              "quantity-popover.css"
+            ],
+            "jsFiles": [
+              "cart.js",
+              "quantity-popover.js"
+            ],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.color_scheme"
+            ]
+          },
+          "main-collection-banner.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "component-collection-hero.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.show_collection_image",
+              "section.settings.color_scheme",
+              "section.settings.show_collection_description"
+            ]
+          },
+          "main-collection-product-grid.liquid": {
+            "renders": [
+              "facets",
+              "card-product",
+              "pagination"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "template-collection.css",
+              "component-card.css",
+              "component-price.css",
+              "mask-blobs.css",
+              "quick-add.css",
+              "component-facets.css"
+            ],
+            "jsFiles": [
+              "quick-add.js",
+              "product-form.js",
+              "quick-add-bulk.js",
+              "quantity-popover.js",
+              "price-per-item.js",
+              "quick-order-list.js",
+              "facets.js"
+            ],
+            "settings": [
+              "section.settings.image_shape",
+              "section.settings.quick_add",
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.color_scheme",
+              "section.settings.products_per_page",
+              "section.settings.enable_sorting",
+              "section.settings.filter_type",
+              "section.settings.enable_filtering",
+              "section.settings.columns_mobile",
+              "section.settings.columns_desktop",
+              "section.settings.image_ratio",
+              "section.settings.show_secondary_image",
+              "section.settings.show_vendor",
+              "section.settings.show_rating"
+            ]
+          },
+          "main-list-collections.liquid": {
+            "renders": [
+              "card-collection",
+              "pagination"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "component-card.css",
+              "section-collection-list.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.title",
+              "section.settings.sort",
+              "section.settings.columns_desktop",
+              "section.settings.columns_mobile",
+              "section.settings.image_ratio"
+            ]
+          },
+          "main-login.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "customer.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.enable_shop_login_button"
+            ]
+          },
+          "main-order.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "customer.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom"
+            ]
+          },
+          "main-page.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "section-main-page.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom"
+            ]
+          },
+          "main-password-footer.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.color_scheme"
+            ]
+          },
+          "main-password-header.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.color_scheme"
+            ]
+          },
+          "main-product.liquid": {
+            "renders": [
+              "product-media-gallery",
+              "icon-accordion",
+              "product-variant-picker",
+              "icon-accordion",
+              "card-product",
+              "icon-with-text",
+              "product-media-modal"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "section-main-product.css",
+              "component-accordion.css",
+              "component-price.css",
+              "component-slider.css",
+              "component-rating.css",
+              "component-deferred-media.css",
+              "component-product-variant-picker.css",
+              "component-swatch-input.css",
+              "component-swatch.css",
+              "component-volume-pricing.css",
+              "component-product-model.css",
+              "component-model-viewer-ui.css",
+              "component-card.css",
+              "component-complementary-products.css",
+              "quick-add.css"
+            ],
+            "jsFiles": [
+              "product-info.js",
+              "product-form.js",
+              "show-more.js",
+              "price-per-item.js",
+              "magnify.js",
+              "theme-editor.js",
+              "quick-add.js",
+              "product-modal.js",
+              "media-gallery.js",
+              "product-model.js"
+            ],
+            "settings": [
+              "section.settings.color_scheme",
+              "section.settings.image_zoom",
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.media_size",
+              "section.settings.media_position",
+              "section.settings.gallery_layout",
+              "section.settings.mobile_thumbnails",
+              "section.settings.enable_sticky_info"
+            ]
+          },
+          "main-register.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "customer.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom"
+            ]
+          },
+          "main-reset-password.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "customer.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom"
+            ]
+          },
+          "main-search.liquid": {
+            "renders": [
+              "facets",
+              "card-product",
+              "article-card",
+              "pagination"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "template-collection.css",
+              "component-card.css",
+              "component-price.css",
+              "component-search.css",
+              "component-facets.css",
+              "mask-blobs.css"
+            ],
+            "jsFiles": [
+              "facets.js",
+              "main-search.js"
+            ],
+            "settings": [
+              "section.settings.enable_filtering",
+              "section.settings.enable_sorting",
+              "section.settings.image_shape",
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.filter_type",
+              "section.settings.columns_mobile",
+              "section.settings.columns_desktop",
+              "section.settings.product_show_vendor",
+              "section.settings.image_ratio",
+              "section.settings.show_secondary_image",
+              "section.settings.show_vendor",
+              "section.settings.show_rating",
+              "section.settings.article_show_date",
+              "section.settings.article_show_author"
+            ]
+          },
+          "multicolumn.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "section-multicolumn.css",
+              "component-slider.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.columns_mobile",
+              "section.settings.swipe_on_mobile",
+              "section.settings.color_scheme",
+              "section.settings.background_style",
+              "section.settings.title",
+              "section.settings.heading_size",
+              "section.settings.button_label",
+              "section.settings.button_link",
+              "section.settings.columns_desktop",
+              "section.settings.column_alignment",
+              "section.settings.image_ratio",
+              "section.settings.image_width"
+            ]
+          },
+          "multirow.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "component-image-with-text.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.image_layout",
+              "section.settings.row_color_scheme",
+              "section.settings.section_color_scheme",
+              "section.settings.desktop_image_width",
+              "section.settings.desktop_content_position",
+              "section.settings.image_height",
+              "section.settings.desktop_content_alignment",
+              "section.settings.mobile_content_alignment",
+              "section.settings.heading_size",
+              "section.settings.text_style",
+              "section.settings.button_style"
+            ]
+          },
+          "newsletter.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "component-newsletter.css",
+              "newsletter-section.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.full_width",
+              "section.settings.color_scheme"
+            ]
+          },
+          "page.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "section-main-page.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.color_scheme",
+              "section.settings.heading_size",
+              "section.settings.page"
+            ]
+          },
+          "pickup-availability.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "predictive-search.liquid": {
+            "renders": [
+              "price"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "quick-order-list.liquid": {
+            "renders": [
+              "quick-order-list"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "component-price.css",
+              "quick-order-list.css",
+              "quantity-popover.css"
+            ],
+            "jsFiles": [
+              "quantity-popover.js",
+              "price-per-item.js",
+              "quick-order-list.js"
+            ],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.show_image",
+              "section.settings.show_sku"
+            ]
+          },
+          "related-products.liquid": {
+            "renders": [
+              "card-product"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "component-card.css",
+              "component-price.css",
+              "section-related-products.css",
+              "mask-blobs.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.image_shape",
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.color_scheme",
+              "section.settings.products_to_show",
+              "section.settings.heading_size",
+              "section.settings.heading",
+              "section.settings.columns_desktop",
+              "section.settings.columns_mobile",
+              "section.settings.image_ratio",
+              "section.settings.show_secondary_image",
+              "section.settings.show_vendor",
+              "section.settings.show_rating"
+            ]
+          },
+          "rich-text.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "section-rich-text.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.full_width",
+              "section.settings.color_scheme",
+              "section.settings.desktop_content_position",
+              "section.settings.content_alignment"
+            ]
+          },
+          "slideshow.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "section-image-banner.css",
+              "component-slider.css",
+              "component-slideshow.css"
+            ],
+            "jsFiles": [
+              "theme-editor.js"
+            ],
+            "settings": [
+              "section.settings.slide_height",
+              "section.settings.layout",
+              "section.settings.show_text_below",
+              "section.settings.accessibility_info",
+              "section.settings.auto_rotate",
+              "section.settings.slider_visual",
+              "section.settings.change_slides_speed",
+              "section.settings.image_behavior"
+            ]
+          },
+          "video.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [
+              "video-section.css",
+              "component-deferred-media.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.padding_top",
+              "section.settings.padding_bottom",
+              "section.settings.video",
+              "section.settings.video_url",
+              "section.settings.description",
+              "section.settings.cover_image",
+              "section.settings.full_width",
+              "section.settings.color_scheme",
+              "section.settings.heading",
+              "section.settings.heading_size",
+              "section.settings.enable_video_looping"
+            ]
+          }
+        },
+        "snippets": {
+          "article-card.liquid": {
+            "renders": [
+              "article-card"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.show_image",
+              "section.settings.media_height"
+            ]
+          },
+          "buy-buttons.liquid": {
+            "renders": [
+              "buy-buttons"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "component-pickup-availability.css"
+            ],
+            "jsFiles": [
+              "pickup-availability.js"
+            ],
+            "settings": [
+              "section.settings.color_scheme"
+            ]
+          },
+          "card-collection.liquid": {
+            "renders": [
+              "card-collection"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "card-product.liquid": {
+            "renders": [
+              "card-product",
+              "price",
+              "quantity-input",
+              "price",
+              "price",
+              "price"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "component-rating.css",
+              "component-volume-pricing.css",
+              "component-price.css",
+              "quick-order-list.css",
+              "quantity-popover.css"
+            ],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.show_vendor",
+              "section.settings.color_scheme"
+            ]
+          },
+          "cart-drawer.liquid": {
+            "renders": [
+              "cart-drawer",
+              "card-collection"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "quantity-popover.css",
+              "component-card.css"
+            ],
+            "jsFiles": [
+              "cart.js",
+              "quantity-popover.js"
+            ],
+            "settings": []
+          },
+          "cart-notification.liquid": {
+            "renders": [
+              "cart-notification"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "country-localization.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "facets.liquid": {
+            "renders": [
+              "facets",
+              "swatch-input",
+              "price-facet",
+              "swatch-input",
+              "price-facet"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "component-show-more.css",
+              "component-swatch-input.css",
+              "component-swatch.css"
+            ],
+            "jsFiles": [
+              "show-more.js"
+            ],
+            "settings": []
+          },
+          "gift-card-recipient-form.liquid": {
+            "renders": [
+              "gift-card-recipient-form"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [
+              "recipient-form.js"
+            ],
+            "settings": []
+          },
+          "header-drawer.liquid": {
+            "renders": [
+              "header-drawer"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.menu_type_desktop",
+              "section.settings.menu_color_scheme",
+              "section.settings.menu",
+              "section.settings.enable_customer_avatar"
+            ]
+          },
+          "header-dropdown-menu.liquid": {
+            "renders": [
+              "header-dropdown-menu"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.menu",
+              "section.settings.menu_color_scheme"
+            ]
+          },
+          "header-mega-menu.liquid": {
+            "renders": [
+              "header-mega-menu"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.menu",
+              "section.settings.menu_color_scheme"
+            ]
+          },
+          "header-search.liquid": {
+            "renders": [
+              "header-search"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "icon-accordion.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "icon-with-text.liquid": {
+            "renders": [
+              "icon-with-text",
+              "icon-accordion",
+              "icon-accordion"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "language-localization.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "loading-spinner.liquid": {
+            "renders": [
+              "loading-spinner"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "meta-tags.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "pagination.liquid": {
+            "renders": [
+              "pagination"
+            ],
+            "includes": [],
+            "cssFiles": [
+              "component-pagination.css"
+            ],
+            "jsFiles": [],
+            "settings": []
+          },
+          "price-facet.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "price.liquid": {
+            "renders": [
+              "price"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "product-media-gallery.liquid": {
+            "renders": [
+              "product-media-gallery",
+              "product-thumbnail",
+              "product-thumbnail"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.hide_variants",
+              "section.settings.mobile_thumbnails",
+              "section.settings.media_size",
+              "section.settings.enable_sticky_info",
+              "section.settings.gallery_layout",
+              "section.settings.enable_video_looping",
+              "section.settings.media_fit",
+              "section.settings.constrain_to_viewport"
+            ]
+          },
+          "product-media-modal.liquid": {
+            "renders": [
+              "product-media-modal"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.color_scheme",
+              "section.settings.enable_video_looping",
+              "section.settings.hide_variants"
+            ]
+          },
+          "product-media.liquid": {
+            "renders": [
+              "product-media"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.enable_video_looping"
+            ]
+          },
+          "product-thumbnail.liquid": {
+            "renders": [
+              "product-thumbnail"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.enable_video_looping",
+              "section.settings.image_zoom"
+            ]
+          },
+          "product-variant-options.liquid": {
+            "renders": [
+              "product-variant-options",
+              "swatch-input"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "product-variant-picker.liquid": {
+            "renders": [
+              "product-variant-picker",
+              "product-variant-options",
+              "product-variant-options",
+              "swatch",
+              "product-variant-options"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "progress-bar.liquid": {
+            "renders": [],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "quantity-input.liquid": {
+            "renders": [
+              "quantity-input"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "quick-order-list-row.liquid": {
+            "renders": [
+              "quick-order-list-row",
+              "quantity-input"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "quick-order-list.liquid": {
+            "renders": [
+              "quick-order-list",
+              "pagination"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": [
+              "section.settings.color_scheme",
+              "section.settings.variants_per_page"
+            ]
+          },
+          "quick-order-product-row.liquid": {
+            "renders": [
+              "quick-order-product-row"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "share-button.liquid": {
+            "renders": [
+              "share-button"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [
+              "share.js"
+            ],
+            "settings": []
+          },
+          "social-icons.liquid": {
+            "renders": [
+              "social-icons"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "swatch-input.liquid": {
+            "renders": [
+              "swatch-input",
+              "swatch"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          },
+          "swatch.liquid": {
+            "renders": [
+              "swatch"
+            ],
+            "includes": [],
+            "cssFiles": [],
+            "jsFiles": [],
+            "settings": []
+          }
+        },
+        "templates": {
+          "404.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-404",
+                "settings": 0
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "article.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-article",
+                "settings": 0
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "blog.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-blog",
+                "settings": 7
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "cart.json": {
+            "sections": [
+              {
+                "key": "cart-items",
+                "type": "main-cart-items",
+                "settings": 3
+              },
+              {
+                "key": "cart-footer",
+                "type": "main-cart-footer",
+                "settings": 3
+              }
+            ],
+            "order": [
+              "cart-items",
+              "cart-footer"
+            ],
+            "settings": {}
+          },
+          "collection.json": {
+            "sections": [
+              {
+                "key": "banner",
+                "type": "main-collection-banner",
+                "settings": 3
+              },
+              {
+                "key": "product-grid",
+                "type": "main-collection-product-grid",
+                "settings": 15
+              }
+            ],
+            "order": [
+              "banner",
+              "product-grid"
+            ],
+            "settings": {}
+          },
+          "index.json": {
+            "sections": [
+              {
+                "key": "image-with-text",
+                "type": "image-with-text",
+                "settings": 12
+              },
+              {
+                "key": "featured_collection",
+                "type": "featured-collection",
+                "settings": 23
+              }
+            ],
+            "order": [
+              "image-with-text",
+              "featured_collection"
+            ],
+            "settings": {}
+          },
+          "list-collections.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-list-collections",
+                "settings": 5
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "page.about.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-page",
+                "settings": 2
+              },
+              {
+                "key": "image-banner",
+                "type": "image-banner",
+                "settings": 9
+              },
+              {
+                "key": "rich-text",
+                "type": "rich-text",
+                "settings": 6
+              },
+              {
+                "key": "multicolumn",
+                "type": "multicolumn",
+                "settings": 14
+              },
+              {
+                "key": "multicolumn-1",
+                "type": "multicolumn",
+                "settings": 14
+              },
+              {
+                "key": "multicolumn-2",
+                "type": "multicolumn",
+                "settings": 14
+              }
+            ],
+            "order": [
+              "main",
+              "image-banner",
+              "rich-text",
+              "multicolumn",
+              "multicolumn-1",
+              "multicolumn-2"
+            ],
+            "settings": {}
+          },
+          "page.contact.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-page",
+                "settings": 2
+              },
+              {
+                "key": "form",
+                "type": "contact-form",
+                "settings": 5
+              }
+            ],
+            "order": [
+              "main",
+              "form"
+            ],
+            "settings": {}
+          },
+          "page.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-page",
+                "settings": 2
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "password.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "email-signup-banner",
+                "settings": 9
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "product.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-product",
+                "settings": 13
+              },
+              {
+                "key": "related-products",
+                "type": "related-products",
+                "settings": 13
+              }
+            ],
+            "order": [
+              "main",
+              "related-products"
+            ],
+            "settings": {}
+          },
+          "search.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-search",
+                "settings": 14
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "customers/account.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-account",
+                "settings": 2
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "customers/activate_account.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-activate-account",
+                "settings": 2
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "customers/addresses.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-addresses",
+                "settings": 2
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "customers/login.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-login",
+                "settings": 3
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "customers/order.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-order",
+                "settings": 2
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "customers/register.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-register",
+                "settings": 2
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          },
+          "customers/reset_password.json": {
+            "sections": [
+              {
+                "key": "main",
+                "type": "main-reset-password",
+                "settings": 2
+              }
+            ],
+            "order": [
+              "main"
+            ],
+            "settings": {}
+          }
+        },
+        "crossReferences": []
+      },
+      "jsFunctionality": {
+        "files": [
+          {
+            "name": "animations.js",
+            "size": 3657,
+            "lines": 103,
+            "functions": [
+              "onIntersection",
+              "initializeScrollAnimationTrigger",
+              "initializeScrollZoomAnimationTrigger",
+              "percentageSeen"
+            ],
+            "eventListeners": [
+              "scroll",
+              "DOMContentLoaded",
+              "shopify:section:load",
+              "shopify:section:reorder",
+              "TriggerElements",
+              "Y"
+            ],
+            "shopifyAPIs": [
+              "Shopify.designMode"
+            ]
+          },
+          {
+            "name": "cart-drawer.js",
+            "size": 4222,
+            "lines": 137,
+            "functions": [],
+            "eventListeners": [
+              "keyup",
+              "click",
+              "keydown",
+              "transitionend",
+              "tainerToTrapFocusOn",
+              "Element"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "cart-notification.js",
+            "size": 2284,
+            "lines": 84,
+            "functions": [],
+            "eventListeners": [
+              "keyup",
+              "click",
+              "transitionend",
+              "BodyClick"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "cart.js",
+            "size": 10779,
+            "lines": 295,
+            "functions": [],
+            "eventListeners": [
+              "click",
+              "change",
+              "input",
+              "_id",
+              "tent"
+            ],
+            "shopifyAPIs": [
+              "routes.cart_url",
+              "routes.cart_change_url",
+              "routes.cart_update_url"
+            ]
+          },
+          {
+            "name": "constants.js",
+            "size": 258,
+            "lines": 10,
+            "functions": [],
+            "eventListeners": [],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "customer.js",
+            "size": 2978,
+            "lines": 86,
+            "functions": [],
+            "eventListeners": [
+              "click",
+              "tainer",
+              "Click"
+            ],
+            "shopifyAPIs": [
+              "Shopify.CountryProvinceSelector",
+              "Shopify.postLink"
+            ]
+          },
+          {
+            "name": "details-disclosure.js",
+            "size": 1615,
+            "lines": 54,
+            "functions": [],
+            "eventListeners": [
+              "focusout",
+              "toggle",
+              "tent",
+              "s"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "details-modal.js",
+            "size": 1683,
+            "lines": 48,
+            "functions": [],
+            "eventListeners": [
+              "keyup",
+              "click",
+              "tainer",
+              "BodyClickEvent"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "facets.js",
+            "size": 13928,
+            "lines": 366,
+            "functions": [
+              "onHistoryChange",
+              "filterDataUrl",
+              "matchesId"
+            ],
+            "eventListeners": [
+              "input",
+              "keyup",
+              "popstate",
+              "change",
+              "keydown",
+              "click",
+              "ActiveFilterClick",
+              "HistoryChange",
+              "s",
+              "tainer",
+              "tainerDesktop",
+              "_id",
+              "Trigger"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "global.js",
+            "size": 43835,
+            "lines": 1333,
+            "functions": [
+              "getFocusableElements",
+              "trapFocus",
+              "focusVisiblePolyfill",
+              "pauseAllMedia",
+              "removeTrapFocus",
+              "onKeyUpEscape",
+              "debounce",
+              "throttle",
+              "fetchConfig",
+              "addTrapFocus",
+              "handleAnimation",
+              "handleIntersection",
+              "shouldMoveNext"
+            ],
+            "eventListeners": [
+              "click",
+              "keyup",
+              "keydown",
+              "focusout",
+              "focusin",
+              "mousedown",
+              "focus",
+              "change",
+              "transitionend",
+              "resize",
+              "pointerup",
+              "scroll",
+              "mouseover",
+              "mouseleave",
+              "storefront:signincompleted",
+              "Minus",
+              "Plus",
+              "s",
+              "tainer",
+              "Start",
+              "Resize",
+              "_id",
+              "tent",
+              "trolWrapper",
+              "Delay",
+              "trolLinksArray",
+              "WasClicked",
+              "IsSetToPlay",
+              "Timeout",
+              "trolButtons",
+              "ClassIn",
+              "ClassOut"
+            ],
+            "shopifyAPIs": [
+              "Shopify.bind",
+              "Shopify.setSelectorByValue",
+              "Shopify.addListener",
+              "Shopify.postLink",
+              "Shopify.CountryProvinceSelector",
+              "Shopify.CountryProvinceSelector.prototype"
+            ]
+          },
+          {
+            "name": "localization-form.js",
+            "size": 7863,
+            "lines": 207,
+            "functions": [],
+            "eventListeners": [
+              "keyup",
+              "keydown",
+              "focusout",
+              "click",
+              "focus",
+              "blur",
+              "mousedown"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "magnify.js",
+            "size": 2132,
+            "lines": 64,
+            "functions": [
+              "createOverlay",
+              "prepareOverlay",
+              "toggleLoadingSpinner",
+              "moveWithHover",
+              "magnify",
+              "enableZoomOnHover"
+            ],
+            "eventListeners": [
+              "load",
+              "tainer",
+              "click",
+              "mousemove",
+              "mouseleave"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "main-search.js",
+            "size": 1242,
+            "lines": 46,
+            "functions": [],
+            "eventListeners": [
+              "focus",
+              "reset",
+              "input"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "media-gallery.js",
+            "size": 4910,
+            "lines": 118,
+            "functions": [],
+            "eventListeners": [
+              "slideChanged",
+              "click",
+              "load"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "password-modal.js",
+            "size": 250,
+            "lines": 10,
+            "functions": [],
+            "eventListeners": [],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "pickup-availability.js",
+            "size": 4198,
+            "lines": 133,
+            "functions": [],
+            "eventListeners": [
+              "click",
+              "keyup",
+              "ClickRefreshList",
+              "Url",
+              "_id",
+              "InnerHTML",
+              "BodyClick"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "predictive-search.js",
+            "size": 8718,
+            "lines": 278,
+            "functions": [],
+            "eventListeners": [
+              "submit",
+              "focus",
+              "focusout",
+              "keyup",
+              "keydown",
+              "troller",
+              "Text",
+              "tent",
+              "_id"
+            ],
+            "shopifyAPIs": [
+              "routes.predictive_search_url"
+            ]
+          },
+          {
+            "name": "price-per-item.js",
+            "size": 4416,
+            "lines": 104,
+            "functions": [
+              "price"
+            ],
+            "eventListeners": [
+              "change"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "product-form.js",
+            "size": 5455,
+            "lines": 143,
+            "functions": [],
+            "eventListeners": [
+              "submit",
+              "modalClosed",
+              "Text",
+              "fig",
+              "tent"
+            ],
+            "shopifyAPIs": [
+              "routes.cart_add_url",
+              "routes.cart_url"
+            ]
+          },
+          {
+            "name": "product-info.js",
+            "size": 16054,
+            "lines": 417,
+            "functions": [
+              "updateSourceFromDestination",
+              "refreshSourceData"
+            ],
+            "eventListeners": [
+              "VariantChangeUnsubscriber",
+              "troller",
+              "_id",
+              "_values",
+              "Items",
+              "Set",
+              "tent",
+              "Id"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "product-modal.js",
+            "size": 1306,
+            "lines": 43,
+            "functions": [],
+            "eventListeners": [
+              "tent",
+              "tainer"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "product-model.js",
+            "size": 1356,
+            "lines": 60,
+            "functions": [],
+            "eventListeners": [
+              "shopify_xr_initialized",
+              "DOMContentLoaded"
+            ],
+            "shopifyAPIs": [
+              "Shopify.loadFeatures",
+              "Shopify.ModelViewerUI"
+            ]
+          },
+          {
+            "name": "pubsub.js",
+            "size": 598,
+            "lines": 26,
+            "functions": [
+              "subscribe",
+              "unsubscribe",
+              "publish"
+            ],
+            "eventListeners": [],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "quantity-popover.js",
+            "size": 3549,
+            "lines": 90,
+            "functions": [],
+            "eventListeners": [
+              "click",
+              "mouseleave",
+              "focusout",
+              "mouseenter",
+              "keyup",
+              "Desktop",
+              "Mobile",
+              "Child"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "quick-add-bulk.js",
+            "size": 6588,
+            "lines": 198,
+            "functions": [],
+            "eventListeners": [
+              "change",
+              "focusin",
+              "keydown",
+              "keypress",
+              "Id",
+              "_id",
+              "Element"
+            ],
+            "shopifyAPIs": [
+              "routes.cart_update_url"
+            ]
+          },
+          {
+            "name": "quick-add.js",
+            "size": 4799,
+            "lines": 123,
+            "functions": [],
+            "eventListeners": [
+              "product-info:loaded",
+              "tent",
+              "seHTML",
+              "Id"
+            ],
+            "shopifyAPIs": [
+              "Shopify.PaymentButton",
+              "Shopify.PaymentButton.init"
+            ]
+          },
+          {
+            "name": "quick-order-list.js",
+            "size": 17545,
+            "lines": 484,
+            "functions": [
+              "handleKeydown",
+              "nextIndex"
+            ],
+            "eventListeners": [
+              "resize",
+              "submit",
+              "click",
+              "keyup",
+              "keydown",
+              "change",
+              "_id",
+              "seQuickOrderList",
+              "Element",
+              "s"
+            ],
+            "shopifyAPIs": [
+              "routes.cart_update_url"
+            ]
+          },
+          {
+            "name": "recipient-form.js",
+            "size": 6504,
+            "lines": 166,
+            "functions": [],
+            "eventListeners": [
+              "change",
+              "trolField",
+              "Input",
+              "Id"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "search-form.js",
+            "size": 1350,
+            "lines": 48,
+            "functions": [],
+            "eventListeners": [
+              "reset",
+              "input"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "share.js",
+            "size": 2172,
+            "lines": 57,
+            "functions": [],
+            "eventListeners": [
+              "click",
+              "toggle",
+              "tent"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "show-more.js",
+            "size": 1208,
+            "lines": 28,
+            "functions": [],
+            "eventListeners": [
+              "click"
+            ],
+            "shopifyAPIs": []
+          },
+          {
+            "name": "theme-editor.js",
+            "size": 2084,
+            "lines": 55,
+            "functions": [
+              "hideProductModal"
+            ],
+            "eventListeners": [
+              "shopify:block:select",
+              "shopify:block:deselect",
+              "shopify:section:load",
+              "shopify:section:unload",
+              "shopify:section:reorder",
+              "shopify:section:select",
+              "shopify:section:deselect",
+              "shopify:inspector:activate",
+              "shopify:inspector:deactivate",
+              "ent"
+            ],
+            "shopifyAPIs": []
+          }
+        ],
+        "globalFunctions": [],
+        "eventListeners": [],
+        "dependencies": {},
+        "totalSize": 189536
+      },
+      "templateStructure": {
+        "templates": {
+          "404.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-404"
+            ]
+          },
+          "article.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-article"
+            ]
+          },
+          "blog.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-blog"
+            ]
+          },
+          "cart.json": {
+            "sections": 2,
+            "order": 2,
+            "sectionTypes": [
+              "main-cart-items",
+              "main-cart-footer"
+            ]
+          },
+          "collection.json": {
+            "sections": 2,
+            "order": 2,
+            "sectionTypes": [
+              "main-collection-banner",
+              "main-collection-product-grid"
+            ]
+          },
+          "customers/account.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-account"
+            ]
+          },
+          "customers/activate_account.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-activate-account"
+            ]
+          },
+          "customers/addresses.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-addresses"
+            ]
+          },
+          "customers/login.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-login"
+            ]
+          },
+          "customers/order.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-order"
+            ]
+          },
+          "customers/register.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-register"
+            ]
+          },
+          "customers/reset_password.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-reset-password"
+            ]
+          },
+          "index.json": {
+            "sections": 2,
+            "order": 2,
+            "sectionTypes": [
+              "image-with-text",
+              "featured-collection"
+            ]
+          },
+          "list-collections.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-list-collections"
+            ]
+          },
+          "page.about.json": {
+            "sections": 6,
+            "order": 6,
+            "sectionTypes": [
+              "main-page",
+              "image-banner",
+              "rich-text",
+              "multicolumn",
+              "multicolumn",
+              "multicolumn"
+            ]
+          },
+          "page.contact.json": {
+            "sections": 2,
+            "order": 2,
+            "sectionTypes": [
+              "main-page",
+              "contact-form"
+            ]
+          },
+          "page.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-page"
+            ]
+          },
+          "password.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "email-signup-banner"
+            ]
+          },
+          "product.json": {
+            "sections": 2,
+            "order": 2,
+            "sectionTypes": [
+              "main-product",
+              "related-products"
+            ]
+          },
+          "search.json": {
+            "sections": 1,
+            "order": 1,
+            "sectionTypes": [
+              "main-search"
+            ]
+          }
+        },
+        "pageTypes": [],
+        "sectionUsage": {
+          "main-404": 1,
+          "main-article": 1,
+          "main-blog": 1,
+          "main-cart-items": 1,
+          "main-cart-footer": 1,
+          "main-collection-banner": 1,
+          "main-collection-product-grid": 1,
+          "main-account": 1,
+          "main-activate-account": 1,
+          "main-addresses": 1,
+          "main-login": 1,
+          "main-order": 1,
+          "main-register": 1,
+          "main-reset-password": 1,
+          "image-with-text": 1,
+          "featured-collection": 1,
+          "main-list-collections": 1,
+          "main-page": 3,
+          "image-banner": 1,
+          "rich-text": 1,
+          "multicolumn": 3,
+          "contact-form": 1,
+          "email-signup-banner": 1,
+          "main-product": 1,
+          "related-products": 1,
+          "main-search": 1
+        },
+        "complexity": {}
+      }
+    },
+    "horizon": {
+      "minimalCSS": {
+        "cssFileCount": 0,
+        "themeCSS": {},
+        "jsonStyles": {},
+        "hardcodedValues": []
+      },
+      "templateCentric": {
+        "jsonDrivenStyling": [],
+        "sectionModularity": {},
+        "customization": {}
+      },
+      "performanceProfile": {
+        "loadOrder": [],
+        "fileSize": {},
+        "complexity": {}
+      }
+    },
+    "comparative": {
+      "complexity": {
+        "cssFiles": {
+          "rise": 65,
+          "horizon": 0
+        },
+        "dependencies": {
+          "rise": 52,
+          "horizon": 0
+        },
+        "templates": {
+          "rise": 20,
+          "horizon": 0
+        }
+      },
+      "maintainability": {
+        "cssOrganization": {
+          "rise": "Complex - 50+ files, embedded styles",
+          "horizon": "Minimal - JSON-driven styling"
+        },
+        "customization": {
+          "rise": "CSS-heavy modifications required",
+          "horizon": "JSON configuration-based"
+        },
+        "debugging": {
+          "rise": "Complex dependency tracking needed",
+          "horizon": "Simplified troubleshooting"
+        }
+      },
+      "performance": {
+        "cssSize": {
+          "rise": 372226,
+          "horizon": "Minimal CSS footprint"
+        },
+        "loadComplexity": {
+          "rise": "Multiple CSS files, complex loading order",
+          "horizon": "Streamlined asset loading"
+        },
+        "renderBlocking": {
+          "rise": "Potential CSS render blocking",
+          "horizon": "Reduced render blocking"
+        }
+      },
+      "glassThemeCompatibility": {
+        "glassmorphicEffects": {
+          "rise": "Requires CSS override system",
+          "horizon": "Needs JSON + minimal CSS approach"
+        },
+        "filterSystem": {
+          "rise": "Complex facets.js system (currently broken)",
+          "horizon": "Simpler filtering implementation needed"
+        },
+        "productRendering": {
+          "rise": "Card snippet system limiting customization",
+          "horizon": "More flexible template approach"
+        },
+        "recommendation": "Analysis pending complete data collection"
+      },
+      "recommendation": {}
+    }
+  },
+  "migrationStrategy": {
+    "phases": [
+      "Foundation Selection",
+      "Glass Component Integration",
+      "Filter System Implementation",
+      "Performance Optimization"
+    ],
+    "timeline": "TBD based on recommendation",
+    "riskMitigation": "QA validation at each phase"
+  }
+}

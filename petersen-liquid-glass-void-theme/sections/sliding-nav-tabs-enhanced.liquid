@@ -1,0 +1,121 @@
+{{ 'sliding-nav-active-states.css' | asset_url | stylesheet_tag }}
+
+<nav class="sliding-nav-container" id="sliding-nav">
+  <div class="sliding-nav-inner">
+    <div class="nav-tabs-wrapper">
+      <div class="nav-tabs-scroll">
+        <a href="/collections/sandys-games" class="nav-tab glass-tab" data-collection="sandys-games">Sandy's Games</a>
+        <a href="/collections/larval-games" class="nav-tab glass-tab" data-collection="larval-games">Larval Games</a>
+        <a href="/collections/miniatures" class="nav-tab glass-tab" data-collection="miniatures">Miniatures</a>
+        <a href="/collections/hyperspace" class="nav-tab glass-tab" data-collection="hyperspace">Hyperspace</a>
+        
+      </div>
+    </div>
+    
+    <!-- Nav Actions - HIDDEN per user request -->
+    <div class="nav-actions" style="display: none;">
+      <!-- Search and cart features hidden -->
+    </div>
+  </div>
+</nav>
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="search-overlay">
+  <div class="search-container">
+    <div class="search-header">
+      <h3>Search Products</h3>
+      <button class="search-close" onclick="toggleSearch()">×</button>
+    </div>
+    
+    <form action="/search" method="get" class="search-form">
+      <input type="search" 
+             name="q" 
+             placeholder="Search games, miniatures, expansions..." 
+             class="search-input"
+             id="search-input"
+             autocomplete="off">
+      <button type="submit" class="search-submit">Search</button>
+    </form>
+    
+    <div class="search-suggestions">
+      <div class="suggestion-category">
+        <h4>Popular Searches</h4>
+        <div class="suggestion-links">
+          <a href="/collections/cthulhu-wars" onclick="closeSearch()">Cthulhu Wars</a>
+          <a href="/collections/planet-apocalypse" onclick="closeSearch()">Planet Apocalypse</a>
+          <a href="/collections/miniatures" onclick="closeSearch()">Miniatures</a>
+          <a href="/collections/expansions" onclick="closeSearch()">Expansions</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSearch() {
+  const overlay = document.getElementById('search-overlay');
+  const input = document.getElementById('search-input');
+  
+  overlay.classList.toggle('active');
+  
+  if (overlay.classList.contains('active')) {
+    setTimeout(() => input.focus(), 100);
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+}
+
+function closeSearch() {
+  const overlay = document.getElementById('search-overlay');
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// Close search on escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeSearch();
+  }
+});
+
+// Close search when clicking outside
+document.getElementById('search-overlay').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeSearch();
+  }
+});
+
+// ========================================
+// SLIDING NAV ACTIVE STATE DETECTION
+// ========================================
+
+// Function to set active nav tab based on current page
+function setActiveNavTab() {
+  const currentPath = window.location.pathname;
+  const navTabs = document.querySelectorAll('.nav-tab, .glass-tab');
+  
+  // Remove all active classes first
+  navTabs.forEach(tab => {
+    tab.classList.remove('active');
+  });
+  
+  // Check if we're on a collection page
+  if (currentPath.includes('/collections/')) {
+    const collectionHandle = currentPath.split('/collections/')[1].split('/')[0]; // Get collection handle
+    
+    // Find matching nav tab
+    const activeTab = document.querySelector(`[data-collection="${collectionHandle}"]`);
+    if (activeTab) {
+      activeTab.classList.add('active');
+      console.log(`Active tab set for collection: ${collectionHandle}`);
+    }
+  }
+}
+
+// Set active tab on page load
+document.addEventListener('DOMContentLoaded', setActiveNavTab);
+
+// Also set active tab if navigation is happening via AJAX (for themes that use it)
+document.addEventListener('shopify:section:load', setActiveNavTab);
+</script>

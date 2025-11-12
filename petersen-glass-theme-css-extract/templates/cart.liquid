@@ -1,0 +1,306 @@
+{% comment %}
+  Direct conversion of your petersen_cart_page.html to Shopify
+  This creates the EXACT cart layout you designed
+{% endcomment %}
+
+{{ 'cart.css' | asset_url | stylesheet_tag }}
+{% layout 'theme' %}
+
+
+
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <nav class="breadcrumb-nav">
+            <a href="/">Home</a>
+            <span class="breadcrumb-separator">›</span>
+            <span>Shopping Cart</span>
+        </nav>
+    </div>
+</div>
+
+<!-- Cart Page -->
+<section class="cart-page">
+    <div class="container">
+        <div id="cart-content">
+            {% if cart == empty %}
+                <!-- Empty Cart State -->
+                <div class="empty-cart">
+                    <div class="empty-icon">🛒</div>
+                    <h2 class="empty-title">Your cart is empty</h2>
+                    <p class="empty-text">Looks like you haven't added any games to your cart yet. Start exploring our legendary horror strategy games!</p>
+                    <a href="{{ routes.all_products_collection_url }}" class="btn-shop">Start Shopping</a>
+                </div>
+            {% else %}
+                <!-- Cart with Items -->
+                <form action="{{ routes.cart_url }}" method="post" novalidate class="cart-form">
+                    <div class="cart-layout">
+                        <!-- Cart Items -->
+                        <div class="cart-main">
+                            <div class="cart-header">
+                                <h1 class="cart-title">Shopping Cart</h1>
+                                <p class="cart-count">{{ cart.item_count }} {% if cart.item_count == 1 %}item{% else %}items{% endif %} in your cart</p>
+                            </div>
+
+                            <div class="success-message" id="success-message">
+                                ✓ Cart updated successfully
+                            </div>
+
+                            <div class="cart-items" id="cart-items">
+                                {% for item in cart.items %}
+                                    <div class="cart-item" data-line-item-key="{{ item.key }}">
+                                        <div class="item-image">
+                                            {% if item.image %}
+                                                <img src="{{ item.image | image_url: width: 160 }}" 
+                                                     alt="{{ item.image.alt | escape }}">
+                                            {% else %}
+                                                <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><rect fill='%23333' width='80' height='80'/><text x='50%' y='50%' text-anchor='middle' dy='0.3em' fill='%23666' font-size='8'>{{ item.product.title | slice: 0, 10 }}</text></svg>" 
+                                                     alt="{{ item.product.title }}">
+                                            {% endif %}
+                                        </div>
+                                        <div class="item-details">
+                                            <h3 class="item-title">
+                                                <a href="{{ item.product.url }}">{{ item.product.title }}</a>
+                                            </h3>
+                                            {% unless item.product.has_only_default_variant %}
+                                                <p class="item-variant">{{ item.variant.title }}</p>
+                                            {% endunless %}
+                                            {% if item.vendor != blank %}
+                                                <p class="item-vendor">{{ item.vendor }}</p>
+                                            {% endif %}
+                                            <p class="item-price">{{ item.final_price | money }}</p>
+                                            {% if item.original_price != item.final_price %}
+                                                <p class="item-original-price">{{ item.original_price | money }}</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="item-quantity">
+                                            <button type="button" 
+                                                    class="qty-btn" 
+                                                    onclick="updateQuantity('{{ item.key }}', {{ item.quantity | minus: 1 }})">−</button>
+                                            <input type="number" 
+                                                   value="{{ item.quantity }}" 
+                                                   min="0" 
+                                                   class="qty-input"
+                                                   data-line-item-key="{{ item.key }}"
+                                                   onchange="updateQuantity('{{ item.key }}', this.value)">
+                                            <button type="button" 
+                                                    class="qty-btn" 
+                                                    onclick="updateQuantity('{{ item.key }}', {{ item.quantity | plus: 1 }})">+</button>
+                                        </div>
+                                        <button type="button" 
+                                                class="item-remove" 
+                                                onclick="removeItem('{{ item.key }}')">🗑️</button>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Cart Summary -->
+                        <div class="cart-summary">
+                            <h3 class="summary-title">Order Summary</h3>
+                            
+                            <div class="summary-line">
+                                <span>Subtotal</span>
+                                <span id="subtotal">{{ cart.total_price | money }}</span>
+                            </div>
+                            
+                            {% if cart.total_discounts > 0 %}
+                                <div class="summary-line">
+                                    <span>Discounts</span>
+                                    <span id="discounts">-{{ cart.total_discounts | money }}</span>
+                                </div>
+                            {% endif %}
+                            
+                            <div class="summary-line">
+                                <span>Shipping</span>
+                                <span id="shipping">Calculated at checkout</span>
+                            </div>
+                            
+                            <div class="summary-line">
+                                <span>Tax</span>
+                                <span id="tax">Calculated at checkout</span>
+                            </div>
+                            
+                            <div class="summary-line total">
+                                <span>Total</span>
+                                <span id="total">{{ cart.total_price | money }}</span>
+                            </div>
+
+                            <!-- Discount Code -->
+                            <div class="discount-code">
+                                <div class="discount-form">
+                                    <input type="text" 
+                                           placeholder="Discount code" 
+                                           class="discount-input" 
+                                           id="discount-input">
+                                    <button type="button" 
+                                            class="btn-apply"
+                                            onclick="applyDiscount()">Apply</button>
+                                </div>
+                            </div>
+
+                            <!-- Checkout Button -->
+                            <a href="/checkout" class="btn-checkout">
+                                Proceed to Checkout
+                            </a>
+
+                            <a href="{{ routes.all_products_collection_url }}" class="continue-shopping">
+                                ← Continue Shopping
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<script>
+    // Cart functionality
+    function updateQuantity(lineItemKey, newQuantity) {
+        newQuantity = parseInt(newQuantity);
+        if (newQuantity < 0) newQuantity = 0;
+
+        showSuccessMessage();
+
+        // Update cart via AJAX
+        fetch('/cart/change.js', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id: lineItemKey,
+                quantity: newQuantity
+            })
+        })
+        .then(response => response.json())
+        .then(cart => {
+            if (newQuantity === 0) {
+                // Remove item from DOM
+                const itemElement = document.querySelector(`[data-line-item-key="${lineItemKey}"]`);
+                itemElement.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => {
+                    itemElement.remove();
+                    if (cart.item_count === 0) {
+                        window.location.reload(); // Reload to show empty cart
+                    }
+                }, 300);
+            } else {
+                // Update the input field
+                const input = document.querySelector(`[data-line-item-key="${lineItemKey}"] .qty-input`);
+                input.value = newQuantity;
+            }
+
+            // Update cart totals
+            updateCartTotals(cart);
+            updateCartCount(cart.item_count);
+        })
+        .catch(error => {
+            console.error('Error updating cart:', error);
+        });
+    }
+
+    function removeItem(lineItemKey) {
+        updateQuantity(lineItemKey, 0);
+    }
+
+    function updateCartTotals(cart) {
+        const subtotalElement = document.getElementById('subtotal');
+        const totalElement = document.getElementById('total');
+        
+        if (subtotalElement) {
+            subtotalElement.textContent = formatMoney(cart.total_price);
+        }
+        
+        if (totalElement) {
+            totalElement.textContent = formatMoney(cart.total_price);
+        }
+
+        // Update cart count in header if it exists
+        const cartCountElement = document.querySelector('.cart-count');
+        if (cartCountElement) {
+            cartCountElement.textContent = `${cart.item_count} ${cart.item_count === 1 ? 'item' : 'items'} in your cart`;
+        }
+    }
+
+    function updateCartCount(itemCount) {
+        // Update any cart count indicators in the header
+        const cartCountIndicators = document.querySelectorAll('.cart-icon span, [data-cart-count]');
+        cartCountIndicators.forEach(indicator => {
+            indicator.textContent = itemCount;
+        });
+    }
+
+    function showSuccessMessage() {
+        const message = document.getElementById('success-message');
+        if (message) {
+            message.classList.add('show');
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 3000);
+        }
+    }
+
+    function applyDiscount() {
+        const discountCode = document.getElementById('discount-input').value.trim();
+        const btn = document.querySelector('.btn-apply');
+        
+        if (!discountCode) return;
+
+        // Apply discount via AJAX
+        fetch('/discount/' + encodeURIComponent(discountCode), {
+            method: 'POST'
+        })
+        .then(response => {
+            if (response.ok) {
+                btn.textContent = 'Applied!';
+                btn.style.background = 'var(--color-success)';
+                btn.style.borderColor = 'var(--color-success)';
+                showSuccessMessage();
+                
+                // Refresh page to show updated cart
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1000);
+            } else {
+                btn.textContent = 'Invalid';
+                btn.style.background = 'var(--color-danger)';
+                btn.style.borderColor = 'var(--color-danger)';
+            }
+            
+            setTimeout(() => {
+                btn.textContent = 'Apply';
+                btn.style.background = '';
+                btn.style.borderColor = '';
+            }, 2000);
+        })
+        .catch(error => {
+            console.error('Error applying discount:', error);
+            btn.textContent = 'Error';
+            btn.style.background = 'var(--color-danger)';
+            
+            setTimeout(() => {
+                btn.textContent = 'Apply';
+                btn.style.background = '';
+            }, 2000);
+        });
+    }
+
+    // Utility function to format money (basic version)
+    function formatMoney(cents) {
+        return (cents / 100).toLocaleString('en-US', {
+            style: 'currency',
+            currency: '{{ cart.currency.iso_code }}'
+        });
+    }
+
+    // Handle quantity input changes
+    document.querySelectorAll('.qty-input').forEach(input => {
+        input.addEventListener('change', function() {
+            const lineItemKey = this.dataset.lineItemKey;
+            const newQuantity = parseInt(this.value);
+            updateQuantity(lineItemKey, newQuantity);
+        });
+    });
+</script>

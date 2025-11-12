@@ -1,0 +1,21 @@
+{% comment %}
+  Component: glass-button
+  Generated: 2025-06-28T20:00:47.922Z
+  HIG Compliant: Yes
+  Accessible: Yes
+{% endcomment %}
+
+{% liquid
+  assign component_id = component_id | default: 'glass-button'
+  assign component_class = component_class | default: 'glass-button'
+%}
+
+<button 
+  id="{{ component_id }}"
+  class="{{ component_class }}"
+  role="button"
+  tabindex="0"
+  aria-label="{{ aria_label | default: content }}"
+>
+  {% comment %} Component content here {% endcomment %}
+</button>

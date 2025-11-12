@@ -1,0 +1,281 @@
+/* Navigation Glass Fixes - Comprehensive fixes for header, navigation, and search */
+
+/* Header configuration now handled by glass-theme-variables.liquid */
+/* Override any conflicting Shopify theme constraints */
+.section-glass-top-header,
+.shopify-section[data-section-type="glass-top-header"] {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Fix glass-top-header hover borders - use glass instead of white */
+.glass-top-header .glass-nav-link:hover,
+.glass-top-header .nav-link:hover {
+  border-color: var(--glass-border-hover, rgba(93, 90, 246, 0.4)) !important;
+  background: var(--glass-medium, rgba(8, 4, 21, 0.6)) !important;
+  backdrop-filter: blur(12px) saturate(1.2) !important;
+  box-shadow: var(--foundation-shadow-primary, 0 4px 12px rgba(93, 90, 246, 0.3)) !important;
+}
+
+/* Fix sliding-nav-tabs with proper spacing and mobile behavior */
+.sliding-nav-container {
+  width: 100% !important;
+  background: var(--glass-deep, linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(45, 27, 105, 0.6) 50%, rgba(0, 0, 0, 0.8) 100%)) !important;
+  backdrop-filter: blur(12px) saturate(1.2) !important;
+  padding: 1rem 0 !important;
+  margin: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.sliding-nav-inner {
+  max-width: 1800px !important;
+  margin: 0 auto !important;
+  padding: 0 2rem !important;
+    display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+}
+
+.nav-tabs-wrapper {
+  position: relative !important;
+  overflow: hidden !important;
+    display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  width: 100% !important;
+
+}
+
+.nav-tabs-scroll {
+  display: flex !important;
+  gap: 1rem !important;
+  overflow-x: auto !important;
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.nav-tabs-scroll::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Mobile: Smaller tabs with less padding */
+@media (max-width: 768px) {
+  .nav-tabs-scroll {
+    gap: 0.5rem !important;
+  }
+  
+  .sliding-nav-inner {
+    padding: 0 1rem !important;
+    align-items: left;
+  }
+  
+  .sliding-nav-container {
+    padding: 1rem 0 !important;
+  }
+}
+
+.nav-tab,
+.glass-tab {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center !important;
+  padding: 0.75rem 1.5rem !important;
+  background: rgba(255, 255, 255, 0.05);
+    border-color: var(--foundation-accent-primary,rgba(93, 90, 246, 0.9)) !important;
+  border-radius: var(--foundation-radius-md, 8px) !important;
+  backdrop-filter: blur(12px) saturate(1.2) !important;
+  color: var(--foundation-text-primary, #ffffff) !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+/* Mobile: Smaller tabs */
+@media (max-width: 768px) {
+  .nav-tab,
+  .glass-tab {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+.nav-tab:hover,
+.glass-tab:hover {
+  background: var(--glass-medium, rgba(8, 4, 21, 0.2)) !important;
+  border-color: var(--glass-border-hover, rgba(93, 90, 246, 0.6)) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--foundation-shadow-primary, 0 4px 12px rgba(93, 90, 246, 0.3)) !important;
+}
+
+.nav-tab.active,
+.glass-tab.active {
+  background: var(--foundation-accent-primary, #5D5AF6) !important;
+  border-color: var(--foundation-accent-primary, #5D5AF6) !important;
+  color: #ffffff !important;
+}
+
+/* Ensure navigation appears on all pages */
+.glass-top-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  width: 100% !important;
+  background: var(--glass-surface, 
+  backdrop-filter: blur(12px) saturate(1.2) !important;
+}
+
+/* Fix any hidden elements that might be causing issues */
+.glass-top-header * {
+  visibility: visible !important;
+}
+
+.sliding-nav-tabs * {
+  visibility: visible !important;
+}
+
+/* Remove hard-coded white colors and use Foundation variables */
+.glass-nav-link,
+.nav-link {
+  color: var(--foundation-text-primary, #ffffff) !important;
+  border-color: var{--glass-border};
+  background: var{--glass-surface};
+  padding: 0.75rem 1rem !important;
+  border-radius: var(--foundation-radius-sm, 4px) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Glass button styling for navigation elements */
+.glass-button,
+.nav-button {
+  background: var(--glass-surface,
+  border: 1px solid var(--glass-border, rgba(93, 90, 246, 0.2)) !important;
+  color: var(--foundation-text-primary, #ffffff) !important;
+  backdrop-filter: blur(12px) saturate(1.2) !important;
+  border-radius: var(--foundation-radius-md, 8px) !important;
+}
+
+.glass-button:hover,
+.nav-button:hover {
+  background: var(--glass-medium, rgba(8, 4, 21, 0.6)) !important;
+  border-color: var(--glass-border-hover, rgba(93, 90, 246, 0.4)) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--foundation-shadow-primary, 0 4px 12px rgba(93, 90, 246, 0.3)) !important;
+}
+
+/* Search Modal Glass Styling */
+.search-modal__content {
+  background: var{--glass-medium: linear-gradient(135deg, rgba(45, 27, 105, 0.9) 0%, rgba(76, 29, 149, 0.7) 50%, rgba(45, 27, 105, 0.9) 70%);
+}) !important;
+  backdrop-filter: blur(16px) saturate(1.4) !important;
+  border: 2px solid var(--glass-border, rgba(93, 90, 246, 0.3)) !important;
+  border-radius: var(--foundation-radius-lg, 12px) !important;
+  box-shadow: var(--foundation-shadow-primary, 0 4px 12px rgba(93, 90, 246, 0.3)), 
+              0 12px 48px rgba(8, 4, 21, 0.3) !important;
+}
+
+.search-overlay {
+  background: var(--glass-subtle: radial-gradient(circle at 30% 70%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+radial-gradient(circle at 70% 30%, rgba(236, 72, 153, 0.08) 0%, transparent 50%),
+radial-gradient(circle at 90% 10%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+) !important;
+  backdrop-filter: blur(16px) saturate(1.4) !important;
+}
+
+.search-input,
+.predictive-search-form input {
+  background: var(--glass-medium, rgba(8, 4, 21, 0.6)) !important;
+  border: 1px solid var(--glass-border, rgba(93, 90, 246, 0.2)) !important;
+  color: var(--foundation-text-primary, #ffffff) !important;
+  border-radius: var(--foundation-radius-md, 8px) !important;
+  padding: 0.875rem 1rem !important;
+  backdrop-filter: blur(8px) saturate(1.2) !important;
+}
+
+.search-input:focus,
+.predictive-search-form input:focus {
+  border-color: var(--foundation-accent-primary, #5D5AF6) !important;
+  box-shadow: 0 0 0 2px rgba(93, 90, 246, 0.2) !important;
+  outline: none !important;
+}
+
+.search-submit,
+.predictive-search-form button {
+  background: var(--foundation-accent-primary, #5D5AF6) !important;
+  border: 1px solid var(--foundation-accent-primary, #5D5AF6) !important;
+  color: #ffffff !important;
+  border-radius: var(--foundation-radius-md, 8px) !important;
+  padding: 0.875rem 1.5rem !important;
+  backdrop-filter: blur(8px) saturate(1.2) !important;
+  box-shadow: var(--foundation-shadow-primary, 0 4px 12px rgba(93, 90, 246, 0.3)) !important;
+}
+
+.search-submit:hover,
+.predictive-search-form button:hover {
+  background: var(--foundation-action-hover-primary, #423DF5) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--foundation-shadow-primary, 0 4px 12px rgba(93, 90, 246, 0.3)), 
+              0 8px 24px rgba(93, 90, 246, 0.2) !important;
+}
+
+/* Navigation Alignment Fixes - Left-align dropdown and nav elements */
+
+/* Header container alignment */
+.glass-header-container {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  max-width: 1800px !important;
+  margin: 0 auto !important;
+  padding: 0 2rem !important;
+  width: 100% !important;
+}
+
+/* Left-align navigation container */
+.glass-nav-container {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  flex: 1 !important;
+  margin-left: 2rem !important;
+}
+
+/* Left-align dropdown toggle button */
+.nav-dropdown .dropdown-toggle {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
+/* Position mega dropdown from left */
+.mega-dropdown {
+  left: 0 !important;
+  right: auto !important;
+  transform: translateX(0) !important;
+  margin-left: 0 !important;
+  top: 100% !important;
+}
+
+/* Glass menu items alignment */
+.glass-menu-item {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.glass-nav-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  text-align: left !important;
+}

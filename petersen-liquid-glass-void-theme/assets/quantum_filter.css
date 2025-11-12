@@ -1,0 +1,712 @@
+/* ========================================
+   ENHANCED APPLE QUANTUM FILTER SYSTEM
+   Shopify Integration with Existing Framework
+   ======================================== */
+
+/* Enhanced Design System Variables - Adding to existing :root */
+:root {
+  /* Quantum Filter specific enhancements */
+  --quantum-filter-backdrop: saturate(180%) blur(20px);
+  --quantum-filter-glass-effect: blur(20px) saturate(150%);
+  --quantum-filter-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+  --quantum-filter-apple-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  
+  /* Enhanced Oil Slick Purple & Indigo Palette */
+  --quantum-oil-slick-purple: #2D1B69;
+  --quantum-oil-slick-indigo: #1E1B4B;
+  --quantum-deep-cosmic-purple: #4C1D95;
+  --quantum-cosmic-indigo: #312E81;
+  --quantum-subtle-violet: #6366F1;
+  --quantum-electric-indigo: #4F46E5;
+  
+  /* Enhanced Glassmorphic Surfaces */
+  --quantum-glass-deep-indigo: rgba(30, 27, 75, 0.85);
+  --quantum-glass-cosmic-purple: rgba(45, 27, 105, 0.9);
+  --quantum-glass-electric-indigo: rgba(79, 70, 229, 0.8);
+  
+  /* Apple System Typography Integration */
+  --quantum-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --quantum-letter-spacing: -0.022em;
+  --quantum-line-height: 1.47059;
+  
+  /* Apple-style Animation Curves */
+  --quantum-ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --quantum-ease-quantum: cubic-bezier(0.16, 1, 0.3, 1);
+  --quantum-duration-fast: 150ms;
+  --quantum-duration-medium: 250ms;
+  --quantum-duration-slow: 350ms;
+}
+
+/* ========================================
+   ENHANCED FILTER SIDEBAR
+   Extends existing .sidebar-area from priority-foundation.css
+   ======================================== */
+
+/* Enhanced sidebar with quantum effects */
+.quantum-filter-sidebar {
+  background: var(--quantum-glass-deep-indigo);
+  border-radius: var(--foundation-radius-lg, 16px);
+  padding: var(--foundation-space-xl, 32px);
+  backdrop-filter: var(--quantum-filter-glass-effect);
+  border: 1px solid var(--foundation-border-primary, rgba(255, 255, 255, 0.1));
+  box-shadow: var(--quantum-filter-shadow);
+  overflow: hidden;
+  transition: all var(--quantum-duration-medium) var(--quantum-ease-apple);
+}
+
+/* Filter sidebar collapse/expand states */
+.quantum-filter-sidebar.collapsed {
+  width: 80px;
+  opacity: 0.3;
+  transform: translateX(-250px);
+}
+
+.quantum-filter-sidebar.expanded {
+  width: 320px;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Enhanced category navigation */
+.quantum-category-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--foundation-space-sm, 8px);
+}
+
+.quantum-category-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--foundation-background-elevated, rgba(21, 21, 29, 0.9));
+  border: 1px solid var(--foundation-border-secondary, rgba(255, 255, 255, 0.08));
+  border-radius: var(--foundation-radius-md, 12px);
+  padding: var(--foundation-space-lg, 24px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  font-size: var(--foundation-text-sm, 14px);
+  font-weight: 500;
+  cursor: pointer;
+  backdrop-filter: var(--quantum-filter-glass-effect);
+  transition: all var(--quantum-duration-medium) var(--quantum-ease-apple);
+  text-decoration: none;
+  font-family: var(--quantum-font-family);
+  letter-spacing: var(--quantum-letter-spacing);
+}
+
+.quantum-category-button:hover {
+  transform: translateX(4px) scale(1.02);
+  background: var(--foundation-glass-surface-hover, rgba(255, 255, 255, 0.1));
+  border-color: var(--foundation-accent-primary, #19bcfe);
+}
+
+.quantum-category-button.active {
+  background: linear-gradient(135deg, var(--quantum-glass-electric-indigo), var(--quantum-glass-cosmic-purple));
+  border-color: var(--foundation-border-high-contrast, rgba(99, 102, 241, 0.6));
+  font-weight: 600;
+  box-shadow: var(--quantum-filter-shadow);
+}
+
+/* Category count badges */
+.quantum-category-count {
+  background: var(--quantum-glass-deep-indigo);
+  border-radius: var(--foundation-radius-md, 12px);
+  padding: var(--foundation-space-xs, 4px) var(--foundation-space-sm, 8px);
+  font-size: var(--foundation-text-xs, 11px);
+  font-weight: 500;
+  color: var(--foundation-foreground-primary, #FCFDF2);
+}
+
+/* Expand/collapse icon */
+.quantum-expand-icon {
+  background: none;
+  border: none;
+  color: var(--foundation-foreground-secondary, rgba(252, 253, 242, 0.8));
+  cursor: pointer;
+  padding: var(--foundation-space-xs, 4px);
+  font-size: var(--foundation-text-sm, 14px);
+  transition: transform var(--quantum-duration-medium) var(--quantum-ease-apple);
+}
+
+.quantum-expand-icon.expanded {
+  transform: rotate(90deg);
+}
+
+.quantum-expand-icon:hover {
+  transform: scale(1.1);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+}
+
+/* ========================================
+   SUBCATEGORY NAVIGATION
+   ======================================== */
+
+.quantum-subcategory-container {
+  margin-top: var(--foundation-space-sm, 8px);
+  padding-left: var(--foundation-space-lg, 24px);
+  border-left: 1px solid var(--foundation-border-secondary, rgba(255, 255, 255, 0.08));
+  overflow: hidden;
+  transition: all var(--quantum-duration-medium) var(--quantum-ease-apple);
+}
+
+.quantum-subcategory-container.hidden {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.quantum-subcategory-container.visible {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.quantum-subcategory-button {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: var(--foundation-radius-sm, 8px);
+  padding: var(--foundation-space-md, 16px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  font-size: var(--foundation-text-xs, 12px);
+  text-align: left;
+  cursor: pointer;
+  margin-bottom: var(--foundation-space-xs, 4px);
+  transition: all var(--quantum-duration-medium) var(--quantum-ease-apple);
+  font-family: var(--quantum-font-family);
+}
+
+.quantum-subcategory-button:hover {
+  transform: translateX(4px) scale(1.02);
+  background: var(--foundation-glass-surface-hover, rgba(255, 255, 255, 0.05));
+}
+
+.quantum-subcategory-button.active {
+  background: var(--quantum-glass-electric-indigo);
+  font-weight: 600;
+}
+
+.quantum-subcategory-count {
+  margin-left: var(--foundation-space-sm, 8px);
+  color: var(--foundation-foreground-tertiary, rgba(252, 253, 242, 0.6));
+  font-size: var(--foundation-text-xs, 11px);
+}
+
+/* ========================================
+   ENHANCED SEARCH INPUT
+   Extends existing search functionality
+   ======================================== */
+
+.quantum-search-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.quantum-search-input {
+  width: 100%;
+  background: var(--foundation-background-elevated, rgba(21, 21, 29, 0.9));
+  border: 1px solid var(--foundation-border-primary, rgba(255, 255, 255, 0.1));
+  border-radius: var(--foundation-radius-md, 12px);
+  padding: var(--foundation-space-md, 16px) var(--foundation-space-md, 16px) var(--foundation-space-md, 16px) var(--foundation-space-xxxl, 64px);
+  font-size: var(--foundation-text-xs, 12px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  outline: none;
+  transition: all var(--quantum-duration-medium) var(--quantum-ease-apple);
+  font-family: var(--quantum-font-family);
+  letter-spacing: var(--quantum-letter-spacing);
+}
+
+.quantum-search-input:focus {
+  background: var(--quantum-glass-electric-indigo);
+  border-color: var(--foundation-border-high-contrast, rgba(99, 102, 241, 0.6));
+  box-shadow: var(--quantum-filter-shadow);
+  transform: scale(1.02);
+}
+
+.quantum-search-input::placeholder {
+  color: var(--foundation-foreground-placeholder, rgba(252, 253, 242, 0.45));
+}
+
+.quantum-search-icon {
+  position: absolute;
+  left: var(--foundation-space-md, 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+  color: var(--foundation-foreground-secondary, rgba(252, 253, 242, 0.8));
+}
+
+/* ========================================
+   ENHANCED HEADER INTEGRATION
+   Extends existing header from base-layout.css
+   ======================================== */
+
+.quantum-nav-header {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: var(--quantum-filter-backdrop);
+  border-bottom: 0.5px solid var(--foundation-border-primary, rgba(255, 255, 255, 0.1));
+  position: sticky;
+  top: 0;
+  z-index: var(--foundation-z-header, 400);
+  transition: all var(--quantum-duration-medium) var(--quantum-ease-apple);
+}
+
+.quantum-nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--foundation-space-xl, 32px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--foundation-touch-target, 44px);
+}
+
+.quantum-logo {
+  font-size: var(--foundation-text-lg, 20px);
+  font-weight: 700;
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  transition: transform var(--quantum-duration-fast) var(--quantum-ease-apple);
+  font-family: var(--quantum-font-family);
+}
+
+.quantum-logo:hover {
+  transform: scale(1.05);
+}
+
+.quantum-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-space-lg, 24px);
+}
+
+/* ========================================
+   VIEW TOGGLE BUTTONS
+   ======================================== */
+
+.quantum-view-toggle-group {
+  display: flex;
+  background: var(--foundation-background-elevated, rgba(21, 21, 29, 0.9));
+  border: 1px solid var(--foundation-border-primary, rgba(255, 255, 255, 0.1));
+  border-radius: var(--foundation-radius-sm, 8px);
+  padding: 2px;
+  gap: 2px;
+}
+
+.quantum-view-toggle {
+  background: transparent;
+  border: none;
+  padding: var(--foundation-space-sm, 8px) var(--foundation-space-md, 16px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  font-size: var(--foundation-text-sm, 14px);
+  cursor: pointer;
+  border-radius: var(--foundation-radius-sm, 8px);
+  transition: all var(--quantum-duration-medium) var(--quantum-ease-apple);
+}
+
+.quantum-view-toggle:hover {
+  transform: scale(1.05);
+  background: var(--foundation-glass-surface-hover, rgba(255, 255, 255, 0.08));
+}
+
+.quantum-view-toggle.active {
+  background: var(--quantum-glass-electric-indigo);
+  color: white;
+  font-weight: 600;
+}
+
+/* ========================================
+   ENHANCED PRODUCT GRID
+   Extends existing .product-grid-container
+   ======================================== */
+
+.quantum-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--foundation-space-xl, 32px);
+  transition: all var(--quantum-duration-slow) var(--quantum-ease-quantum);
+}
+
+.quantum-product-grid.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--foundation-space-lg, 24px);
+}
+
+/* Enhanced product cards */
+.quantum-product-card {
+  background: var(--foundation-background-elevated, rgba(21, 21, 29, 0.9));
+  border-radius: var(--foundation-radius-lg, 16px);
+  padding: var(--foundation-space-xl, 32px);
+  backdrop-filter: var(--quantum-filter-glass-effect);
+  border: 1px solid var(--foundation-border-primary, rgba(255, 255, 255, 0.1));
+  cursor: pointer;
+  transition: all var(--quantum-duration-medium) var(--quantum-ease-apple);
+  box-shadow: var(--quantum-filter-apple-shadow);
+  overflow: hidden;
+  position: relative;
+}
+
+.quantum-product-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: var(--quantum-filter-shadow);
+  border-color: var(--foundation-border-high-contrast, rgba(255, 255, 255, 0.2));
+}
+
+.quantum-product-card.list-view {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-space-xl, 32px);
+  padding: var(--foundation-space-lg, 24px);
+}
+
+.quantum-product-card.list-view:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* Product card image placeholder */
+.quantum-product-image {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: var(--foundation-space-lg, 24px);
+  transition: transform var(--quantum-duration-medium) var(--quantum-ease-apple);
+}
+
+.quantum-product-card.list-view .quantum-product-image {
+  font-size: 2rem;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.quantum-product-card:hover .quantum-product-image {
+  transform: scale(1.05);
+}
+
+/* Product card content */
+.quantum-product-info {
+  flex: 1;
+}
+
+.quantum-product-title {
+  font-size: var(--foundation-text-md, 16px);
+  font-weight: 600;
+  margin-bottom: var(--foundation-space-md, 16px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  line-height: var(--quantum-line-height);
+  font-family: var(--quantum-font-family);
+  letter-spacing: var(--quantum-letter-spacing);
+}
+
+.quantum-product-card.list-view .quantum-product-title {
+  font-size: var(--foundation-text-lg, 20px);
+  text-align: left;
+}
+
+.quantum-product-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--foundation-space-lg, 24px);
+  flex-wrap: wrap;
+}
+
+.quantum-product-card.list-view .quantum-product-actions {
+  justify-content: space-between;
+}
+
+.quantum-product-price {
+  font-size: var(--foundation-text-md, 16px);
+  font-weight: 700;
+  color: var(--foundation-accent-primary, #19bcfe);
+}
+
+.quantum-add-to-cart {
+  background: linear-gradient(135deg, var(--quantum-electric-indigo), var(--foundation-accent-primary, #19bcfe));
+  border: none;
+  border-radius: var(--foundation-radius-sm, 8px);
+  padding: var(--foundation-space-sm, 8px) var(--foundation-space-lg, 24px);
+  color: white;
+  font-size: var(--foundation-text-xs, 12px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--quantum-duration-fast) var(--quantum-ease-apple);
+  min-height: var(--foundation-touch-target, 44px);
+}
+
+.quantum-add-to-cart:hover {
+  transform: scale(1.05);
+  box-shadow: var(--quantum-filter-shadow);
+}
+
+/* ========================================
+   CONTENT HEADER
+   ======================================== */
+
+.quantum-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--foundation-space-xxxl, 64px);
+  background: var(--foundation-background-elevated, rgba(21, 21, 29, 0.9));
+  border-radius: var(--foundation-radius-lg, 16px);
+  padding: var(--foundation-space-xl, 32px);
+  backdrop-filter: var(--quantum-filter-glass-effect);
+  border: 1px solid var(--foundation-border-primary, rgba(255, 255, 255, 0.1));
+}
+
+.quantum-content-title {
+  font-size: var(--foundation-text-2xl, 32px);
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: var(--foundation-space-xs, 4px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  font-family: var(--quantum-font-family);
+  letter-spacing: var(--quantum-letter-spacing);
+}
+
+.quantum-results-count {
+  color: var(--foundation-foreground-tertiary, rgba(252, 253, 242, 0.6));
+  margin: 0;
+  font-size: var(--foundation-text-sm, 14px);
+  transition: all var(--quantum-duration-medium) var(--quantum-ease-apple);
+}
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+
+.quantum-empty-state {
+  text-align: center;
+  padding: var(--foundation-space-xxxl, 64px);
+  background: var(--foundation-background-elevated, rgba(21, 21, 29, 0.9));
+  border-radius: var(--foundation-radius-xl, 24px);
+  backdrop-filter: var(--quantum-filter-glass-effect);
+  border: 1px solid var(--foundation-border-primary, rgba(255, 255, 255, 0.1));
+  transition: all var(--quantum-duration-slow) var(--quantum-ease-quantum);
+}
+
+.quantum-empty-icon {
+  font-size: 3rem;
+  margin-bottom: var(--foundation-space-xl, 32px);
+  opacity: 0.7;
+}
+
+.quantum-empty-title {
+  font-size: var(--foundation-text-md, 16px);
+  font-weight: 600;
+  margin-bottom: var(--foundation-space-md, 16px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  font-family: var(--quantum-font-family);
+}
+
+.quantum-empty-description {
+  color: var(--foundation-foreground-tertiary, rgba(252, 253, 242, 0.6));
+  font-size: var(--foundation-text-sm, 14px);
+  line-height: var(--quantum-line-height);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   Extends existing responsive patterns
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .quantum-filter-sidebar {
+    width: 280px;
+  }
+  
+  .quantum-nav-content {
+    padding: 0 var(--foundation-space-lg, 24px);
+  }
+  
+  .quantum-content-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--foundation-space-md, 16px);
+  }
+}
+
+@media (max-width: 768px) {
+  .quantum-filter-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: var(--foundation-z-modal, 1000);
+    transform: translateX(-100%);
+  }
+  
+  .quantum-filter-sidebar.mobile-visible {
+    transform: translateX(0);
+  }
+  
+  .quantum-nav-content {
+    padding: 0 var(--foundation-space-md, 16px);
+    flex-wrap: wrap;
+    gap: var(--foundation-space-md, 16px);
+  }
+  
+  .quantum-search-container {
+    order: 3;
+    width: 100%;
+    margin-top: var(--foundation-space-md, 16px);
+  }
+  
+  .quantum-product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--foundation-space-md, 16px);
+  }
+  
+  .quantum-view-toggle-group {
+    display: none;
+  }
+  
+  .quantum-product-card.list-view {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .quantum-product-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .quantum-content-title {
+    font-size: var(--foundation-text-xl, 24px);
+  }
+  
+  .quantum-product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--foundation-space-sm, 8px);
+  }
+  
+  .quantum-product-card {
+    padding: var(--foundation-space-md, 16px);
+  }
+  
+  .quantum-product-title {
+    font-size: var(--foundation-text-sm, 14px);
+  }
+}
+
+/* ========================================
+   ANIMATION KEYFRAMES
+   ======================================== */
+
+@keyframes quantumSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes quantumFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes quantumSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation classes for dynamic content */
+.quantum-animate-in {
+  animation: quantumSlideIn var(--quantum-duration-slow) var(--quantum-ease-quantum);
+}
+
+.quantum-animate-fade {
+  animation: quantumFadeIn var(--quantum-duration-medium) var(--quantum-ease-apple);
+}
+
+.quantum-animate-up {
+  animation: quantumSlideUp var(--quantum-duration-medium) var(--quantum-ease-apple);
+}
+
+/* ========================================
+   ACCESSIBILITY ENHANCEMENTS
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .quantum-product-card,
+  .quantum-category-button,
+  .quantum-subcategory-button,
+  .quantum-view-toggle,
+  .quantum-search-input,
+  .quantum-logo {
+    transition: none;
+    animation: none;
+    transform: none;
+  }
+  
+  .quantum-product-card:hover,
+  .quantum-category-button:hover,
+  .quantum-subcategory-button:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .quantum-filter-sidebar,
+  .quantum-product-card,
+  .quantum-content-header {
+    border: 2px solid var(--foundation-border-high-contrast, #ffffff);
+  }
+}
+
+/* Focus management for keyboard navigation */
+.quantum-category-button:focus-visible,
+.quantum-subcategory-button:focus-visible,
+.quantum-view-toggle:focus-visible,
+.quantum-search-input:focus-visible,
+.quantum-add-to-cart:focus-visible {
+  outline: 2px solid var(--foundation-accent-primary, #19bcfe);
+  outline-offset: 2px;
+}
+
+/* Loading states - extends existing patterns */
+.quantum-loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.quantum-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(25, 188, 254, 0.2);
+  border-top: 4px solid var(--foundation-accent-primary, #19bcfe);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}

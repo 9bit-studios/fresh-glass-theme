@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petersen Games Growth Strategy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .slide {
+            min-height: 90vh;
+            padding: 3rem 2rem;
+            margin-bottom: 4rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #4ecdc4;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #96ceb4;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .metric-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff6b6b;
+            display: block;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: #b8b8b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .strategy-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #4ecdc4;
+        }
+        
+        .timeline-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            min-width: 60px;
+            text-align: center;
+            background: rgba(78, 205, 196, 0.2);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .timeline-content h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+        
+        .timeline-content p {
+            color: #b8b8b8;
+            line-height: 1.6;
+        }
+        
+        .priority-matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .priority-quadrant {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid transparent;
+        }
+        
+        .high-impact {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+        }
+        
+        .quick-wins {
+            border-color: #4ecdc4;
+            background: rgba(78, 205, 196, 0.1);
+        }
+        
+        .strategic {
+            border-color: #45b7d1;
+            background: rgba(69, 183, 209, 0.1);
+        }
+        
+        .future {
+            border-color: #96ceb4;
+            background: rgba(150, 206, 180, 0.1);
+        }
+        
+        .action-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .action-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .action-list li:before {
+            content: '▶';
+            color: #4ecdc4;
+            margin-right: 0.5rem;
+        }
+        
+        .revenue-projection {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(78, 205, 196, 0.2));
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .big-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #4ecdc4;
+            display: block;
+        }
+        
+        .stl-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .stl-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.3), rgba(78, 205, 196, 0.3));
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                padding: 2rem 1rem;
+            }
+            
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            
+            .priority-matrix {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Title Slide -->
+        <div class="slide">
+            <h1>Petersen Games Growth Strategy</h1>
+            <div class="revenue-projection">
+                <span class="big-number">$392</span>
+                <p>Products Ready for Optimization</p>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-value">$0.99-$950</span>
+                    <span class="metric-label">Price Range</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">$29.53</span>
+                    <span class="metric-label">Average Price</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">2</span>
+                    <span class="metric-label">Main Categories</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">3 Years</span>
+                    <span class="metric-label">Klaviyo Data</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current State Analysis -->
+        <div class="slide">
+            <h2>📊 Current State Analysis</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Strong Foundation</h3>
+                    <p>Shopify store launched with custom theme</p>
+                    <p>392 products optimized</p>
+                    <p>Klaviyo integration ready</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Untapped Potential</h3>
+                    <p>3 years of customer data</p>
+                    <p>STL monetization opportunities</p>
+                    <p>Grid API integration pending</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Key Product Lines</h3>
+                    <p>Cthulhu Wars series</p>
+                    <p>Planet Apocalypse</p>
+                    <p>The Gods War</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Price Segments</h3>
+                    <p>Low: $0.99-$10 (accessories)</p>
+                    <p>Mid: $20-$100 (games)</p>
+                    <p>High: $200-$950 (premium)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Immediate Growth Opportunities -->
+        <div class="slide">
+            <h2>🚀 Immediate Growth Opportunities (Next 30 Days)</h2>
+            <div class="priority-matrix">
+                <div class="priority-quadrant quick-wins">
+                    <h3>Quick Wins</h3>
+                    <ul class="action-list">
+                        <li>Email campaign to existing Klaviyo list</li>
+                        <li>Link-in-bio optimization</li>
+                        <li>Free STL lead magnet setup</li>
+                        <li>Abandoned cart automation</li>
+                        <li>Product bundling strategy</li>
+                    </ul>
+                </div>
+                <div class="priority-quadrant high-impact">
+                    <h3>High Impact</h3>
+                    <ul class="action-list">
+                        <li>STL membership launch</li>
+                        <li>Customer data segmentation</li>
+                        <li>Personalized email flows</li>
+                        <li>Cross-sell automation</li>
+                        <li>VIP customer program</li>
+                    </ul>
+                </div>
+                <div class="priority-quadrant strategic">
+                    <h3>Strategic Investments</h3>
+                    <ul class="action-list">
+                        <li>Grid API full integration</li>
+                        <li>Advanced analytics setup</li>
+                        <li>Loyalty program development</li>
+                        <li>Subscription box pilot</li>
+                        <li>Community platform</li>
+                    </ul>
+                </div>
+                <div class="priority-quadrant future">
+                    <h3>Future Roadmap</h3>
+                    <ul class="action-list">
+                        <li>Next.js app completion</li>
+                        <li>Mobile app development</li>
+                        <li>International expansion</li>
+                        <li>Partnership integrations</li>
+                        <li>AR/VR experiences</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- STL Strategy -->
+        <div class="slide">
+            <h2>🎯 STL Monetization Strategy</h2>
+            <div class="stl-showcase">
+                <div class="stl-card">
+                    <h3>Free STL Lead Magnet</h3>
+                    <p><strong>Candidates:</strong></p>
+                    <ul class="action-list">
+                        <li>Cthulhu Wars monsters</li>
+                        <li>Planet Apocalypse figures</li>
+                        <li>The Gods War accessories</li>
+                    </ul>
+                    <p><strong>Implementation:</strong> Email capture form → instant download → nurture sequence</p>
+                </div>
+                <div class="stl-card">
+                    <h3>STL Membership Tiers</h3>
+                    <p><strong>Basic ($9.99/month):</strong></p>
+                    <ul class="action-list">
+                        <li>Monthly STL pack</li>
+                        <li>Early access to new files</li>
+                        <li>Community Discord access</li>
+                    </ul>
+                    <p><strong>Premium ($19.99/month):</strong></p>
+                    <ul class="action-list">
+                        <li>All Basic benefits</li>
+                        <li>Exclusive designs</li>
+                        <li>Physical game discounts</li>
+                    </ul>
+                </div>
+                <div class="stl-card">
+                    <h3>Cross-Platform Integration</h3>
+                    <p><strong>Platforms:</strong></p>
+                    <ul class="action-list">
+                        <li>MyMiniFactory partnership</li>
+                        <li>Patreon integration</li>
+                        <li>Shopify STL store section</li>
+                    </ul>
+                    <p><strong>Revenue Potential:</strong> $5K-$15K monthly recurring</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Klaviyo Automation Strategy -->
+        <div class="slide">
+            <h2>📧 Klaviyo + Grid API Automation Strategy</h2>
+            <div class="strategy-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h4>Data Audit & Segmentation</h4>
+                        <p>Analyze 3 years of customer data. Create segments based on purchase history, game preferences, and engagement levels. Identify high-value customers and dormant subscribers.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h4>Behavioral Flow Setup</h4>
+                        <p>Welcome series for new subscribers, post-purchase upsells, win-back campaigns for dormant customers, and VIP flows for high-value customers.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h4>Grid API Integration</h4>
+                        <p>Real-time analytics, predictive customer scoring, dynamic content personalization, and automated A/B testing of email campaigns.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-content">
+                        <h4>Advanced Automations</h4>
+                        <p>Inventory-based urgency campaigns, seasonal promotions, cross-game recommendations, and STL membership upsells.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue Projections -->
+        <div class="slide">
+            <h2>💰 Revenue Growth Projections</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-value">30%</span>
+                    <span class="metric-label">Email Revenue Increase</span>
+                    <p>From improved segmentation and automation</p>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">$15K</span>
+                    <span class="metric-label">Monthly STL Revenue</span>
+                    <p>Conservative estimate at 500 subscribers</p>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">25%</span>
+                    <span class="metric-label">Conversion Rate Boost</span>
+                    <p>From Grid API personalization</p>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-value">$75K</span>
+                    <span class="metric-label">Additional Annual Revenue</span>
+                    <p>Conservative 6-month projection</p>
+                </div>
+            </div>
+            <div class="revenue-projection">
+                <h3>90-Day Revenue Target</h3>
+                <span class="big-number">$25K</span>
+                <p>Additional revenue from growth initiatives</p>
+            </div>
+        </div>
+
+        <!-- Implementation Timeline -->
+        <div class="slide">
+            <h2>⏰ 90-Day Implementation Timeline</h2>
+            <div class="strategy-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">Week 1-2</div>
+                    <div class="timeline-content">
+                        <h4>Foundation Setup</h4>
+                        <p>Klaviyo data audit, customer segmentation, email template design, free STL lead magnet creation, link-in-bio optimization</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">Week 3-4</div>
+                    <div class="timeline-content">
+                        <h4>Campaign Launch</h4>
+                        <p>Welcome series launch, abandoned cart automation, win-back campaign for dormant customers, STL membership soft launch</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">Week 5-8</div>
+                    <div class="timeline-content">
+                        <h4>Grid API Integration</h4>
+                        <p>Advanced analytics setup, predictive scoring implementation, dynamic content personalization, A/B testing framework</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">Week 9-12</div>
+                    <div class="timeline-content">
+                        <h4>Optimization & Scale</h4>
+                        <p>Performance analysis, campaign optimization, STL membership full launch, loyalty program pilot, Next.js app integration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="slide">
+            <div class="cta-section">
+                <h2>🎯 Recommended Next Steps</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                    Priority actions for immediate revenue impact
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: left;">
+                    <div>
+                        <h3>This Week:</h3>
+                        <ul class="action-list">
+                            <li>Klaviyo data audit and segmentation</li>
+                            <li>Create free STL lead magnet</li>
+                            <li>Set up link-in-bio optimization</li>
+                            <li>Plan STL membership structure</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Next Week:</h3>
+                        <ul class="action-list">
+                            <li>Launch email campaigns to existing list</li>
+                            <li>Implement abandoned cart automation</li>
+                            <li>Begin Grid API integration planning</li>
+                            <li>Start STL membership beta testing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="#" class="btn">Approve Strategy</a>
+                    <a href="#" class="btn">Schedule Follow-up</a>
+                    <a href="#" class="btn">Request Modifications</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

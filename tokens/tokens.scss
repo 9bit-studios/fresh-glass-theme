@@ -1,0 +1,615 @@
+//
+// Quantum-Spatial Design System
+// SCSS Token Variables - M4-Optimized
+// 
+// Created: May 1, 2025
+// Author: Claude (with Penny Platt)
+//
+
+// ==================== GRID SYSTEM TOKENS ====================
+
+// Base Grid Unit
+$grid-base-unit: 8px;
+
+// Spacing Map
+$spacing: (
+  'quantum': 4px,
+  'xxs': 4px,
+  'xs': 8px,
+  'sm': 16px,
+  'md': 24px,
+  'lg': 32px,
+  'xl': 48px,
+  'xxl': 64px
+);
+
+// Container Padding
+$container-padding: (
+  'mobile': 24px,
+  'tablet': 32px,
+  'desktop': 40px
+);
+
+// Column Structure
+$columns: (
+  'mobile': 4,
+  'tablet': 8,
+  'desktop': 12
+);
+
+// Breakpoints
+$breakpoints: (
+  'mobile': 375px,
+  'tablet': 768px,
+  'desktop': 1440px
+);
+
+// Grid Opacity Ranges
+$grid-opacity: (
+  'subtle': 0.05,
+  'medium': 0.1,
+  'prominent': 0.15
+);
+
+// ==================== COLOR SYSTEM TOKENS ====================
+
+// Primary Foundation Colors
+$color-void-black: #0A0621;
+$color-deep-space-indigo: #131A36;
+$color-ultra-indigo: #1E1F5C;
+$color-dimensional-eggplant: #331F4A;
+$color-midnight-richness: #0D0D15;
+$color-quantum-violet: #6A3093;
+$color-ultra-marine: #405DE5;
+$color-ultra-violet: #613FE7;
+
+// Secondary Accent Colors
+$color-subtle-aqua: #06D6A0;
+$color-subtle-cyan: #5AC8FA;
+$color-dimensional-teal: #126D71;
+$color-rose-energy: #BF4080;
+$color-quantum-pulse-pink: #FF2D55;
+$color-dimensional-orange: #FF6B6B;
+
+// Heritage Green Colors
+$color-heritage-green: #2C5F2D;
+$color-heritage-green-light: #3D8B40;
+$color-heritage-green-dark: #1B3D1A;
+$color-heritage-pixel-green: #3DFF74;
+$color-heritage-pixel-aqua: #00FFC8;
+$color-ultra-heritage-pixel-green: #94FE00;
+
+// Functional Color Maps
+$functional-colors: (
+  'primary-action': $color-subtle-cyan,
+  'secondary-action': $color-dimensional-teal,
+  'tertiary-action': $color-ultra-violet,
+  'destructive': $color-rose-energy,
+  'success': $color-heritage-green,
+  'warning': $color-dimensional-orange,
+  'info': $color-subtle-aqua
+);
+
+// Color Palettes Map
+$colors: (
+  'foundation': (
+    'void-black': $color-void-black,
+    'deep-space-indigo': $color-deep-space-indigo,
+    'ultra-indigo': $color-ultra-indigo,
+    'dimensional-eggplant': $color-dimensional-eggplant,
+    'midnight-richness': $color-midnight-richness,
+    'quantum-violet': $color-quantum-violet,
+    'ultra-marine': $color-ultra-marine,
+    'ultra-violet': $color-ultra-violet
+  ),
+  'accent': (
+    'subtle-aqua': $color-subtle-aqua,
+    'subtle-cyan': $color-subtle-cyan,
+    'dimensional-teal': $color-dimensional-teal,
+    'rose-energy': $color-rose-energy,
+    'quantum-pulse-pink': $color-quantum-pulse-pink,
+    'dimensional-orange': $color-dimensional-orange
+  ),
+  'heritage': (
+    'green': $color-heritage-green,
+    'green-light': $color-heritage-green-light,
+    'green-dark': $color-heritage-green-dark,
+    'pixel-green': $color-heritage-pixel-green,
+    'pixel-aqua': $color-heritage-pixel-aqua,
+    'ultra-pixel-green': $color-ultra-heritage-pixel-green
+  )
+);
+
+// ==================== GRADIENT TOKENS ====================
+
+// State Gradients
+$gradient-heritage-state: linear-gradient(135deg, $color-heritage-green-dark, $color-heritage-green, $color-heritage-green-light);
+$gradient-transitional-state: linear-gradient(135deg, $color-dimensional-eggplant, $color-ultra-indigo, $color-ultra-violet);
+$gradient-quantum-state: linear-gradient(135deg, $color-quantum-violet, $color-rose-energy, $color-quantum-pulse-pink);
+$gradient-quantum-depth: linear-gradient(135deg, $color-deep-space-indigo, $color-dimensional-eggplant, $color-quantum-violet);
+$gradient-spatial-background: linear-gradient(180deg, $color-void-black, $color-deep-space-indigo);
+$gradient-energy-flow: linear-gradient(90deg, $color-heritage-green, $color-subtle-cyan, $color-quantum-pulse-pink);
+
+// Gradient Maps
+$gradients: (
+  'heritage-state': $gradient-heritage-state,
+  'transitional-state': $gradient-transitional-state,
+  'quantum-state': $gradient-quantum-state,
+  'quantum-depth': $gradient-quantum-depth,
+  'spatial-background': $gradient-spatial-background,
+  'energy-flow': $gradient-energy-flow
+);
+
+// ==================== OPACITY TOKENS ====================
+
+// General Opacity Values
+$opacity: (
+  'subtle': 0.7,
+  'very-subtle': 0.3,
+  'hover': 0.85,
+  'active': 0.95,
+  'disabled': 0.5
+);
+
+// ==================== PIXEL STATE TOKENS ====================
+
+// Quantum Pixel States
+$pixel-state: (
+  'materialized': 1,
+  'partial': 0.6,
+  'energy': 0.3,
+  'superposition': 0.5
+);
+
+// State Transitions
+$transitions: (
+  'heritage-to-transitional': 1.5s,
+  'transitional-to-quantum': 1.5s,
+  'heritage-to-quantum': 2s,
+  'material-to-energy': 0.5s,
+  'energy-to-material': 0.5s,
+  'material-to-superposition': 0.5s,
+  'superposition-to-material': 0.5s
+);
+
+// ==================== DIMENSIONAL EFFECT TOKENS ====================
+
+// Perspective Strength
+$perspective-strength: (
+  'subtle': 0.02,
+  'medium': 0.05,
+  'strong': 0.1
+);
+
+// Distance Fade Factor
+$distance-fade-factor: (
+  'subtle': 0.3,
+  'medium': 0.5,
+  'strong': 0.8
+);
+
+// Parallax Layers
+$parallax-layer: (
+  'foreground': 0.8,
+  'midground': 0.5,
+  'background': 0.2
+);
+
+// ==================== BORDER & RADIUS TOKENS ====================
+
+// Border Radii
+$radius: (
+  'xs': 2px,
+  'sm': 4px,
+  'md': 8px,
+  'lg': 12px,
+  'xl': 20px,
+  'pill': 9999px
+);
+
+// Border Widths
+$border-width: (
+  'thin': 1px,
+  'medium': 2px,
+  'thick': 3px
+);
+
+// ==================== SHADOW & GLOW TOKENS ====================
+
+// Shadows
+$shadow: (
+  'subtle': 0 2px 4px rgba($color-void-black, 0.2),
+  'medium': 0 4px 8px rgba($color-void-black, 0.3),
+  'prominent': 0 8px 16px rgba($color-void-black, 0.4),
+  'quantum': 0 8px 24px rgba($color-subtle-cyan, 0.25)
+);
+
+// Glows
+$glow: (
+  'subtle': 0 0 5px rgba($color-subtle-cyan, 0.5),
+  'medium': 0 0 10px rgba($color-subtle-cyan, 0.6),
+  'quantum': 0 0 15px rgba($color-rose-energy, 0.7),
+  'heritage': 0 0 8px rgba($color-heritage-pixel-green, 0.5)
+);
+
+// Dark Mode Adjustments
+$dark-mode-glow: (
+  'subtle': 0 0 6px rgba($color-subtle-cyan, 0.6),
+  'medium': 0 0 12px rgba($color-subtle-cyan, 0.7),
+  'quantum': 0 0 18px rgba($color-rose-energy, 0.8),
+  'heritage': 0 0 10px rgba($color-heritage-pixel-green, 0.6)
+);
+
+// ==================== TYPOGRAPHY TOKENS ====================
+
+// Font Families
+$font-family: (
+  'primary-display': ('SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif),
+  'primary-text': ('SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif),
+  'secondary-display': ('Clash Grotesque', sans-serif),
+  'secondary-text': ('Clash Grotesque', sans-serif),
+  'mono': ('SF Mono', 'JetBrains Mono', monospace)
+);
+
+// Font Weights
+$font-weight: (
+  'regular': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700
+);
+
+// Font Sizes
+$font-size: (
+  'xs': 12px,
+  'sm': 14px,
+  'md': 16px,
+  'lg': 20px,
+  'xl': 24px,
+  'xxl': 32px,
+  'display': 48px
+);
+
+// Line Heights
+$line-height: (
+  'xs': 16px,
+  'sm': 20px,
+  'md': 24px,
+  'lg': 28px,
+  'xl': 32px,
+  'xxl': 40px,
+  'display': 56px
+);
+
+// Letter Spacing
+$letter-spacing: (
+  'tight': -0.2px,
+  'normal': 0px,
+  'wide': 0.1px
+);
+
+// ==================== ANIMATION TOKENS ====================
+
+// Timing
+$transition-duration: (
+  'instant': 50ms,
+  'fast': 150ms,
+  'medium': 300ms,
+  'slow': 500ms,
+  'deliberate': 800ms
+);
+
+// Easing
+$ease: (
+  'standard': cubic-bezier(0.4, 0.0, 0.2, 1),
+  'decelerate': cubic-bezier(0.0, 0.0, 0.2, 1),
+  'accelerate': cubic-bezier(0.4, 0.0, 1, 1),
+  'quantum': cubic-bezier(0.16, 1, 0.3, 1),
+  'energy': cubic-bezier(0.17, 0.89, 0.32, 1.25)
+);
+
+// ==================== GLASSMORPHISM TOKENS ====================
+
+// Glass Backgrounds
+$glass-background: (
+  'subtle': rgba($color-deep-space-indigo, 0.4),
+  'medium': rgba($color-deep-space-indigo, 0.6),
+  'prominent': rgba($color-deep-space-indigo, 0.8),
+  'heritage': rgba($color-heritage-green, 0.4),
+  'quantum': rgba($color-quantum-violet, 0.4)
+);
+
+// Glass Border Colors
+$glass-border-color: (
+  'standard': rgba($color-subtle-cyan, 0.2),
+  'heritage': rgba($color-heritage-pixel-green, 0.2),
+  'quantum': rgba($color-quantum-pulse-pink, 0.2)
+);
+
+// Glass Blur Intensities
+$glass-blur: (
+  'subtle': 5px,
+  'medium': 10px,
+  'prominent': 15px
+);
+
+// ==================== Z-INDEX TOKENS ====================
+
+// Z-index Layers
+$z-index: (
+  'background': -10,
+  'grid': -5,
+  'base': 0,
+  'above': 10,
+  'floating': 100,
+  'overlay': 1000,
+  'modal': 2000,
+  'popover': 5000,
+  'quantum': 9000
+);
+
+// ==================== PARTICLE & ENERGY FLOW TOKENS ====================
+
+// Particle Sizes
+$particle-size: (
+  'small': 4px,
+  'medium': 8px,
+  'large': 12px
+);
+
+// Energy Path Widths
+$energy-path-width: (
+  'thin': 1px,
+  'medium': 2px,
+  'thick': 3px
+);
+
+// Energy Path Opacity
+$energy-path-opacity: (
+  'subtle': 0.5,
+  'medium': 0.7,
+  'prominent': 0.9
+);
+
+// ==================== LIQUID EFFECT TOKENS ====================
+
+// Liquid Border Radius
+$liquid-border-radius: (
+  'min': 30%,
+  'max': 70%
+);
+
+$liquid-transition-duration: 8s;
+
+// ==================== M4 OPTIMIZATION TOKENS ====================
+
+// M4 Performance Settings
+$m4-optimization: (
+  'animation-batch-size': 5,
+  'filter-stddev-max': 7,
+  'gradient-stops-max': 4,
+  'staggered-delay-increment': 0.7s
+);
+
+// ==================== MIXINS ====================
+
+// Grid Alignment Mixin
+@mixin align-to-grid($value, $base-unit: $grid-base-unit, $round-up: false) {
+  @if $round-up {
+    $value: ceil($value / $base-unit) * $base-unit;
+  } @else {
+    $value: round($value / $base-unit) * $base-unit;
+  }
+  @return $value;
+}
+
+// Quantum Leap Mixin
+@mixin quantum-leap($leap-factor: 0.375) {
+  $leap-factor: max(0, min($leap-factor, 1));
+  $leap-distance: $grid-base-unit * $leap-factor;
+  transition: transform 0.3s cubic-bezier(0.17, 0.89, 0.32, 1.25);
+  
+  &:hover {
+    transform: translate($leap-distance, 0);
+  }
+}
+
+// Perspective Mixin
+@mixin perspective($strength: 'medium') {
+  $perspective-value: map-get($perspective-strength, $strength);
+  transform: perspective(1000px - ($perspective-value * 1000)) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
+  transition: transform 0.3s ease-out;
+}
+
+// Distance Fade Mixin
+@mixin distance-fade($distance, $max-distance, $grid-type: 'medium') {
+  $opacity-value: map-get($grid-opacity, $grid-type);
+  $normalized-distance: max(0, min($distance / $max-distance, 1));
+  $bell-curve: sin($normalized-distance * 3.14159);
+  $opacity: $opacity-value * $bell-curve;
+  
+  opacity: $opacity;
+}
+
+// Responsive Container Mixin
+@mixin container {
+  width: 100%;
+  max-width: map-get($breakpoints, 'desktop');
+  margin: 0 auto;
+  
+  @media (max-width: map-get($breakpoints, 'tablet') - 1) {
+    padding-left: map-get($container-padding, 'mobile');
+    padding-right: map-get($container-padding, 'mobile');
+  }
+  
+  @media (min-width: map-get($breakpoints, 'tablet')) and (max-width: map-get($breakpoints, 'desktop') - 1) {
+    padding-left: map-get($container-padding, 'tablet');
+    padding-right: map-get($container-padding, 'tablet');
+  }
+  
+  @media (min-width: map-get($breakpoints, 'desktop')) {
+    padding-left: map-get($container-padding, 'desktop');
+    padding-right: map-get($container-padding, 'desktop');
+  }
+}
+
+// Grid Row Mixin
+@mixin grid-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -($grid-base-unit / 2);
+  margin-right: -($grid-base-unit / 2);
+}
+
+// Grid Column Mixin
+@mixin grid-column($span: 1, $device: 'desktop') {
+  $columns-count: map-get($columns, $device);
+  flex: 0 0 percentage($span / $columns-count);
+  padding-left: $grid-base-unit / 2;
+  padding-right: $grid-base-unit / 2;
+}
+
+// Generate Spacing Utilities
+@mixin generate-spacing-utilities {
+  @each $name, $space in $spacing {
+    .margin-#{$name} { margin: $space; }
+    .padding-#{$name} { padding: $space; }
+    
+    @each $direction in (top, right, bottom, left) {
+      .margin-#{$direction}-#{$name} { margin-#{$direction}: $space; }
+      .padding-#{$direction}-#{$name} { padding-#{$direction}: $space; }
+    }
+  }
+}
+
+// Glassmorphism Mixin
+@mixin glassmorphism($type: 'medium', $state: 'standard') {
+  background: map-get($glass-background, if($state == 'standard', $type, $state));
+  backdrop-filter: blur(map-get($glass-blur, $type));
+  -webkit-backdrop-filter: blur(map-get($glass-blur, $type));
+  border: map-get($border-width, 'thin') solid map-get($glass-border-color, $state);
+  border-radius: map-get($radius, 'lg');
+  box-shadow: map-get($shadow, $type);
+}
+
+// Pulse Animation Mixin
+@mixin pulse($type: 'opacity', $duration: 4s) {
+  @if $type == 'opacity' {
+    animation: opacityPulse $duration map-get($ease, 'standard') infinite;
+  } @else if $type == 'scale' {
+    animation: scalePulse $duration map-get($ease, 'quantum') infinite;
+  } @else if $type == 'combined' {
+    animation: 
+      opacityPulse $duration map-get($ease, 'standard') infinite,
+      scalePulse ($duration - 1s) map-get($ease, 'quantum') infinite;
+  }
+}
+
+// Energy Path Mixin
+@mixin energy-path($state: 'standard', $width: 'medium', $opacity: 'medium') {
+  stroke-width: map-get($energy-path-width, $width);
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  
+  @if $state == 'heritage' {
+    stroke: $color-heritage-pixel-green;
+    filter: drop-shadow(map-get($glow, 'heritage'));
+  } @else if $state == 'quantum' {
+    stroke: $color-rose-energy;
+    filter: drop-shadow(map-get($glow, 'quantum'));
+  } @else {
+    stroke: $color-subtle-cyan;
+    filter: drop-shadow(map-get($glow, 'subtle'));
+  }
+  
+  opacity: map-get($energy-path-opacity, $opacity);
+  animation: energyFlow 10s map-get($ease, 'standard') infinite;
+}
+
+// Fluid Element Mixin
+@mixin fluid-element($duration: $liquid-transition-duration) {
+  animation: fluidMotion $duration infinite ease-in-out;
+}
+
+// M4 Optimization Mixin
+@mixin m4-optimized {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+}
+
+// ==================== MEDIA QUERIES ====================
+
+// Mixin for responsive design
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'mobile' {
+    @media (max-width: map-get($breakpoints, 'tablet') - 1) { @content; }
+  } @else if $breakpoint == 'tablet' {
+    @media (min-width: map-get($breakpoints, 'tablet')) and (max-width: map-get($breakpoints, 'desktop') - 1) { @content; }
+  } @else if $breakpoint == 'desktop' {
+    @media (min-width: map-get($breakpoints, 'desktop')) { @content; }
+  }
+}
+
+// Mixin for dark mode
+@mixin dark-mode {
+  @media (prefers-color-scheme: dark) { @content; }
+}
+
+// ==================== KEYFRAMES ====================
+
+@keyframes opacityPulse {
+  0%, 100% { opacity: map-get($opacity, 'subtle'); }
+  50% { opacity: 1; }
+}
+
+@keyframes scalePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+@keyframes energyFlow {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes stateCycle {
+  0% { background-image: $gradient-heritage-state; }
+  33% { background-image: $gradient-transitional-state; }
+  66% { background-image: $gradient-quantum-state; }
+  100% { background-image: $gradient-heritage-state; }
+}
+
+@keyframes fluidMotion {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 40% 60% 30% 70% / 60% 40% 60% 30%; }
+  75% { border-radius: 70% 30% 40% 60% / 30% 60% 70% 40%; }
+}
+
+@keyframes followPath {
+  0% { offset-distance: 0%; }
+  100% { offset-distance: 100%; }
+}
+
+@keyframes orbit {
+  0%, 100% { transform: rotate(0deg) translateX(20px) rotate(0deg); }
+  50% { transform: rotate(180deg) translateX(20px) rotate(-180deg); }
+}
+
+@keyframes stateTransition {
+  0% { background-color: $color-heritage-pixel-green; }
+  50% { background-color: $color-heritage-pixel-aqua; }
+  100% { background-color: $color-subtle-cyan; }
+}
+
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 0.3; }
+  100% { transform: scale(6); opacity: 0; }
+}
+
+@keyframes liquidRise {
+  from { mask-position: 0 100%; }
+  to { mask-position: 0 0%; }
+}
+EOSCSS < /dev/null

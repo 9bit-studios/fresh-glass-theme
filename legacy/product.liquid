@@ -1,0 +1,286 @@
+{% comment %}
+  Product page with foundation integration
+  Uses priority-foundation.css for consistent layout and spacing
+{% endcomment %}
+
+{% layout 'theme' %}
+
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <nav class="breadcrumb-nav">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">›</span>
+        {% if collection %}
+            <a href="{{ collection.url }}">{{ collection.title }}</a>
+            <span class="breadcrumb-separator">›</span>
+        {% endif %}
+        <span>{{ product.title }}</span>
+    </nav>
+</div>
+
+<!-- Product Detail Section -->
+<section class="product-detail">
+    <div class="product-layout">
+            <!-- Product Images -->
+            <div class="product-images">
+                <div class="main-image">
+                    {% if product.featured_media %}
+                        <img id="main-product-image" 
+                             src="{{ product.featured_media | image_url: width: 800 }}" 
+                             alt="{{ product.featured_media.alt | escape }}">
+                    {% else %}
+                        <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'><rect fill='%23222' width='400' height='400'/><text x='50%' y='50%' text-anchor='middle' dy='0.3em' fill='%23666' font-size='16'>{{ product.title }}</text></svg>" 
+                             alt="{{ product.title }}">
+                    {% endif %}
+                </div>
+                
+                {% if product.media.size > 1 %}
+                    <div class="thumbnail-grid">
+                        {% for media in product.media limit: 4 %}
+                            <div class="thumbnail {% if forloop.first %}active{% endif %}" 
+                                 data-media-url="{{ media | image_url: width: 800 }}">
+                                <img src="{{ media | image_url: width: 100 }}" 
+                                     alt="{{ media.alt | escape }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Product Details -->
+            <div class="product-details">
+                <h1>{{ product.title }}</h1>
+                <p class="product-brand">{{ product.vendor }}</p>
+                
+                <div class="price-section">
+                    <span class="current-price">
+                        {{ product.selected_or_first_available_variant.price | money }}
+                    </span>
+                    {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+                        <span class="original-price">
+                            {{ product.selected_or_first_available_variant.compare_at_price | money }}
+                        </span>
+                    {% endif %}
+                </div>
+
+                <!-- Game Specifications -->
+                {% if product.metafields.custom.players or product.metafields.custom.playtime or product.metafields.custom.age or product.type %}
+                    <div class="game-specs">
+                        <div class="specs-grid">
+                            {% if product.metafields.custom.players %}
+                                <div class="spec-item">
+                                    <span>👥</span>
+                                    <span>{{ product.metafields.custom.players }} Players</span>
+                                </div>
+                            {% endif %}
+                            {% if product.metafields.custom.playtime %}
+                                <div class="spec-item">
+                                    <span>⏱️</span>
+                                    <span>{{ product.metafields.custom.playtime }} min</span>
+                                </div>
+                            {% endif %}
+                            {% if product.metafields.custom.age %}
+                                <div class="spec-item">
+                                    <span>🎯</span>
+                                    <span>{{ product.metafields.custom.age }}+ Age</span>
+                                </div>
+                            {% endif %}
+                            {% if product.type %}
+                                <div class="spec-item">
+                                    <span>📦</span>
+                                    <span>{{ product.type }}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!-- Description -->
+                <div class="description">
+                    <h3>Description</h3>
+                    {{ product.description }}
+                </div>
+
+                <!-- Variant Selection -->
+                {% unless product.has_only_default_variant %}
+                    {% for option in product.options_with_values %}
+                        <div class="variant-section">
+                            <h4>{{ option.name }}</h4>
+                            <div class="variant-options">
+                                {% for value in option.values %}
+                                    <div class="variant-option" 
+                                         data-option-position="{{ option.position }}"
+                                         data-option-value="{{ value | escape }}">
+                                        {{ value }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endunless %}
+
+                <!-- Add to Cart Section -->
+                <div class="add-to-cart-section">
+                    <form action="/cart/add" method="post" enctype="multipart/form-data" id="product-form">
+                        
+                        <!-- Quantity Selection -->
+                        <div class="quantity-section">
+                            <label class="quantity-label" for="quantity">Quantity:</label>
+                            <div class="quantity-selector">
+                                <button type="button" class="quantity-minus" onclick="changeQuantity(-1)">
+                                    <span aria-hidden="true">−</span>
+                                </button>
+                                <input type="number" 
+                                       id="quantity" 
+                                       name="quantity" 
+                                       value="1" 
+                                       min="1" 
+                                       class="quantity-input">
+                                <button type="button" class="quantity-plus" onclick="changeQuantity(1)">
+                                    <span aria-hidden="true">+</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Hidden variant ID -->
+                        <select name="id" id="product-select" style="display: none;">
+                            {% for variant in product.variants %}
+                                <option value="{{ variant.id }}" 
+                                        {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+                                        {% unless variant.available %}disabled{% endunless %}>
+                                    {{ variant.title }}
+                                </option>
+                            {% endfor %}
+                        </select>
+
+                        <!-- Add to Cart Button -->
+                        <button type="submit" 
+                                name="add" 
+                                class="btn-primary"
+                                {% unless product.available %}disabled{% endunless %}>
+                            {% if product.available %}
+                                Add to Cart
+                            {% else %}
+                                Sold Out
+                            {% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+</section>
+
+<script>
+    // Image gallery functionality
+    document.querySelectorAll('.thumbnail').forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            document.querySelector('.thumbnail.active').classList.remove('active');
+            this.classList.add('active');
+            
+            const mainImage = document.getElementById('main-product-image');
+            const newSrc = this.dataset.mediaUrl;
+            mainImage.src = newSrc;
+        });
+    });
+
+    // Quantity controls
+    function changeQuantity(change) {
+        const quantityInput = document.getElementById('quantity');
+        const currentQuantity = parseInt(quantityInput.value);
+        const newQuantity = Math.max(1, currentQuantity + change);
+        quantityInput.value = newQuantity;
+    }
+
+    // Variant selection (if product has variants)
+    {% unless product.has_only_default_variant %}
+        const variantData = {{ product.variants | json }};
+        let selectedOptions = {};
+
+        // Initialize with first available variant
+        const firstAvailableVariant = variantData.find(v => v.available) || variantData[0];
+        {% for option in product.options_with_values %}
+            selectedOptions[{{ option.position }}] = '{{ firstAvailableVariant.options[forloop.index0] }}';
+        {% endfor %}
+
+        // Set initial active variants
+        updateVariantSelection();
+
+        document.querySelectorAll('.variant-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const position = parseInt(this.dataset.optionPosition);
+                const value = this.dataset.optionValue;
+                
+                selectedOptions[position] = value;
+                updateVariantSelection();
+                updateSelectedVariant();
+            });
+        });
+
+        function updateVariantSelection() {
+            document.querySelectorAll('.variant-option').forEach(option => {
+                const position = parseInt(option.dataset.optionPosition);
+                const value = option.dataset.optionValue;
+                
+                option.classList.toggle('selected', selectedOptions[position] === value);
+                
+                // Check if this option is available
+                const isAvailable = variantData.some(variant => {
+                    return variant.available && variant.options[position - 1] === value;
+                });
+                
+                option.classList.toggle('unavailable', !isAvailable);
+            });
+        }
+
+        function updateSelectedVariant() {
+            const selectedVariant = variantData.find(variant => {
+                return variant.options.every((option, index) => {
+                    return selectedOptions[index + 1] === option;
+                });
+            });
+
+            if (selectedVariant) {
+                document.getElementById('product-select').value = selectedVariant.id;
+                
+                // Update price
+                const priceElement = document.querySelector('.current-price');
+                priceElement.textContent = new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: '{{ cart.currency.iso_code }}'
+                }).format(selectedVariant.price / 100);
+
+                // Update add to cart button
+                const addToCartBtn = document.querySelector('.btn-primary');
+                if (selectedVariant.available) {
+                    addToCartBtn.disabled = false;
+                    addToCartBtn.textContent = 'Add to Cart';
+                } else {
+                    addToCartBtn.disabled = true;
+                    addToCartBtn.textContent = 'Sold Out';
+                }
+            }
+        }
+    {% endunless %}
+
+    // Add to cart functionality
+    document.getElementById('product-form').addEventListener('submit', function(e) {
+        const addToCartBtn = document.querySelector('.btn-primary');
+        
+        // Visual feedback
+        const originalText = addToCartBtn.textContent;
+        addToCartBtn.textContent = 'Adding...';
+        addToCartBtn.disabled = true;
+        
+        // Let the form submit naturally, but provide feedback
+        setTimeout(() => {
+            addToCartBtn.textContent = 'Added!';
+            addToCartBtn.style.background = '#34C759';
+            
+            setTimeout(() => {
+                addToCartBtn.textContent = originalText;
+                addToCartBtn.style.background = '';
+                addToCartBtn.disabled = false;
+            }, 1500);
+        }, 100);
+    });
+</script>

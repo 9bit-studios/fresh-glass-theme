@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Mobile Navigation - Petersen Games</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            max-width: 375px;
+            margin: 0 auto;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            border-right: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+
+        /* Header with Dropdown Navigation */
+        .header {
+            position: sticky;
+            top: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            z-index: 100;
+        }
+
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+        }
+
+        .menu-dropdown {
+            position: relative;
+            flex: 1;
+            margin-right: 1rem;
+        }
+
+        .menu-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 16px 20px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 48px;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            margin-top: 0.5rem;
+            padding: 1rem;
+            display: none;
+            min-width: 100%;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .dropdown-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .dropdown-label {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .dropdown-link {
+            display: block;
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            padding: 12px 16px;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+            font-size: 1rem;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .nav-action {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 12px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 48px;
+            min-width: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-action:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            min-height: 48px;
+        }
+
+        .filter-toggle:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .sort-select {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            min-height: 48px;
+            flex: 1;
+        }
+
+        .active-filters {
+            display: flex;
+            gap: 0.75rem;
+            width: 100%;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tag {
+            background: rgba(0,122,255,0.2);
+            border: 1px solid rgba(0,122,255,0.3);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 36px;
+        }
+
+        .filter-tag button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.1rem;
+            min-width: 24px;
+            min-height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Content Area */
+        .content-area {
+            padding: 1rem;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .product-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.08);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 140px;
+            background: rgba(255,255,255,0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.8rem;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .product-price {
+            color: #007AFF;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Mobile Status Indicator */
+        .mobile-indicator {
+            background: rgba(0,122,255,0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Benefits Display */
+        .benefits-section {
+            background: rgba(0,0,0,0.8);
+            margin: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .benefits-section h4 {
+            margin-bottom: 0.75rem;
+            color: #007AFF;
+            font-size: 1rem;
+        }
+
+        .benefits-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits-section li {
+            margin-bottom: 0.5rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.4;
+        }
+
+        .benefits-section li:before {
+            content: "• ";
+            color: #007AFF;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Status Indicator -->
+    <div class="mobile-indicator">📱 Mobile View (375px width)</div>
+
+    <!-- Improved header with dropdown -->
+    <div class="header">
+        <div class="nav-bar">
+            <div class="menu-dropdown">
+                <div class="menu-toggle" onclick="toggleDropdown()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                    <span>Browse Games</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </div>
+                
+                <div class="dropdown-menu" id="dropdown">
+                    <div class="dropdown-section">
+                        <div class="dropdown-label">Game Lines</div>
+                        <a href="#" class="dropdown-link">Cthulhu Wars</a>
+                        <a href="#" class="dropdown-link">Planet Apocalypse</a>
+                        <a href="#" class="dropdown-link">Hyperspace</a>
+                        <a href="#" class="dropdown-link">Evil High Priest</a>
+                        <a href="#" class="dropdown-link">Orcs Must Die</a>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <div class="dropdown-label">Product Types</div>
+                        <a href="#" class="dropdown-link">Core Games</a>
+                        <a href="#" class="dropdown-link">Expansions</a>
+                        <a href="#" class="dropdown-link">Miniatures</a>
+                        <a href="#" class="dropdown-link">New Releases</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-actions">
+                <div class="nav-action">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                </div>
+                <div class="nav-action">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Separate filter bar -->
+        <div class="filter-bar">
+            <div class="filter-toggle" onclick="openFilterModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                <span>Filter</span>
+            </div>
+
+            <select class="sort-select">
+                <option>Sort: Featured</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest</option>
+            </select>
+
+            <div class="active-filters">
+                <div class="filter-tag">
+                    Cthulhu Wars
+                    <button onclick="removeFilter(this)">×</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content-area">
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">Image</div>
+                <div class="product-info">
+                    <div class="product-title">Tcho-Tcho Tribes</div>
+                    <div class="product-price">$6.99</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Image</div>
+                <div class="product-info">
+                    <div class="product-title">Rock-a-Bye Cthulhu</div>
+                    <div class="product-price">$9.99</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Image</div>
+                <div class="product-info">
+                    <div class="product-title">Planet Apocalypse</div>
+                    <div class="product-price">$74.99</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Image</div>
+                <div class="product-info">
+                    <div class="product-title">Hyperspace Set</div>
+                    <div class="product-price">$45.99</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Image</div>
+                <div class="product-info">
+                    <div class="product-title">Cthulhu Wars Core</div>
+                    <div class="product-price">$139.99</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Image</div>
+                <div class="product-info">
+                    <div class="product-title">Windwalker Expansion</div>
+                    <div class="product-price">$29.99</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="benefits-section">
+        <h4>Design Benefits:</h4>
+        <ul>
+            <li>Clear navigation discovery with dropdown affordance</li>
+            <li>Organized category structure in collapsible menu</li>
+            <li>Separate filtering controls for better UX</li>
+            <li>Optimal mobile space usage</li>
+            <li>44px minimum touch targets for accessibility</li>
+            <li>Visual filter state management</li>
+        </ul>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function openFilterModal() {
+            alert('Filter modal would open here with advanced filtering options');
+        }
+
+        function removeFilter(btn) {
+            btn.parentElement.remove();
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('dropdown');
+            const toggle = document.querySelector('.menu-toggle');
+            
+            if (!toggle.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

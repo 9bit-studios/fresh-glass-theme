@@ -1,0 +1,76 @@
+{%- comment -%}
+  Petersen Games - Blocks Container Section
+  Simple container section for hosting Petersen Games blocks
+  Allows flexible arrangement of game stats, satisfaction guarantee, etc.
+{%- endcomment -%}
+
+<div class="petersen-blocks-container" id="section-{{ section.id }}">
+  <div class="blocks-wrapper">
+    {%- for block in section.blocks -%}
+      {{ block }}
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+.petersen-blocks-container {
+  padding: 0 20px;
+  background: transparent;
+}
+
+.blocks-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .petersen-blocks-container {
+    padding: 0 16px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Petersen Blocks Container",
+  "tag": "section",
+  "class": "petersen-blocks-container-section",
+  "templates": ["product"],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Container Settings"
+    },
+    {
+      "type": "paragraph",
+      "content": "This section hosts Petersen Games blocks. Add blocks using the + button below."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "petersen-guarantee",
+      "name": "Satisfaction Guarantee",
+      "limit": 3
+    },
+    {
+      "type": "petersen-stats",
+      "name": "Game Statistics",
+      "limit": 3
+    }
+  ],
+  "presets": [
+    {
+      "name": "Petersen Blocks Container",
+      "blocks": [
+        {
+          "type": "petersen-stats"
+        },
+        {
+          "type": "petersen-guarantee"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

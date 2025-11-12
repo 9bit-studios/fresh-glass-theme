@@ -1,0 +1,51 @@
+/* Navigation Alignment Fixes - Left-align dropdown and nav elements */
+
+/* Left-align sliding navigation container elements */
+.sliding-nav-inner {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+}
+
+.nav-tabs-wrapper {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* Left-align navigation dropdown elements */
+.glass-nav-container,
+.glass-top-header .nav-container {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  width: 100% !important;
+}
+
+.dropdown-toggle,
+.glass-top-header .dropdown-toggle {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  margin-left: 0 !important;
+  text-align: left !important;
+}
+
+.mega-dropdown,
+.glass-top-header .mega-dropdown {
+  left: 0 !important;
+  right: auto !important;
+  transform: none !important;
+  margin-left: 0 !important;
+}
+
+/* Ensure all nav elements align left */
+.glass-top-header .nav-menu,
+.nav-menu {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 1.5rem !important;
+}

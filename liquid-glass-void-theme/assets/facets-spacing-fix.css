@@ -1,0 +1,117 @@
+/* ========================================
+   FACETS SPACING UNIFORMITY FIX
+   Ensures consistent content width and padding between collection and search result pages
+   Addresses the issue where full-width-restore.css was forcing collections facets to full width
+   ======================================== */
+
+/* Reset facets containers to use consistent content width across all page types */
+.facets-container,
+.facets-block-wrapper,
+.facets-wrapper,
+.collection-wrapper .facets-container,
+.search-results .facets-container {
+  max-width: var(--page-content-width, 1800px) !important;
+  width: 100%;
+  margin: 0 auto !important;
+  padding-left: var(--page-margin, 16px) !important;
+  padding-right: var(--page-margin, 16px) !important;
+}
+
+/* Override any full-width section overrides specifically for facets */
+.section--full-width .facets-container,
+.section--full-width .facets-block-wrapper,
+.section--full-width .facets-wrapper,
+.section--full-width [class*="facets"]:not([class*="active-facets"]) {
+  max-width: var(--page-content-width, 1800px) !important;
+  width: auto !important;
+  margin: 0 auto !important;
+  padding-left: var(--page-margin, 16px) !important;
+  padding-right: var(--page-margin, 16px) !important;
+}
+
+/* Ensure facets content stays within the same bounds as product grids */
+.facets__form,
+.facets__wrapper,
+.mobile-facets__wrapper,
+.facet-filters {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Mobile responsive: maintain consistent spacing */
+@media screen and (max-width: 749px) {
+  .facets-container,
+  .facets-block-wrapper,
+  .facets-wrapper,
+  .collection-wrapper .facets-container,
+  .search-results .facets-container {
+    padding-left: var(--mobile-section-spacing-sm, 16px) !important;
+    padding-right: var(--mobile-section-spacing-sm, 16px) !important;
+  }
+  
+  .section--full-width .facets-container,
+  .section--full-width .facets-block-wrapper,
+  .section--full-width .facets-wrapper {
+    padding-left: var(--mobile-section-spacing-sm, 16px) !important;
+    padding-right: var(--mobile-section-spacing-sm, 16px) !important;
+  }
+}
+
+/* Desktop responsive: ensure consistent content width */
+@media screen and (min-width: 750px) {
+  .facets-container,
+  .facets-block-wrapper,
+  .facets-wrapper {
+    max-width: var(--page-content-width, 1800px);
+    margin: 0 auto;
+  }
+  
+  /* Higher specificity override for full-width sections */
+  .section--full-width.spacing-style .facets-container,
+  .section--full-width.spacing-style .facets-block-wrapper,
+  .section--full-width.spacing-style .facets-wrapper {
+    max-width: var(--page-content-width, 1800px) !important;
+    width: auto !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Ensure product grid containers match facets container width */
+.product-grid-container,
+.main-collection-grid,
+.search-content {
+  max-width: var(--page-content-width, 1800px);
+  margin: 0 auto;
+  padding-left: var(--page-margin, 16px);
+  padding-right: var(--page-margin, 16px);
+}
+
+/* Override any excess padding that might be applied to product grids */
+.product-grid,
+.collection-grid,
+.search-results-grid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Fix excessive padding from product-grid-rounded-fixes.css lines 69-70, 78-79 */
+.main-content[data-grid-controlled],
+.shopify-section[data-grid-controlled],
+.section-template[data-grid-controlled],
+.product-grid-container.container,
+.product-grid-container.page-width,
+.main-collection-grid,
+.search-content {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Ensure product grid containers match facets content width */
+.main-collection-grid,
+.search-content,
+.product-grid-container {
+  max-width: var(--page-content-width, 1800px) !important;
+  margin: 0 auto !important;
+  padding-left: var(--page-margin, 16px) !important;
+  padding-right: var(--page-margin, 16px) !important;
+}

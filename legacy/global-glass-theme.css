@@ -1,0 +1,466 @@
+
+/* Global Layout Variables - Apple HIG Compliant */
+:root {
+  --foundation-header-height: 80px;
+  --filter-bar-height: 56px;
+  --total-fixed-height: calc(var(--foundation-header-height) + var(--filter-bar-height));
+  --global-max-width: 1800px;
+  
+  /* Apple HIG Font Stack */
+  --font-system: -apple-system, 'SF Pro Display', 'SF Pro Text', BlinkMacSystemFont, 
+                 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, Menlo, Monaco, 'Cascadia Mono', 
+               'Segoe UI Mono', 'Courier New', monospace;
+               
+  /* Apple HIG Touch Targets */
+  --touch-target-min: 44px;
+  --touch-target-preferred: 48px;
+}
+
+/* Global Page Container */
+.content-for-layout {
+  min-height: calc(100vh - var(--foundation-header-height));
+  background: var(--foundation-background-primary, #000000);
+}
+
+/* Global Content Area Styling */
+.page-content-wrapper {
+  max-width: var(--global-max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 var(--foundation-space-lg, 24px);
+  background: var(--foundation-background-primary, #000000);
+}
+
+/* Global Main Content */
+.main-page-content {
+  padding: var(--foundation-space-lg, 24px) 0;
+}
+
+/* Glass Card Styling for All Content */
+.glass-content-card {
+  background: var(--glass-surface, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--foundation-radius-lg, 16px);
+  backdrop-filter: var(--glass-effect, blur(20px));
+  -webkit-backdrop-filter: var(--glass-effect, blur(20px));
+  padding: var(--foundation-space-xl, 32px);
+  margin-bottom: var(--foundation-space-lg, 24px);
+  transition: var(--foundation-transition, all 0.3s ease);
+}
+
+.glass-content-card:hover {
+  border-color: var(--glass-border-hover, rgba(255, 255, 255, 0.2));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Glass Section Headers */
+.glass-section-header {
+  background: var(--glass-surface, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--foundation-radius-lg, 16px);
+  backdrop-filter: var(--glass-effect, blur(20px));
+  -webkit-backdrop-filter: var(--glass-effect, blur(20px));
+  padding: var(--foundation-space-lg, 24px);
+  margin-bottom: var(--foundation-space-lg, 24px);
+  text-align: center;
+}
+
+.glass-section-title {
+  font-size: var(--foundation-text-3xl, 32px);
+  font-weight: var(--foundation-font-weight-bold, 700);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  margin: 0 0 var(--foundation-space-md, 16px) 0;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+}
+
+.glass-section-description {
+  font-size: var(--foundation-text-lg, 18px);
+  color: var(--foundation-foreground-secondary, rgba(252, 253, 242, 0.8));
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Glass Buttons - Apple HIG Compliant */
+.glass-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--foundation-space-sm, 8px);
+  padding: var(--foundation-space-md, 12px) var(--foundation-space-lg, 24px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-md, 12px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  text-decoration: none;
+  font-family: var(--font-system);
+  font-weight: 600; /* Apple HIG headline weight */
+  font-size: 17px; /* Apple HIG body size */
+  line-height: 22px;
+  letter-spacing: -0.408px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; /* Apple HIG transition timing */
+  min-height: var(--touch-target-preferred, 48px); /* Apple HIG preferred touch target */
+  min-width: var(--touch-target-min, 44px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -webkit-tap-highlight-color: transparent; /* Remove iOS tap highlight */
+}
+
+.glass-button:focus-visible {
+  outline: 3px solid var(--foundation-accent-primary, #007aff);
+  outline-offset: 2px;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.glass-button.primary {
+  background: var(--foundation-accent-primary, #007aff);
+  border-color: var(--foundation-accent-primary, #007aff);
+}
+
+.glass-button.primary:hover {
+  background: #0056cc;
+  border-color: #0056cc;
+}
+
+/* Glass Form Elements */
+.glass-input {
+  width: 100%;
+  padding: var(--foundation-space-md, 14px) var(--foundation-space-md, 16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-md, 12px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  font-size: 17px; /* Apple HIG body text size */
+  line-height: 22px;
+  letter-spacing: -0.408px;
+  font-family: var(--font-system);
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  min-height: var(--touch-target-min, 44px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.glass-input:focus {
+  border-color: var(--foundation-accent-primary, #007aff);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+.glass-input:focus-visible {
+  outline: 3px solid var(--foundation-accent-primary, #007aff);
+  outline-offset: 2px;
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Glass Navigation Links */
+.glass-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--foundation-space-sm, 8px);
+  padding: var(--foundation-space-sm, 8px) var(--foundation-space-md, 16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-md, 12px);
+  color: var(--foundation-foreground-secondary, rgba(252, 253, 242, 0.8));
+  text-decoration: none;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  font-weight: var(--foundation-font-weight-normal, 400);
+  font-size: var(--foundation-text-sm, 14px);
+  transition: var(--foundation-transition, all 0.2s ease);
+  min-height: var(--foundation-touch-target, 44px);
+}
+
+.glass-nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  transform: translateY(-1px);
+}
+
+.glass-nav-link.active {
+  background: rgba(0, 122, 255, 0.2);
+  color: var(--foundation-accent-primary, #007aff);
+  border-color: rgba(0, 122, 255, 0.3);
+}
+
+/* Glass Grid Layout */
+.glass-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--foundation-space-lg, 24px);
+  margin: var(--foundation-space-lg, 24px) 0;
+}
+
+.glass-grid.compact {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--foundation-space-md, 16px);
+}
+
+.glass-grid.wide {
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--foundation-space-xl, 32px);
+}
+
+/* Global Typography with Glass Context */
+.page-title {
+  font-size: var(--foundation-text-4xl, 36px);
+  font-weight: var(--foundation-font-weight-bold, 700);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  margin: 0 0 var(--foundation-space-lg, 24px) 0;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  text-align: center;
+}
+
+.section-title {
+  font-size: var(--foundation-text-2xl, 24px);
+  font-weight: var(--foundation-font-weight-semibold, 600);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  margin: 0 0 var(--foundation-space-md, 16px) 0;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+}
+
+.content-text {
+  font-size: var(--foundation-text-base, 16px);
+  color: var(--foundation-foreground-secondary, rgba(252, 253, 242, 0.8));
+  line-height: 1.6;
+  margin: 0 0 var(--foundation-space-md, 16px) 0;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+}
+
+/* Glass Loading States */
+.glass-loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.glass-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-top: 4px solid var(--foundation-accent-primary, #007aff);
+  border-radius: 50%;
+  animation: glass-spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+@keyframes glass-spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Apple HIG Accessibility Support */
+/* Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .glass-loading::after {
+    animation: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .glass-button,
+  .glass-input,
+  .glass-content-card {
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .glass-button:focus-visible,
+  .glass-input:focus-visible {
+    outline-width: 4px;
+  }
+}
+
+/* Keyboard Navigation Support */
+.keyboard-navigation-active *:focus {
+  outline: 3px solid var(--foundation-accent-primary, #007aff);
+  outline-offset: 2px;
+}
+
+/* Skip Navigation for Screen Readers */
+.skip-nav {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--foundation-background-primary, #000);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  z-index: 9999;
+}
+
+.skip-nav:focus {
+  top: 0;
+}
+
+/* Visually Hidden Utility for Screen Readers */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .page-content-wrapper {
+    padding: 0 var(--foundation-space-md, 16px);
+  }
+  
+  .glass-content-card {
+    padding: var(--foundation-space-lg, 24px);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --foundation-header-height: 60px;
+    --filter-bar-height: 48px;
+  }
+  
+  .page-content-wrapper {
+    padding: 0 var(--foundation-space-md, 12px);
+  }
+  
+  .main-page-content {
+    padding: var(--foundation-space-md, 16px) 0;
+  }
+  
+  .glass-content-card {
+    padding: var(--foundation-space-md, 16px);
+  }
+  
+  .glass-section-header {
+    padding: var(--foundation-space-md, 16px);
+  }
+  
+  .page-title {
+    font-size: var(--foundation-text-3xl, 28px);
+  }
+  
+  .glass-section-title {
+    font-size: var(--foundation-text-2xl, 24px);
+  }
+  
+  .glass-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--foundation-space-md, 16px);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-content-wrapper {
+    padding: 0 var(--foundation-space-sm, 8px);
+  }
+  
+  .glass-content-card {
+    padding: var(--foundation-space-md, 12px);
+  }
+  
+  .page-title {
+    font-size: var(--foundation-text-2xl, 24px);
+  }
+  
+  .glass-section-title {
+    font-size: var(--foundation-text-xl, 20px);
+  }
+  
+  .glass-grid {
+    grid-template-columns: 1fr;
+    gap: var(--foundation-space-sm, 8px);
+  }
+  
+  .glass-button {
+    padding: var(--foundation-space-sm, 8px) var(--foundation-space-md, 16px);
+    font-size: var(--foundation-text-sm, 14px);
+  }
+}
+
+/* Page-specific overrides for templates that need filter bar */
+.template-index,
+.template-collection {
+  .content-for-layout {
+    padding-top: 10px;
+  }
+}
+
+/* Template-specific styling for pages without filter bar */
+.template-page,
+.template-product,
+.template-article,
+.template-blog,
+.template-cart,
+.template-search,
+.template-password,
+.template-404 {
+  .content-for-layout {
+    padding-top: var(--foundation-header-height);
+  }
+}
+
+/* Ensure glass header is always visible - Full Width */
+.glass-top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  z-index: 100;
+}
+
+/* Header container - full width, left-aligned content */
+.glass-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px 24px;
+  width: 100%;
+  max-width: none;
+  gap: 2rem;
+}
+
+/* Logo section - left aligned */
+.glass-logo-section {
+  flex-shrink: 0;
+}
+
+/* Navigation menu - immediately after logo */
+.glass-menu-nav {
+  flex-shrink: 0;
+}

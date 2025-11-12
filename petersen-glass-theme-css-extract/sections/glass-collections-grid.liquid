@@ -1,0 +1,173 @@
+{% comment %}
+  Glass Collections Grid
+  Enhanced collection grid with oil slick glassmorphic styling
+{% endcomment %}
+
+<div class="glass-collections-container">
+  <div class="glass-collections-wrapper">
+    
+    <!-- Collections Grid Header -->
+    {% if section.settings.show_title %}
+      <div class="collections-header">
+        <h2 class="hig-title collections-title">{{ section.settings.title | default: 'Shop Collections' }}</h2>
+        {% if section.settings.description != blank %}
+          <p class="hig-body collections-description">{{ section.settings.description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <!-- Collections Grid -->
+    <div class="collections-grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'collection_card' %}
+            {% assign collection = collections[block.settings.collection] %}
+            {% if collection %}
+              <div class="collection-card-glass" data-animation-delay="{{ forloop.index0 | times: 100 }}">
+                <a href="{{ collection.url }}" class="collection-link">
+                  
+                  <!-- Collection Image -->
+                  <div class="collection-image-container">
+                    {% if collection.featured_image %}
+                      <img 
+                        src="{{ collection.featured_image | image_url: width: 400 }}" 
+                        alt="{{ collection.title }}"
+                        class="collection-image"
+                        loading="lazy"
+                        width="400"
+                        height="300"
+                      >
+                    {% else %}
+                      <div class="collection-placeholder">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                      </div>
+                    {% endif %}
+                    
+                  <!-- Collection Image -->
+                    <div class="collection-overlay">
+                      <div class="collection-info">
+                        <h3 class="hig-headline collection-title">{{ collection.title }}</h3>
+                        {% if block.settings.show_count %}
+                          <p class="hig-caption collection-count">{{ collection.products_count }} 
+                            {% if collection.products_count == 1 %}product{% else %}products{% endif %}
+                          </p>
+                        {% endif %}
+                        {% if collection.description != blank and block.settings.show_description %}
+                          <p class="hig-body collection-description">{{ collection.description | truncate: 100 }}</p>
+                        {% endif %}
+                      </div>
+                      
+                      <!-- Action Button -->
+                      <div class="collection-action">
+                        <button class="btn-secondary-oil-slick collection-button">
+                          <span class="btn-text">Explore</span>
+                          <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Glass Collections Grid",
+  "class": "section",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show section title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Shop Collections"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section description",
+      "info": "Optional description text displayed below the title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection Card",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_count",
+          "label": "Show product count",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_description",
+          "label": "Show collection description",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glass Collections Grid",
+      "blocks": [
+        {
+          "type": "collection_card",
+          "settings": {
+            "show_count": true,
+            "show_description": false
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "show_count": true,
+            "show_description": false
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "show_count": true,
+            "show_description": false
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "show_count": true,
+            "show_description": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

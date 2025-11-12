@@ -1,0 +1,20 @@
+{
+  "brandName": "Petersen Games",
+  "brandVoice": "cosmic-horror-gaming",
+  "targetAudience": "tabletop-gamers",
+  "contentStyle": "immersive-atmospheric",
+  "productCategories": [
+    "Call of Cthulhu RPG",
+    "Board Games",
+    "Miniatures",
+    "Accessories",
+    "Digital Products"
+  ],
+  "designSystem": "quantum-spatial-glassmorphism",
+  "aiFeatures": {
+    "contentGeneration": true,
+    "productDescriptions": true,
+    "seoOptimization": true,
+    "visualDesign": true
+  }
+}

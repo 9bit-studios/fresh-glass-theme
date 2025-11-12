@@ -1,0 +1,155 @@
+:root {
+  --qs-primary-foreground: #FCFDF2;
+  --qs-secondary: #1A1B26;
+  --qs-tertiary: #33313A;
+  --qs-quaternary: #3F3F4B;
+  --qs-text-primary: #FCFDF2;
+  --qs-text-secondary: rgba(252, 253, 242, 0.7);
+  --qs-text-tertiary: rgba(252, 253, 242, 0.5);
+  --qs-text-quaternary: rgba(252, 253, 242, 0.3);
+}
+:root {
+  --qs-ultradimensional-marine: #0A0621;
+  --qs-ultradimensional-violet: #150621;
+  --qs-mystic-midnight: rgba(113, 0, 170, 0.0588235);
+  --qs-mystic-deepspace: rgba(170, 0, 170, 0.0947);
+  --qs-deep-space-night: #0D0D15;
+  --qs-deep-space-violet: #160918;
+  --qs-multidimensional-midnight: #0A0A0F;
+  --qs-multidimensional-violet: #110413;
+  --qs-void-black: #000000;
+  --qs-void-violet: #0B010D;
+  --qs-dimensional-marine: #1E1F5C;
+  --qs-dimensional-violet: #480F92;
+}
+:root {
+  --qs-pixel-blue: #007AFF;
+  --qs-pixel-marine: #504CF5;
+  --qs-pixel-violet: #613FE7;
+  --qs-pixel-pink: #EC4899;
+  --qs-pixel-green: #2C5F2D;
+  --qs-pixel-orange: #FF4F52;
+  --qs-liquid-blue: #5AC8FA;
+  --qs-liquid-marine: #6366F1;
+  --qs-liquid-violet: #9151F1;
+  --qs-liquid-pink: #FF66E3;
+  --qs-liquid-orange: #FF6B6B;
+  --qs-ultra-marine: #512CF9;
+  --qs-ultra-violet: #6E00FF;
+  --qs-ultra-pink: #FF2D92;
+  --qs-dimensional-pink: #D0196B;
+  --qs-plasma-green: #3DFF74;
+}
+:root {
+  --qs-gradient-deep-spatial: linear-gradient(90deg, #0A0621 0%, #131A36 30%, #0A0621 70%, #0D0D15 100%);
+  --qs-gradient-spatial: linear-gradient(90deg, #0A0621 -4.8%, #131A36 26.56%, #331F4A 68.37%, #0D0D15 99.73%);
+  --qs-gradient-quantum-depth: linear-gradient(90deg, #131A36 -0.02%, #331F4A 49.98%, #6A3093 99.98%);
+  --qs-gradient-spatial-simple: linear-gradient(90deg, #0A0621 -0.02%, #131A36 99.98%);
+  --qs-glass-border: rgba(90, 200, 250, 0.3);
+}
+:root {
+  --qs-action-primary: var(--qs-pixel-blue);
+  --qs-action-secondary: var(--qs-pixel-marine);
+  --qs-action-tertiary: var(--qs-pixel-violet);
+  --qs-action-ar: var(--qs-liquid-blue);
+  --qs-action-spatial: var(--qs-liquid-marine);
+  --qs-accent-pink: var(--qs-pixel-pink);
+  --qs-accent-green: var(--qs-plasma-green);
+  --qs-accent-orange: var(--qs-pixel-orange);
+  --qs-bg-primary: var(--qs-void-black);
+  --qs-bg-secondary: var(--qs-deep-space-night);
+  --qs-bg-tertiary: var(--qs-multidimensional-midnight);
+  --qs-bg-elevated: var(--qs-ultradimensional-marine);
+  --qs-glass-subtle: rgba(10, 6, 33, 0.4);
+  --qs-glass-medium: rgba(10, 6, 33, 0.6);
+  --qs-glass-prominent: rgba(10, 6, 33, 0.8);
+  --qs-overlay-mystic: var(--qs-mystic-midnight);
+  --qs-overlay-ethereal: var(--qs-mystic-deepspace);
+}
+.qs-text-primary { color: var(--qs-text-primary); }
+.qs-text-secondary { color: var(--qs-text-secondary); }
+.qs-text-tertiary { color: var(--qs-text-tertiary); }
+.qs-text-quaternary { color: var(--qs-text-quaternary); }
+.qs-bg-void { background: var(--qs-void-black); }
+.qs-bg-deep-space { background: var(--qs-deep-space-night); }
+.qs-bg-ultradimensional { background: var(--qs-ultradimensional-marine); }
+.qs-glass-panel {
+  background: var(--qs-glass-subtle);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--qs-glass-border);
+  border-radius: 12px;
+}
+.qs-glass-strong {
+  background: var(--qs-glass-prominent);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+.qs-bg-spatial {
+  background: var(--qs-gradient-spatial);
+  border: 1px solid var(--qs-glass-border);
+}
+.qs-bg-quantum-depth {
+  background: var(--qs-gradient-quantum-depth);
+}
+.qs-btn-primary {
+  background: var(--qs-action-primary);
+  color: var(--qs-text-primary);
+  border: none;
+  min-height: 44px;
+  min-width: 44px;
+}
+.qs-btn-ar {
+  background: var(--qs-action-ar);
+  color: var(--qs-text-primary);
+  border: none;
+  min-height: 44px;
+  min-width: 44px;
+}
+@media (max-width: 744px) {
+  :root {
+    --qs-touch-target-min: 56px;
+  }
+  .qs-btn-primary,
+  .qs-btn-ar {
+    min-height: var(--qs-touch-target-min);
+    min-width: var(--qs-touch-target-min);
+  }
+}
+@keyframes qs-spatial-flow {
+  0%, 100% { 
+    background: var(--qs-gradient-spatial);
+    opacity: 0.05;
+  }
+  50% { 
+    background: var(--qs-gradient-deep-spatial);
+    opacity: 0.1;
+  }
+}
+@keyframes qs-mystic-pulse {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.15; }
+}
+.qs-animated-spatial {
+  position: relative;
+}
+.qs-animated-spatial::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--qs-gradient-spatial);
+  opacity: 0.1;
+  animation: qs-spatial-flow 12s ease-in-out infinite;
+  pointer-events: none;
+}
+.qs-animated-mystic {
+  position: relative;
+}
+.qs-animated-mystic::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--qs-mystic-midnight);
+  animation: qs-mystic-pulse 8s ease-in-out infinite;
+  pointer-events: none;
+}

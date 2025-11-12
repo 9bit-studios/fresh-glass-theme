@@ -1,0 +1,915 @@
+{%- comment -%}
+  Petersen Games - Blog Engagement Section
+  Advanced engagement features: related posts, social sharing, tags exploration
+  Designed to increase user interaction and content discovery
+{%- endcomment -%}
+
+<div class="petersen-blog-engagement" id="section-{{ section.id }}">
+  <div class="engagement-container">
+
+    {%- comment -%} Tags & Categories Explorer {%- endcomment -%}
+    {%- if section.settings.show_tags_section -%}
+      <div class="engagement-section tags-explorer">
+        <h3 class="section-title">
+          <img src="https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-05.svg?v=1757991638" alt="" class="section-icon">
+          Explore Topics
+        </h3>
+
+        <div class="tags-grid">
+          {%- comment -%} Current Article Tags {%- endcomment -%}
+          {%- if article.tags.size > 0 -%}
+            <div class="tag-category current-tags">
+              <h4 class="category-label">This Article</h4>
+              <div class="tags-list">
+                {%- for tag in article.tags -%}
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="tag-link current">
+                    {{ tag }}
+                    <span class="tag-count">
+                      {%- assign tag_count = 0 -%}
+                      {%- for post in blog.articles -%}
+                        {%- if post.tags contains tag -%}
+                          {%- assign tag_count = tag_count | plus: 1 -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+                      {{ tag_count }}
+                    </span>
+                  </a>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Popular Tags {%- endcomment -%}
+          <div class="tag-category popular-tags">
+            <h4 class="category-label">Popular Topics</h4>
+            <div class="tags-list">
+              {%- assign all_tags = blog.articles | map: 'tags' | join: ',' | split: ',' | uniq -%}
+              {%- for tag in all_tags limit: 8 -%}
+                {%- unless article.tags contains tag -%}
+                  <a href="{{ blog.url }}/tagged/{{ tag | strip | handle }}" class="tag-link">
+                    {{ tag | strip }}
+                    <span class="tag-count">
+                      {%- assign tag_count = 0 -%}
+                      {%- for post in blog.articles -%}
+                        {%- if post.tags contains tag -%}
+                          {%- assign tag_count = tag_count | plus: 1 -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+                      {{ tag_count }}
+                    </span>
+                  </a>
+                {%- endunless -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Social Sharing {%- endcomment -%}
+    {%- if section.settings.show_sharing -%}
+      <div class="engagement-section social-sharing">
+        <h3 class="section-title">
+          <img src="https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-07.svg?v=1757991638" alt="" class="section-icon">
+          Share This Story
+        </h3>
+
+        <div class="sharing-grid">
+          <button class="share-button twitter" data-platform="twitter">
+            <div class="share-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </div>
+            <span class="share-text">Twitter</span>
+          </button>
+
+          <button class="share-button facebook" data-platform="facebook">
+            <div class="share-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </div>
+            <span class="share-text">Facebook</span>
+          </button>
+
+          <button class="share-button reddit" data-platform="reddit">
+            <div class="share-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+              </svg>
+            </div>
+            <span class="share-text">Reddit</span>
+          </button>
+
+          <button class="share-button copy-link" data-platform="copy">
+            <div class="share-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+            </div>
+            <span class="share-text">Copy Link</span>
+          </button>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Related Posts {%- endcomment -%}
+    {%- if section.settings.show_related_posts -%}
+      <div class="engagement-section related-posts">
+        <h3 class="section-title">
+          <img src="https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-02.svg?v=1757991638" alt="" class="section-icon">
+          Continue Reading
+        </h3>
+
+        <div class="posts-grid">
+          {%- assign related_posts = blog.articles | where_not: 'id', article.id -%}
+          {%- assign posts_by_tags = '' -%}
+
+          {%- comment -%} Find posts with similar tags {%- endcomment -%}
+          {%- if article.tags.size > 0 -%}
+            {%- for tag in article.tags -%}
+              {%- for post in related_posts -%}
+                {%- if post.tags contains tag -%}
+                  {%- unless posts_by_tags contains post.id -%}
+                    {%- assign posts_by_tags = posts_by_tags | append: post.id | append: ',' -%}
+                  {%- endunless -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endfor -%}
+          {%- endif -%}
+
+          {%- assign related_count = 0 -%}
+          {%- for post in related_posts limit: 3 -%}
+            {%- if related_count < 3 -%}
+              <article class="related-post">
+                <div class="post-media">
+                  {%- if post.image != blank -%}
+                    <a href="{{ post.url }}" class="post-image-link">
+                      <img
+                        src="{{ post.image | img_url: '400x250' }}"
+                        alt="{{ post.image.alt | default: post.title }}"
+                        class="post-image"
+                        loading="lazy"
+                      >
+                    </a>
+                  {%- else -%}
+                    <div class="post-placeholder">
+                      <img src="https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-04.svg?v=1757991638" alt="" class="placeholder-icon">
+                    </div>
+                  {%- endif -%}
+
+                  <div class="post-overlay">
+                    <time class="post-date" datetime="{{ post.published_at | date: '%Y-%m-%d' }}">
+                      {{ post.published_at | date: '%b %d' }}
+                    </time>
+                  </div>
+                </div>
+
+                <div class="post-content">
+                  <h4 class="post-title">
+                    <a href="{{ post.url }}">{{ post.title | truncatewords: 8 }}</a>
+                  </h4>
+
+                  {%- if post.excerpt != blank -%}
+                    <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 15 }}</p>
+                  {%- endif -%}
+
+                  {%- if post.tags.size > 0 -%}
+                    <div class="post-tags">
+                      {%- for tag in post.tags limit: 2 -%}
+                        <span class="post-tag">{{ tag }}</span>
+                      {%- endfor -%}
+                    </div>
+                  {%- endif -%}
+
+                  <a href="{{ post.url }}" class="read-more">
+                    Continue Reading
+                    <img src="https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-07.svg?v=1757991638" alt="" class="arrow-icon">
+                  </a>
+                </div>
+              </article>
+              {%- assign related_count = related_count | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="view-all-posts">
+          <a href="{{ blog.url }}" class="view-all-link">
+            <img src="https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-09.svg?v=1757991638" alt="" class="view-all-icon">
+            View All {{ blog.title }} Posts
+          </a>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Newsletter Signup {%- endcomment -%}
+    {%- if section.settings.show_newsletter -%}
+      <div class="engagement-section newsletter-section">
+        <h3 class="section-title">
+          <img src="https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-06.svg?v=1757991638" alt="" class="section-icon">
+          Stay Connected
+        </h3>
+
+        <div class="newsletter-content">
+          <p class="newsletter-description">{{ section.settings.newsletter_text | default: 'Get the latest gaming insights, behind-the-scenes content, and exclusive updates delivered to your inbox.' }}</p>
+
+          <form class="newsletter-form" action="/contact#ContactFooter" method="post" accept-charset="UTF-8">
+            <input type="hidden" name="form_type" value="customer" />
+            <input type="hidden" name="utf8" value="✓" />
+            <input type="hidden" name="contact[tags]" value="newsletter,blog-subscriber,article-{{ article.handle }}">
+
+            <div class="form-wrapper">
+              <input
+                type="email"
+                name="contact[email]"
+                id="blog-newsletter-{{ section.id }}"
+                class="newsletter-input"
+                placeholder="{{ section.settings.placeholder_text | default: 'Enter your email address' }}"
+                required
+                aria-label="Email address for newsletter"
+              >
+              <button type="submit" class="newsletter-button">
+                {{ section.settings.button_text | default: 'Subscribe' }}
+                <img src="https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-07.svg?v=1757991638" alt="" class="button-arrow">
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+.petersen-blog-engagement {
+  margin: {{ section.settings.margin_top }}px 0 {{ section.settings.margin_bottom }}px 0;
+  background: transparent;
+}
+
+.engagement-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Engagement Sections */
+.engagement-section {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 40px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.engagement-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 32px 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.section-icon {
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+  opacity: 0.8;
+}
+
+/* Tags Explorer */
+.tags-grid {
+  display: grid;
+  gap: 32px;
+}
+
+.tag-category {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.category-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tag-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 12px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tag-link.current {
+  background: rgba(102, 126, 234, 0.2);
+  border-color: rgba(102, 126, 234, 0.3);
+  color: #667eea;
+}
+
+.tag-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.tag-count {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 10px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.tag-link.current .tag-count {
+  background: rgba(102, 126, 234, 0.3);
+  color: white;
+}
+
+/* Social Sharing */
+.sharing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.share-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  font-family: inherit;
+}
+
+.share-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.share-button.twitter:hover {
+  border-color: #1DA1F2;
+  color: #1DA1F2;
+}
+
+.share-button.facebook:hover {
+  border-color: #4267B2;
+  color: #4267B2;
+}
+
+.share-button.reddit:hover {
+  border-color: #FF4500;
+  color: #FF4500;
+}
+
+.share-button.copy-link:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.share-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.share-text {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Related Posts */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.related-post {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.related-post:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.post-media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.post-image-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.post-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease-out;
+}
+
+.related-post:hover .post-image {
+  transform: scale(1.05);
+}
+
+.post-placeholder {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder-icon {
+  width: 32px;
+  height: 32px;
+  filter: invert(1);
+  opacity: 0.3;
+}
+
+.post-overlay {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.post-content {
+  padding: 24px;
+}
+
+.post-title {
+  margin: 0 0 16px 0;
+}
+
+.post-title a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: color 0.2s ease;
+}
+
+.post-title a:hover {
+  color: #667eea;
+}
+
+.post-excerpt {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.post-tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.post-tag {
+  background: rgba(102, 126, 234, 0.2);
+  color: #667eea;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.read-more:hover {
+  color: white;
+  transform: translateX(4px);
+}
+
+.arrow-icon {
+  width: 14px;
+  height: 14px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.2s ease;
+}
+
+.read-more:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+.view-all-posts {
+  text-align: center;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 32px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.view-all-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #667eea;
+  color: #667eea;
+  transform: translateY(-2px);
+}
+
+.view-all-icon {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+  transition: all 0.2s ease;
+}
+
+.view-all-link:hover .view-all-icon {
+  filter: brightness(0) invert(1);
+  transform: scale(1.1);
+}
+
+/* Newsletter Section */
+.newsletter-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletter-description {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.form-wrapper {
+  display: flex;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 8px;
+  transition: all 0.3s ease;
+}
+
+.form-wrapper:focus-within {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.newsletter-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 16px 20px;
+  outline: none;
+  font-family: inherit;
+}
+
+.newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.newsletter-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.newsletter-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.button-arrow {
+  width: 16px;
+  height: 16px;
+  filter: invert(1);
+  transition: transform 0.2s ease;
+}
+
+.newsletter-button:hover .button-arrow {
+  transform: translateX(4px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .engagement-section {
+    padding: 32px 24px;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .tags-grid {
+    gap: 24px;
+  }
+
+  .sharing-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .posts-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .form-wrapper {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .newsletter-button {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .engagement-container {
+    padding: 0 16px;
+  }
+
+  .engagement-section {
+    padding: 24px 20px;
+    margin-bottom: 24px;
+  }
+
+  .tags-list {
+    justify-content: center;
+  }
+
+  .post-content {
+    padding: 20px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const shareButtons = document.querySelectorAll('.share-button');
+
+  shareButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const platform = this.dataset.platform;
+      const url = window.location.href;
+      const title = document.title;
+
+      let shareUrl = '';
+
+      switch(platform) {
+        case 'twitter':
+          shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+          break;
+        case 'facebook':
+          shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+          break;
+        case 'reddit':
+          shareUrl = `https://reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
+          break;
+        case 'copy':
+          navigator.clipboard.writeText(url).then(() => {
+            // Visual feedback for copy action
+            const originalText = this.querySelector('.share-text').textContent;
+            this.querySelector('.share-text').textContent = 'Copied!';
+            setTimeout(() => {
+              this.querySelector('.share-text').textContent = originalText;
+            }, 2000);
+          });
+          return;
+      }
+
+      if (shareUrl) {
+        window.open(shareUrl, 'share-window', 'width=580,height=400,scrollbars=yes,resizable=yes');
+      }
+    });
+  });
+
+  // Newsletter form enhancement
+  const newsletterForm = document.querySelector('.newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function(e) {
+      const button = this.querySelector('.newsletter-button');
+      const originalText = button.querySelector('.share-text').textContent;
+
+      // Temporary visual feedback
+      button.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)';
+      button.textContent = 'Subscribed!';
+
+      setTimeout(() => {
+        button.style.background = '';
+        button.innerHTML = `${originalText}<img src="https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-07.svg?v=1757991638" alt="" class="button-arrow">`;
+      }, 3000);
+    });
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Blog Engagement Hub",
+  "tag": "section",
+  "class": "petersen-blog-engagement-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Engagement Features"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags_section",
+      "label": "Show tags explorer",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sharing",
+      "label": "Show social sharing",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_related_posts",
+      "label": "Show related posts",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show newsletter signup",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Newsletter Settings"
+    },
+    {
+      "type": "richtext",
+      "id": "newsletter_text",
+      "label": "Newsletter description",
+      "default": "<p>Get the latest gaming insights, behind-the-scenes content, and exclusive updates delivered to your inbox.</p>"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "Email placeholder text",
+      "default": "Enter your email address"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Subscribe button text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Blog Engagement Hub",
+      "settings": {
+        "show_tags_section": true,
+        "show_sharing": true,
+        "show_related_posts": true,
+        "show_newsletter": true
+      }
+    }
+  ]
+}
+{% endschema %}

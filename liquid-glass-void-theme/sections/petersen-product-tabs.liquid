@@ -1,0 +1,738 @@
+{%- comment -%}
+  Petersen Games - Product Information Tabs Section
+  Modular tabbed content section for detailed product information
+  Configurable in theme builder with metafields integration support
+{%- endcomment -%}
+
+<div class="petersen-product-tabs" id="section-{{ section.id }}">
+  <div class="tabs-container">
+    {%- if section.settings.show_title -%}
+      <h2 class="tabs-title">{{ section.settings.title | default: 'Product Details' }}</h2>
+    {%- endif -%}
+
+    <div class="tabs-wrapper">
+      {%- comment -%} Tab Navigation {%- endcomment -%}
+      <div class="tabs-nav" role="tablist">
+        {%- if section.settings.show_details -%}
+          <button class="tab-button active"
+                  data-tab="details"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="tab-details-{{ section.id }}"
+                  id="nav-details-{{ section.id }}">
+            {{ section.settings.details_title | default: 'Product Details' }}
+          </button>
+        {%- endif -%}
+
+        {%- if section.settings.show_shipping -%}
+          <button class="tab-button"
+                  data-tab="shipping"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="tab-shipping-{{ section.id }}"
+                  id="nav-shipping-{{ section.id }}">
+            {{ section.settings.shipping_title | default: 'Shipping' }}
+          </button>
+        {%- endif -%}
+
+        {%- if section.settings.show_reviews -%}
+          <button class="tab-button"
+                  data-tab="reviews"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="tab-reviews-{{ section.id }}"
+                  id="nav-reviews-{{ section.id }}">
+            {{ section.settings.reviews_title | default: 'Reviews' }}
+          </button>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Tab Content Panels {%- endcomment -%}
+      <div class="tabs-content">
+        {%- comment -%} Product Details Tab {%- endcomment -%}
+        {%- if section.settings.show_details -%}
+        <div class="tab-panel active"
+             id="tab-details-{{ section.id }}"
+             role="tabpanel"
+             aria-labelledby="nav-details-{{ section.id }}">
+
+          {%- comment -%} Theme Information {%- endcomment -%}
+          {%- if product.metafields.petersen_games.theme_info.value -%}
+            {%- assign theme_info = product.metafields.petersen_games.theme_info.value -%}
+            <div class="theme-overview">
+              <h3>{{ theme_info.primary_theme | default: 'Cosmic Horror' }}</h3>
+              <p class="theme-setting">{{ theme_info.setting | default: 'Lovecraftian Universe' }}</p>
+              <p class="theme-atmosphere">{{ theme_info.atmosphere | default: section.settings.details_content }}</p>
+
+              {%- if theme_info.horror_level -%}
+                <div class="horror-rating">
+                  <span class="rating-label">Horror Level:</span>
+                  <div class="skull-rating">
+                    {%- for i in (1..5) -%}
+                      <span class="skull {% if i <= theme_info.horror_level %}active{% endif %}">💀</span>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Product Description {%- endcomment -%}
+          <div class="product-description">
+            <p>{{ section.settings.details_content | default: product.description | default: 'Dive deep into cosmic horror with this epic gaming experience from Petersen Games.' }}</p>
+          </div>
+
+          {%- comment -%} Components Summary {%- endcomment -%}
+          {%- if product.metafields.petersen_games.components.value -%}
+            {%- assign components = product.metafields.petersen_games.components.value -%}
+            <div class="components-summary">
+              <h4>What's Included</h4>
+              <div class="component-grid">
+                {%- if components.miniatures -%}
+                  <div class="component-highlight">
+                    <strong>{{ components.miniatures.count }}</strong>
+                    <span>Miniatures</span>
+                  </div>
+                {%- endif -%}
+                {%- if components.cards -%}
+                  <div class="component-highlight">
+                    <strong>{{ components.cards.count }}</strong>
+                    <span>Cards</span>
+                  </div>
+                {%- endif -%}
+                {%- if components.tokens -%}
+                  <div class="component-highlight">
+                    <strong>{{ components.tokens.count }}+</strong>
+                    <span>Tokens</span>
+                  </div>
+                {%- endif -%}
+                {%- if components.dice -%}
+                  <div class="component-highlight">
+                    <strong>{{ components.dice.count }}</strong>
+                    <span>Dice</span>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+        {%- endif -%}
+
+        {%- comment -%} Reviews Tab {%- endcomment -%}
+        {%- if section.settings.show_reviews -%}
+        <div class="tab-panel"
+             id="tab-reviews-{{ section.id }}"
+             role="tabpanel"
+             aria-labelledby="nav-reviews-{{ section.id }}">
+
+          {%- if product.metafields.petersen_games.awards.value -%}
+            {%- assign awards = product.metafields.petersen_games.awards.value -%}
+
+            {%- if awards.ratings -%}
+              <div class="ratings-summary">
+                <div class="rating-item">
+                  <span class="rating-label">BoardGameGeek:</span>
+                  <span class="rating-value">{{ awards.ratings.bgg_rating }}/10</span>
+                </div>
+                <div class="rating-item">
+                  <span class="rating-label">Customer Rating:</span>
+                  <span class="rating-value">{{ awards.ratings.customer_rating }}/5</span>
+                </div>
+                <div class="rating-item">
+                  <span class="rating-label">Reviews:</span>
+                  <span class="rating-value">{{ awards.ratings.review_count }}+</span>
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if awards.awards -%}
+              <div class="awards-list">
+                <h4>Awards & Recognition</h4>
+                {%- for award in awards.awards -%}
+                  <div class="award-item">
+                    <span class="award-icon">🏆</span>
+                    <div class="award-details">
+                      <strong>{{ award.name }}</strong> {{ award.year }}<br>
+                      <small>{{ award.organization }} - {{ award.category }}</small>
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          {%- else -%}
+            <div class="reviews-placeholder">
+              <p>{{ section.settings.reviews_content | default: 'Customer reviews and ratings will appear here.' }}</p>
+              <div id="reviews"></div>
+            </div>
+          {%- endif -%}
+        </div>
+        {%- endif -%}
+
+        {%- comment -%} Shipping Tab {%- endcomment -%}
+        {%- if section.settings.show_shipping -%}
+        <div class="tab-panel"
+             id="tab-shipping-{{ section.id }}"
+             role="tabpanel"
+             aria-labelledby="nav-shipping-{{ section.id }}">
+
+          <div class="shipping-info">
+            {%- if product.metafields.petersen_games.shipping.value -%}
+              {%- assign shipping = product.metafields.petersen_games.shipping.value -%}
+              <div class="shipping-details">
+                <h4>Shipping Information</h4>
+                <p><strong>Dimensions:</strong> {{ shipping.dimensions | default: 'Standard game box' }}</p>
+                <p><strong>Weight:</strong> {{ shipping.weight | default: 'Varies by product' }}</p>
+
+                {%- if shipping.shipping_class -%}
+                  <p><strong>Shipping Class:</strong> {{ shipping.shipping_class }}</p>
+                {%- endif -%}
+
+                {%- if shipping.free_shipping_threshold -%}
+                  <p><strong>Free Shipping:</strong> Orders over ${{ shipping.free_shipping_threshold }}</p>
+                {%- endif -%}
+              </div>
+            {%- else -%}
+              <div class="default-shipping">
+                <h4>Shipping & Returns</h4>
+                <p>{{ section.settings.shipping_content | default: 'Free shipping on orders over $75. Most orders ship within 1-2 business days.' }}</p>
+
+                <ul class="shipping-features">
+                  <li>✓ Fast & reliable shipping</li>
+                  <li>✓ Secure packaging for safe delivery</li>
+                  <li>✓ Tracking information provided</li>
+                  <li>✓ International shipping available</li>
+                </ul>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sectionId = '{{ section.id }}';
+  const tabsContainer = document.querySelector('#section-' + sectionId);
+
+  if (tabsContainer) {
+    const tabButtons = tabsContainer.querySelectorAll('.tab-button');
+    const tabPanels = tabsContainer.querySelectorAll('.tab-panel');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const targetTab = this.dataset.tab;
+
+        // Remove active states
+        tabButtons.forEach(btn => {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
+        });
+
+        tabPanels.forEach(panel => {
+          panel.classList.remove('active');
+        });
+
+        // Add active state to clicked tab
+        this.classList.add('active');
+        this.setAttribute('aria-selected', 'true');
+
+        // Show corresponding panel
+        const targetPanel = tabsContainer.querySelector('#tab-' + targetTab + '-' + sectionId);
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+        }
+      });
+
+      // Keyboard navigation
+      button.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+  }
+});
+</script>
+
+<style>
+.petersen-product-tabs {
+  margin: {{ section.settings.margin_top }}px 0 {{ section.settings.margin_bottom }}px 0;
+  padding: 0 20px;
+}
+
+.tabs-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  color: white;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.tabs-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 32px 0;
+  letter-spacing: -0.02em;
+}
+
+.tabs-nav {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 32px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabs-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-button {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  font-weight: 500;
+  padding: 16px 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  font-family: inherit;
+  min-height: 44px;
+}
+
+.tab-button:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-button.active {
+  color: white;
+  border-bottom-color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+}
+
+.tab-button:focus {
+  outline: 2px solid rgba(102, 126, 234, 0.5);
+  outline-offset: -2px;
+}
+
+.tabs-content {
+  min-height: 300px;
+}
+
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Content Styles */
+.theme-overview {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.theme-overview h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #667eea;
+  margin: 0 0 8px 0;
+}
+
+.theme-setting {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 16px 0;
+  font-style: italic;
+}
+
+.theme-atmosphere {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 20px 0;
+}
+
+.product-description {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.product-description p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.components-summary h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 16px 0;
+}
+
+.component-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+.component-highlight {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.component-highlight:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.component-highlight strong {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #667eea;
+  margin-bottom: 4px;
+}
+
+.component-highlight span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.horror-rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rating-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.skull-rating {
+  display: flex;
+  gap: 4px;
+}
+
+.skull {
+  font-size: 16px;
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
+}
+
+.skull.active {
+  opacity: 1;
+}
+
+.components-list, .awards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.component-item, .award-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.component-item h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 12px 0;
+}
+
+.component-item p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  margin: 0 0 8px 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 255, 255, 0.06);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+}
+
+.component-item p:last-child {
+  margin-bottom: 0;
+}
+
+.award-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.award-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.award-details {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.ratings-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.rating-item {
+  text-align: center;
+}
+
+.rating-label {
+  display: block;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4px;
+}
+
+.rating-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.download-link, .video-link {
+  display: inline-block;
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin: 8px 8px 8px 0;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  transition: all 0.2s ease;
+}
+
+.download-link:hover, .video-link:hover {
+  background: rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
+}
+
+.setup-info {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.shipping-features {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0 0;
+}
+
+.shipping-features li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.shipping-features li:last-child {
+  border-bottom: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .tabs-container {
+    padding: 24px 16px;
+  }
+
+  .tabs-title {
+    font-size: 1.25rem;
+  }
+
+  .tab-button {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .ratings-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabs-nav {
+    border-bottom: none;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 4px;
+  }
+
+  .tab-button {
+    flex: 1;
+    text-align: center;
+    border-radius: 6px;
+  }
+
+  .tab-button.active {
+    background: rgba(102, 126, 234, 0.2);
+    border-bottom: none;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Product Information Tabs",
+  "tag": "section",
+  "class": "petersen-product-tabs-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show section title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Product Details"
+    },
+    {
+      "type": "header",
+      "content": "Tab Configuration"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_details",
+      "label": "Show Product Details tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "details_title",
+      "label": "Details tab title",
+      "default": "Product Details"
+    },
+    {
+      "type": "textarea",
+      "id": "details_content",
+      "label": "Product details content",
+      "default": "Dive deep into cosmic horror with this epic gaming experience from Petersen Games."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show Reviews tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "reviews_title",
+      "label": "Reviews tab title",
+      "default": "Reviews"
+    },
+    {
+      "type": "textarea",
+      "id": "reviews_content",
+      "label": "Default reviews content",
+      "default": "Customer reviews and ratings will appear here."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping",
+      "label": "Show Shipping tab",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shipping_title",
+      "label": "Shipping tab title",
+      "default": "Shipping"
+    },
+    {
+      "type": "textarea",
+      "id": "shipping_content",
+      "label": "Default shipping content",
+      "default": "Free shipping on orders over $75. Most orders ship within 1-2 business days."
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Information Tabs",
+      "settings": {
+        "show_title": true,
+        "title": "Product Information",
+        "show_details": true,
+        "show_shipping": true,
+        "show_reviews": true
+      }
+    }
+  ]
+}
+{% endschema %}

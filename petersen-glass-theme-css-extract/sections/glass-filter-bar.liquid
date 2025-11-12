@@ -1,0 +1,279 @@
+{% comment %}
+  Glass Filter Bar
+  Pure filtering interface with no navigation links - only filter controls
+{% endcomment %}
+
+{{ 'glass-filter-bar.css' | asset_url | stylesheet_tag }}
+<div class="glass-filter-bar-container" data-section-id="{{ section.id }}">
+  <div class="glass-filter-bar-wrapper">
+    
+    <!-- Filter Controls -->
+    <div class="filter-controls-container">
+      
+      <!-- Active Filters Display -->
+      <div class="active-filters" id="active-filters">
+        <div class="active-filter-tags" id="active-filter-tags">
+          <!-- Active filter tags will be inserted here dynamically -->
+        </div>
+        <button class="clear-all-filters" onclick="clearAllFilters()" style="display: none;">
+          Clear All
+        </button>
+      </div>
+      
+      <!-- Filter Controls -->
+      <div class="filter-controls">
+        
+        <!-- Left Group: Sort and Results -->
+        <div class="filter-controls-left">
+          <!-- Sort Controls -->
+          <div class="filter-control-group">
+            <select class="glass-filter-select" onchange="updateSort(this.value)">
+              <option value="featured">Featured</option>
+              <option value="best-selling">Best Selling</option>
+              <option value="title-ascending">A-Z</option>
+              <option value="title-descending">Z-A</option>
+              <option value="price-ascending">Price: Low to High</option>
+              <option value="price-descending">Price: High to Low</option>
+              <option value="created-ascending">Oldest First</option>
+              <option value="created-descending">Newest First</option>
+            </select>
+          </div>
+          
+          <!-- Results Count -->
+          <div class="filter-control-group">
+            <span class="results-count" id="results-count">
+              {{ collections.all.products_count }} products
+            </span>
+          </div>
+        </div>
+        
+        <!-- Right Group: View Controls -->
+        <div class="filter-controls-right">
+          <!-- View Controls -->
+          <div class="filter-control-group">
+            <div class="view-toggle-group">
+              <button class="view-toggle active" data-view="grid" onclick="setViewMode('grid')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
+                </svg>
+              </button>
+              <button class="view-toggle" data-view="list" onclick="setViewMode('list')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M3 5h18v2H3V5zm0 6h18v2H3v-2zm0 6h18v2H3v-2z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+          
+          <!-- Filter Toggle (Mobile) -->
+          <div class="filter-control-group mobile-only">
+            <button class="mobile-filter-toggle" onclick="toggleMobileFilters()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/>
+              </svg>
+              Filters
+            </button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+// Filter Bar Functionality
+function updateSort(sortValue) {
+  console.log('Updating sort to:', sortValue);
+  
+  // Update URL params
+  const url = new URL(window.location);
+  url.searchParams.set('sort_by', sortValue);
+  
+  // Add loading state
+  const select = document.querySelector('.glass-filter-select');
+  if (select) {
+    select.style.opacity = '0.6';
+  }
+  
+  // Navigate to new URL
+  window.location.href = url.toString();
+}
+
+function setViewMode(viewMode) {
+  console.log('Setting view mode to:', viewMode);
+  
+  // Update active state
+  document.querySelectorAll('.view-toggle').forEach(toggle => {
+    toggle.classList.remove('active');
+  });
+  
+  document.querySelector(`[data-view="${viewMode}"]`).classList.add('active');
+  
+  // Store preference
+  localStorage.setItem('preferredViewMode', viewMode);
+  
+  // Apply view mode to product grid
+  const productGrid = document.querySelector('.product-grid, .collection-products');
+  if (productGrid) {
+    productGrid.setAttribute('data-view', viewMode);
+  }
+  
+  // Trigger layout update
+  setTimeout(() => {
+    window.dispatchEvent(new Event('resize'));
+  }, 100);
+}
+
+function toggleMobileFilters() {
+  console.log('Toggling mobile filters');
+  
+  // Get or create mobile filter sidebar
+  let filterSidebar = document.getElementById('mobile-filter-sidebar');
+  
+  if (!filterSidebar) {
+    // Create mobile filter sidebar if it doesn't exist
+    filterSidebar = document.createElement('div');
+    filterSidebar.id = 'mobile-filter-sidebar';
+    filterSidebar.className = 'mobile-filter-sidebar';
+    document.body.appendChild(filterSidebar);
+  }
+  
+  // Toggle visibility
+  filterSidebar.classList.toggle('active');
+  document.body.classList.toggle('filter-sidebar-open');
+}
+
+function clearAllFilters() {
+  console.log('Clearing all filters');
+  
+  // Remove all filter tags
+  const filterTags = document.querySelectorAll('.filter-tag');
+  filterTags.forEach(tag => tag.remove());
+  
+  // Hide clear all button
+  const clearButton = document.querySelector('.clear-all-filters');
+  if (clearButton) {
+    clearButton.style.display = 'none';
+  }
+  
+  // Hide active filters section
+  const activeFilters = document.getElementById('active-filters');
+  if (activeFilters) {
+    activeFilters.classList.remove('has-filters');
+  }
+  
+  // Reset URL to base collection URL
+  const url = new URL(window.location);
+  url.search = '';
+  window.location.href = url.toString();
+}
+
+function addFilterTag(label, value, removeCallback) {
+  const tagsContainer = document.getElementById('active-filter-tags');
+  const clearButton = document.querySelector('.clear-all-filters');
+  const activeFilters = document.getElementById('active-filters');
+  
+  if (!tagsContainer) return;
+  
+  // Create filter tag
+  const tag = document.createElement('div');
+  tag.className = 'filter-tag';
+  tag.innerHTML = `
+    ${label}
+    <button class="filter-tag-remove" onclick="removeFilterTag(this, '${value}')">×</button>
+  `;
+  
+  tagsContainer.appendChild(tag);
+  
+  // Show the active filters section
+  if (activeFilters) {
+    activeFilters.classList.add('has-filters');
+  }
+  
+  // Show clear all button
+  if (clearButton) {
+    clearButton.style.display = 'block';
+  }
+}
+
+function removeFilterTag(button, value) {
+  const tag = button.closest('.filter-tag');
+  const tagsContainer = document.getElementById('active-filter-tags');
+  const clearButton = document.querySelector('.clear-all-filters');
+  const activeFilters = document.getElementById('active-filters');
+  
+  if (tag) {
+    tag.remove();
+  }
+  
+  // Hide clear all button and active filters section if no tags remain
+  if (tagsContainer && tagsContainer.children.length === 0) {
+    if (clearButton) {
+      clearButton.style.display = 'none';
+    }
+    if (activeFilters) {
+      activeFilters.classList.remove('has-filters');
+    }
+  }
+  
+  // Handle filter removal logic here
+  console.log('Removing filter:', value);
+}
+
+// Initialize filter bar on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Restore view mode preference
+  const preferredView = localStorage.getItem('preferredViewMode') || 'grid';
+  setViewMode(preferredView);
+  
+  // Update results count if needed
+  updateResultsCount();
+});
+
+function updateResultsCount(count) {
+  const resultsElement = document.getElementById('results-count');
+  if (resultsElement && count !== undefined) {
+    resultsElement.textContent = `${count} product${count !== 1 ? 's' : ''}`;
+  }
+}
+</script>
+
+{% schema %}
+{
+  "name": "Glass Filter Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sort",
+      "label": "Enable sort controls",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_view_toggle",
+      "label": "Enable view toggle",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_results_count",
+      "label": "Show results count",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_toggle",
+      "label": "Enable mobile filter toggle",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glass Filter Bar"
+    }
+  ]
+}
+{% endschema %}

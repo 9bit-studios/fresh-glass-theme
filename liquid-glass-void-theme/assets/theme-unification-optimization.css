@@ -1,0 +1,527 @@
+/* ========================================
+   THEME UNIFICATION OPTIMIZATION
+   Oil Slick Quantum Glass Enhancement
+   Following Oksana Learning Pipeline Principles
+   ======================================== */
+
+/* ========================================
+   PHASE 1: FOUNDATION BACKGROUND SYSTEM
+   Eliminates stark black vs. purple contrast
+   ======================================== */
+
+:root {
+  /* Oil Slick Mesh Gradient Background System */
+  --unified-background-primary: 
+    radial-gradient(circle at 15% 85%, rgba(45, 27, 105, 0.25) 0%, transparent 60%),
+    radial-gradient(circle at 85% 15%, rgba(76, 29, 149, 0.22) 0%, transparent 60%),
+    radial-gradient(circle at 40% 40%, rgba(49, 46, 129, 0.18) 0%, transparent 60%),
+    radial-gradient(circle at 60% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 70% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 70%),
+    radial-gradient(circle at 20% 60%, rgba(79, 70, 229, 0.1) 0%, transparent 70%),
+    linear-gradient(135deg, rgba(15, 10, 25, 0.95), rgba(30, 27, 75, 0.8) 25%, rgba(45, 27, 105, 0.7) 50%, rgba(30, 27, 75, 0.8) 75%, rgba(15, 10, 25, 0.95)),
+    linear-gradient(180deg, #0F0A19, #1E1B4B 50%, #0F0A19);
+  
+  /* Unified Glass Effects */
+  --unified-glass-subtle: 
+    radial-gradient(circle at 30% 70%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(45, 27, 105, 0.15), rgba(76, 29, 149, 0.12) 50%, rgba(45, 27, 105, 0.15));
+  
+  --unified-glass-medium: 
+    radial-gradient(circle at 40% 60%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(45, 27, 105, 0.25), rgba(76, 29, 149, 0.2) 50%, rgba(45, 27, 105, 0.25));
+  
+  --unified-glass-prominent: 
+    radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 70%),
+    linear-gradient(135deg, rgba(30, 27, 75, 0.85), rgba(76, 29, 149, 0.8) 50%, rgba(30, 27, 75, 0.85));
+    
+  /* Unified Quantum Purple Color Palette */
+  --unified-quantum-primary: #6366F1;
+  --unified-quantum-secondary: #8B5CF6;
+  --unified-quantum-tertiary: #A855F7;
+  --unified-quantum-border: rgba(99, 102, 241, 0.3);
+  --unified-quantum-border-hover: rgba(99, 102, 241, 0.6);
+  --unified-quantum-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+  
+  /* Unified Backdrop Effects */
+  --unified-backdrop-blur: blur(40px) saturate(200%) brightness(110%);
+  --unified-backdrop-subtle: blur(20px) saturate(150%);
+  --unified-backdrop-medium: blur(30px) saturate(175%);
+}
+
+/* ========================================
+   PHASE 2: BODY & FOUNDATION OVERRIDE
+   Apply oil slick background to eliminate stark black
+   ======================================== */
+
+
+/* Override foundation background references */
+.main-content,
+#MainContent,
+.content-for-layout,
+.shopify-section {
+  background: transparent !important;
+}
+
+/* ========================================
+   PHASE 3: FACETS HORIZONTAL BAR FIXES
+   Eliminate harsh purple bar, add proper padding
+   ======================================== */
+
+/* Fix horizontal facets wrapper padding and background */
+.facets.facets--horizontal {
+  background: var(--unified-glass-subtle) !important;
+  backdrop-filter: var(--unified-backdrop-subtle) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-subtle) !important;
+  border: 1px solid var(--unified-quantum-border) !important;
+  border-radius: 16px !important;
+  padding: 1rem var(--page-width-margin, 2rem) !important;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  max-width: calc(var(--page-width, 1800px) - 2rem) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), var(--unified-quantum-glow) !important;
+}
+
+/* Fix facets controls wrapper spacing */
+.facets-controls-wrapper {
+  padding: 0.75rem 0 !important;
+}
+
+/* Fix filters title styling */
+.facets--filters-title {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  margin: 0 !important;
+}
+
+/* Fix column options wrapper alignment */
+.column-options-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+}
+
+/* ========================================
+   PHASE 4: MOBILE ENHANCEMENTS
+   Add missing column options and sort tools
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Show column options in mobile */
+  .column-options-wrapper {
+    display: flex !important;
+  }
+  
+  /* Mobile facets toggle button improvements */
+  .facets-toggle__button {
+    background: var(--unified-glass-medium) !important;
+    backdrop-filter: var(--unified-backdrop-medium) !important;
+    -webkit-backdrop-filter: var(--unified-backdrop-medium) !important;
+    border: 1px solid var(--unified-quantum-border) !important;
+    border-radius: 12px !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    padding: 0.75rem 1rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 16px rgba(99, 102, 241, 0.2) !important;
+  }
+  
+  .facets-toggle__button:hover {
+    background: var(--unified-glass-prominent) !important;
+    border-color: var(--unified-quantum-border-hover) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 8px 24px rgba(99, 102, 241, 0.3) !important;
+  }
+  
+  /* Add quantum purple effect to mobile wrapper */
+  .facets-mobile-wrapper {
+    background: var(--unified-glass-subtle) !important;
+    backdrop-filter: var(--unified-backdrop-subtle) !important;
+    -webkit-backdrop-filter: var(--unified-backdrop-subtle) !important;
+    border-top: 1px solid var(--unified-quantum-border) !important;
+    padding: 1rem !important;
+  }
+}
+
+/* ========================================
+   PHASE 5: FACETS ACTION BUTTON FIXES
+   Fix alignment and Clear All functionality
+   ======================================== */
+
+/* Fix mobile facets footer alignment */
+.mobile-facets__footer,
+.facets__footer {
+  display: flex !important;
+  gap: 0.75rem !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 1rem !important;
+  background: var(--unified-glass-medium) !important;
+  backdrop-filter: var(--unified-backdrop-medium) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-medium) !important;
+  border-top: 1px solid var(--unified-quantum-border) !important;
+  border-radius: 0 0 16px 16px !important;
+  margin-top: auto !important;
+}
+
+/* Clear All button styling */
+.facets__button.facets__clear,
+.mobile-facets__clear,
+button[data-facet-clear] {
+  background: var(--unified-glass-subtle) !important;
+  border: 1px solid var(--unified-quantum-border) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 10px !important;
+  padding: 0.5rem 1rem !important;
+  min-height: 44px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: var(--unified-backdrop-subtle) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-subtle) !important;
+}
+
+.facets__button.facets__clear:hover,
+.mobile-facets__clear:hover,
+button[data-facet-clear]:hover {
+  background: var(--unified-glass-medium) !important;
+  border-color: var(--unified-quantum-border-hover) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Primary action button (Apply/See Results) */
+.facets__button.facets__apply,
+.mobile-facets__apply,
+button[data-facet-apply] {
+  background: linear-gradient(135deg, var(--unified-quantum-primary) 0%, var(--unified-quantum-secondary) 100%) !important;
+  border: 1px solid var(--unified-quantum-primary) !important;
+  color: white !important;
+  border-radius: 10px !important;
+  padding: 0.5rem 1rem !important;
+  min-height: 44px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: var(--unified-backdrop-subtle) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-subtle) !important;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3) !important;
+}
+
+.facets__button.facets__apply:hover,
+.mobile-facets__apply:hover,
+button[data-facet-apply]:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* ========================================
+   PHASE 6: NAVIGATION UNIFICATION
+   Apply consistent glass effects to all nav components
+   ======================================== */
+
+/* Glass top header unification */
+.header,
+.header-section,
+.glass-top-header {
+  background: var(--unified-glass-prominent) !important;
+  backdrop-filter: var(--unified-backdrop-blur) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-blur) !important;
+  border-bottom: 1px solid var(--unified-quantum-border) !important;
+}
+
+/* Sliding navigation tabs */
+.sliding-nav-section,
+.sliding-nav-container {
+  background: var(--unified-glass-subtle) !important;
+  backdrop-filter: var(--unified-backdrop-subtle) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-subtle) !important;
+  border-bottom: 1px solid var(--unified-quantum-border) !important;
+}
+
+/* Mega dropdown menu */
+.mega-dropdown,
+.header-dropdown,
+.navigation-dropdown {
+  background: var(--unified-glass-prominent) !important;
+  backdrop-filter: var(--unified-backdrop-blur) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-blur) !important;
+  border: 1px solid var(--unified-quantum-border) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Enhanced search modal */
+.search-modal,
+.predictive-search {
+  background: var(--unified-glass-prominent) !important;
+  backdrop-filter: var(--unified-backdrop-blur) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-blur) !important;
+  border: 1px solid var(--unified-quantum-border) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.6), var(--unified-quantum-glow) !important;
+}
+
+/* ========================================
+   PHASE 7: EXCLUDE QUICK-ADD FROM PRIMARY BUTTONS
+   Prevent quick-add button from inheriting primary styles
+   ======================================== */
+
+.quick-add-button,
+button[data-quick-add],
+.quick-add-component button {
+  background: var(--unified-glass-subtle) !important;
+  border: 1px solid var(--unified-quantum-border) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 8px !important;
+  backdrop-filter: var(--unified-backdrop-subtle) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-subtle) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.quick-add-button:hover,
+button[data-quick-add]:hover,
+.quick-add-component button:hover {
+  background: var(--unified-glass-medium) !important;
+  border-color: var(--unified-quantum-border-hover) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ========================================
+   PHASE 8: COMPONENT-LEVEL ENHANCEMENTS
+   Apply unified styling to key components
+   ======================================== */
+
+/* Product cards */
+.product-card,
+.card {
+  background: var(--unified-glass-subtle) !important;
+  backdrop-filter: var(--unified-backdrop-subtle) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-subtle) !important;
+  border: 1px solid var(--unified-quantum-border) !important;
+  border-radius: 16px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.product-card:hover,
+.card:hover {
+  background: var(--unified-glass-medium) !important;
+  border-color: var(--unified-quantum-border-hover) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: var(--unified-quantum-glow) !important;
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
+  background: var(--unified-glass-subtle) !important;
+  border: 1px solid var(--unified-quantum-border) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 12px !important;
+  backdrop-filter: var(--unified-backdrop-subtle) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-subtle) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--unified-quantum-primary) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important;
+  outline: none !important;
+}
+
+/* ========================================
+   PHASE 9: ACCESSIBILITY & PERFORMANCE
+   Maintain Apple HIG compliance and performance
+   ======================================== */
+
+/* Focus states */
+*:focus-visible {
+  outline: 2px solid var(--unified-quantum-primary) !important;
+  outline-offset: 2px !important;
+  border-radius: 4px !important;
+}
+
+/* Touch targets */
+button,
+.button,
+.btn,
+input[type="button"],
+input[type="submit"] {
+  min-height: 44px !important;
+  min-width: 44px !important;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --unified-quantum-border: rgba(255, 255, 255, 0.6) !important;
+    --unified-quantum-primary: #007AFF !important;
+  }
+  
+  .facets,
+  .product-card,
+  .header {
+    border: 2px solid rgba(255, 255, 255, 0.8) !important;
+  }
+}
+
+/* ========================================
+   PHASE 10: RESPONSIVE OPTIMIZATION
+   Ensure consistent experience across breakpoints
+   ======================================== */
+
+@media (max-width: 480px) {
+  .facets.facets--horizontal {
+    padding: 0.75rem 1rem !important;
+    margin: 0 0.5rem !important;
+    border-radius: 12px !important;
+  }
+  
+  .facets-controls-wrapper {
+    padding: 0.5rem 0 !important;
+  }
+  
+  .column-options-wrapper {
+    gap: 0.5rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .facets.facets--horizontal {
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 -1px 0 rgba(99, 102, 241, 0.1),
+      0 8px 32px rgba(99, 102, 241, 0.15),
+      0 0 40px rgba(139, 92, 246, 0.1) !important;
+  }
+}
+
+/* ========================================
+   PHASE 10: FACETS ACTION BUTTON FIXES
+   Clear All button alignment and functionality
+   ======================================== */
+
+/* Fix Clear All button visibility and alignment */
+.facets__actions {
+  background: var(--unified-glass-subtle) !important;
+  backdrop-filter: var(--unified-backdrop-medium) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-medium) !important;
+  border-radius: 16px 16px 0 0 !important;
+  border: 1px solid var(--unified-quantum-border) !important;
+  border-bottom: none !important;
+}
+
+/* Clear All button styling */
+.facets__clear-all {
+  background: var(--unified-quantum-primary) !important;
+  color: white !important;
+  border-radius: 10px !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3) !important;
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.facets__clear-all:hover {
+  background: var(--unified-quantum-secondary) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4) !important;
+}
+
+.facets__clear-all.active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  display: flex !important;
+}
+
+/* See Results button styling */
+.facets__see-results {
+  background: var(--unified-quantum-secondary) !important;
+  color: white !important;
+  border-radius: 10px !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3) !important;
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.facets__see-results:hover {
+  background: var(--unified-quantum-tertiary) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* Horizontal facets actions alignment */
+.facets--horizontal .facets__actions {
+  @media screen and (min-width: 750px) {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    gap: 1rem !important;
+    align-items: center !important;
+  }
+}
+
+.facets--horizontal .facets__clear-all {
+  @media screen and (min-width: 750px) {
+    background: transparent !important;
+    color: var(--unified-quantum-primary) !important;
+    box-shadow: none !important;
+    padding: 0.5rem 1rem !important;
+    text-decoration: underline transparent !important;
+    text-underline-offset: 0.25rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    min-height: auto !important;
+  }
+}
+
+.facets--horizontal .facets__clear-all:hover {
+  @media screen and (min-width: 750px) {
+    color: var(--unified-quantum-secondary) !important;
+    text-decoration-color: var(--unified-quantum-secondary) !important;
+    transform: none !important;
+    background: transparent !important;
+  }
+}
+
+/* Mobile facets footer spacing fixes */
+.mobile-facets__footer,
+.facets__footer {
+  display: flex !important;
+  gap: 0.75rem !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 1rem !important;
+  background: var(--unified-glass-subtle) !important;
+  backdrop-filter: var(--unified-backdrop-medium) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-medium) !important;
+  border-top: 1px solid var(--unified-quantum-border) !important;
+}
+
+/* ========================================
+   IMPLEMENTATION COMPLETE
+   Theme Unification Following Oksana Principles
+   ======================================== */

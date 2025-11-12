@@ -1,0 +1,568 @@
+{% comment %}
+  Glass Filter Sidebar
+  Complete filtering interface with categories, price, availability, etc.
+{% endcomment %}
+
+<div class="glass-filter-sidebar" id="glass-filter-sidebar" data-section-id="{{ section.id }}">
+  <div class="filter-sidebar-header">
+    <h3 class="filter-sidebar-title">Filters</h3>
+    <button class="filter-sidebar-close" onclick="closeFilterSidebar()" aria-label="Close filters">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    </button>
+  </div>
+  
+  <div class="filter-sidebar-content">
+    
+    <!-- Product Type Filter -->
+    {% if section.settings.show_product_type %}
+    <div class="filter-section">
+      <button class="filter-section-toggle" onclick="toggleFilterSection(this)" aria-expanded="false">
+        <span class="filter-section-title">Product Type</span>
+        <svg class="filter-section-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+      </button>
+      <div class="filter-section-content">
+        <div class="filter-options">
+          {% for product_type in collections.all.all_types %}
+            {% if product_type != blank %}
+              <label class="filter-option">
+                <input type="checkbox" name="product_type" value="{{ product_type | handle }}" onchange="handleFilterChange(this)">
+                <span class="filter-option-checkmark"></span>
+                <span class="filter-option-label">{{ product_type }}</span>
+                <span class="filter-option-count">({{ collections.all.products | where: 'type', product_type | size }})</span>
+              </label>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    <!-- Game System Filter -->
+    {% if section.settings.show_game_system %}
+    <div class="filter-section">
+      <button class="filter-section-toggle" onclick="toggleFilterSection(this)" aria-expanded="false">
+        <span class="filter-section-title">Game System</span>
+        <svg class="filter-section-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+      </button>
+      <div class="filter-section-content">
+        <div class="filter-options">
+          <label class="filter-option">
+            <input type="checkbox" name="game_system" value="cthulhu-wars" onchange="handleFilterChange(this)">
+            <span class="filter-option-checkmark"></span>
+            <span class="filter-option-label">Cthulhu Wars</span>
+            <span class="filter-option-count">({{ collections['cthulhu-wars'].products_count }})</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="game_system" value="planet-apocalypse" onchange="handleFilterChange(this)">
+            <span class="filter-option-checkmark"></span>
+            <span class="filter-option-label">Planet Apocalypse</span>
+            <span class="filter-option-count">({{ collections['planet-apocalypse'].products_count }})</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="game_system" value="evil-high-priest" onchange="handleFilterChange(this)">
+            <span class="filter-option-checkmark"></span>
+            <span class="filter-option-label">Evil High Priest</span>
+            <span class="filter-option-count">({{ collections['evil-high-priest'].products_count }})</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="game_system" value="orcs-must-die" onchange="handleFilterChange(this)">
+            <span class="filter-option-checkmark"></span>
+            <span class="filter-option-label">Orcs Must Die!</span>
+            <span class="filter-option-count">({{ collections['orcs-must-die'].products_count }})</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    <!-- Price Filter -->
+    {% if section.settings.show_price_filter %}
+    <div class="filter-section">
+      <button class="filter-section-toggle" onclick="toggleFilterSection(this)" aria-expanded="true">
+        <span class="filter-section-title">Price</span>
+        <svg class="filter-section-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+      </button>
+      <div class="filter-section-content active">
+        <div class="price-range-container">
+          <div class="price-inputs">
+            <div class="price-input-group">
+              <label class="price-input-label">From</label>
+              <input type="number" class="price-input" id="price-from" placeholder="0" min="0" onchange="handlePriceChange()">
+            </div>
+            <div class="price-input-group">
+              <label class="price-input-label">To</label>
+              <input type="number" class="price-input" id="price-to" placeholder="500" min="0" onchange="handlePriceChange()">
+            </div>
+          </div>
+          <div class="price-range-slider">
+            <input type="range" class="price-range" id="price-range-min" min="0" max="500" value="0" oninput="updatePriceRange()">
+            <input type="range" class="price-range" id="price-range-max" min="0" max="500" value="500" oninput="updatePriceRange()">
+          </div>
+        </div>
+        <div class="filter-options">
+          <label class="filter-option">
+            <input type="checkbox" name="price_range" value="0-50" onchange="handleFilterChange(this)">
+            <span class="filter-option-checkmark"></span>
+            <span class="filter-option-label">Under $50</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="price_range" value="50-100" onchange="handleFilterChange(this)">
+            <span class="filter-option-checkmark"></span>
+            <span class="filter-option-label">$50 - $100</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="price_range" value="100-200" onchange="handleFilterChange(this)">
+            <span class="filter-option-checkmark"></span>
+            <span class="filter-option-label">$100 - $200</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="price_range" value="200-999" onchange="handleFilterChange(this)">
+            <span class="filter-option-checkmark"></span>
+            <span class="filter-option-label">$200+</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    <!-- Availability Filter -->
+    {% if section.settings.show_availability %}
+    <div class="filter-section">
+      <button class="filter-section-toggle" onclick="toggleFilterSection(this)" aria-expanded="false">
+        <span class="filter-section-title">Availability</span>
+        <svg class="filter-section-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+      </button>
+      <div class="filter-section-content">
+        <div class="filter-options">
+          <label class="filter-option">
+            <input type="checkbox" name="availability" value="in-stock" onchange="handleFilterChange(this)">
+            <span class="filter-option-checkmark"></span>
+            <span class="filter-option-label">In Stock</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="availability" value="pre-order" onchange="handleFilterChange(this)">
+            <span class="filter-option-checkmark"></span>
+            <span class="filter-option-label">Pre-Order</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" name="availability" value="out-of-stock" onchange="handleFilterChange(this)">
+            <span class="filter-option-checkmark"></span>
+            <span class="filter-option-label">Out of Stock</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    <!-- Tags Filter -->
+    {% if section.settings.show_tags %}
+    <div class="filter-section">
+      <button class="filter-section-toggle" onclick="toggleFilterSection(this)" aria-expanded="false">
+        <span class="filter-section-title">Features</span>
+        <svg class="filter-section-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+        </svg>
+      </button>
+      <div class="filter-section-content">
+        <div class="filter-options">
+          {% assign common_tags = 'miniatures,expansion,dice,cards,board,strategy,horror,cosmic' | split: ',' %}
+          {% for tag in common_tags %}
+            <label class="filter-option">
+              <input type="checkbox" name="tags" value="{{ tag }}" onchange="handleFilterChange(this)">
+              <span class="filter-option-checkmark"></span>
+              <span class="filter-option-label">{{ tag | capitalize }}</span>
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+  </div>
+  
+  <!-- Filter Actions -->
+  <div class="filter-sidebar-actions">
+    <button class="filter-action-button secondary" onclick="clearAllFilters()">
+      Clear All
+    </button>
+    <button class="filter-action-button primary" onclick="applyFilters()">
+      Apply Filters
+    </button>
+  </div>
+</div>
+
+<!-- Filter Overlay (for mobile) -->
+<div class="filter-overlay" id="filter-overlay" onclick="closeFilterSidebar()"></div>
+
+{{ 'glass-filter.css' | asset_url | stylesheet_tag }}
+
+<script>
+// Filter Sidebar Functionality
+
+function toggleFilterSection(button) {
+  const isExpanded = button.getAttribute('aria-expanded') === 'true';
+  const content = button.nextElementSibling;
+  
+  button.setAttribute('aria-expanded', !isExpanded);
+  
+  if (isExpanded) {
+    content.classList.remove('active');
+  } else {
+    content.classList.add('active');
+  }
+}
+
+function handleFilterChange(checkbox) {
+  const name = checkbox.name;
+  const value = checkbox.value;
+  const isChecked = checkbox.checked;
+  
+  console.log(`Filter changed: ${name} = ${value}, checked: ${isChecked}`);
+  
+  if (isChecked) {
+    addFilterToBar(name, value, getFilterLabel(checkbox));
+  } else {
+    removeFilterFromBar(name, value);
+  }
+  
+  updateFilters();
+}
+
+function getFilterLabel(checkbox) {
+  const option = checkbox.closest('.filter-option');
+  const label = option.querySelector('.filter-option-label');
+  return label ? label.textContent.trim() : checkbox.value;
+}
+
+function addFilterToBar(name, value, label) {
+  // Add filter tag to the filter bar
+  if (typeof addFilterTag === 'function') {
+    addFilterTag(label, `${name}:${value}`, () => removeFilter(name, value));
+  }
+}
+
+function removeFilterFromBar(name, value) {
+  // Remove filter tag from the filter bar
+  const filterTags = document.querySelectorAll('.filter-tag');
+  filterTags.forEach(tag => {
+    if (tag.textContent.includes(value)) {
+      tag.remove();
+    }
+  });
+}
+
+function handlePriceChange() {
+  const priceFrom = document.getElementById('price-from').value;
+  const priceTo = document.getElementById('price-to').value;
+  
+  console.log(`Price range changed: ${priceFrom} - ${priceTo}`);
+  
+  // Update price range sliders
+  if (priceFrom) {
+    document.getElementById('price-range-min').value = priceFrom;
+  }
+  if (priceTo) {
+    document.getElementById('price-range-max').value = priceTo;
+  }
+  
+  updateFilters();
+}
+
+function updatePriceRange() {
+  const rangeMin = document.getElementById('price-range-min');
+  const rangeMax = document.getElementById('price-range-max');
+  const inputMin = document.getElementById('price-from');
+  const inputMax = document.getElementById('price-to');
+  
+  if (rangeMin && rangeMax && inputMin && inputMax) {
+    inputMin.value = rangeMin.value;
+    inputMax.value = rangeMax.value;
+    
+    handlePriceChange();
+  }
+}
+
+function updateFilters() {
+  // Collect all active filters
+  const activeFilters = collectActiveFilters();
+  
+  console.log('Active filters:', activeFilters);
+  
+  // Apply filters to product display
+  applyFiltersToProducts(activeFilters);
+  
+  // Update URL parameters
+  updateURLParameters(activeFilters);
+  
+  // Update results count
+  updateResultsDisplay();
+}
+
+function collectActiveFilters() {
+  const filters = {};
+  
+  // Collect checkbox filters
+  const checkboxes = document.querySelectorAll('.filter-option input[type="checkbox"]:checked');
+  checkboxes.forEach(checkbox => {
+    const name = checkbox.name;
+    const value = checkbox.value;
+    
+    if (!filters[name]) {
+      filters[name] = [];
+    }
+    filters[name].push(value);
+  });
+  
+  // Collect price range
+  const priceFrom = document.getElementById('price-from')?.value;
+  const priceTo = document.getElementById('price-to')?.value;
+  
+  if (priceFrom || priceTo) {
+    filters.price = {
+      min: priceFrom || 0,
+      max: priceTo || 999999
+    };
+  }
+  
+  return filters;
+}
+
+function applyFiltersToProducts(filters) {
+  // This would integrate with Shopify's filtering system
+  // For now, we'll log the filters that would be applied
+  console.log('Applying filters to products:', filters);
+  
+  // TODO: Implement actual product filtering logic
+  // This might involve AJAX requests to Shopify's filter endpoints
+  // or client-side filtering of visible products
+}
+
+function updateURLParameters(filters) {
+  const url = new URL(window.location);
+  
+  // Clear existing filter parameters
+  const params = new URLSearchParams(url.search);
+  Array.from(params.keys()).forEach(key => {
+    if (key.startsWith('filter.')) {
+      params.delete(key);
+    }
+  });
+  
+  // Add new filter parameters
+  Object.keys(filters).forEach(filterName => {
+    const filterValues = filters[filterName];
+    
+    if (Array.isArray(filterValues)) {
+      filterValues.forEach(value => {
+        params.append(`filter.${filterName}`, value);
+      });
+    } else if (typeof filterValues === 'object') {
+      // Handle price range
+      if (filterValues.min) params.set('filter.price.gte', filterValues.min);
+      if (filterValues.max) params.set('filter.price.lte', filterValues.max);
+    }
+  });
+  
+  // Update URL without reload
+  window.history.replaceState({}, '', `${url.pathname}?${params.toString()}`);
+}
+
+function updateResultsDisplay() {
+  // Update the results count in the filter bar
+  // This would typically come from the server response
+  const mockResultsCount = Math.floor(Math.random() * 50) + 10;
+  
+  if (typeof updateResultsCount === 'function') {
+    updateResultsCount(mockResultsCount);
+  }
+}
+
+function clearAllFilters() {
+  console.log('Clearing all filters');
+  
+  // Uncheck all checkboxes
+  const checkboxes = document.querySelectorAll('.filter-option input[type="checkbox"]:checked');
+  checkboxes.forEach(checkbox => {
+    checkbox.checked = false;
+  });
+  
+  // Reset price inputs
+  const priceInputs = document.querySelectorAll('.price-input');
+  priceInputs.forEach(input => {
+    input.value = '';
+  });
+  
+  // Reset price sliders
+  const priceRanges = document.querySelectorAll('.price-range');
+  priceRanges.forEach((range, index) => {
+    range.value = index === 0 ? 0 : 500;
+  });
+  
+  // Clear filter bar
+  if (typeof clearAllFilters === 'function') {
+    clearAllFilters();
+  }
+  
+  // Update display
+  updateFilters();
+}
+
+function applyFilters() {
+  console.log('Applying filters - reloading page with current filters');
+  
+  // Force update filters and reload
+  updateFilters();
+  
+  // Close sidebar on mobile
+  if (window.innerWidth <= 768) {
+    closeFilterSidebar();
+  }
+  
+  // Reload page with new parameters
+  setTimeout(() => {
+    window.location.reload();
+  }, 500);
+}
+
+function closeFilterSidebar() {
+  const sidebar = document.getElementById('glass-filter-sidebar');
+  const overlay = document.getElementById('filter-overlay');
+  
+  if (sidebar) {
+    sidebar.classList.remove('active');
+  }
+  
+  if (overlay) {
+    overlay.classList.remove('active');
+  }
+  
+  document.body.classList.remove('filter-sidebar-open');
+}
+
+function openFilterSidebar() {
+  const sidebar = document.getElementById('glass-filter-sidebar');
+  const overlay = document.getElementById('filter-overlay');
+  
+  if (sidebar) {
+    sidebar.classList.add('active');
+  }
+  
+  if (overlay) {
+    overlay.classList.add('active');
+  }
+  
+  document.body.classList.add('filter-sidebar-open');
+}
+
+// Initialize filters on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Parse URL parameters and set initial filter state
+  const urlParams = new URLSearchParams(window.location.search);
+  
+  urlParams.forEach((value, key) => {
+    if (key.startsWith('filter.')) {
+      const filterName = key.replace('filter.', '');
+      const checkbox = document.querySelector(`input[name="${filterName}"][value="${value}"]`);
+      
+      if (checkbox) {
+        checkbox.checked = true;
+        handleFilterChange(checkbox);
+      }
+    }
+  });
+  
+  // Set up mobile filter toggle integration
+  if (typeof toggleMobileFilters === 'function') {
+    const originalToggle = window.toggleMobileFilters;
+    window.toggleMobileFilters = function() {
+      const sidebar = document.getElementById('glass-filter-sidebar');
+      if (sidebar.classList.contains('active')) {
+        closeFilterSidebar();
+      } else {
+        openFilterSidebar();
+      }
+    };
+  }
+  
+  // Ensure only Price section is expanded on page load
+  const allSections = document.querySelectorAll('.filter-section');
+  allSections.forEach(section => {
+    const toggle = section.querySelector('.filter-section-toggle');
+    const content = section.querySelector('.filter-section-content');
+    const title = section.querySelector('.filter-section-title');
+    
+    if (title && title.textContent.trim() === 'Price') {
+      // Keep Price section expanded
+      toggle.setAttribute('aria-expanded', 'true');
+      content.classList.add('active');
+    } else {
+      // Collapse all other sections
+      toggle.setAttribute('aria-expanded', 'false');
+      content.classList.remove('active');
+    }
+  });
+});
+
+// Export functions for global access
+window.openFilterSidebar = openFilterSidebar;
+window.closeFilterSidebar = closeFilterSidebar;
+window.toggleFilterSection = toggleFilterSection;
+window.handleFilterChange = handleFilterChange;
+window.handlePriceChange = handlePriceChange;
+window.updatePriceRange = updatePriceRange;
+window.clearAllFilters = clearAllFilters;
+window.applyFilters = applyFilters;
+</script>
+
+{% schema %}
+{
+  "name": "Glass Filter Sidebar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_product_type",
+      "label": "Show product type filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_game_system",
+      "label": "Show game system filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price_filter",
+      "label": "Show price filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_availability",
+      "label": "Show availability filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tags/features filter",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glass Filter Sidebar"
+    }
+  ]
+}
+{% endschema %}

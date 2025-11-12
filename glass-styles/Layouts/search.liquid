@@ -1,0 +1,219 @@
+{% layout 'theme' %}
+
+<!-- Main Content Area -->
+<main class="main-content">
+  <div class="layout-with-sidebar">
+    
+    <!-- Desktop Sidebar (Hidden on Mobile) -->
+    <aside class="sidebar-area">
+      <!-- Glass Filter (Same as index page) -->
+      <facets-form-component section-id="search-results">
+        {% section 'glass-filter' %}
+      </facets-form-component>
+    </aside>
+
+    <div class="content-area">
+      <!-- Search Header -->
+      {% section 'search-header' %}
+
+      <!-- Search Results Section -->
+      <section class="collection-products-section" id="search-products-section">
+        {% paginate search.results by 24 %}
+          {% if search.results_count > 0 %}
+            {% assign products = search.results | where: 'object_type', 'product' %}
+          {% else %}
+            {% assign collection = settings.empty_state_collection | default: collections.all %}
+            {% assign default_title = 'content.search_results_resource_products' | t %}
+            {% assign title = settings.empty_state_collection.title | default: default_title %}
+            {% assign products = collection.products %}
+          {% endif %}
+
+          <!-- Product Grid -->
+          <div class="products-grid" id="search-products-grid">
+            {% comment %} No Products State {% endcomment %}
+            {% if products.size == 0 %}
+              <div class="no-products">
+                <div class="no-products-content">
+                  <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor" class="no-products-icon">
+                    <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                  </svg>
+                  <h3 class="no-products-title">No products found</h3>
+                  <p class="no-products-description">Try adjusting your search terms or browse all products.</p>
+                  <a href="{{ collections.all.url }}" class="no-products-button">View All Products</a>
+                </div>
+              </div>
+            {% else %}
+              
+              <div class="product-grid-container">
+                {% for product in products %}
+                  <div class="product-card" data-product-id="{{ product.id }}">
+                    <a href="{{ product.url }}" class="product-link">
+                      <div class="product-image">
+                        {% if product.featured_image %}
+                          <img src="{{ product.featured_image | image_url: width: 400 }}" 
+                               alt="{{ product.title }}"
+                               loading="lazy"
+                               width="400"
+                               height="400">
+                        {% else %}
+                          <div class="product-image-placeholder">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                            </svg>
+                          </div>
+                        {% endif %}
+                        
+                        <!-- Product badges -->
+                        <div class="product-badges">
+                          {% if product.available == false %}
+                            <span class="badge sold-out">Sold Out</span>
+                          {% elsif product.compare_at_price > product.price %}
+                            <span class="badge sale">Sale</span>
+                          {% elsif product.tags contains 'new' %}
+                            <span class="badge new">New</span>
+                          {% elsif product.tags contains 'limited-edition' %}
+                            <span class="badge limited">Limited</span>
+                          {% endif %}
+                        </div>
+
+                        <!-- Quick view overlay -->
+                        <div class="product-overlay">
+                          <button class="quick-view-button" data-product-url="{{ product.url }}">
+                            Quick View
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="product-info">
+                        <h3 class="product-title">{{ product.title }}</h3>
+                        <div class="product-price">
+                          {% if product.compare_at_price > product.price %}
+                            <span class="price-sale">{{ product.price | money }}</span>
+                            <span class="price-compare">{{ product.compare_at_price | money }}</span>
+                            <span class="price-save">Save {{ product.compare_at_price | minus: product.price | money }}</span>
+                          {% else %}
+                            <span class="price-regular">{{ product.price | money }}</span>
+                          {% endif %}
+                        </div>
+                        {% if product.vendor %}
+                          <p class="product-vendor">{{ product.vendor }}</p>
+                        {% endif %}
+                        
+                        <!-- Product variant indicator -->
+                        {% if product.variants.size > 1 %}
+                          <div class="product-variants">
+                            <span class="variants-count">{{ product.variants.size }} variants</span>
+                          </div>
+                        {% endif %}
+                      </div>
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
+
+              {% if paginate.pages > 1 %}
+                <nav class="pagination" aria-label="Pagination">
+                  {% if paginate.previous %}
+                    <a href="{{ paginate.previous.url }}" class="pagination-link pagination-prev">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15 18l-6-6 6-6v12z"/>
+                      </svg>
+                      Previous
+                    </a>
+                  {% endif %}
+
+                  <div class="pagination-pages">
+                    {% for part in paginate.parts %}
+                      {% if part.is_link %}
+                        <a href="{{ part.url }}" class="pagination-link">{{ part.title }}</a>
+                      {% else %}
+                        {% if part.title == paginate.current_page %}
+                          <span class="pagination-link current">{{ part.title }}</span>
+                        {% else %}
+                          <span class="pagination-ellipsis">{{ part.title }}</span>
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+
+                  {% if paginate.next %}
+                    <a href="{{ paginate.next.url }}" class="pagination-link pagination-next">
+                      Next
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 18l6-6-6-6v12z"/>
+                      </svg>
+                    </a>
+                  {% endif %}
+                </nav>
+              {% endif %}
+            {% endif %}
+          </div>
+        {% endpaginate %}
+      </section>
+    </div>
+  </div>
+</main>
+
+<script>
+// Search Results Page Specific Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Update results count when filters change
+  function updateResultsCount() {
+    const productCards = document.querySelectorAll('.product-card');
+    const count = productCards.length;
+    
+    // Update the filter bar results count
+    if (typeof glassFilterBar === 'function') {
+      const filterBarInstance = glassFilterBar();
+      if (filterBarInstance) {
+        filterBarInstance.updateResultsCount(count);
+      }
+    }
+  }
+
+  // Initial update
+  updateResultsCount();
+
+  // Listen for filter updates
+  document.addEventListener('filter-update', function() {
+    updateResultsCount();
+  });
+
+  // Listen for search updates
+  document.addEventListener('search-update', function() {
+    updateResultsCount();
+  });
+
+  // Quick view functionality (placeholder)
+  const quickViewButtons = document.querySelectorAll('.quick-view-button');
+  quickViewButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const productUrl = this.dataset.productUrl;
+      console.log('Quick view for:', productUrl);
+      // TODO: Implement quick view modal
+    });
+  });
+
+  // Product card animation on scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationDelay = `${Math.random() * 0.3}s`;
+        entry.target.classList.add('animate-in');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.product-card').forEach(card => {
+    observer.observe(card);
+  });
+});
+</script>

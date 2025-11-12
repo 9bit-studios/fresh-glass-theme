@@ -1,0 +1,231 @@
+{
+  "_meta": {
+    "name": "Quantum",
+    "description": "Fully dimensional spatial design system",
+    "version": "1.0.0"
+  },
+  "colors": {
+    "primary": "#131A36",
+    "secondary": "#331F4A",
+    "accent": "#5AC8FA",
+    "background": {
+      "light": "#FFFFFF",
+      "dark": "#121212"
+    },
+    "text": {
+      "light": "#0F0F0F",
+      "dark": "#F5F5F5"
+    },
+    "surface": {
+      "light": "#F9FAFB",
+      "dark": "#1E1E1E"
+    },
+    "border": {
+      "light": "#E2E8F0",
+      "dark": "#2D2D2D"
+    },
+    "success": "#00D26A",
+    "warning": "#FFB800",
+    "error": "#FF4D4F"
+  },
+  "typography": {
+    "fontFamily": "SF Pro Display, SF Pro, system-ui, sans-serif",
+    "baseSize": "16px",
+    "scale": 1.414,
+    "headings": {
+      "h1": {
+        "fontSize": "3.998rem",
+        "fontWeight": 800,
+        "lineHeight": 1.1
+      },
+      "h2": {
+        "fontSize": "2.827rem",
+        "fontWeight": 700,
+        "lineHeight": 1.2
+      },
+      "h3": {
+        "fontSize": "1.999rem",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      },
+      "h4": {
+        "fontSize": "1.414rem",
+        "fontWeight": 600,
+        "lineHeight": 1.3
+      },
+      "h5": {
+        "fontSize": "1rem",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      },
+      "h6": {
+        "fontSize": "0.707rem",
+        "fontWeight": 500,
+        "lineHeight": 1.4
+      }
+    },
+    "body": {
+      "regular": {
+        "fontSize": "1rem",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "small": {
+        "fontSize": "0.707rem",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      },
+      "large": {
+        "fontSize": "1.414rem",
+        "fontWeight": 400,
+        "lineHeight": 1.6
+      }
+    }
+  },
+  "spacing": {
+    "unit": "4px",
+    "grid": 4,
+    "scale": {
+      "2xs": "2px",
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "32px",
+      "xl": "64px",
+      "2xl": "96px",
+      "3xl": "128px"
+    }
+  },
+  "borderRadius": {
+    "small": "8px",
+    "medium": "12px",
+    "large": "20px",
+    "xl": "28px",
+    "pill": "999px"
+  },
+  "shadows": {
+    "small": "0 2px 8px rgba(19, 26, 54, 0.06)",
+    "medium": "0 8px 16px rgba(19, 26, 54, 0.06)",
+    "large": "0 16px 32px rgba(19, 26, 54, 0.06)",
+    "xl": "0 24px 48px rgba(19, 26, 54, 0.06)"
+  },
+  "motion": {
+    "duration": {
+      "instant": "100ms",
+      "fast": "200ms",
+      "normal": "300ms",
+      "slow": "500ms",
+      "deliberate": "800ms"
+    },
+    "easing": {
+      "standard": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "accelerate": "cubic-bezier(0.4, 0, 1, 1)",
+      "decelerate": "cubic-bezier(0, 0, 0.2, 1)",
+      "quantum": "cubic-bezier(0.15, 1.15, 0.6, 1.0)"
+    }
+  },
+  "depth": {
+    "background": -10,
+    "base": 0,
+    "surface": 10,
+    "interface": 100,
+    "overlay": 1000,
+    "modal": 2000,
+    "toast": 3000,
+    "tooltip": 4000
+  },
+  "material": {
+    "states": {
+      "default": {
+        "reflectivity": 0.3,
+        "roughness": 0.5,
+        "metalness": 0.2
+      },
+      "elevated": {
+        "reflectivity": 0.4,
+        "roughness": 0.4,
+        "metalness": 0.3
+      },
+      "glass": {
+        "reflectivity": 0.6,
+        "roughness": 0.2,
+        "metalness": 0,
+        "opacity": 0.8
+      },
+      "metal": {
+        "reflectivity": 0.8,
+        "roughness": 0.3,
+        "metalness": 0.9
+      }
+    }
+  },
+  "quantum": {
+    "pixelDensity": "var(--device-pixel-ratio, 2)",
+    "energyStates": {
+      "rest": {
+        "scale": 1,
+        "opacity": 1,
+        "blur": "0px"
+      },
+      "hover": {
+        "scale": 1.02,
+        "opacity": 1,
+        "blur": "0px"
+      },
+      "active": {
+        "scale": 0.98,
+        "opacity": 0.9,
+        "blur": "0px"
+      },
+      "disabled": {
+        "scale": 1,
+        "opacity": 0.5,
+        "blur": "0px"
+      },
+      "loading": {
+        "scale": 1,
+        "opacity": 0.8,
+        "blur": "1px"
+      }
+    },
+    "dimensionGrid": {
+      "columns": 12,
+      "rows": 24,
+      "depth": 8,
+      "gutter": "16px",
+      "zGutter": "32px",
+      "margin": "24px",
+      "type": "spatial"
+    }
+  },
+  "gridSystem": {
+    "columns": 12,
+    "rows": 24,
+    "gutter": "16px",
+    "margin": "24px",
+    "type": "spatial",
+    "zScale": 1,
+    "responsive": {
+      "sm": "576px",
+      "md": "768px",
+      "lg": "992px",
+      "xl": "1200px",
+      "2xl": "1600px"
+    }
+  },
+  "m4": {
+    "optimizations": {
+      "useNeuralEngine": true,
+      "useMetal": true,
+      "useProMotion": true,
+      "memoryOptimization": "balanced",
+      "renderQuality": "high"
+    },
+    "rendering": {
+      "preferredAPI": "metal",
+      "fallbackAPI": "webgl",
+      "antialiasing": true,
+      "pixelRatio": "device"
+    }
+  }
+}

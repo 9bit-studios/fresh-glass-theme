@@ -1,0 +1,556 @@
+{%- comment -%}
+  Petersen Games - Satisfaction Guarantee Block
+  Modular trust and security block with satisfaction guarantee
+  Configurable as blocks within sections with horror-gaming aesthetic
+{%- endcomment -%}
+
+<div class="petersen-guarantee-block" {{ block.shopify_attributes }}>
+  <div class="guarantee-block-container">
+    {%- if block.settings.show_title -%}
+      <h3 class="guarantee-block-title">{{ block.settings.title | default: 'Your Satisfaction is Guaranteed' }}</h3>
+    {%- endif -%}
+
+    {%- if block.settings.subtitle != blank -%}
+      <p class="guarantee-block-subtitle">{{ block.settings.subtitle }}</p>
+    {%- endif -%}
+
+    <div class="guarantee-features">
+      {%- comment -%} Satisfaction Guarantee {%- endcomment -%}
+      {%- if block.settings.show_satisfaction -%}
+      <div class="feature-item satisfaction-feature">
+        <div class="feature-icon">
+          <img
+            src="{{ block.settings.satisfaction_icon | default: 'https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-08.svg?v=1757991638' }}"
+            alt="Satisfaction guarantee icon"
+            class="glyph-icon"
+            loading="lazy"
+          >
+        </div>
+        <div class="feature-content">
+          <h4 class="feature-title">{{ block.settings.satisfaction_title | default: 'Satisfaction Guarantee' }}</h4>
+          <p class="feature-description">{{ block.settings.satisfaction_text | default: 'Not satisfied? Return within 30 days for a full refund. No questions asked.' }}</p>
+          {%- if block.settings.satisfaction_details != blank -%}
+            <p class="feature-details">{{ block.settings.satisfaction_details }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- endif -%}
+
+      {%- comment -%} Secure Checkout {%- endcomment -%}
+      {%- if block.settings.show_security -%}
+      <div class="feature-item security-feature">
+        <div class="feature-icon">
+          <img
+            src="{{ block.settings.security_icon | default: 'https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-05.svg?v=1757991638' }}"
+            alt="Security icon"
+            class="glyph-icon"
+            loading="lazy"
+          >
+        </div>
+        <div class="feature-content">
+          <h4 class="feature-title">{{ block.settings.security_title | default: 'Secure Checkout' }}</h4>
+          <p class="feature-description">{{ block.settings.security_text | default: 'Your payment information is encrypted and secure. We never store your card details.' }}</p>
+          {%- if block.settings.show_payment_badges -%}
+            <div class="payment-badges">
+              <span class="payment-badge">🔒 SSL</span>
+              <span class="payment-badge">💳 Stripe</span>
+              <span class="payment-badge">🛡️ PCI</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- endif -%}
+
+      {%- comment -%} Fast Shipping {%- endcomment -%}
+      {%- if block.settings.show_shipping -%}
+      <div class="feature-item shipping-feature">
+        <div class="feature-icon">
+          <img
+            src="{{ block.settings.shipping_icon | default: 'https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-06.svg?v=1757991638' }}"
+            alt="Shipping icon"
+            class="glyph-icon"
+            loading="lazy"
+          >
+        </div>
+        <div class="feature-content">
+          <h4 class="feature-title">{{ block.settings.shipping_title | default: 'Fast & Reliable Shipping' }}</h4>
+          <p class="feature-description">{{ block.settings.shipping_text | default: 'Free shipping on orders over $75. Most orders ship within 1-2 business days.' }}</p>
+          {%- if block.settings.shipping_details != blank -%}
+            <p class="feature-details">{{ block.settings.shipping_details }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- endif -%}
+
+      {%- comment -%} Customer Support {%- endcomment -%}
+      {%- if block.settings.show_support -%}
+      <div class="feature-item support-feature">
+        <div class="feature-icon">
+          <img
+            src="{{ block.settings.support_icon | default: 'https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-04.svg?v=1757991638' }}"
+            alt="Support icon"
+            class="glyph-icon"
+            loading="lazy"
+          >
+        </div>
+        <div class="feature-content">
+          <h4 class="feature-title">{{ block.settings.support_title | default: 'Expert Support' }}</h4>
+          <p class="feature-description">{{ block.settings.support_text | default: 'Our game experts are here to help with questions, rules, and gameplay support.' }}</p>
+          {%- if block.settings.support_contact != blank -%}
+            <p class="feature-details">
+              <a href="{{ block.settings.support_contact }}" class="support-link">Contact Support</a>
+            </p>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- endif -%}
+    </div>
+
+    {%- if block.settings.show_trust_badges -%}
+    <div class="trust-badges">
+      <div class="trust-badge">
+        <span class="badge-icon">⭐</span>
+        <span class="badge-text">{{ block.settings.trust_rating | default: '4.9/5 Stars' }}</span>
+      </div>
+      <div class="trust-badge">
+        <span class="badge-icon">👥</span>
+        <span class="badge-text">{{ block.settings.trust_customers | default: '10,000+ Happy Customers' }}</span>
+      </div>
+      <div class="trust-badge">
+        <span class="badge-icon">📦</span>
+        <span class="badge-text">{{ block.settings.trust_orders | default: '99% On-Time Delivery' }}</span>
+      </div>
+    </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+.petersen-guarantee-block {
+  margin: {{ block.settings.margin_top | default: 40 }}px 0 {{ block.settings.margin_bottom | default: 40 }}px 0;
+}
+
+.guarantee-block-container {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  color: white;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.guarantee-block-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.02em;
+}
+
+.guarantee-block-subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  margin: 0 0 32px 0;
+  line-height: 1.5;
+}
+
+.guarantee-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax({{ block.settings.min_column_width | default: 280 }}px, 1fr));
+  gap: 24px;
+  margin-bottom: {{ block.settings.show_trust_badges | default: false | if: '32px', '0' }};
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.feature-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.glyph-icon {
+  width: 28px;
+  height: 28px;
+  filter: invert(1) brightness(0.9);
+  transition: all 0.2s ease;
+}
+
+.feature-item:hover .glyph-icon {
+  filter: invert(1) brightness(1);
+  transform: scale(1.1);
+}
+
+.feature-content {
+  flex: 1;
+}
+
+.feature-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 8px 0;
+}
+
+.feature-description {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  margin: 0 0 8px 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 255, 255, 0.06);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+}
+
+.feature-details {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  font-style: italic;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.support-link {
+  color: #667eea;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.support-link:hover {
+  color: #5a67d8;
+  text-decoration: underline;
+}
+
+.payment-badges {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.payment-badge {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.trust-badges {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.badge-icon {
+  font-size: 16px;
+  filter: brightness(0.9);
+}
+
+.badge-text {
+  font-weight: 500;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .guarantee-block-container {
+    padding: 24px 16px;
+  }
+
+  .guarantee-features {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .feature-item {
+    padding: 20px;
+  }
+
+  .guarantee-block-title {
+    font-size: 1.25rem;
+  }
+
+  .trust-badges {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .feature-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .feature-content {
+    text-align: center;
+  }
+
+  .payment-badges {
+    justify-content: center;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Satisfaction Guarantee",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Block Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show block title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Block title",
+      "default": "Your Satisfaction is Guaranteed"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle (optional)",
+      "info": "Brief description below the title"
+    },
+    {
+      "type": "header",
+      "content": "Satisfaction Guarantee"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_satisfaction",
+      "label": "Show satisfaction guarantee",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "satisfaction_title",
+      "label": "Guarantee title",
+      "default": "Satisfaction Guarantee"
+    },
+    {
+      "type": "textarea",
+      "id": "satisfaction_text",
+      "label": "Guarantee description",
+      "default": "Not satisfied? Return within 30 days for a full refund. No questions asked."
+    },
+    {
+      "type": "text",
+      "id": "satisfaction_details",
+      "label": "Additional details (optional)",
+      "placeholder": "e.g., Applies to unopened items"
+    },
+    {
+      "type": "url",
+      "id": "satisfaction_icon",
+      "label": "Satisfaction icon URL"
+    },
+    {
+      "type": "header",
+      "content": "Secure Checkout"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_security",
+      "label": "Show security features",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "security_title",
+      "label": "Security title",
+      "default": "Secure Checkout"
+    },
+    {
+      "type": "textarea",
+      "id": "security_text",
+      "label": "Security description",
+      "default": "Your payment information is encrypted and secure. We never store your card details."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_badges",
+      "label": "Show payment security badges",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "security_icon",
+      "label": "Security icon URL"
+    },
+    {
+      "type": "header",
+      "content": "Shipping Information"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping",
+      "label": "Show shipping information",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "shipping_title",
+      "label": "Shipping title",
+      "default": "Fast & Reliable Shipping"
+    },
+    {
+      "type": "textarea",
+      "id": "shipping_text",
+      "label": "Shipping description",
+      "default": "Free shipping on orders over $75. Most orders ship within 1-2 business days."
+    },
+    {
+      "type": "text",
+      "id": "shipping_details",
+      "label": "Shipping details (optional)",
+      "placeholder": "e.g., International shipping available"
+    },
+    {
+      "type": "url",
+      "id": "shipping_icon",
+      "label": "Shipping icon URL"
+    },
+    {
+      "type": "header",
+      "content": "Customer Support"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_support",
+      "label": "Show customer support",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "support_title",
+      "label": "Support title",
+      "default": "Expert Support"
+    },
+    {
+      "type": "textarea",
+      "id": "support_text",
+      "label": "Support description",
+      "default": "Our game experts are here to help with questions, rules, and gameplay support."
+    },
+    {
+      "type": "url",
+      "id": "support_contact",
+      "label": "Support contact URL (optional)",
+      "info": "Link to contact form or support page"
+    },
+    {
+      "type": "url",
+      "id": "support_icon",
+      "label": "Support icon URL"
+    },
+    {
+      "type": "header",
+      "content": "Trust Badges"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_badges",
+      "label": "Show trust badges",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "trust_rating",
+      "label": "Rating badge text",
+      "default": "4.9/5 Stars"
+    },
+    {
+      "type": "text",
+      "id": "trust_customers",
+      "label": "Customer count badge",
+      "default": "10,000+ Happy Customers"
+    },
+    {
+      "type": "text",
+      "id": "trust_orders",
+      "label": "Delivery badge text",
+      "default": "99% On-Time Delivery"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "min_column_width",
+      "min": 200,
+      "max": 400,
+      "step": 20,
+      "unit": "px",
+      "label": "Minimum column width",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 40
+    }
+  ]
+}
+{% endschema %}

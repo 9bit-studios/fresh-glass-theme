@@ -1,0 +1,499 @@
+/* ========================================
+   SHOPIFY GLASS BUTTON INTEGRATION
+   Apply Juicy Glass Buttons to Shopify Elements
+   ======================================== */
+
+/* ========================================
+   PRIMARY CTA BUTTONS - GLASS GRADIENT
+   ======================================== */
+
+/* Main Shopify .button class - Primary styling */
+.button:not(.button-secondary):not(.button-unstyled):not(.button--tertiary),
+button[type="submit"]:not(.button-secondary):not(.button-unstyled):not(.button--tertiary),
+.add-to-cart-button,
+.btn-primary,
+input[type="submit"]:not(.button-secondary) {
+  /* Base structure */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  outline: none !important;
+  user-select: none !important;
+  white-space: nowrap !important;
+  position: relative !important;
+  overflow: hidden !important;
+  
+  /* Juicy glass gradient styling */
+  padding: 12px 24px !important;
+  min-height: 48px !important;
+  background: linear-gradient(14.76deg, #423DF5 17.16%, #5D5AF6 75%) !important;
+  box-shadow: 
+    0px 20px 20px rgba(75, 70, 246, 0.3), 
+    0px 0px 20px rgba(88, 70, 245, 0.25), 
+    inset 0px 1px 1px #7389FF !important;
+  border-radius: 10px !important;
+  color: #FFFFFF !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25) !important;
+  
+  /* Glass overlay */
+  backdrop-filter: blur(10px) saturate(1.2) !important;
+  
+  /* Smooth transitions */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Primary button hover effects */
+.button:not(.button-secondary):not(.button-unstyled):not(.button--tertiary):hover,
+button[type="submit"]:not(.button-secondary):not(.button-unstyled):not(.button--tertiary):hover,
+.add-to-cart-button:hover,
+.btn-primary:hover,
+input[type="submit"]:not(.button-secondary):hover {
+  background: linear-gradient(14.76deg, #4A47F6 17.16%, #6B68F7 75%) !important;
+  box-shadow: 
+    0px 24px 24px rgba(75, 70, 246, 0.4),
+    0px 0px 24px rgba(88, 70, 245, 0.35),
+    inset 0px 1px 1px #8FA7FF !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  text-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Primary button active/pressed effects */
+.button:not(.button-secondary):not(.button-unstyled):not(.button--tertiary):active,
+button[type="submit"]:not(.button-secondary):not(.button-unstyled):not(.button--tertiary):active,
+.add-to-cart-button:active,
+.btn-primary:active,
+input[type="submit"]:not(.button-secondary):active {
+  background: linear-gradient(14.76deg, #3A37F4 17.16%, #5248F5 75%) !important;
+  box-shadow: 
+    0px 8px 16px rgba(75, 70, 246, 0.4),
+    0px 0px 12px rgba(88, 70, 245, 0.3),
+    inset 0px 2px 2px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(1px) scale(0.98) !important;
+  text-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Primary button focus states */
+.button:not(.button-secondary):not(.button-unstyled):not(.button--tertiary):focus,
+button[type="submit"]:not(.button-secondary):not(.button-unstyled):not(.button--tertiary):focus,
+.add-to-cart-button:focus,
+.btn-primary:focus,
+input[type="submit"]:not(.button-secondary):focus {
+  outline: 2px solid rgba(115, 137, 255, 0.6) !important;
+  outline-offset: 3px !important;
+  box-shadow: 
+    0px 24px 24px rgba(75, 70, 246, 0.4),
+    0px 0px 24px rgba(88, 70, 245, 0.35),
+    inset 0px 1px 1px #8FA7FF,
+    0 0 0 4px rgba(93, 90, 246, 0.2) !important;
+}
+
+/* ========================================
+   SECONDARY BUTTONS - GLASS BLUE
+   ======================================== */
+
+/* Secondary button styling */
+.button-secondary,
+.btn-secondary,
+button.secondary,
+input[type="button"],
+.quick-add-button,
+.view-more-button {
+  /* Base structure */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  outline: none !important;
+  user-select: none !important;
+  white-space: nowrap !important;
+  position: relative !important;
+  overflow: hidden !important;
+  
+  /* Secondary glass styling */
+  padding: 10px 20px !important;
+  min-height: 40px !important;
+  gap: 8px !important;
+  background: #3395FF !important;
+  box-shadow: 
+    0px 1px 1px rgba(0, 0, 0, 0.03),
+    0px 0px 2px rgba(0, 0, 0, 0.1),
+    0px 5px 5px rgba(0, 0, 0, 0.03) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 8px !important;
+  color: #FFFFFF !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  
+  /* Smooth transitions */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Secondary button hover effects */
+.button-secondary:hover,
+.btn-secondary:hover,
+button.secondary:hover,
+input[type="button"]:hover,
+.quick-add-button:hover,
+.view-more-button:hover {
+  background: #4DA5FF !important;
+  box-shadow: 
+    0px 2px 2px rgba(0, 0, 0, 0.05),
+    0px 0px 4px rgba(0, 0, 0, 0.15),
+    0px 8px 8px rgba(0, 0, 0, 0.05) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* Secondary button active/pressed effects */
+.button-secondary:active,
+.btn-secondary:active,
+button.secondary:active,
+input[type="button"]:active,
+.quick-add-button:active,
+.view-more-button:active {
+  background: #2985FF !important;
+  box-shadow: 
+    0px 1px 1px rgba(0, 0, 0, 0.05),
+    0px 0px 2px rgba(0, 0, 0, 0.1),
+    inset 0px 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transform: translateY(1px) scale(0.98) !important;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Secondary button focus states */
+.button-secondary:focus,
+.btn-secondary:focus,
+button.secondary:focus,
+input[type="button"]:focus,
+.quick-add-button:focus,
+.view-more-button:focus {
+  outline: 2px solid rgba(51, 149, 255, 0.6) !important;
+  outline-offset: 2px !important;
+  box-shadow: 
+    0px 2px 2px rgba(0, 0, 0, 0.05),
+    0px 0px 4px rgba(0, 0, 0, 0.15),
+    0px 8px 8px rgba(0, 0, 0, 0.05),
+    0 0 0 3px rgba(51, 149, 255, 0.2) !important;
+}
+
+/* ========================================
+   SPECIFIC SHOPIFY BUTTONS
+   ======================================== */
+
+/* Add to Cart Button Specific */
+add-to-cart-component button,
+.add-to-cart-text,
+button[name="add"] {
+  /* Inherit primary styling */
+}
+
+/* Product Form Submit Buttons */
+.product-form__buttons button[type="submit"],
+.shopify-payment-button .shopify-payment-button__button--unbranded,
+.product-form__cart-submit {
+  /* Inherit primary styling - already covered above */
+}
+
+/* Quick Add Buttons on Product Cards */
+.quick-add button,
+.product-card .quick-add-button {
+  /* Use secondary styling for quick add */
+}
+
+/* Newsletter Signup Buttons */
+.newsletter-form button[type="submit"],
+.footer-newsletter button {
+  /* Use secondary styling */
+}
+
+/* Cart Page Buttons */
+.cart__checkout-button,
+.cart-drawer__checkout-button {
+  /* Inherit primary styling */
+}
+
+/* ========================================
+   DISABLED STATES
+   ======================================== */
+
+.button[disabled],
+.button:disabled,
+.add-to-cart-button[disabled],
+.add-to-cart-button:disabled,
+button[disabled],
+button:disabled,
+input[disabled],
+input:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  transform: none !important;
+}
+
+/* ========================================
+   SIZE VARIANTS
+   ======================================== */
+
+/* Small buttons */
+.button--small,
+.btn-sm,
+.quick-add-button {
+  padding: 8px 16px !important;
+  min-height: 36px !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+}
+
+.button--small.button:not(.button-secondary),
+.btn-sm.btn-primary {
+  border-radius: 8px !important;
+  text-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Large buttons */
+.button--large,
+.btn-lg {
+  padding: 16px 32px !important;
+  min-height: 56px !important;
+  font-size: 18px !important;
+  line-height: 28px !important;
+  font-weight: 600 !important;
+}
+
+.button--large.button:not(.button-secondary),
+.btn-lg.btn-primary {
+  border-radius: 12px !important;
+  text-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ========================================
+   LOADING STATES & ANIMATIONS
+   ======================================== */
+
+/* Loading state for buttons */
+.button.loading,
+.add-to-cart-button.loading,
+button.loading {
+  pointer-events: none !important;
+  position: relative !important;
+}
+
+.button.loading .add-to-cart-text,
+.button.loading .button-text {
+  opacity: 0.7 !important;
+}
+
+/* Spinning loader for loading buttons */
+.button.loading::after,
+.add-to-cart-button.loading::after {
+  content: '' !important;
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 16px !important;
+  height: 16px !important;
+  border: 2px solid transparent !important;
+  border-top: 2px solid currentColor !important;
+  border-radius: 50% !important;
+  animation: glass-button-spin 0.8s linear infinite !important;
+}
+
+@keyframes glass-button-spin {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* ========================================
+   ICON SUPPORT IN BUTTONS
+   ======================================== */
+
+.button .svg-wrapper,
+.button .add-to-cart-icon,
+.add-to-cart-button .svg-wrapper,
+.add-to-cart-button .add-to-cart-icon {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0 !important;
+}
+
+.button .svg-wrapper + .add-to-cart-text,
+.button .add-to-cart-text + .svg-wrapper,
+.add-to-cart-button .svg-wrapper + .add-to-cart-text,
+.add-to-cart-button .add-to-cart-text + .svg-wrapper {
+  margin-left: 8px !important;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+  .button,
+  .add-to-cart-button,
+  button[type="submit"],
+  input[type="submit"] {
+    min-height: 44px !important; /* iOS touch target minimum */
+    padding: 12px 20px !important;
+    font-size: 15px !important;
+  }
+  
+  .button-secondary,
+  .btn-secondary,
+  input[type="button"] {
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+  }
+  
+  .button--large,
+  .btn-lg {
+    padding: 14px 24px !important;
+    min-height: 48px !important;
+    font-size: 16px !important;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY & PERFORMANCE
+   ======================================== */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .add-to-cart-button,
+  .button-secondary,
+  button,
+  input {
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  .button:hover,
+  .add-to-cart-button:hover,
+  .button-secondary:hover,
+  button:hover,
+  input:hover {
+    transform: none !important;
+  }
+  
+  .button:active,
+  .add-to-cart-button:active,
+  .button-secondary:active,
+  button:active,
+  input:active {
+    transform: none !important;
+  }
+  
+  .button.loading::after,
+  .add-to-cart-button.loading::after {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .button:not(.button-secondary),
+  .add-to-cart-button {
+    border: 2px solid #FFFFFF !important;
+  }
+  
+  .button-secondary,
+  .btn-secondary {
+    border: 2px solid #FFFFFF !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .button:hover,
+  .add-to-cart-button:hover,
+  .button-secondary:hover {
+    transform: none !important;
+  }
+  
+  .button:active,
+  .add-to-cart-button:active,
+  .button-secondary:active {
+    transform: scale(0.98) !important;
+  }
+}
+
+/* ========================================
+   CART REMOVE BUTTON - REVERT TO ORIGINAL
+   ======================================== */
+
+/* Reset cart remove button to original Shopify styling */
+.button--tertiary,
+.cart-items__remove,
+button.button--tertiary,
+.cart-item-remove {
+  /* Revert all glass button styling */
+  display: inline-block !important;
+  padding: revert !important;
+  min-height: revert !important;
+  background: revert !important;
+  box-shadow: revert !important;
+  border-radius: revert !important;
+  color: revert !important;
+  font-size: revert !important;
+  line-height: revert !important;
+  text-shadow: revert !important;
+  backdrop-filter: revert !important;
+  transition: revert !important;
+  font-family: revert !important;
+  font-weight: revert !important;
+  border: revert !important;
+  transform: revert !important;
+  text-decoration: revert !important;
+  position: revert !important;
+  overflow: revert !important;
+  align-items: revert !important;
+  justify-content: revert !important;
+  white-space: revert !important;
+  user-select: revert !important;
+  outline: revert !important;
+}
+
+.button--tertiary:hover,
+.cart-items__remove:hover,
+button.button--tertiary:hover,
+.cart-item-remove:hover {
+  background: revert !important;
+  box-shadow: revert !important;
+  transform: revert !important;
+  text-shadow: revert !important;
+  backdrop-filter: revert !important;
+}
+
+.button--tertiary:active,
+.cart-items__remove:active,
+button.button--tertiary:active,
+.cart-item-remove:active {
+  background: revert !important;
+  box-shadow: revert !important;
+  transform: revert !important;
+  text-shadow: revert !important;
+  transition: revert !important;
+}
+
+.button--tertiary:focus,
+.cart-items__remove:focus,
+button.button--tertiary:focus,
+.cart-item-remove:focus {
+  outline: revert !important;
+  box-shadow: revert !important;
+}

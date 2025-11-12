@@ -1,0 +1,1561 @@
+/* ========================================
+   CONSOLIDATED NAVIGATION STYLES
+   Combines navigation.css and navigation-glass-fixes.css
+   ======================================== */
+
+/* ========================================
+   BASE CONFIGURATION & OVERRIDES
+   ======================================== */
+
+/* Body margin-top to account for fixed header */
+body {
+  margin-top: 80px !important; /* Account for fixed header height */
+}
+
+@media (max-width: 768px) {
+  body {
+    margin-top: 55px !important; /* Mobile header height */
+  }
+  
+  /* Reduce mobile content padding and ensure full width */
+  .main-content,
+  #MainContent,
+  .content-for-layout {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  /* Override all container widths on mobile */
+  .page-width,
+  .container,
+  .content-container,
+  .section,
+  .shopify-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  /* Further reduce padding on very small screens */
+  @media (max-width: 480px) {
+    .main-content,
+    #MainContent,
+    .content-for-layout,
+    .page-width,
+    .container,
+    .content-container,
+    .section,
+    .shopify-section {
+      padding-left: 0.25rem !important;
+      padding-right: 0.25rem !important;
+    }
+  }
+}
+
+/* Header configuration and Shopify theme overrides */
+.section-glass-top-header,
+.shopify-section[data-section-type="glass-top-header"] {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure navigation appears on all pages */
+.glass-top-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 100 !important;
+  width: 100% !important;
+  background: var(--glass-surface);
+  backdrop-filter: var(--glass-effect, blur(40px) saturate(200%) brightness(110%)) !important;
+  -webkit-backdrop-filter: var(--glass-effect, blur(40px) saturate(200%) brightness(110%)) !important;
+}
+
+/* Fix any hidden elements */
+.glass-top-header *,
+.sliding-nav-tabs * {
+  visibility: visible !important;
+}
+
+/* ========================================
+   GLASS TOP HEADER STYLES
+   ======================================== */
+
+.glass-header-container {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between !important;
+  align-items: center !important;
+  border: var{--glass-border};
+  padding: var(--foundation-space-lg, 24px) 0;
+  gap: var(--foundation-space-lg, 24px);
+  max-width: 2000px !important; /* Match content-width instead of page-width */
+  margin: 0 auto !important;
+  height: var(--foundation-header-height, 80px);
+  box-sizing: border-box;
+  width: 100% !important;
+}
+
+/* ========================================
+   LOGO SECTION
+   ======================================== */
+
+.glass-top-header .header__logo,
+.glass-logo-section,
+.header__logo {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  order: 1;
+}
+
+.glass-top-header .header__logo-link,
+.glass-logo-link,
+.header__logo-link {
+  display: block;
+  text-decoration: none;
+  transition: var(--foundation-transition, all 0.2s ease);
+}
+
+.glass-top-header .header__logo-link:hover,
+.glass-logo-link:hover,
+.header__logo-link:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.glass-top-header .header__logo-image,
+.glass-logo-image,
+.header__logo-image {
+  width: auto;
+  height: 36px;
+  max-width: 180px;
+}
+
+.glass-top-header .header__logo-text,
+.glass-logo-text,
+.header__logo-text {
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--foundation-foreground-primary);
+}
+
+/* ========================================
+   NAVIGATION SECTION
+   ======================================== */
+
+.glass-navigation {
+  display: flex;
+  justify-content: flex-start !important;
+  order: 0;
+  position: relative;
+}
+
+.glass-nav-container {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  flex: 1 !important;
+  margin-left: 0 !important;
+  
+}
+
+.glass-menu-item {
+  position: relative;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.glass-nav-link,
+.nav-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: var(--foundation-space-xs, 4px);
+  padding: 8px var(--foundation-space-md, 16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border, rgba(93, 90, 246, 0.2)) !important;
+  border-radius: var(--foundation-radius-full, 24px);
+  color: var(--foundation-text-primary, #ffffff) !important;
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.3s ease) !important;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-align: left !important;
+  backdrop-filter: blur(12px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(1.2) !important;
+  min-height: var(--foundation-touch-target, 44px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  margin-left: 0 !important;
+}
+
+.glass-nav-link:hover,
+.nav-link:hover {
+  background: var(--glass-medium, rgba(8, 4, 21, 0.6)) !important;
+  border-color: var(--glass-border-hover, rgba(93, 90, 246, 0.4)) !important;
+  color: var(--foundation-text-primary, #ffffff) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--foundation-shadow-primary, 0 4px 12px rgba(93, 90, 246, 0.3)) !important;
+}
+
+.glass-nav-link[aria-expanded="true"] {
+  background: var(--foundation-accent-primary);
+  border-color: var(--foundation-accent-primary);
+  box-shadow: 0 0 0 1px var(--foundation-accent-primary), inset 0 1px 0 var(--foundation-background-secondary);
+}
+
+.glass-nav-text {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.glass-nav-arrow {
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+
+.glass-nav-link[aria-expanded="true"] .glass-nav-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* ========================================
+   DESKTOP NAVIGATION TABS
+   ======================================== */
+
+.desktop-nav-tabs {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  order: 1;
+}
+
+/* Hide desktop tabs on mobile */
+@media (max-width: 767px) {
+  .desktop-nav-tabs {
+    display: none !important;
+  }
+}
+
+.desktop-nav-wrapper {
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.desktop-nav-scroll {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.25rem 0;
+  justify-content: center;
+}
+
+.desktop-nav-scroll::-webkit-scrollbar { 
+  display: none; 
+}
+
+.desktop-glass-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 6px 14px;
+  background: var(--foundation-background-secondary);
+  border: 0.5px solid var(--foundation-border-primary);
+  border-radius: 22px;
+  color: var(--foundation-foreground-primary) !important;
+  font-family: 'SF Pro Rounded', var(--font-body-family);
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+  letter-spacing: 0px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 0 var(--foundation-background-secondary);
+}
+
+.desktop-glass-tab:hover {
+  background: var(--foundation-background-secondary);
+  color: var(--foundation-foreground-primary) !important;
+  transform: translateY(-1px);
+  border-color: var(--foundation-border-primary);
+  box-shadow: 0 4px 12px var(--foundation-shadow-primary), inset 0 1px 0 var(--foundation-background-secondary);
+}
+
+.desktop-glass-tab.active {
+  background: var(--foundation-accent-primary);
+  border-color: var(--foundation-accent-primary);
+  color: var(--foundation-foreground-primary) !important;
+  box-shadow: 0 0 0 1px var(--foundation-accent-primary), inset 0 1px 0 var(--foundation-background-secondary);
+}
+
+/* ========================================
+   MEGA DROPDOWN STYLES
+   ======================================== */
+
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 8px;
+  background: var(--foundation-background-secondary);
+  border: 0.5px solid var(--foundation-border-primary);
+  border-radius: var(--foundation-radius-md);
+  padding: 8px var(--foundation-space-md, 16px);
+  color: var(--foundation-foreground-primary);
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.2s ease);
+  font-size: 14px;
+  font-weight: 400;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  min-height: var(--foundation-touch-target, 44px);
+  white-space: nowrap;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 0 var(--foundation-background-secondary);
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
+.dropdown-toggle:hover {
+  background: var(--foundation-background-secondary);
+  border-color: var(--foundation-border-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--foundation-shadow-primary), inset 0 1px 0 var(--foundation-background-secondary);
+}
+
+.dropdown-toggle[aria-expanded="true"] {
+  background: var(--foundation-accent-primary);
+  border-color: var(--foundation-accent-primary);
+  box-shadow: 0 0 0 1px var(--foundation-accent-primary), inset 0 1px 0 var(--foundation-background-secondary);
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+
+.dropdown-toggle[aria-expanded="true"] .dropdown-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.mega-dropdown,
+.glass-mega-dropdown {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 0 !important;
+  right: auto !important;
+  transform: translateX(0) !important;
+  margin-left: 0 !important;
+      background: linear-gradient(135deg, 
+    rgba(45, 27, 105, 0.9) 0%, 
+    rgba(76, 29, 149, 0.7) 50%, 
+    rgba(45, 27, 105, 0.9) 100%
+  );
+  box-shadow: rgba(99, 102, 241, 0.2) 0px 0px 0px 4px, 
+              rgba(99, 102, 241, 0.4) 0px 8px 32px;
+
+  );
+  border: 2px solid rgba(139, 92, 246, 0.6);
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.8) 0%, 
+    rgba(45, 27, 105, 0.8) 50%, 
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  backdrop-filter: blur(80px) saturate(180%) multiply(60%);
+  -webkit-backdrop-filter: blur(80px) saturate(180%) brightness(110%);
+  border: 1px solid rgba(76, 29, 149, 0.2);
+  transform: translateY(20px) scale(0.95);
+    border-radius: var(--foundation-radius-xl);
+  padding: var(--foundation-space-xl);
+  display: none;
+  min-width: 650px;
+  box-shadow: 0 20px 80px var(--foundation-shadow-primary);
+  z-index: 110;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+
+.mega-dropdown.active,
+.glass-mega-dropdown.active {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  animation: fadeInScale 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translateX(0) translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+.glass-dropdown-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--foundation-space-xl, 32px);
+  max-width: 100%;
+}
+
+.dropdown-column,
+.glass-dropdown-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.column-header,
+.glass-column-header {
+  color: var(--foundation-accent-primary);
+  font-size: var(--foundation-text-xs, 12px);
+  font-weight: var(--foundation-font-weight-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 var(--foundation-space-md, 16px) 0;
+  padding-bottom: var(--foundation-space-sm, 8px);
+  border-bottom: 1px solid var(--foundation-border-primary);
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+}
+
+.glass-dropdown-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dropdown-item,
+.glass-dropdown-item {
+  color: var(--foundation-foreground-primary);
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: var(--foundation-radius-sm, 8px);
+  transition: var(--foundation-transition, all 0.2s ease);
+  font-size: var(--foundation-text-sm, 14px);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-space-sm, 8px);
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  min-height: var(--foundation-touch-target, 44px);
+  font-weight: 400;
+}
+
+.dropdown-item:hover,
+.glass-dropdown-item:hover {
+  background: var(--foundation-background-secondary);
+  color: var(--foundation-foreground-primary);
+  transform: translateX(4px);
+}
+
+.glass-dropdown-item--single:hover {
+  background: var(--foundation-accent-primary);
+  color: var(--foundation-foreground-primary);
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   GLASS MENU CONTAINER
+   ======================================== */
+
+.glass-menu-container {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-space-sm, 8px);
+  padding: 2px;
+  border-radius: var(--foundation-radius-full, 32px);
+}
+
+.glass-menu-button {
+  display: flex;
+  align-items: center;
+  padding: var(--foundation-space-sm, 8px) var(--foundation-space-md, 16px);
+  gap: var(--foundation-space-sm, 8px);
+  height: 32px;
+  min-height: var(--foundation-touch-target, 44px);
+  border-radius: var(--foundation-radius-full, 32px);
+  text-decoration: none;
+  transition: var(--foundation-transition, all 0.2s ease);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.glass-menu-button:hover {
+  background: var(--foundation-background-secondary);
+  backdrop-filter: blur(10px);
+  transform: translateY(-1px);
+}
+
+.glass-menu-button.active {
+  background: var(--foundation-background-secondary);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0px 1px 0px var(--foundation-background-secondary);
+}
+
+.glass-menu-text {
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--foundation-foreground-primary);
+}
+
+/* ========================================
+   RIGHT ACTIONS SECTION
+   ======================================== */
+
+.glass-actions-section {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-space-sm, 8px);
+  flex: none;
+  order: 2;
+}
+
+/* Search Field */
+.glass-search-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 4px 4px var(--foundation-space-md, 16px);
+  gap: var(--foundation-space-sm, 8px);
+  width: 220px;
+  height: 40px;
+  min-height: var(--foundation-touch-target, 44px);
+  background: var(--foundation-background-secondary);
+  border: 0.5px solid var(--foundation-border-primary);
+  border-radius: var(--foundation-radius-lg, 20px);
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.2s ease);
+  color: var(--foundation-foreground-primary);
+  font-size: 14px;
+  font-weight: 400;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  white-space: nowrap;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 0 var(--foundation-background-secondary);
+}
+
+.glass-search-trigger:hover {
+  background: var(--foundation-background-secondary);
+  border-color: var(--foundation-border-primary);
+  transform: translateY(-1px);
+}
+
+.glass-search-placeholder {
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--foundation-foreground-primary);
+  flex: 1;
+}
+
+.glass-search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--foundation-background-secondary);
+  border-radius: var(--foundation-radius-lg, 20px);
+  color: var(--foundation-foreground-primary);
+}
+
+/* Button Toggles */
+.glass-button-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--foundation-space-sm, 8px);
+  width: 40px;
+  height: 40px;
+  min-height: var(--foundation-touch-target, 44px);
+  min-width: var(--foundation-touch-target, 44px);
+  background: var(--foundation-background-secondary);
+  border: 0.5px solid var(--foundation-border-primary);
+  border-radius: var(--foundation-radius-md, 12px);
+  color: var(--foundation-foreground-primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.2s ease);
+}
+
+.glass-button-toggle:hover {
+  background: var(--foundation-background-secondary);
+  border-color: var(--foundation-border-primary);
+  transform: translateY(-1px);
+}
+
+/* Cart Button */
+.glass-cart-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--foundation-space-sm, 8px);
+  width: 40px;
+  height: 40px;
+  min-height: var(--foundation-touch-target, 44px);
+  min-width: var(--foundation-touch-target, 44px);
+  background: var(--foundation-background-secondary);
+  border: 0.5px solid var(--foundation-border-primary);
+  border-radius: var(--foundation-radius-md, 12px);
+  color: var(--foundation-foreground-primary);
+  text-decoration: none;
+  transition: var(--foundation-transition, all 0.2s ease);
+  position: relative;
+}
+
+.glass-cart-button:hover {
+  background: var(--foundation-background-secondary);
+  border-color: var(--foundation-border-primary);
+  color: var(--foundation-foreground-primary);
+  transform: translateY(-1px);
+}
+
+.glass-cart-count {
+  background: var(--foundation-accent-primary);
+  color: var(--foundation-foreground-primary);
+  border-radius: var(--foundation-radius-sm, 10px);
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 18px;
+  text-align: center;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+}
+
+/* ========================================
+   GLASS BUTTON STYLING
+   ======================================== */
+
+.glass-button,
+.nav-button {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border, rgba(93, 90, 246, 0.2)) !important;
+  color: var(--foundation-text-primary, #ffffff) !important;
+  backdrop-filter: blur(12px) saturate(1.2) !important;
+  border-radius: var(--foundation-radius-md, 8px) !important;
+}
+
+.glass-button:hover,
+.nav-button:hover {
+  background: var(--glass-medium, rgba(8, 4, 21, 0.6)) !important;
+  border-color: var(--glass-border-hover, rgba(93, 90, 246, 0.4)) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--foundation-shadow-primary, 0 4px 12px rgba(93, 90, 246, 0.3)) !important;
+}
+
+/* ========================================
+   SEARCH MODAL GLASS STYLING
+   ======================================== */
+
+.search-modal__content {
+  background: var(--glass-medium) !important;
+  backdrop-filter: blur(16px) saturate(1.4) !important;
+  border: 2px solid var(--glass-border, rgba(93, 90, 246, 0.3)) !important;
+  border-radius: var(--foundation-radius-lg, 12px) !important;
+  box-shadow: var(--foundation-shadow-primary, 0 4px 12px rgba(93, 90, 246, 0.3)), 
+              0 12px 48px rgba(8, 4, 21, 0.3) !important;
+}
+
+.search-overlay {
+  background: var(--glass-subtle) !important;
+  backdrop-filter: blur(16px) saturate(1.4) !important;
+}
+
+.search-input,
+.predictive-search-form input {
+  background: var(--glass-medium, rgba(8, 4, 21, 0.6)) !important;
+  border: 1px solid var(--glass-border, rgba(93, 90, 246, 0.2)) !important;
+  color: var(--foundation-text-primary, #ffffff) !important;
+  border-radius: var(--foundation-radius-md, 8px) !important;
+  padding: 0.875rem 1rem !important;
+  backdrop-filter: blur(8px) saturate(1.2) !important;
+}
+
+.search-input:focus,
+.predictive-search-form input:focus {
+  border-color: var(--foundation-accent-primary, #5D5AF6) !important;
+  box-shadow: 0 0 0 2px rgba(93, 90, 246, 0.2) !important;
+  outline: none !important;
+}
+
+.search-submit,
+.predictive-search-form button {
+  background: var(--foundation-accent-primary, #5D5AF6) !important;
+  border: 1px solid var(--foundation-accent-primary, #5D5AF6) !important;
+  color: #ffffff !important;
+  border-radius: var(--foundation-radius-md, 8px) !important;
+  padding: 0.875rem 1.5rem !important;
+  backdrop-filter: blur(8px) saturate(1.2) !important;
+  box-shadow: var(--foundation-shadow-primary, 0 4px 12px rgba(93, 90, 246, 0.3)) !important;
+}
+
+.search-submit:hover,
+.predictive-search-form button:hover {
+  background: var(--foundation-action-hover-primary, #423DF5) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--foundation-shadow-primary, 0 4px 12px rgba(93, 90, 246, 0.3)), 
+              0 8px 24px rgba(93, 90, 246, 0.2) !important;
+}
+
+
+/* ========================================
+   SLIDING NAV TABS STYLES
+   ======================================== */
+
+.sliding-nav-container {
+  position: sticky !important; 
+  top: 80px !important;
+  width: 100% !important;
+  background: rgba(10, 6, 33, 0.5);
+  z-index: 95 !important; /* Below glass-top-header (100) but above content */
+  backdrop-filter: var(--glass-effect, blur(40px) saturate(200%) brightness(110%)) !important;
+  -webkit-backdrop-filter: var(--glass-effect, blur(40px) saturate(200%) brightness(110%)) !important;
+  padding: 1rem 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  border: var(--glass-border) !important;
+  opacity: 1 !important;
+}
+
+/* Mobile: Reduce margin-top for sliding nav */
+@media (max-width: 768px) {
+  .sliding-nav-container {
+    margin-top: 10px !important; /* Small gap on mobile */
+  }
+}
+
+.sliding-nav-inner {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding: 0 !important;
+  gap: var(--foundation-space-lg, 24px);
+  max-width: 1600px !important; /* Match content-width instead of page-width */
+  margin: 0 auto !important;
+  height: 56px; /* Slightly shorter than main header */
+  box-sizing: border-box;
+}
+
+.nav-tabs-wrapper {
+  position: relative !important;
+  overflow: hidden !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  width: 100% !important;
+  flex: 1;
+}
+
+.nav-tabs-scroll {
+  display: flex !important;
+  gap: 1rem !important;
+  overflow-x: auto !important;
+  scroll-behavior: smooth !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  padding: 0.25rem 0 0.25rem var(--foundation-space-lg, 24px); /* Add left padding to align with content */
+}
+
+.nav-tabs-scroll::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Base nav tab styles with enhanced glass effects */
+.nav-tab,
+.glass-tab {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center !important;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%) !important;
+  border: 0.5px solid rgba(84, 84, 88, 0.6) !important;
+  border-radius: 14px !important;
+  backdrop-filter: blur(30px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  color: rgba(255, 255, 255, .7) !important;
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  cursor: pointer;
+}
+
+/* Enhanced hover states with glass effects */
+.nav-tab:hover,
+.glass-tab:hover {
+  background-color: rgba(81, 47, 235, 1.1) !important;
+  box-shadow: var(--framer-primary-shadow-active) !important;
+  transform: translateY(1px) scale(0.98) !important;
+  transition: var(--framer-transition-fast) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+  color: rgba(255, 255, 255, .8) !important;
+}
+
+/* Active state with login modal gradient */
+.nav-tab.active,
+.glass-tab.active {
+  background-color: rgba(81, 47, 235, 1.1) !important;
+  box-shadow: var(--framer-primary-shadow-active) !important;
+  transform: translateY(1px) scale(0.98) !important;
+  transition: var(--framer-transition-fast) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 16px rgba(0, 0, 0, 0.12) !important;
+  color: rgba(255, 255, 255, .9) !important;
+
+}
+
+.nav-actions {
+  display: flex;
+  gap: var(--foundation-space-sm, 8px);
+  margin-left: var(--foundation-space-lg, 24px);
+}
+
+.search-toggle {
+  background: var(--foundation-accent-primary) !important;
+  border-color: var(--foundation-accent-primary) !important;
+  color: var(--foundation-foreground-primary) !important;
+  font-size: 14px !important;
+  padding: 8px 12px !important;
+}
+
+.search-toggle:hover {
+  background: var(--foundation-accent-primary) !important;
+  border-color: var(--foundation-accent-primary) !important;
+}
+
+.search-text {
+  font-size: 14px !important;
+  color: var(--foundation-foreground-primary) !important;
+  margin-left: 4px;
+}
+
+.cart-toggle {
+  background: var(--foundation-background-secondary) !important;
+}
+
+.cart-count {
+  background: var(--foundation-accent-primary);
+  color: var(--foundation-foreground-primary);
+  border-radius: 12px;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+  margin-left: 4px;
+}
+
+/* ========================================
+   GLASS FILTER BAR STYLES
+   ======================================== */
+
+.glass-filter-bar-container {
+  background: linear-gradient(135deg, 
+    rgba(76, 29, 149, 0.15) 0%, 
+    rgba(99, 102, 241, 0.12) 50%, 
+    rgba(139, 92, 246, 0.08) 100%
+  );
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 12px 0;
+  position: sticky;
+  margin-top: 40px;
+  top: var(--total-nav-height, 184px);
+  z-index: 70; /* Below sliding nav tabs */
+}
+
+.glass-filter-bar-wrapper {
+  max-width: 1600px; /* Match layout-with-sidebar max-width */
+  margin: 0 auto;
+  padding: 0 var(--foundation-space-lg, 24px); /* Match layout-with-sidebar padding */
+  display: grid;
+  gap: 0;
+}
+
+/* Filter Controls Container */
+.filter-controls-container {
+  grid-column: 1; /* Place in content column */
+  padding-left: 0; /* Removed left padding */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Active Filters */
+.active-filters {
+  display: none; /* Hidden by default */
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  min-height: 32px;
+}
+
+/* Show when it has filter tags */
+.active-filters.has-filters {
+  display: flex;
+}
+
+.filter-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+}
+
+.active-filter-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-tag {
+  background: var(--foundation-background-secondary);
+  border: 1px solid var(--foundation-border-primary);
+  border-radius: 15px;
+  padding: 5px 8px 5px 12px; /* Less padding on right for close button */
+  font-size: 12px;
+  line-height: 1;
+  color: var(--foundation-foreground-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  transition: all 0.2s ease;
+}
+
+.filter-tag:hover {
+  background: var(--foundation-background-secondary);
+  transform: translateY(-1px);
+}
+
+.filter-tag-remove {
+  background: none;
+  border: none;
+  color: var(--foundation-foreground-primary);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 300;
+}
+
+.filter-tag-remove:hover {
+  background: var(--foundation-background-secondary);
+  color: var(--foundation-foreground-primary);
+}
+
+.clear-all-filters {
+  background: var(--foundation-background-secondary);
+  border: 1px solid var(--foundation-border-primary);
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--foundation-foreground-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-all-filters:hover {
+  background: var(--foundation-background-secondary);
+  transform: translateY(-1px);
+}
+
+/* Filter Controls */
+.filter-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 24px;
+  padding-bottom: 5px;
+}
+
+/* Left and Right Groups */
+.filter-controls-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.filter-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto; /* Push to right */
+}
+
+.filter-control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-control-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--foundation-foreground-primary);
+  white-space: nowrap;
+}
+
+/* Glass Select */
+.glass-filter-select {
+  background: var(--foundation-background-secondary);
+  border: 1px solid var(--foundation-border-primary);
+  border-radius: 8px;
+  padding: 6px 12px;
+  color: var(--foundation-foreground-primary);
+  font-size: 13px;
+  cursor: pointer;
+  min-width: 140px;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.glass-filter-select:hover {
+  background: var(--foundation-background-secondary);
+  border-color: var(--foundation-border-primary);
+}
+
+.glass-filter-select:focus {
+  border-color: var(--foundation-border-primary);
+  box-shadow: 0 0 0 2px var(--foundation-background-secondary);
+}
+
+.glass-filter-select option {
+  background: var(--foundation-background-secondary);
+  color: var(--foundation-foreground-primary);
+}
+
+/* View Toggle Group */
+.view-toggle-group {
+  display: flex;
+  background: var(--foundation-background-secondary);
+  border: 1px solid var(--foundation-border-primary);
+  border-radius: 8px;
+  padding: 2px;
+  gap: 8px;
+  height: 34px; /* 30px buttons + 2px padding top + 2px padding bottom */
+}
+
+.view-toggle {
+  background: transparent;
+  border: none;
+  padding: 0 !important;
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+  max-width: 30px !important;
+  max-height: 30px !important;
+  background: var(--foundation-background-secondary);
+  border: 1px solid var(--foundation-border-primary);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.2s ease);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1 !important;
+}
+
+.view-toggle:hover {
+  background: var(--foundation-background-secondary);
+  color: var(--foundation-foreground-primary);
+}
+
+.view-toggle.active {
+  background: var(--foundation-background-secondary);
+  color: var(--foundation-foreground-primary);
+}
+
+/* Results Count */
+.results-count {
+  font-size: 13px;
+  color: var(--foundation-foreground-primary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Mobile Filter Toggle */
+.mobile-filter-toggle {
+  background: var(--foundation-background-secondary);
+  border: 1px solid var(--glass-medium);
+  border-radius: 8px;
+  padding: 3px 6px;
+  color: var(--foundation-foreground-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.mobile-filter-toggle:hover {
+  background: var(--foundation-background-secondary);
+  color: var(--foundation-foreground-primary);
+  transform: translateY(-1px);
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 1200px) {
+  .glass-mega-dropdown,
+  .mega-dropdown {
+    min-width: 500px;
+  }
+  
+  .glass-dropdown-content {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--foundation-space-lg);
+  }
+  
+  .mega-dropdown {
+    min-width: 550px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--foundation-space-xl);
+  }
+  
+  .dropdown-column:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 1024px) {
+  .glass-header-container {
+    padding: var(--foundation-space-md) 0;
+    gap: var(--foundation-space-md);
+  }
+  
+  .glass-search-trigger {
+    width: 180px;
+  }
+  
+  .glass-nav-container {
+    gap: var(--foundation-space-sm);
+  }
+  
+  .glass-nav-link {
+    padding: 6px var(--foundation-space-sm);
+    font-size: 13px;
+  }
+  
+  .glass-mega-dropdown,
+  .mega-dropdown {
+    min-width: 400px;
+    padding: var(--foundation-space-lg);
+  }
+  
+  .glass-dropdown-content {
+    gap: var(--foundation-space-md);
+  }
+  
+  .sliding-nav-inner {
+    padding: 0;
+    gap: var(--foundation-space-md);
+  }
+  
+  /* Filter Bar Responsive */
+  .glass-filter-bar-wrapper {
+    grid-template-columns: 280px 1fr;
+    padding: 0 var(--foundation-space-lg, 24px);
+  }
+  
+  .filter-controls-container {
+    padding-left: var(--foundation-space-md, 16px);
+  }
+  
+  .filter-controls {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 1023px) {
+  /* Below 1024px, sidebar is hidden so filter bar spans full width */
+  .glass-filter-bar-wrapper {
+    grid-template-columns: 1fr;
+    padding: 0 var(--foundation-space-md, 16px);
+  }
+  
+  .filter-controls-container {
+    grid-column: 1;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .glass-header-container {
+    padding: 5px var(--foundation-space-md);
+    height: 55px;
+    gap: var(--foundation-space-sm);
+    align-items: center;
+  }
+  
+  /* Hide navigation links on mobile but keep container */
+  .glass-navigation {
+    display: block;
+  }
+
+  .glass-nav-container {
+    display: none;
+  }
+  
+  /* Transform browse games dropdown to mobile hamburger */
+  .nav-dropdown {
+    display: block !important;
+    order: -1; /* Position leftmost */
+  }
+  
+  .desktop-nav-tabs {
+    display: none !important;
+  }
+  
+  /* Style dropdown-toggle as mobile hamburger */
+  .dropdown-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Hide text and arrow, keep only hamburger SVG */
+  .dropdown-toggle span {
+    display: none !important;
+  }
+  
+  .dropdown-toggle .dropdown-arrow {
+    display: none !important;
+  }
+  
+  /* Style the hamburger SVG */
+  .dropdown-toggle svg:first-child {
+    width: 20px;
+    height: 20px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* Convert mega dropdown to mobile slide-down */
+  .mega-dropdown {
+    display: none;
+    position: fixed !important;
+    top: 60px;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    max-height: calc(100vh - 60px);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: var(--foundation-space-lg);
+  }
+
+  /* Show mega dropdown when active */
+  .mega-dropdown.active {
+    display: block !important;
+  }
+  
+  /* Reduce logo size for mobile to fit with hamburger */
+  .glass-top-header .header__logo-image,
+  .glass-logo-image,
+  .header__logo-image {
+    height: 22px;
+    max-width: 100px;
+  }
+  
+  .glass-menu-container {
+    gap: var(--foundation-space-xs);
+  }
+  
+  .glass-menu-button {
+    padding: 6px var(--foundation-space-sm);
+    font-size: 13px;
+  }
+  
+  /* Right Actions Section - Fix button overflow */
+  .glass-actions-section {
+    gap: var(--foundation-space-xs);
+    margin-right: 0;
+    display: flex !important;
+    align-items: center !important;
+  }
+  
+  /* Make search and toggle buttons consistent on mobile */
+  .glass-search-trigger,
+  .glass-button-toggle {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 8px;
+    background: var(--foundation-background-secondary);
+    border: 0.5px solid var(--foundation-border-primary);
+    border-radius: var(--foundation-radius-md);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Cart button - ensure it shows and maintains proper sizing */
+  .glass-cart-button {
+    display: flex !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    padding: 8px !important;
+    background: var(--foundation-background-secondary) !important;
+    border: 0.5px solid var(--foundation-border-primary) !important;
+    border-radius: var(--foundation-radius-md) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-right: 0 !important;
+    position: relative !important;
+  }
+  
+  /* Hide search placeholder text on mobile */
+  .glass-search-placeholder {
+    display: none;
+  }
+  
+  /* Remove the inner button styling on mobile */
+  .glass-search-trigger .glass-search-button {
+    background: none;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .glass-button-text {
+    display: none;
+  }
+  
+  .search-container {
+    width: 95%;
+    padding: var(--foundation-space-lg);
+  }
+  
+  .search-form {
+    flex-direction: column;
+  }
+  
+  /* Make sliding-nav sticky on mobile for better UX */
+  .sliding-nav-container {
+    position: sticky !important;
+    top: 50px !important; /* Position below mobile header */
+  }
+  
+  /* Sliding Nav Mobile Styles */
+  .sliding-nav-inner { 
+    padding: 0;
+    height: 55px;
+  }
+  
+  .nav-tabs-scroll {
+    gap: 0.5rem !important;
+  }
+  
+  .nav-tab, .glass-tab { 
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem !important;
+    min-height: 40px;
+  }
+  
+  .search-text {
+    display: none;
+  }
+  
+  /* Filter Bar Mobile Styles */
+  .glass-filter-bar-container {
+    padding: 8px 0;
+  }
+  
+  .glass-filter-bar-wrapper {
+    padding: 0 var(--foundation-space-md, 16px);
+  }
+  
+  .filter-controls-container {
+    gap: 8px;
+  }
+  
+  .filter-controls {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .filter-controls-left,
+  .filter-controls-right {
+    gap: 12px;
+  }
+  
+  .mobile-only {
+    display: flex;
+  }
+  
+  .view-toggle-group {
+    display: none;
+  }
+  
+  .glass-filter-select {
+    min-width: 120px;
+    font-size: 12px;
+  }
+  
+  .filter-control-label {
+    font-size: 12px;
+  }
+  
+  .results-count {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  .glass-filter-bar-wrapper {
+    padding: 0 var(--foundation-space-md, 12px);
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-header-container {
+    padding: var(--foundation-space-sm) var(--foundation-space-md);
+  }
+  
+  .glass-top-header .header__logo-image,
+  .glass-logo-image {
+    height: 22px;
+  }
+  
+  .glass-menu-button {
+    padding: 4px var(--foundation-space-xs);
+    font-size: 12px;
+  }
+  
+  /* Keep all action buttons the same on very small screens */
+  .glass-search-trigger,
+  .glass-button-toggle,
+  .glass-cart-button {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+  }
+  
+  .suggestion-links {
+    flex-direction: column;
+  }
+  
+  .sliding-nav-inner {
+    padding: 0;
+  }
+  
+  .nav-tabs-scroll {
+    gap: var(--foundation-space-sm);
+  }
+  
+  .nav-tab, .glass-tab {
+    padding: var(--foundation-space-xs) var(--foundation-space-sm);
+    font-size: var(--foundation-text-sm);
+    min-height: var(--foundation-space-md);
+  }
+  
+  /* Filter Bar Very Small Mobile */
+  .active-filters {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    min-height: auto;
+  }
+  
+  .filter-controls {
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .filter-controls-left {
+    flex: 1;
+  }
+  
+  .filter-controls-right {
+    margin-left: 0;
+  }
+  
+  .glass-filter-select {
+    min-width: 100px;
+  }
+}

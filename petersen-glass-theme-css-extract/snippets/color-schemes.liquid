@@ -1,0 +1,108 @@
+{% style %}
+  
+  :root {
+    /* Ultra Dark Mode Foundation Colors - Override all theme colors */
+    --color-background: var(--foundation-background-primary);
+    --color-foreground: var(--foundation-foreground-primary);
+    --color-foreground-heading: var(--foundation-foreground-primary);
+    --color-primary: var(--foundation-action-primary);
+    --color-primary-hover: var(--foundation-action-secondary);
+    --color-border: var(--foundation-glass-border);
+    --color-shadow: rgba(0, 0, 0, 0.8);
+    
+    --color-background-secondary: var(--foundation-background-secondary);
+    --color-background-elevated: var(--foundation-background-elevated);
+    --color-glass-subtle: var(--foundation-glass-subtle);
+    --color-glass-medium: var(--foundation-glass-medium);
+    --color-glass-prominent: var(--foundation-glass-prominent);
+  }
+  
+  {% for scheme in settings.color_schemes -%}
+    {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
+    .color-{{ scheme.id }} {
+        /* Override with Ultra Dark Mode - Always use void black */
+        --color-background: var(--foundation-background-primary);
+        --color-foreground: var(--foundation-foreground-primary);
+        --color-foreground-heading: var(--foundation-foreground-primary);
+        --color-primary: var(--foundation-action-primary);
+        --color-primary-hover: var(--foundation-action-secondary);
+        --color-border: var(--foundation-glass-border);
+        --color-shadow: rgba(0, 0, 0, 0.8);
+        /* Ultra Dark Mode Buttons */
+        --color-primary-button-text: var(--foundation-foreground-primary);
+        --color-primary-button-background: var(--foundation-action-primary);
+        --color-primary-button-border: var(--foundation-action-primary);
+        --color-primary-button-hover-text: var(--foundation-foreground-primary);
+        --color-primary-button-hover-background: var(--foundation-action-secondary);
+        --color-primary-button-hover-border: var(--foundation-action-secondary);
+        
+        --color-secondary-button-text: var(--foundation-foreground-primary);
+        --color-secondary-button-background: var(--foundation-glass-subtle);
+        --color-secondary-button-border: var(--foundation-glass-border);
+        --color-secondary-button-hover-text: var(--foundation-foreground-primary);
+        --color-secondary-button-hover-background: var(--foundation-glass-medium);
+        --color-secondary-button-hover-border: var(--foundation-action-primary);
+        
+        /* Ultra Dark Mode Inputs */
+        --color-input-background: var(--foundation-background-secondary);
+        --color-input-text: var(--foundation-foreground-primary);
+        --color-input-border: var(--foundation-glass-border);
+        --color-input-hover-background: var(--foundation-background-elevated);
+        
+        /* Ultra Dark Mode Variants */
+        --color-variant-background: var(--foundation-glass-subtle);
+        --color-variant-border: var(--foundation-glass-border);
+        --color-variant-text: var(--foundation-foreground-primary);
+        --color-variant-hover-background: var(--foundation-glass-medium);
+        --color-variant-hover-text: var(--foundation-foreground-primary);
+        --color-variant-hover-border: var(--foundation-action-primary);
+        
+        --color-selected-variant-background: var(--foundation-action-primary);
+        --color-selected-variant-border: var(--foundation-action-primary);
+        --color-selected-variant-text: var(--foundation-foreground-primary);
+        --color-selected-variant-hover-background: var(--foundation-action-secondary);
+        --color-selected-variant-hover-text: var(--foundation-foreground-primary);
+        --color-selected-variant-hover-border: var(--foundation-action-secondary);
+        --input-disabled-background-color: rgb(from var(--color-foreground) r g b / 10%);
+        --input-disabled-border-color: rgb(from var(--color-foreground) r g b / 5%);
+        --input-disabled-text-color: rgb(from var(--color-foreground) r g b / 50%);
+        /* Apple HIG Text Hierarchy with Opacity System */
+        --color-foreground-muted: var(--foundation-foreground-tertiary);
+        
+        --font-h1--color: var(--foundation-foreground-primary);
+        --font-h2--color: var(--foundation-foreground-primary);
+        --font-h3--color: var(--foundation-foreground-primary);
+        --font-h4--color: var(--foundation-foreground-primary);
+        --font-h5--color: var(--foundation-foreground-primary);
+        --font-h6--color: var(--foundation-foreground-primary);
+        
+        --text-primary: var(--foundation-foreground-primary);      /* 100% opacity - #FCFDF2 */
+        --text-secondary: var(--foundation-foreground-secondary);  /* 70% opacity - rgba(252, 253, 242, 0.7) */
+        --text-tertiary: var(--foundation-foreground-tertiary);    /* 50% opacity - rgba(252, 253, 242, 0.5) */
+        --text-quaternary: var(--foundation-foreground-quaternary); /* 30% opacity - rgba(252, 253, 242, 0.3) */
+        
+        --color-text-primary: var(--text-primary);
+        --color-text-secondary: var(--text-secondary);
+        --color-text-tertiary: var(--text-tertiary);
+        --color-text-quaternary: var(--text-quaternary);
+        
+        --color-body-text: var(--text-primary);
+        --color-caption-text: var(--text-secondary);
+        --color-footnote-text: var(--text-tertiary);
+        --color-placeholder-text: var(--text-quaternary);
+
+        {% if settings.drawer_drop_shadow %}
+          --shadow-drawer: 0px 4px 20px rgb(from var(--color-shadow) r g b / 15%);
+        {% endif %}
+        {% if settings.popover_drop_shadow %}
+          --shadow-blur: 20px;
+          --shadow-popover: 0px 4px 20px rgb(from var(--color-shadow) r g b / 15%);
+        {% endif %}
+      }
+  {% endfor %}
+
+  {{ scheme_classes | prepend: 'body' }} {
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+  }
+{% endstyle %}

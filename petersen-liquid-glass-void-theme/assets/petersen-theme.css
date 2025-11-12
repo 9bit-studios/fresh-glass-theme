@@ -1,0 +1,362 @@
+/* 
+ * Petersen Games Theme Styles
+ * Glass theme implementation with horror aesthetic
+ * Requires QuantumFoundation.css as base
+ */
+
+/* CSS Custom Properties for Petersen Theme */
+:root {
+  /* Horror Theme Colors */
+  --petersen-red-dark: #8B0000;
+  --petersen-red-primary: #FF0000;
+  --petersen-red-light: #FF3333;
+  --petersen-red-subtle: rgba(255, 0, 0, 0.1);
+  
+  /* Glass Enhancement */
+  --petersen-glass-horror: rgba(139, 0, 0, 0.1);
+  --petersen-glass-shadow: 0 8px 32px rgba(139, 0, 0, 0.3);
+  
+  /* Theme-specific spacing */
+  --petersen-section-gap: 48px;
+  --petersen-content-gap: 24px;
+  --petersen-element-gap: 16px;
+}
+
+/* Global Theme Adjustments */
+.color-scheme-dark {
+  --foundation-background-primary: #0a0a0a;
+  --foundation-background-secondary: #141414;
+  --foundation-foreground-primary: #ffffff;
+  --foundation-foreground-secondary: #a0a0a0;
+  --foundation-glass-subtle: rgba(255, 255, 255, 0.05);
+  --foundation-glass-medium: rgba(255, 255, 255, 0.1);
+  --foundation-glass-prominent: rgba(255, 255, 255, 0.15);
+  --foundation-glass-border: rgba(255, 255, 255, 0.1);
+  --foundation-action-primary: var(--petersen-red-primary);
+  --foundation-action-primary-hover: var(--petersen-red-light);
+}
+
+/* Enhanced Glass Effects */
+.glass-panel {
+  background: var(--foundation-glass-subtle);
+  border: 1px solid var(--foundation-glass-border);
+  border-radius: var(--foundation-radius-lg, 16px);
+  backdrop-filter: blur(16px) saturate(120%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all var(--foundation-transition, 0.15s ease);
+}
+
+.glass-panel:hover {
+  background: var(--foundation-glass-medium);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.glass-panel-prominent {
+  background: var(--foundation-glass-prominent);
+  border: 1px solid var(--foundation-glass-border);
+  border-radius: var(--foundation-radius-lg, 16px);
+  backdrop-filter: blur(20px) saturate(125%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 var(--foundation-glass-border);
+}
+
+/* Horror Theme Button Styles */
+.horror-primary {
+  background: linear-gradient(135deg, var(--petersen-red-dark) 0%, var(--petersen-red-primary) 100%);
+  border: none;
+  color: white;
+  font-weight: 700;
+  transition: all var(--foundation-transition, 0.15s ease);
+  box-shadow: 0 4px 16px rgba(139, 0, 0, 0.3);
+}
+
+.horror-primary:hover {
+  background: linear-gradient(135deg, #A00000 0%, var(--petersen-red-light) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--petersen-glass-shadow);
+}
+
+.horror-secondary {
+  background: var(--foundation-glass-medium);
+  border: 1px solid var(--petersen-red-primary);
+  color: var(--petersen-red-primary);
+  font-weight: 600;
+  transition: all var(--foundation-transition, 0.15s ease);
+}
+
+.horror-secondary:hover {
+  background: var(--petersen-red-primary);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Enhanced Glass Controls */
+.glass-controls {
+  background: var(--foundation-glass-medium);
+  border: 1px solid var(--foundation-glass-border);
+  border-radius: var(--foundation-radius-md, 12px);
+  backdrop-filter: blur(12px) saturate(115%);
+  overflow: hidden;
+}
+
+.glass-controls button {
+  background: transparent;
+  border: none;
+  color: var(--foundation-foreground-primary);
+  transition: all var(--foundation-transition, 0.15s ease);
+}
+
+.glass-controls button:hover {
+  background: var(--foundation-glass-subtle);
+  color: var(--foundation-action-primary);
+}
+
+/* Glass Card Variants */
+.glass-card-compact {
+  background: var(--foundation-glass-subtle);
+  border: 1px solid var(--foundation-glass-border);
+  border-radius: var(--foundation-radius-md, 12px);
+  backdrop-filter: blur(12px) saturate(115%);
+  transition: all var(--foundation-transition, 0.15s ease);
+  overflow: hidden;
+}
+
+.glass-card-compact:hover {
+  background: var(--foundation-glass-medium);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.glass-card-horror {
+  background: var(--foundation-glass-subtle);
+  border: 1px solid var(--foundation-glass-border);
+  border-radius: var(--foundation-radius-lg, 16px);
+  backdrop-filter: blur(16px) saturate(120%);
+  transition: all var(--foundation-transition, 0.15s ease);
+  overflow: hidden;
+  position: relative;
+}
+
+.glass-card-horror::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--petersen-red-primary), transparent);
+  opacity: 0;
+  transition: opacity var(--foundation-transition, 0.15s ease);
+}
+
+.glass-card-horror:hover::before {
+  opacity: 1;
+}
+
+.glass-card-horror:hover {
+  background: var(--foundation-glass-medium);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(139, 0, 0, 0.2);
+  border-color: rgba(255, 0, 0, 0.3);
+}
+
+/* Glass List Styling */
+.glass-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--foundation-sm, 12px);
+}
+
+.glass-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-sm, 12px);
+  padding: var(--foundation-sm, 12px);
+  background: var(--foundation-glass-subtle);
+  border: 1px solid var(--foundation-glass-border);
+  border-radius: var(--foundation-radius-md, 12px);
+  backdrop-filter: blur(8px) saturate(110%);
+  transition: all var(--foundation-transition, 0.15s ease);
+}
+
+.glass-list li:hover {
+  background: var(--foundation-glass-medium);
+  transform: translateX(4px);
+}
+
+/* Glass Border Utility */
+.glass-border {
+  border: 1px solid var(--foundation-glass-border);
+}
+
+/* Section Width Utilities */
+.section-petersen {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.section-petersen.page-width {
+  max-width: var(--foundation-content-max-width, 1440px);
+  padding-left: var(--foundation-lg, 24px);
+  padding-right: var(--foundation-lg, 24px);
+}
+
+.section-petersen.full-width {
+  max-width: none;
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 1023px) {
+  :root {
+    --petersen-section-gap: 32px;
+    --petersen-content-gap: 20px;
+    --petersen-element-gap: 12px;
+  }
+  
+  .section-petersen.page-width {
+    padding-left: var(--foundation-md, 16px);
+    padding-right: var(--foundation-md, 16px);
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --petersen-section-gap: 24px;
+    --petersen-content-gap: 16px;
+    --petersen-element-gap: 8px;
+  }
+  
+  .glass-card-horror:hover,
+  .glass-card-compact:hover {
+    transform: translateY(-2px);
+  }
+  
+  .glass-panel:hover {
+    transform: none;
+  }
+}
+
+/* Loading States */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--foundation-glass-prominent);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: opacity var(--foundation-transition, 0.15s ease);
+}
+
+.loading-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--foundation-glass-border);
+  border-top: 3px solid var(--petersen-red-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error States */
+.error-message {
+  padding: var(--foundation-md, 16px);
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: var(--foundation-radius-md, 12px);
+  color: var(--petersen-red-light);
+  font-size: 0.875rem;
+  margin-top: var(--foundation-sm, 12px);
+}
+
+/* Success States */
+.success-message {
+  padding: var(--foundation-md, 16px);
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: var(--foundation-radius-md, 12px);
+  color: #22C55E;
+  font-size: 0.875rem;
+  margin-top: var(--foundation-sm, 12px);
+}
+
+/* Focus Styles for Accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--petersen-red-primary);
+  outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .glass-panel,
+  .glass-panel-prominent,
+  .glass-controls,
+  .glass-card-compact,
+  .glass-card-horror {
+    border-width: 2px;
+    backdrop-filter: none;
+  }
+  
+  .horror-primary {
+    background: var(--petersen-red-primary);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .glass-card-horror:hover,
+  .glass-card-compact:hover,
+  .glass-panel:hover,
+  .horror-primary:hover {
+    transform: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .glass-panel,
+  .glass-panel-prominent,
+  .glass-controls,
+  .glass-card-compact,
+  .glass-card-horror {
+    background: white !important;
+    border: 1px solid #000 !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+  
+  .horror-primary,
+  .horror-secondary {
+    background: white !important;
+    color: black !important;
+    border: 1px solid black !important;
+  }
+}

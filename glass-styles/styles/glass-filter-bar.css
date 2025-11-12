@@ -1,0 +1,355 @@
+/* ========================================
+   Glass Filter Bar Styles
+   Positioned below header for sort/filter controls
+   ======================================== */
+
+.glass-filter-bar-container {
+  position: sticky;
+  top: var(--header-height, 80px); /* Position below the header */
+  z-index: 900; /* Below header (1000) but above content */
+  background: linear-gradient(
+    180deg,
+    rgba(30, 27, 75, 0.95) 0%,
+    rgba(45, 27, 105, 0.9) 50%,
+    rgba(30, 27, 75, 0.95) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(76, 29, 149, 0.3);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 4px 16px rgba(76, 29, 149, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  margin-top: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.glass-filter-bar-wrapper {
+  max-width: var(--page-width, 1400px);
+  margin: 0 auto;
+  padding: 0 var(--page-margin, 24px);
+}
+
+/* Filter Controls Container */
+.filter-controls-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Active Filters Section */
+.active-filters {
+  display: none;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.active-filters.has-filters {
+  display: flex;
+}
+
+.active-filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1;
+}
+
+.filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.filter-tag:hover {
+  background: rgba(99, 102, 241, 0.3);
+  transform: translateY(-1px);
+}
+
+.filter-tag-remove {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.filter-tag-remove:hover {
+  opacity: 1;
+}
+
+.clear-all-filters {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.clear-all-filters:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Main Filter Controls */
+.filter-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  gap: 20px;
+  min-height: 60px;
+}
+
+.filter-controls-left,
+.filter-controls-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.filter-control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Glass Filter Select (Sort Dropdown) */
+.glass-filter-select {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 10px 36px 10px 14px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  min-width: 160px;
+}
+
+.glass-filter-select:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.glass-filter-select:focus {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.glass-filter-select option {
+  background: #1e1b4b;
+  color: white;
+  padding: 8px;
+}
+
+/* Results Count */
+.results-count {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* View Toggle Buttons */
+.view-toggle-group {
+  display: flex;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.view-toggle {
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-toggle:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.view-toggle:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.view-toggle.active {
+  background: rgba(99, 102, 241, 0.3);
+  color: white;
+}
+
+.view-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Mobile Filter Toggle */
+.mobile-filter-toggle {
+  display: none;
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  border-radius: 10px;
+  padding: 10px 16px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  gap: 8px;
+  align-items: center;
+}
+
+.mobile-filter-toggle:hover {
+  background: rgba(99, 102, 241, 0.3);
+  transform: translateY(-1px);
+}
+
+.mobile-filter-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .glass-filter-bar-container {
+    top: var(--mobile-header-height, 60px);
+  }
+
+  .filter-controls {
+    padding: 12px 0;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .filter-controls-left {
+    flex: 1 0 100%;
+    justify-content: space-between;
+  }
+
+  .filter-controls-right {
+    flex: 1 0 100%;
+    justify-content: space-between;
+  }
+
+  .mobile-only {
+    display: block !important;
+  }
+
+  .mobile-filter-toggle {
+    display: flex;
+  }
+
+  .view-toggle-group {
+    margin-left: auto;
+  }
+
+  .glass-filter-select {
+    min-width: 140px;
+    padding: 8px 32px 8px 12px;
+    font-size: 13px;
+  }
+
+  .results-count {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-filter-bar-wrapper {
+    padding: 0 16px;
+  }
+
+  .filter-controls {
+    padding: 10px 0;
+  }
+
+  .filter-control-group {
+    gap: 6px;
+  }
+
+  .glass-filter-select {
+    min-width: 120px;
+    font-size: 12px;
+  }
+
+  .view-toggle {
+    padding: 6px 10px;
+  }
+
+  .view-toggle svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Ensure proper stacking and visibility */
+body {
+  --header-height: 80px; /* Adjust based on your actual header height */
+  --mobile-header-height: 60px;
+}
+
+/* Fix for content spacing */
+.glass-filter-bar-container + * {
+  margin-top: 0;
+}
+
+/* Ensure the filter bar stays visible on scroll */
+@supports (position: sticky) {
+  .glass-filter-bar-container {
+    position: sticky;
+  }
+}
+
+/* Fallback for browsers without sticky support */
+@supports not (position: sticky) {
+  .glass-filter-bar-container {
+    position: fixed;
+    top: var(--header-height, 80px);
+    left: 0;
+    right: 0;
+  }
+  
+  /* Add spacing to prevent content overlap */
+  .glass-filter-bar-container + * {
+    padding-top: 60px;
+  }
+}

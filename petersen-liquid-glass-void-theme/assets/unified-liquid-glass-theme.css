@@ -1,0 +1,465 @@
+/* ========================================
+   UNIFIED LIQUID GLASS THEME - APPLE HIG COMPLIANT
+   Foundation Model + Apple Intelligence Strategic Director Enhanced
+   ======================================== */
+
+/* Apple HIG Typography System */
+:root {
+  /* Apple HIG Typography - Apple Intelligence Enhanced */
+  --apple-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+  --apple-letter-spacing: -0.022em;
+  --apple-line-height: 1.47059;
+  
+  /* Apple HIG Text Hierarchy */
+  --text-large-title: 34px;     /* Apple Large Title */
+  --text-title-1: 28px;         /* Apple Title 1 */
+  --text-title-2: 22px;         /* Apple Title 2 */
+  --text-title-3: 20px;         /* Apple Title 3 */
+  --text-headline: 17px;        /* Apple Headline */
+  --text-body: 17px;            /* Apple Body */
+  --text-callout: 16px;         /* Apple Callout */
+  --text-subheadline: 15px;     /* Apple Subheadline */
+  --text-footnote: 13px;        /* Apple Footnote */
+  --text-caption-1: 12px;       /* Apple Caption 1 */
+  --text-caption-2: 11px;       /* Apple Caption 2 */
+  
+  /* Apple HIG Color System */
+  --apple-label: #FFFFFF;
+  --apple-secondary-label: rgba(255, 255, 255, 0.6);
+  --apple-tertiary-label: rgba(255, 255, 255, 0.3);
+  --apple-quaternary-label: rgba(255, 255, 255, 0.18);
+  
+  /* Liquid Glass Effects from Vercel */
+  --quantum-void-black: #000000;
+  --quantum-deep-indigo: #0A0A0F;
+  --quantum-ultra-indigo: #15151D;
+  --quantum-oil-purple: #2D1B69;
+  --quantum-cosmic-purple: #4C1D95;
+  --quantum-electric-indigo: #4F46E5;
+  
+  /* Glass Effects */
+  --glass-backdrop-blur: saturate(180%) blur(20px);
+  --glass-effect: blur(20px) saturate(150%);
+  --quantum-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+  
+  /* Apple Animations */
+  --apple-duration-fast: 0.2s;
+  --apple-duration-medium: 0.35s;
+  --apple-duration-slow: 0.5s;
+  --apple-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --apple-easing-quantum: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ========================================
+   APPLE HIG TYPOGRAPHY FOUNDATION
+   ======================================== */
+
+body {
+  font-family: var(--apple-font-family);
+  letter-spacing: var(--apple-letter-spacing);
+  line-height: var(--apple-line-height);
+  color: var(--apple-label);
+  background: var(--quantum-void-black);
+}
+
+/* Typography Classes */
+.text-large-title {
+  font-size: var(--text-large-title);
+  font-weight: 400;
+  line-height: 1.21;
+  letter-spacing: -0.5px;
+}
+
+.text-title-1 {
+  font-size: var(--text-title-1);
+  font-weight: 400;
+  line-height: 1.21;
+  letter-spacing: -0.4px;
+}
+
+.text-title-2 {
+  font-size: var(--text-title-2);
+  font-weight: 400;
+  line-height: 1.27;
+  letter-spacing: -0.26px;
+}
+
+.text-title-3 {
+  font-size: var(--text-title-3);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.45px;
+}
+
+.text-headline {
+  font-size: var(--text-headline);
+  font-weight: 600;
+  line-height: 1.29;
+  letter-spacing: -0.43px;
+}
+
+.text-body {
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: -0.43px;
+}
+
+.text-callout {
+  font-size: var(--text-callout);
+  font-weight: 400;
+  line-height: 1.31;
+  letter-spacing: -0.32px;
+}
+
+.text-subheadline {
+  font-size: var(--text-subheadline);
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: -0.24px;
+}
+
+.text-footnote {
+  font-size: var(--text-footnote);
+  font-weight: 400;
+  line-height: 1.38;
+  letter-spacing: -0.08px;
+}
+
+.text-caption-1 {
+  font-size: var(--text-caption-1);
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: 0px;
+}
+
+.text-caption-2 {
+  font-size: var(--text-caption-2);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: 0.07px;
+}
+
+/* Secondary Text Colors */
+.text-secondary {
+  color: var(--apple-secondary-label);
+}
+
+.text-tertiary {
+  color: var(--apple-tertiary-label);
+}
+
+.text-quaternary {
+  color: var(--apple-quaternary-label);
+}
+
+/* ========================================
+   LIQUID GLASS PRODUCT PAGE ENHANCEMENT
+   ======================================== */
+
+/* Product Title */
+.product__title {
+  font-size: var(--text-title-1) !important;
+  font-weight: 700 !important;
+  color: var(--apple-label) !important;
+  letter-spacing: -0.4px !important;
+  line-height: 1.21 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Product Description */
+.product__text {
+  font-size: var(--text-body) !important;
+  color: var(--apple-secondary-label) !important;
+  line-height: 1.47 !important;
+  letter-spacing: -0.43px !important;
+}
+
+/* Product Price */
+.price {
+  font-size: var(--text-title-3) !important;
+  font-weight: 600 !important;
+  color: var(--apple-label) !important;
+  letter-spacing: -0.45px !important;
+}
+
+.price__sale {
+  color: #64D2FF !important; /* Apple Teal */
+}
+
+/* Product Form */
+.product-form {
+  background: rgba(21, 21, 29, 0.9) !important;
+  backdrop-filter: var(--glass-backdrop-blur) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  box-shadow: var(--quantum-shadow) !important;
+}
+
+/* Product Images */
+.product__media img {
+  border-radius: 20px !important;
+  transition: transform var(--apple-duration-medium) var(--apple-easing) !important;
+}
+
+.product__media:hover img {
+  transform: scale(1.02) !important;
+}
+
+/* ========================================
+   LIQUID GLASS FACETS FILTER ENHANCEMENT
+   ======================================== */
+
+/* Main Facets Container */
+.facets {
+  background: rgba(10, 10, 15, 0.85) !important;
+  backdrop-filter: var(--glass-backdrop-blur) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
+  box-shadow: var(--quantum-shadow) !important;
+}
+
+/* Facets Summary */
+.facets__summary {
+  font-size: var(--text-headline) !important;
+  font-weight: 600 !important;
+  color: var(--apple-label) !important;
+  padding: 1rem !important;
+  background: rgba(45, 27, 105, 0.9) !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+  transition: all var(--apple-duration-medium) var(--apple-easing) !important;
+}
+
+.facets__summary:hover {
+  background: rgba(79, 70, 229, 0.8) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* Individual Facet Items */
+.facets__item {
+  background: rgba(21, 21, 29, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  margin-bottom: 0.75rem !important;
+  transition: all var(--apple-duration-medium) var(--apple-easing-quantum) !important;
+}
+
+.facets__item:hover {
+  border-color: rgba(99, 102, 241, 0.6) !important;
+  transform: translateX(4px) scale(1.02) !important;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3) !important;
+}
+
+/* Facet Labels */
+.facets__label {
+  font-size: var(--text-body) !important;
+  color: var(--apple-label) !important;
+  font-weight: 500 !important;
+  padding: 0.75rem 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* Facet Checkboxes */
+input[type="checkbox"] {
+  appearance: none !important;
+  width: 20px !important;
+  height: 20px !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  cursor: pointer !important;
+  transition: all var(--apple-duration-fast) var(--apple-easing) !important;
+}
+
+input[type="checkbox"]:checked {
+  background: var(--quantum-electric-indigo) !important;
+  border-color: var(--quantum-electric-indigo) !important;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.3) !important;
+}
+
+input[type="checkbox"]:checked::after {
+  content: "✓" !important;
+  display: block !important;
+  color: white !important;
+  font-size: 14px !important;
+  text-align: center !important;
+  line-height: 16px !important;
+}
+
+/* Sort Dropdown */
+.facets__sort select {
+  background: rgba(21, 21, 29, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  color: var(--apple-label) !important;
+  font-size: var(--text-body) !important;
+  padding: 0.75rem 1rem !important;
+  backdrop-filter: var(--glass-backdrop-blur) !important;
+  cursor: pointer !important;
+  transition: all var(--apple-duration-medium) var(--apple-easing) !important;
+}
+
+.facets__sort select:hover,
+.facets__sort select:focus {
+  border-color: rgba(99, 102, 241, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2) !important;
+  outline: none !important;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN - APPLE HIG COMPLIANT
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Mobile Typography Scale */
+  .text-large-title {
+    font-size: 28px !important;
+  }
+  
+  .text-title-1 {
+    font-size: 22px !important;
+  }
+  
+  .text-title-2 {
+    font-size: 20px !important;
+  }
+  
+  .text-headline,
+  .text-body {
+    font-size: 16px !important;
+  }
+  
+  .text-callout {
+    font-size: 15px !important;
+  }
+  
+  /* Mobile Facets */
+  .facets {
+    margin: 0 0.5rem !important;
+    padding: 1rem !important;
+    border-radius: 12px !important;
+  }
+  
+  /* Mobile Product Form */
+  .product-form {
+    margin: 0 0.5rem !important;
+    padding: 1.5rem !important;
+    border-radius: 16px !important;
+  }
+  
+  /* Touch Targets - Apple HIG 44px minimum */
+  .facets__summary,
+  .facets__label,
+  input[type="checkbox"],
+  .facets__sort select {
+    min-height: 44px !important;
+  }
+}
+
+/* ========================================
+   ANIMATION ENHANCEMENTS
+   ======================================== */
+
+/* Quantum Fade In */
+@keyframes quantumFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Apply Quantum Animation to Key Elements */
+.product__title,
+.facets,
+.product-form {
+  animation: quantumFadeIn var(--apple-duration-slow) var(--apple-easing-quantum) !important;
+}
+
+/* Stagger Animation Delays */
+.product__title {
+  animation-delay: 0.1s !important;
+}
+
+.facets {
+  animation-delay: 0.2s !important;
+}
+
+.product-form {
+  animation-delay: 0.3s !important;
+}
+
+/* ========================================
+   ACCESSIBILITY ENHANCEMENTS
+   ======================================== */
+
+/* Focus States */
+*:focus-visible {
+  outline: 2px solid #64D2FF !important;
+  outline-offset: 3px !important;
+  border-radius: 6px !important;
+}
+
+/* High Contrast Support */
+@media (prefers-contrast: high) {
+  :root {
+    --apple-label: #FFFFFF !important;
+    --apple-secondary-label: rgba(255, 255, 255, 0.85) !important;
+    --quantum-electric-indigo: #007AFF !important;
+  }
+  
+  .facets,
+  .product-form {
+    border: 2px solid #FFFFFF !important;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   DARK MODE OPTIMIZATION
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --apple-label: #FFFFFF;
+    --apple-secondary-label: rgba(255, 255, 255, 0.6);
+    --apple-tertiary-label: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+
+@media print {
+  .facets {
+    display: none !important;
+  }
+  
+  .product__title,
+  .product__text,
+  .price {
+    color: #000000 !important;
+    background: transparent !important;
+  }
+}

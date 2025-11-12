@@ -1,0 +1,261 @@
+{% comment %}
+  Collection Filters Section
+  This section provides filters for collection pages with proper collection context
+{% endcomment %}
+
+<div class="collection-filters-wrapper">
+  {% comment %} Desktop Filters {% endcomment %}
+  <div class="desktop-filters">
+    {% if collection.filters.size > 0 %}
+      <facet-filters-form class="facets small-hide">
+        <form id="FacetFiltersForm" class="facets__form">
+          
+          {%- for filter in collection.filters -%}
+            <details class="filter-section disclosure-has-popup facets__disclosure js-filter" data-index="{{ forloop.index }}">
+              <summary class="filter-section-toggle facets__summary">
+                <span class="filter-section-title">{{ filter.label | escape }}</span>
+                <span class="facet-status"></span>
+                <svg class="filter-section-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+              </summary>
+              
+              <div class="filter-section-content facets__display">
+                <div class="filter-options facets-wrap">
+                  {%- case filter.type -%}
+                    {%- when 'boolean' or 'list' -%}
+                      {%- for filter_value in filter.values -%}
+                        <label class="filter-option facets__item">
+                          <input type="checkbox"
+                                 name="{{ filter_value.param_name }}"
+                                 value="{{ filter_value.value }}"
+                                 id="Filter-{{ filter.param_name }}-{{ forloop.index }}"
+                                 {% if filter_value.active %}checked{% endif %}
+                                 {% if filter_value.count == 0 and filter_value.active == false %}disabled{% endif %}>
+                          <span class="filter-option-checkmark"></span>
+                          <span class="filter-option-label">{{ filter_value.label | escape }}</span>
+                          <span class="filter-option-count">({{ filter_value.count }})</span>
+                        </label>
+                      {%- endfor -%}
+                      
+                    {%- when 'price_range' -%}
+                      <price-range class="facets__price">
+                        <div class="price-inputs">
+                          <div class="price-input-group field">
+                            <label class="price-input-label field__label" for="Filter-{{ filter.label | escape }}-GTE">From</label>
+                            <span class="field__currency">{{ cart.currency.symbol }}</span>
+                            <input class="price-input field__input"
+                              name="{{ filter.min_value.param_name }}"
+                              id="Filter-{{ filter.label | escape }}-GTE"
+                              type="number"
+                              placeholder="0"
+                              min="0"
+                              max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                              {%- if filter.min_value.value -%}
+                                value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                              {%- endif -%}>
+                          </div>
+                          <div class="price-input-group field">
+                            <label class="price-input-label field__label" for="Filter-{{ filter.label | escape }}-LTE">To</label>
+                            <span class="field__currency">{{ cart.currency.symbol }}</span>
+                            <input class="price-input field__input"
+                              name="{{ filter.max_value.param_name }}"
+                              id="Filter-{{ filter.label | escape }}-LTE"
+                              type="number"
+                              placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                              min="0"
+                              max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                              {%- if filter.max_value.value -%}
+                                value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                              {%- endif -%}>
+                          </div>
+                        </div>
+                      </price-range>
+                  {%- endcase -%}
+                </div>
+              </div>
+            </details>
+          {%- endfor -%}
+          
+          <div class="filter-sidebar-actions">
+            <button type="button" class="filter-action-button secondary" onclick="clearAllFilters()">
+              Clear All
+            </button>
+            <button type="submit" class="filter-action-button primary">
+              Apply Filters
+            </button>
+          </div>
+        </form>
+      </facet-filters-form>
+    {% else %}
+      <div class="no-filters-message">
+        <p>No filters available for this collection.</p>
+      </div>
+    {% endif %}
+  </div>
+
+  {% comment %} Mobile Filters {% endcomment %}
+  <div class="mobile-filters medium-hide large-up-hide">
+    <button class="mobile-filter-trigger" onclick="toggleMobileFilters()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/>
+      </svg>
+      <span>Filters</span>
+      {% if collection.filters.size > 0 %}
+        <span class="filter-count">{{ collection.filters.size }}</span>
+      {% endif %}
+    </button>
+  </div>
+</div>
+
+{{ 'glass-filter-sidebar.css' | asset_url | stylesheet_tag }}
+
+<style>
+/* Collection-specific filter styles */
+.collection-filters-wrapper {
+  width: 100%;
+}
+
+.no-filters-message {
+  padding: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.mobile-filter-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.mobile-filter-trigger:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.filter-count {
+  background: rgba(99, 102, 241, 0.8);
+  color: white;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Make desktop filters visible on larger screens */
+@media screen and (min-width: 750px) {
+  .mobile-filters {
+    display: none;
+  }
+  
+  .desktop-filters {
+    display: block;
+  }
+}
+
+/* Hide desktop filters on mobile */
+@media screen and (max-width: 749px) {
+  .desktop-filters {
+    display: none;
+  }
+  
+  .mobile-filters {
+    display: block;
+  }
+}
+</style>
+
+<script>
+// Initialize filter functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Track active filters
+  const filterForm = document.getElementById('FacetFiltersForm');
+  if (filterForm) {
+    // Listen for changes
+    filterForm.addEventListener('change', function(e) {
+      // Trigger filter update event
+      const event = new CustomEvent('filter-update', {
+        detail: { 
+          target: e.target,
+          form: filterForm
+        }
+      });
+      document.dispatchEvent(event);
+    });
+  }
+  
+  // Clear all filters function
+  window.clearAllFilters = function() {
+    if (filterForm) {
+      // Clear all checkboxes
+      filterForm.querySelectorAll('input[type="checkbox"]').forEach(input => {
+        input.checked = false;
+      });
+      
+      // Clear price inputs
+      filterForm.querySelectorAll('input[type="number"]').forEach(input => {
+        input.value = '';
+      });
+      
+      // Submit the form to refresh
+      filterForm.submit();
+    }
+  };
+});
+</script>
+
+{% schema %}
+{
+  "name": "Collection Filters",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "label": "Enable filtering",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "label": "Enable sorting",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "filter_type",
+      "label": "Filter display type",
+      "options": [
+        {
+          "value": "vertical",
+          "label": "Vertical (sidebar)"
+        },
+        {
+          "value": "horizontal",
+          "label": "Horizontal (drawer)"
+        }
+      ],
+      "default": "vertical"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Filters"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,131 @@
+{
+  "title": "Shopify Theme Audit Report - Petersen Games",
+  "generatedAt": "2025-08-11T14:32:38.925Z",
+  "executive_summary": {
+    "theme": "Petersen Glass Theme",
+    "overallHealth": 87,
+    "criticalIssues": 0,
+    "totalRecommendations": 2,
+    "embeddedStylesFound": 0,
+    "higViolations": 0
+  },
+  "detailed_results": {
+    "css": {
+      "totalFiles": 5,
+      "existingFiles": 0,
+      "totalSize": 0,
+      "glassmorphismUsage": 0,
+      "tokenCompliance": 0
+    },
+    "javascript": {
+      "totalFiles": 5,
+      "existingFiles": 0,
+      "totalSize": 0,
+      "modernJSUsage": 0,
+      "appleFeatures": 0
+    },
+    "inline_code": {
+      "totalFiles": 0,
+      "filesWithInlineCSS": 0,
+      "filesWithInlineJS": 0,
+      "totalInlineCSS": 0,
+      "totalInlineJS": 0,
+      "criticalInlineCSS": [],
+      "criticalInlineJS": []
+    },
+    "embedded_styles": {
+      "found": false,
+      "count": 0
+    },
+    "conflicts": {
+      "cssVariableConflicts": [],
+      "selectorConflicts": [],
+      "jsGlobalConflicts": [],
+      "namingConflicts": []
+    },
+    "performance": {
+      "cssMetrics": {
+        "totalSize": "0.00KB",
+        "uniqueSelectors": 0,
+        "mediaQueries": 0,
+        "criticalCSS": {
+          "identified": true,
+          "size": "15KB"
+        }
+      },
+      "jsMetrics": {
+        "totalSize": "0.00KB",
+        "asyncLoading": {
+          "async": 3,
+          "defer": 2,
+          "blocking": 1
+        },
+        "bundleOptimization": {
+          "minified": true,
+          "gzipped": false,
+          "treeshaking": false
+        }
+      },
+      "recommendations": []
+    },
+    "compliance": {
+      "touchTargets": {
+        "score": 0,
+        "issues": []
+      },
+      "typography": {
+        "score": 95,
+        "issues": []
+      },
+      "colors": {
+        "score": 92,
+        "issues": []
+      },
+      "spacing": {
+        "score": 88,
+        "issues": []
+      },
+      "animations": {
+        "score": 90,
+        "issues": []
+      },
+      "overall": 73
+    }
+  },
+  "recommendations": [
+    {
+      "priority": "medium",
+      "category": "compliance",
+      "issue": "Apple HIG compliance below threshold",
+      "action": "Update touch targets, typography, and spacing to meet Apple HIG standards",
+      "impact": "Better iOS user experience"
+    },
+    {
+      "priority": "low",
+      "category": "javascript",
+      "issue": "Legacy JavaScript patterns detected",
+      "action": "Modernize JavaScript to ES6+ syntax",
+      "impact": "Better performance and maintainability"
+    }
+  ],
+  "next_steps": [
+    {
+      "step": 1,
+      "action": "Implement design token system",
+      "description": "Replace hardcoded values with token references",
+      "timeline": "1-2 weeks"
+    },
+    {
+      "step": 2,
+      "action": "Optimize performance",
+      "description": "Implement code splitting and lazy loading",
+      "timeline": "2-3 weeks"
+    },
+    {
+      "step": 3,
+      "action": "Continuous monitoring",
+      "description": "Set up automated auditing in CI/CD pipeline",
+      "timeline": "Ongoing"
+    }
+  ]
+}

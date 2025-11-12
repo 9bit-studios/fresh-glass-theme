@@ -1,0 +1,344 @@
+{% doc %}
+  @prompt
+    breadcrumbs
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-breadcrumbs-{{ ai_gen_id }} {
+    padding: {{ block.settings.padding_top }}px 0 {{ block.settings.padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-breadcrumbs-nav-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: {{ block.settings.spacing }}px;
+    font-size: {{ block.settings.font_size }}px;
+    line-height: 1.4;
+  }
+
+  .ai-breadcrumbs-item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.spacing }}px;
+  }
+
+  .ai-breadcrumbs-link-{{ ai_gen_id }} {
+    color: {{ block.settings.link_color }};
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .ai-breadcrumbs-link-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.link_hover_color }};
+    text-decoration: underline;
+  }
+
+  .ai-breadcrumbs-current-{{ ai_gen_id }} {
+    color: {{ block.settings.current_color }};
+    font-weight: 500;
+  }
+
+  .ai-breadcrumbs-separator-{{ ai_gen_id }} {
+    color: {{ block.settings.separator_color }};font-size: {{ block.settings.separator_size }}px;
+    user-select: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-breadcrumbs-nav-{{ ai_gen_id }} {
+      font-size: {{ block.settings.font_size | times: 0.9 }}px;
+      gap: {{ block.settings.spacing | times: 0.8 }}px;
+    }
+
+    .ai-breadcrumbs-item-{{ ai_gen_id }} {
+      gap: {{ block.settings.spacing | times: 0.8 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-breadcrumbs-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <nav class="ai-breadcrumbs-nav-{{ ai_gen_id }}" aria-label="Breadcrumb">
+    <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+      <a href="{{ routes.root_url }}" class="ai-breadcrumbs-link-{{ ai_gen_id }}">
+        {{ block.settings.home_text }}
+      </a>
+    </div>
+
+    {% case template.name %}
+      {% when 'collection' %}
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            {{ collection.title }}
+          </span>
+        </div>{% when 'product' %}
+        {% if collection %}
+          <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+          <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+            <a href="{{ collection.url }}" class="ai-breadcrumbs-link-{{ ai_gen_id }}">
+              {{ collection.title }}
+            </a>
+          </div>
+        {% endif %}<span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            {{ product.title }}
+          </span>
+        </div>
+
+      {% when 'blog' %}
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            {{ blog.title }}
+          </span>
+        </div>
+
+      {% when 'article' %}
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}"><a href="{{ blog.url }}" class="ai-breadcrumbs-link-{{ ai_gen_id }}">
+            {{ blog.title }}
+          </a>
+        </div><span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            {{ article.title }}
+          </span>
+        </div>
+
+      {% when 'page' %}
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            {{ page.title }}
+          </span>
+        </div>
+
+      {% when 'search' %}
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            {% if search.performed %}
+              Search results for "{{ search.terms }}"
+            {% else %}
+              Search
+            {% endif %}
+          </span>
+        </div>
+
+      {% when 'cart' %}
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            Cart
+          </span>
+        </div>
+
+      {% when 'customers/account' %}
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            Account
+          </span>
+        </div>
+
+      {% when 'customers/login' %}
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            Login
+          </span>
+        </div>
+
+      {% when 'customers/register' %}
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            Register
+          </span>
+        </div>
+
+      {% when 'customers/order' %}
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}"><a href="{{ routes.account_url }}" class="ai-breadcrumbs-link-{{ ai_gen_id }}">
+            Account
+          </a>
+        </div>
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            Order {{ order.name }}
+          </span>
+        </div>
+
+      {% when 'customers/addresses' %}
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <a href="{{ routes.account_url }}" class="ai-breadcrumbs-link-{{ ai_gen_id }}">
+            Account
+          </a>
+        </div>
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            Addresses
+          </span>
+        </div>
+
+      {% when '404' %}
+        <span class="ai-breadcrumbs-separator-{{ ai_gen_id }}" aria-hidden="true">{{ block.settings.separator }}</span>
+        <div class="ai-breadcrumbs-item-{{ ai_gen_id }}">
+          <span class="ai-breadcrumbs-current-{{ ai_gen_id }}" aria-current="page">
+            Page not found
+          </span>
+        </div>
+    {% endcase %}
+  </nav>
+</div>
+
+{% schema %}
+{
+  "name": "Breadcrumbs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "home_text",
+      "label": "Home text",
+      "default": "Home"
+    },
+    {
+      "type": "select",
+      "id": "separator",
+      "label": "Separator",
+      "options": [
+        {
+          "value": "/",
+          "label": "/"
+        },
+        {
+          "value": ">",
+          "label": ">"
+        },
+        {
+          "value": "→",
+          "label": "→"
+        },
+        {
+          "value": "•",
+          "label": "•"
+        },
+        {
+          "value": "|",
+          "label": "|"
+        }
+      ],
+      "default": "/"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "min": 4,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "label": "Spacing",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "separator_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Separator size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link",
+      "default": "#007aff"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link hover",
+      "default": "#0056cc"
+    },
+    {
+      "type": "color",
+      "id": "current_color",
+      "label": "Current page",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator",
+      "default": "#cccccc"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 15
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumbs"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

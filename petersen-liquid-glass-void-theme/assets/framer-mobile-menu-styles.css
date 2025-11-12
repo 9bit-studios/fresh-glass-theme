@@ -1,0 +1,350 @@
+/* Framer Product Hub Mobile Menu Styles */
+/* Exact recreation of Framer's mobile menu animations and styling */
+
+:root {
+  /* Framer Product Hub Color Variables */
+  --framer-bg: #000000;
+  --framer-text: #FFFFFF;
+  --framer-text-secondary: rgba(255, 255, 255, 0.7);
+  --framer-text-tertiary: rgba(255, 255, 255, 0.5);
+  --framer-glass: rgba(255, 255, 255, 0.02);
+  --framer-glass-border: rgba(255, 255, 255, 0.1);
+  --framer-accent: #007AFF;
+  --framer-accent-soft: rgba(0, 122, 255, 0.1);
+  
+  /* Framer Spacing Scale */
+  --framer-space-1: 4px;
+  --framer-space-2: 8px;
+  --framer-space-3: 12px;
+  --framer-space-4: 16px;
+  --framer-space-5: 20px;
+  --framer-space-6: 24px;
+  --framer-space-8: 32px;
+  --framer-space-10: 40px;
+  --framer-space-12: 48px;
+  
+  /* Framer Border Radius */
+  --framer-radius-sm: 8px;
+  --framer-radius-md: 12px;
+  --framer-radius-lg: 16px;
+  --framer-radius-xl: 20px;
+  --framer-radius-2xl: 24px;
+  
+  /* Framer Shadows */
+  --framer-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --framer-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+  --framer-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --framer-shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.4);
+  
+  /* Framer Blur Effects */
+  --framer-blur-sm: blur(8px);
+  --framer-blur-md: blur(12px);
+  --framer-blur-lg: blur(16px);
+  --framer-blur-xl: blur(24px);
+}
+
+/* Mobile Header Container */
+.mobile-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: var(--framer-blur-lg);
+  -webkit-backdrop-filter: var(--framer-blur-lg);
+  border-bottom: 1px solid var(--framer-glass-border);
+  padding: var(--framer-space-4);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo img {
+  height: 32px;
+  width: auto;
+}
+
+/* Mobile Menu Toggle Button - Framer Style */
+.mobile-menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background: var(--framer-glass);
+  border: 1px solid var(--framer-glass-border);
+  border-radius: var(--framer-radius-lg);
+  cursor: pointer;
+  gap: 6px;
+  backdrop-filter: var(--framer-blur-sm);
+  -webkit-backdrop-filter: var(--framer-blur-sm);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.mobile-menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.mobile-menu-toggle:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.hamburger-line {
+  width: 20px;
+  height: 2px;
+  background: var(--framer-text);
+  border-radius: 1px;
+  transform-origin: center;
+}
+
+/* Menu Overlay - Framer Glassmorphic */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: var(--framer-blur-xl);
+  -webkit-backdrop-filter: var(--framer-blur-xl);
+  z-index: 200;
+  cursor: pointer;
+}
+
+/* Main Menu Panel - Framer Product Hub Style */
+.mobile-menu-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--framer-bg);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  
+  /* Framer glassmorphic background */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.98) 100%
+  );
+  backdrop-filter: var(--framer-blur-xl);
+  -webkit-backdrop-filter: var(--framer-blur-xl);
+}
+
+/* Menu Header */
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--framer-space-6) var(--framer-space-6) var(--framer-space-4);
+  border-bottom: 1px solid var(--framer-glass-border);
+  background: var(--framer-glass);
+}
+
+.menu-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--framer-text);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.menu-close {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--framer-glass);
+  border: 1px solid var(--framer-glass-border);
+  border-radius: var(--framer-radius-md);
+  color: var(--framer-text);
+  font-size: 1.5rem;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.menu-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+/* Menu Items */
+.menu-items {
+  flex: 1;
+  list-style: none;
+  margin: 0;
+  padding: var(--framer-space-4) 0;
+}
+
+.menu-item {
+  margin: 0;
+  padding: 0;
+}
+
+.menu-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--framer-space-5) var(--framer-space-6);
+  color: var(--framer-text);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  min-height: 64px; /* Framer touch target */
+}
+
+.menu-link:hover {
+  background: var(--framer-glass);
+  border-bottom-color: var(--framer-glass-border);
+  padding-left: calc(var(--framer-space-6) + var(--framer-space-2));
+}
+
+.menu-link:active {
+  transform: scale(0.98);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.menu-link-text {
+  flex: 1;
+}
+
+/* Framer-style hover indicator */
+.menu-link-indicator {
+  position: absolute;
+  left: var(--framer-space-6);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 24px;
+  background: var(--framer-accent);
+  border-radius: 2px;
+  margin-left: -8px;
+}
+
+/* Menu Badges - Framer Style */
+.menu-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--framer-accent);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: var(--framer-space-1) var(--framer-space-3);
+  border-radius: var(--framer-radius-sm);
+  min-width: 20px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* Menu Footer */
+.menu-footer {
+  padding: var(--framer-space-6);
+  border-top: 1px solid var(--framer-glass-border);
+  background: var(--framer-glass);
+}
+
+.menu-footer-content {
+  text-align: center;
+}
+
+.menu-footer-content p {
+  margin: 0;
+  color: var(--framer-text);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.menu-footer-subtitle {
+  color: var(--framer-text-secondary) !important;
+  font-weight: 400 !important;
+  font-size: 0.875rem !important;
+  margin-top: var(--framer-space-1) !important;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .mobile-menu-toggle {
+    display: none;
+  }
+  
+  .mobile-menu-panel,
+  .mobile-menu-overlay {
+    display: none;
+  }
+}
+
+/* High Contrast Support */
+@media (prefers-contrast: high) {
+  .menu-link {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .mobile-menu-toggle {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu-toggle,
+  .menu-link,
+  .menu-close {
+    transition: none;
+  }
+}
+
+/* Dark Mode Override (already dark by default) */
+@media (prefers-color-scheme: light) {
+  /* Keep dark theme even in light mode preference */
+  :root {
+    --framer-bg: #000000;
+    --framer-text: #FFFFFF;
+  }
+}
+
+/* Safari iOS Specific Fixes */
+@supports (-webkit-touch-callout: none) {
+  .mobile-menu-panel {
+    /* Fix for iOS Safari viewport issues */
+    min-height: -webkit-fill-available;
+  }
+  
+  .mobile-menu-toggle {
+    /* Better touch targets on iOS */
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Performance Optimizations */
+.mobile-menu-panel,
+.mobile-menu-overlay {
+  will-change: transform, opacity;
+}
+
+.menu-link {
+  will-change: transform, background-color;
+}
+
+.hamburger-line {
+  will-change: transform, opacity;
+}

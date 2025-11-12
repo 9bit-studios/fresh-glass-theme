@@ -1,0 +1,30 @@
+{% comment %}
+Glass Theme Fixes - Include navigation and product grid fixes
+Add this to your theme.liquid layout file in the <head> section
+{% endcomment %}
+
+{{ 'product-grid-rounded-fixes.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+Alternative method if you prefer inline styles:
+{% endcomment %}
+
+<style>
+/* Ensure glass navigation appears on all pages */
+.glass-top-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Critical sliding-nav-tabs visibility fix */
+.sliding-nav-container,
+.sliding-nav-tabs {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+</style>
+

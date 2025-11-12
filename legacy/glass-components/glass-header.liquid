@@ -1,0 +1,227 @@
+{% comment %}
+  Glass Header with Search Modal
+  Combines functional search from sliding-nav-tabs with glass styling
+{% endcomment %}
+
+<header class="glass-header-main">
+  <div class="glass-header-container">
+    
+    <!-- Logo Section -->
+    <div class="glass-logo-section">
+      {% if settings.logo %}
+        <a href="{{ routes.root_url }}" class="glass-logo-link">
+          <img src="{{ settings.logo | image_url: width: 173 }}" 
+               alt="{{ shop.name }}" 
+               class="glass-logo-image"
+               width="173" 
+               height="36">
+        </a>
+      {% else %}
+        <a href="{{ routes.root_url }}" class="glass-logo-text">
+          {{ shop.name }}
+        </a>
+      {% endif %}
+    </div>
+
+    <!-- Center Navigation Menu -->
+    <nav class="glass-menu-nav">
+      <div class="glass-menu-container">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'nav_item' %}
+              <a href="{{ block.settings.nav_url | default: '#' }}" 
+                 class="glass-menu-button {% if block.settings.is_active %}active{% endif %}">
+                <span class="glass-menu-text">{{ block.settings.nav_text | default: 'Menu' }}</span>
+              </a>
+          {% endcase %}
+        {% endfor %}
+        
+        <!-- Search Field -->
+        <div class="glass-search-field">
+          <button class="glass-search-trigger" onclick="toggleGlassSearch()">
+            <span class="glass-search-placeholder">Search for products...</span>
+            <div class="glass-search-button">
+              <svg class="glass-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Right Buttons -->
+    <div class="glass-buttons-section">
+      <button class="glass-button-toggle">
+        <span class="glass-button-text">Login</span>
+      </button>
+      
+      <!-- Rectangular Cart Button -->
+      <a href="/cart" class="glass-cart-button">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1z"/>
+        </svg>
+        <span class="glass-cart-text">Cart</span>
+        {% if cart.item_count > 0 %}
+          <span class="glass-cart-count">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
+      
+      <!-- Rectangular CTA Button -->
+      <div class="glass-cta-button">
+        <div class="glass-cta-content">
+          <span class="glass-cta-text">Explore</span>
+          <div class="glass-cta-highlight"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Enhanced Search Modal (from sliding-nav-tabs functionality) -->
+<div class="glass-search-overlay" id="glass-search-overlay">
+  <div class="glass-search-container">
+    <div class="glass-search-header">
+      <h3 class="glass-search-title">Search Products</h3>
+      <button class="glass-search-close" onclick="toggleGlassSearch()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+      </button>
+    </div>
+    
+    <form action="/search" method="get" class="glass-search-form">
+      <input type="search" 
+             name="q" 
+             placeholder="Search games, miniatures, expansions..." 
+             class="glass-search-input"
+             id="glass-search-input"
+             autocomplete="off">
+      <button type="submit" class="glass-search-submit">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+      </button>
+    </form>
+    
+    <div class="glass-search-suggestions">
+      <div class="glass-suggestion-category">
+        <h4 class="glass-suggestion-title">Popular Searches</h4>
+        <div class="glass-suggestion-links">
+          <a href="/collections/cthulhu-wars" onclick="closeGlassSearch()">Cthulhu Wars</a>
+          <a href="/collections/planet-apocalypse" onclick="closeGlassSearch()">Planet Apocalypse</a>
+          <a href="/collections/miniatures" onclick="closeGlassSearch()">Miniatures</a>
+          <a href="/collections/expansions" onclick="closeGlassSearch()">Expansions</a>
+          <a href="/collections/new-releases" onclick="closeGlassSearch()">New Releases</a>
+          <a href="/collections/sale" onclick="closeGlassSearch()">On Sale</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+function toggleGlassSearch() {
+  const overlay = document.getElementById('glass-search-overlay');
+  const input = document.getElementById('glass-search-input');
+  
+  overlay.classList.toggle('active');
+  
+  if (overlay.classList.contains('active')) {
+    setTimeout(() => input.focus(), 100);
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+}
+
+function closeGlassSearch() {
+  const overlay = document.getElementById('glass-search-overlay');
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeGlassSearch();
+  }
+});
+
+document.getElementById('glass-search-overlay').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeGlassSearch();
+  }
+});
+</script>
+
+{% schema %}
+{
+  "name": "Glass Header",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Glass Header Settings"
+    },
+    {
+      "type": "paragraph",
+      "content": "Sophisticated glass header with working search modal and oil slick styling."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_item",
+      "name": "Navigation Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "nav_text",
+          "label": "Navigation Text",
+          "default": "Menu"
+        },
+        {
+          "type": "url",
+          "id": "nav_url",
+          "label": "Navigation URL"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_active",
+          "label": "Set as Active",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glass Header",
+      "blocks": [
+        {
+          "type": "nav_item",
+          "settings": {
+            "nav_text": "Games",
+            "nav_url": "/collections/all"
+          }
+        },
+        {
+          "type": "nav_item",
+          "settings": {
+            "nav_text": "Miniatures",
+            "nav_url": "/collections/miniatures"
+          }
+        },
+        {
+          "type": "nav_item",
+          "settings": {
+            "nav_text": "Expansions",
+            "nav_url": "/collections/expansions"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

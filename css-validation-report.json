@@ -1,0 +1,3305 @@
+{
+  "filesScanned": 315,
+  "issuesFound": 22,
+  "embeddedStyles": [
+    {
+      "file": "blocks/_announcement.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_blog-post-card.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_blog-post-image.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_blog-post-info-text.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_cart-summary.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_cart-title.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_collection-card-image.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_collection-image.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_collection-info.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_featured-product-price.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_footer-copyright.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_footer-policy-list.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_header-logo.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 3,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_header-menu.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 6,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_image.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_inline-collection-title.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_inline-text.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_marquee.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_product-details.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_product-media-gallery.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 5,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_search-input.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/_slide.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/accordion.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/add-to-cart.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/buy-buttons.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/contact-form-submit-button.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/email-signup.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/filters.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 8,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/follow-on-shop.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/footer-utilities.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/icon.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/image.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 3,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/logo.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/menu.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/page.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/payment-icons.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/popup-link.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/price.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/product-inventory.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/product-recommendations.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/review.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 4,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/spacer.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "blocks/swatches.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/cart-products.liquid",
+      "issue": "Inline background styles",
+      "matches": 1,
+      "type": "liquid",
+      "examples": [
+        "style=\"background: var(--foundation-background-secondary);\""
+      ]
+    },
+    {
+      "file": "sections/cart-products.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 1,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/cart-title.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 1,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/collection-links.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/collection-list.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 3,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/component-showcase.liquid",
+      "issue": "Inline background styles",
+      "matches": 11,
+      "type": "liquid",
+      "examples": [
+        "style=\"background: rgba(139, 69, 19, 0.15);\"",
+        "style=\"background: linear-gradient(45deg, #667eea, #764ba2); height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;\""
+      ]
+    },
+    {
+      "file": "sections/component-showcase.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 21,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/custom-liquid.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/featured-product.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/footer.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/framer-hero.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 1,
+      "inlineStyles": 0,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/glass-filter-bar.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/glass-top-header.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 1,
+      "inlineStyles": 0,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/header-announcements.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/header.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 4,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/hero-glassmorphic.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 1,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/hero.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 4,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/main-404.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/main-blog-post.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/main-blog.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/main-collection.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/main-page.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/marquee.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/media-with-content.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/mobile-filter-sidebar.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 1,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/password.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/predictive-search.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/product-information.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/product-list.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 4,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/product-recommendations.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/search-header.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/search-results.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "sections/slideshow.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/button.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/card-gallery.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/cart-drawer.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/cart-note.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/cart-products.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 3,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/cart-summary.liquid",
+      "issue": "Inline background styles",
+      "matches": 1,
+      "type": "liquid",
+      "examples": [
+        "style=\"display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: var(--foundation-glass-subtle); border-radius: var(--foundation-radius-sm, 6px); margin-bottom: 8px;\""
+      ]
+    },
+    {
+      "file": "snippets/cart-summary.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 1,
+      "inlineStyles": 9,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/cart-title.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 1,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/collection-card.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/contact-form.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/divider.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/drawer-localization.liquid",
+      "issue": "Inline background styles",
+      "matches": 1,
+      "type": "liquid",
+      "examples": [
+        "style=\"                    background-image: url({{- localization.country | image_url: width: 32 }});                    --size-shadow: {{ flag_shadow_size }}px;                    --color-shadow: rgb(from var(--color-foreground) r g b / {{ flag_shadow_opacity }});                  \""
+      ]
+    },
+    {
+      "file": "snippets/drawer-localization.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 3,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/dropdown-localization.liquid",
+      "issue": "Inline background styles",
+      "matches": 1,
+      "type": "liquid",
+      "examples": [
+        "style=\"              background-image: url({{- localization.country | image_url: width: 32 }});              --size-shadow: {{ shadow_size }}px;              --color-shadow: rgb(from var(--color-foreground) r g b / {{ flag_shadow_opacity }});            \""
+      ]
+    },
+    {
+      "file": "snippets/dropdown-localization.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/editorial-collection-grid.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/editorial-product-grid.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/facets-actions.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/filters-toggle.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/group.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/header-drawer.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 12,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/header-menu.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/jumbo-text.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 3,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/list-filter.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/localization-form.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/media.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/mega-menu-list.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 6,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/overlay.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/predictive-search-empty-state.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/predictive-search.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/product-card-badges.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/product-card.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/product-details.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 1,
+      "inlineStyles": 7,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/product-grid.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/product-media-gallery-petersen.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 1,
+      "inlineStyles": 4,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/product-media-gallery.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 1,
+      "inlineStyles": 4,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/product-media.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/resource-card.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/resource-list-carousel.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/section.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 3,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/slideshow-controls.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/slideshow-slide.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/slideshow.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/spacing-padding.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/swatch.liquid",
+      "issue": "Inline background styles",
+      "matches": 1,
+      "type": "liquid",
+      "examples": [
+        "style=\"--swatch-background: {{ swatch_value }};{% if swatch.image and settings.show_variant_image == false %} --swatch-focal-point: {{ swatch.image.presentation.focal_point }};{% endif %}\""
+      ]
+    },
+    {
+      "file": "snippets/swatch.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/text.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/theme-styles-variables.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/typography-demo.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 5,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/typography-style.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/variant-main-picker.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 4,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/variant-quick-add.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 2,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "snippets/video.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 3,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "templates/cart.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 1,
+      "inlineStyles": 0,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "templates/product.liquid",
+      "issue": "Embedded CSS styles",
+      "styleBlocks": 0,
+      "inlineStyles": 1,
+      "type": "embedded",
+      "priority": "high"
+    },
+    {
+      "file": "assets/collection-links.js",
+      "issue": "JavaScript style injection",
+      "matches": 2,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty",
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/component-cart-items.js",
+      "issue": "JavaScript style injection",
+      "matches": 1,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/critical.js",
+      "issue": "JavaScript style injection",
+      "matches": 15,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty",
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/critical.js",
+      "issue": "Direct CSS variable injection",
+      "matches": 3,
+      "type": "javascript",
+      "examples": [
+        "document.documentElement.style",
+        "document.documentElement.style"
+      ]
+    },
+    {
+      "file": "assets/drag-zoom-wrapper.js",
+      "issue": "JavaScript style injection",
+      "matches": 3,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty",
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/header-drawer.js",
+      "issue": "JavaScript style injection",
+      "matches": 1,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/header-menu.js",
+      "issue": "JavaScript style injection",
+      "matches": 2,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty",
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/header.js",
+      "issue": "JavaScript style injection",
+      "matches": 2,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty",
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/localization.js",
+      "issue": "JavaScript style injection",
+      "matches": 1,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/marquee.js",
+      "issue": "JavaScript style injection",
+      "matches": 1,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/paginated-list.js",
+      "issue": "JavaScript style injection",
+      "matches": 1,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/predictive-search.js",
+      "issue": "JavaScript style injection",
+      "matches": 1,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/product-form.js",
+      "issue": "JavaScript style injection",
+      "matches": 6,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty",
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/scrolling.js",
+      "issue": "JavaScript style injection",
+      "matches": 1,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/utilities.js",
+      "issue": "JavaScript style injection",
+      "matches": 2,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty",
+        ".style.setProperty"
+      ]
+    },
+    {
+      "file": "assets/zoom-dialog.js",
+      "issue": "JavaScript style injection",
+      "matches": 4,
+      "type": "javascript",
+      "examples": [
+        ".style.setProperty",
+        ".style.setProperty"
+      ]
+    }
+  ],
+  "variableConflicts": [
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-base",
+      "definition": "--foundation-base: 8",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-px",
+      "definition": "--foundation-px: 1px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-micro",
+      "definition": "--foundation-micro: 2px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-tiny",
+      "definition": "--foundation-tiny: 4px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-xs",
+      "definition": "--foundation-xs: 8px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-sm",
+      "definition": "--foundation-sm: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-md",
+      "definition": "--foundation-md: 24px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-lg",
+      "definition": "--foundation-lg: 32px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-xl",
+      "definition": "--foundation-xl: 40px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-xxl",
+      "definition": "--foundation-xxl: 48px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-xxxl",
+      "definition": "--foundation-xxxl: 64px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-xxxxl",
+      "definition": "--foundation-xxxxl: 80px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-xxxxxl",
+      "definition": "--foundation-xxxxxl: 96px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-touch-target",
+      "definition": "--foundation-touch-target: 44px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-touch-target-large",
+      "definition": "--foundation-touch-target-large: 56px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-nav-height",
+      "definition": "--foundation-nav-height: 44px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-nav-height-mobile",
+      "definition": "--foundation-nav-height-mobile: 56px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-nav-padding",
+      "definition": "--foundation-nav-padding: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-content-padding",
+      "definition": "--foundation-content-padding: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-section-gap",
+      "definition": "--foundation-section-gap: 48px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-card-padding",
+      "definition": "--foundation-card-padding: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-card-gap",
+      "definition": "--foundation-card-gap: 24px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-input-height",
+      "definition": "--foundation-input-height: 44px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-input-padding",
+      "definition": "--foundation-input-padding: 12px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-form-gap",
+      "definition": "--foundation-form-gap: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-button-padding",
+      "definition": "--foundation-button-padding: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-sidebar-width",
+      "definition": "--foundation-sidebar-width: 280px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-sidebar-padding",
+      "definition": "--foundation-sidebar-padding: 24px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-content-max-width",
+      "definition": "--foundation-content-max-width: 1440px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-container-padding",
+      "definition": "--foundation-container-padding: 32px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-breakpoint-xs",
+      "definition": "--foundation-breakpoint-xs: 320px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-breakpoint-sm",
+      "definition": "--foundation-breakpoint-sm: 375px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-breakpoint-md",
+      "definition": "--foundation-breakpoint-md: 428px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-breakpoint-lg",
+      "definition": "--foundation-breakpoint-lg: 744px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-breakpoint-xl",
+      "definition": "--foundation-breakpoint-xl: 834px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-breakpoint-xxl",
+      "definition": "--foundation-breakpoint-xxl: 1024px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-breakpoint-xxxl",
+      "definition": "--foundation-breakpoint-xxxl: 1194px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-breakpoint-xxxxl",
+      "definition": "--foundation-breakpoint-xxxxl: 1440px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-breakpoint-xxxxxl",
+      "definition": "--foundation-breakpoint-xxxxxl: 1920px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-container-xs",
+      "definition": "--foundation-container-xs: 100%",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-container-sm",
+      "definition": "--foundation-container-sm: 100%",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-container-md",
+      "definition": "--foundation-container-md: 100%",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-container-lg",
+      "definition": "--foundation-container-lg: 100%",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-container-xl",
+      "definition": "--foundation-container-xl: 100%",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-container-xxl",
+      "definition": "--foundation-container-xxl: 960px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-container-xxxl",
+      "definition": "--foundation-container-xxxl: 1140px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-container-xxxxl",
+      "definition": "--foundation-container-xxxxl: 1320px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-container-xxxxxl",
+      "definition": "--foundation-container-xxxxxl: 1520px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-columns-mobile",
+      "definition": "--foundation-columns-mobile: 4",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-columns-tablet",
+      "definition": "--foundation-columns-tablet: 8",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-columns-desktop",
+      "definition": "--foundation-columns-desktop: 12",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gutter-xs",
+      "definition": "--foundation-gutter-xs: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gutter-sm",
+      "definition": "--foundation-gutter-sm: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gutter-md",
+      "definition": "--foundation-gutter-md: 20px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gutter-lg",
+      "definition": "--foundation-gutter-lg: 24px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gutter-xl",
+      "definition": "--foundation-gutter-xl: 24px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gutter-xxl",
+      "definition": "--foundation-gutter-xxl: 32px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gutter-xxxl",
+      "definition": "--foundation-gutter-xxxl: 32px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gutter-xxxxl",
+      "definition": "--foundation-gutter-xxxxl: 40px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gutter-xxxxxl",
+      "definition": "--foundation-gutter-xxxxxl: 40px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-margin-xs",
+      "definition": "--foundation-margin-xs: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-margin-sm",
+      "definition": "--foundation-margin-sm: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-margin-md",
+      "definition": "--foundation-margin-md: 24px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-margin-lg",
+      "definition": "--foundation-margin-lg: 32px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-margin-xl",
+      "definition": "--foundation-margin-xl: 32px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-margin-xxl",
+      "definition": "--foundation-margin-xxl: 48px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-margin-xxxl",
+      "definition": "--foundation-margin-xxxl: 48px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-margin-xxxxl",
+      "definition": "--foundation-margin-xxxxl: 64px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-margin-xxxxxl",
+      "definition": "--foundation-margin-xxxxxl: 64px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-bg-opacity",
+      "definition": "--foundation-quantum-bg-opacity: 0.05",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-bg-line-color",
+      "definition": "--foundation-quantum-bg-line-color: #5AC8FA",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-bg-line-width",
+      "definition": "--foundation-quantum-bg-line-width: 0.5px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-bg-cell-size",
+      "definition": "--foundation-quantum-bg-cell-size: 32px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-bg-perspective",
+      "definition": "--foundation-quantum-bg-perspective: 60deg",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-interface-opacity",
+      "definition": "--foundation-quantum-interface-opacity: 0.08",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-interface-line-color",
+      "definition": "--foundation-quantum-interface-line-color: #5AC8FA",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-interface-line-width",
+      "definition": "--foundation-quantum-interface-line-width: 0.5px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-interface-cell-size",
+      "definition": "--foundation-quantum-interface-cell-size: 24px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-interface-perspective",
+      "definition": "--foundation-quantum-interface-perspective: 45deg",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-feature-opacity",
+      "definition": "--foundation-quantum-feature-opacity: 0.08",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-feature-line-color",
+      "definition": "--foundation-quantum-feature-line-color: rgba(97, 63, 231, 0.2)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-feature-line-width",
+      "definition": "--foundation-quantum-feature-line-width: 1px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-feature-cell-size",
+      "definition": "--foundation-quantum-feature-cell-size: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-feature-perspective",
+      "definition": "--foundation-quantum-feature-perspective: 30deg",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-text-primary",
+      "definition": "--foundation-text-primary: #FFFFFF",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-text-secondary",
+      "definition": "--foundation-text-secondary: rgba(252, 253, 242, 0.85)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-text-tertiary",
+      "definition": "--foundation-text-tertiary: rgba(252, 253, 242, 0.7)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-text-quaternary",
+      "definition": "--foundation-text-quaternary: rgba(252, 253, 242, 0.6)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-text-placeholder",
+      "definition": "--foundation-text-placeholder: rgba(252, 253, 242, 0.45)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-primary",
+      "definition": "--foundation-background-primary: #000000",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-secondary",
+      "definition": "--foundation-background-secondary: #0D0D15",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-tertiary",
+      "definition": "--foundation-background-tertiary: #0A0A0F",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-elevated",
+      "definition": "--foundation-background-elevated: #0A0621",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-modal",
+      "definition": "--foundation-background-modal: #1E1F5C",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-glass-subtle",
+      "definition": "--foundation-glass-subtle: rgba(10, 6, 33, 0.4)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-glass-medium",
+      "definition": "--foundation-glass-medium: rgba(10, 6, 33, 0.6)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-glass-prominent",
+      "definition": "--foundation-glass-prominent: rgba(10, 6, 33, 0.8)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-ultradimensional-marine",
+      "definition": "--foundation-background-ultradimensional-marine: #0A0621",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-ultradimensional-violet",
+      "definition": "--foundation-background-ultradimensional-violet: #150621",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-mystic-midnight",
+      "definition": "--foundation-background-mystic-midnight: rgba(113, 0, 170, 0.0588235)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-mystic-deepspace",
+      "definition": "--foundation-background-mystic-deepspace: rgba(170, 0, 170, 0.0947)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-deep-space-night",
+      "definition": "--foundation-background-deep-space-night: #0D0D15",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-deep-space-violet",
+      "definition": "--foundation-background-deep-space-violet: #160918",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-multidimensional-midnight",
+      "definition": "--foundation-background-multidimensional-midnight: #0A0A0F",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-multidimensional-violet",
+      "definition": "--foundation-background-multidimensional-violet: #110413",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-void-black",
+      "definition": "--foundation-background-void-black: #000000",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-void-violet",
+      "definition": "--foundation-background-void-violet: #0B010D",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-dimensional-marine",
+      "definition": "--foundation-background-dimensional-marine: #1E1F5C",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-background-dimensional-violet",
+      "definition": "--foundation-background-dimensional-violet: #480F92",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-primary",
+      "definition": "--foundation-action-primary: #007AFF",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-secondary",
+      "definition": "--foundation-action-secondary: #504CF5",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-tertiary",
+      "definition": "--foundation-action-tertiary: #613FE7",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-accent",
+      "definition": "--foundation-action-accent: #EC4899",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-success",
+      "definition": "--foundation-action-success: #3DFF74",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-ar",
+      "definition": "--foundation-action-ar: #5AC8FA",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-hover-primary",
+      "definition": "--foundation-action-hover-primary: #0056CC",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-hover-secondary",
+      "definition": "--foundation-action-hover-secondary: #512cf9",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-hover-tertiary",
+      "definition": "--foundation-action-hover-tertiary: #5040D9",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-hover-success",
+      "definition": "--foundation-action-hover-success: #30D46E",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-hover-accent",
+      "definition": "--foundation-action-hover-accent: #5040D9",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-primary-blue",
+      "definition": "--foundation-action-primary-blue: #007AFF",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-secondary-marine",
+      "definition": "--foundation-action-secondary-marine: #504CF5",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-tertiary-violet",
+      "definition": "--foundation-action-tertiary-violet: #613FE7",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-accent-pink",
+      "definition": "--foundation-action-accent-pink: #EC4899",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-accent-green",
+      "definition": "--foundation-action-accent-green: #2C5F2D",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-accent-orange",
+      "definition": "--foundation-action-accent-orange: #FF4F52",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-primary-blue",
+      "definition": "--foundation-action-primary-blue: #5AC8FA",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-hover-liquid-marine",
+      "definition": "--foundation-hover-liquid-marine: #6366F1",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-hover-liquid-violet",
+      "definition": "--foundation-hover-liquid-violet: #9151F1",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-hover-liquid-pink",
+      "definition": "--foundation-hover-liquid-pink: #FF66E3",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-hover-liquid-orange",
+      "definition": "--foundation-hover-liquid-orange: #FF6B6B",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-hover-ultra-marine",
+      "definition": "--foundation-hover-ultra-marine: #512CF9",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-hover-ultra-violet",
+      "definition": "--foundation-hover-ultra-violet: #6E00FF",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-hover-ultra-pink",
+      "definition": "--foundation-hover-ultra-pink: #FF2D92",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-hover-dimensional-pink",
+      "definition": "--foundation-hover-dimensional-pink: #D0196B",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-action-plasma-green",
+      "definition": "--foundation-action-plasma-green: #3DFF74",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gradient-deep-spatial",
+      "definition": "--foundation-gradient-deep-spatial: linear-gradient(90deg, #0A0621 0%, #131A36 30%, #0A0621 70%, #0D0D15 100%)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gradient-spatial",
+      "definition": "--foundation-gradient-spatial: linear-gradient(90deg, #0A0621 -4.8%, #131A36 26.56%, #331F4A 68.37%, #0D0D15 99.73%)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gradient-quantum-depth",
+      "definition": "--foundation-gradient-quantum-depth: linear-gradient(90deg, #131A36 -0.02%, #331F4A 49.98%, #6A3093 99.98%)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-gradient-spatial-simple",
+      "definition": "--foundation-gradient-spatial-simple: linear-gradient(90deg, #0A0621 -0.02%, #131A36 99.98%)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-nav-height",
+      "definition": "--foundation-nav-height: 44px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-nav-mobile-height",
+      "definition": "--foundation-nav-mobile-height: 56px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-nav-z-index",
+      "definition": "--foundation-nav-z-index: 1000",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-nav-backdrop-filter",
+      "definition": "--foundation-nav-backdrop-filter: blur(20px) saturate(120%)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-nav-background",
+      "definition": "--foundation-nav-background: var(--foundation-background-primary)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-nav-border-bottom",
+      "definition": "--foundation-nav-border-bottom: 0.5px solid var(--foundation-glass-border)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-sidebar-width",
+      "definition": "--foundation-sidebar-width: 280px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-sidebar-mobile-width",
+      "definition": "--foundation-sidebar-mobile-width: 320px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-sidebar-z-index",
+      "definition": "--foundation-sidebar-z-index: 999",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-sidebar-background",
+      "definition": "--foundation-sidebar-background: var(--foundation-glass-subtle)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-sidebar-backdrop-filter",
+      "definition": "--foundation-sidebar-backdrop-filter: blur(24px) saturate(120%)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-sidebar-border-right",
+      "definition": "--foundation-sidebar-border-right: 0.5px solid var(--foundation-glass-border)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-content-max-width",
+      "definition": "--foundation-content-max-width: 1440px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-content-padding",
+      "definition": "--foundation-content-padding: 32px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-content-mobile-padding",
+      "definition": "--foundation-content-mobile-padding: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-content-tablet-padding",
+      "definition": "--foundation-content-tablet-padding: 24px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-card-border-radius",
+      "definition": "--foundation-card-border-radius: 14px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-card-padding",
+      "definition": "--foundation-card-padding: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-card-background",
+      "definition": "--foundation-card-background: var(--foundation-glass-subtle)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-card-backdrop-filter",
+      "definition": "--foundation-card-backdrop-filter: blur(16px) saturate(120%)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-card-border",
+      "definition": "--foundation-card-border: 0.5px solid var(--foundation-glass-border)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-card-box-shadow",
+      "definition": "--foundation-card-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--foundation-glass-border)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-modal-max-width",
+      "definition": "--foundation-modal-max-width: 600px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-modal-padding",
+      "definition": "--foundation-modal-padding: 32px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-modal-border-radius",
+      "definition": "--foundation-modal-border-radius: 20px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-modal-z-index",
+      "definition": "--foundation-modal-z-index: 2000",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-modal-background",
+      "definition": "--foundation-modal-background: var(--foundation-glass-prominent)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-modal-backdrop-filter",
+      "definition": "--foundation-modal-backdrop-filter: blur(40px) saturate(130%)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-modal-border",
+      "definition": "--foundation-modal-border: 1px solid var(--foundation-glass-border)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-modal-box-shadow",
+      "definition": "--foundation-modal-box-shadow: 0 32px 64px rgba(0, 0, 0, 0.6), inset 0 1px 0 var(--foundation-glass-border)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-background",
+      "definition": "--foundation-z-background: -10",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-base",
+      "definition": "--foundation-z-base: 0",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-above",
+      "definition": "--foundation-z-above: 10",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-overlay",
+      "definition": "--foundation-z-overlay: 100",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-dropdown",
+      "definition": "--foundation-z-dropdown: 200",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-sticky",
+      "definition": "--foundation-z-sticky: 300",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-header",
+      "definition": "--foundation-z-header: 400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-modal",
+      "definition": "--foundation-z-modal: 1000",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-popover",
+      "definition": "--foundation-z-popover: 1100",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-tooltip",
+      "definition": "--foundation-z-tooltip: 1200",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-toast",
+      "definition": "--foundation-z-toast: 1300",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-loading",
+      "definition": "--foundation-z-loading: 1400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-z-max",
+      "definition": "--foundation-z-max: 9999",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h1-size",
+      "definition": "--foundation-h1-size: 34px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h1-weight",
+      "definition": "--foundation-h1-weight: 700",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h1-line-height",
+      "definition": "--foundation-h1-line-height: 41px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h1-letter-spacing",
+      "definition": "--foundation-h1-letter-spacing: -0.5px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h2-size",
+      "definition": "--foundation-h2-size: 28px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h2-weight",
+      "definition": "--foundation-h2-weight: 600",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h2-line-height",
+      "definition": "--foundation-h2-line-height: 34px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h2-letter-spacing",
+      "definition": "--foundation-h2-letter-spacing: -0.3px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h3-size",
+      "definition": "--foundation-h3-size: 22px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h3-weight",
+      "definition": "--foundation-h3-weight: 600",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h3-line-height",
+      "definition": "--foundation-h3-line-height: 28px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h3-letter-spacing",
+      "definition": "--foundation-h3-letter-spacing: -0.2px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h4-size",
+      "definition": "--foundation-h4-size: 20px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h4-weight",
+      "definition": "--foundation-h4-weight: 600",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h4-line-height",
+      "definition": "--foundation-h4-line-height: 25px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h4-letter-spacing",
+      "definition": "--foundation-h4-letter-spacing: -0.1px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h5-size",
+      "definition": "--foundation-h5-size: 17px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h5-weight",
+      "definition": "--foundation-h5-weight: 600",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h5-line-height",
+      "definition": "--foundation-h5-line-height: 22px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h5-letter-spacing",
+      "definition": "--foundation-h5-letter-spacing: -0.05em",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h6-size",
+      "definition": "--foundation-h6-size: 15px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h6-weight",
+      "definition": "--foundation-h6-weight: 600",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-h6-line-height",
+      "definition": "--foundation-h6-line-height: 20px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-body-size",
+      "definition": "--foundation-body-size: 17px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-body-weight",
+      "definition": "--foundation-body-weight: 400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-body-line-height",
+      "definition": "--foundation-body-line-height: 22px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-body-letter-spacing",
+      "definition": "--foundation-body-letter-spacing: -0.022em",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-caption-size",
+      "definition": "--foundation-caption-size: 13px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-caption-weight",
+      "definition": "--foundation-caption-weight: 400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-caption-line-height",
+      "definition": "--foundation-caption-line-height: 18px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-large-title-size",
+      "definition": "--foundation-large-title-size: 34px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-large-title-weight",
+      "definition": "--foundation-large-title-weight: 700",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-large-title-line-height",
+      "definition": "--foundation-large-title-line-height: 41px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-title1-size",
+      "definition": "--foundation-title1-size: 28px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-title1-weight",
+      "definition": "--foundation-title1-weight: 400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-title1-line-height",
+      "definition": "--foundation-title1-line-height: 34px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-title2-size",
+      "definition": "--foundation-title2-size: 22px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-title2-weight",
+      "definition": "--foundation-title2-weight: 400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-title2-line-height",
+      "definition": "--foundation-title2-line-height: 28px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-title3-size",
+      "definition": "--foundation-title3-size: 20px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-title3-weight",
+      "definition": "--foundation-title3-weight: 400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-title3-line-height",
+      "definition": "--foundation-title3-line-height: 25px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-headline-size",
+      "definition": "--foundation-headline-size: 17px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-headline-weight",
+      "definition": "--foundation-headline-weight: 600",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-headline-line-height",
+      "definition": "--foundation-headline-line-height: 22px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-interface-body-size",
+      "definition": "--foundation-interface-body-size: 17px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-interface-body-weight",
+      "definition": "--foundation-interface-body-weight: 400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-interface-body-line-height",
+      "definition": "--foundation-interface-body-line-height: 22px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-callout-size",
+      "definition": "--foundation-callout-size: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-callout-weight",
+      "definition": "--foundation-callout-weight: 400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-callout-line-height",
+      "definition": "--foundation-callout-line-height: 21px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-subheadline-size",
+      "definition": "--foundation-subheadline-size: 15px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-subheadline-weight",
+      "definition": "--foundation-subheadline-weight: 400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-subheadline-line-height",
+      "definition": "--foundation-subheadline-line-height: 20px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-footnote-size",
+      "definition": "--foundation-footnote-size: 13px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-footnote-weight",
+      "definition": "--foundation-footnote-weight: 400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-footnote-line-height",
+      "definition": "--foundation-footnote-line-height: 18px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-caption1-size",
+      "definition": "--foundation-caption1-size: 12px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-caption1-weight",
+      "definition": "--foundation-caption1-weight: 400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-caption1-line-height",
+      "definition": "--foundation-caption1-line-height: 16px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-caption2-size",
+      "definition": "--foundation-caption2-size: 11px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-caption2-weight",
+      "definition": "--foundation-caption2-weight: 400",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-caption2-line-height",
+      "definition": "--foundation-caption2-line-height: 13px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-rhythm-tight",
+      "definition": "--foundation-rhythm-tight: 1.2",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-rhythm-normal",
+      "definition": "--foundation-rhythm-normal: 1.5",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-rhythm-relaxed",
+      "definition": "--foundation-rhythm-relaxed: 1.8",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-rhythm-loose",
+      "definition": "--foundation-rhythm-loose: 2.0",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-section-xs",
+      "definition": "--foundation-section-xs: 32px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-section-sm",
+      "definition": "--foundation-section-sm: 48px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-section-md",
+      "definition": "--foundation-section-md: 64px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-section-lg",
+      "definition": "--foundation-section-lg: 80px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-section-xl",
+      "definition": "--foundation-section-xl: 96px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-component-related",
+      "definition": "--foundation-component-related: 8px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-component-unrelated",
+      "definition": "--foundation-component-unrelated: 24px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-component-sections",
+      "definition": "--foundation-component-sections: 48px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-component-features",
+      "definition": "--foundation-component-features: 64px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-state-default-opacity",
+      "definition": "--foundation-state-default-opacity: 1",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-state-default-transform",
+      "definition": "--foundation-state-default-transform: scale(1)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-state-hover-opacity",
+      "definition": "--foundation-state-hover-opacity: 0.8",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-state-hover-transform",
+      "definition": "--foundation-state-hover-transform: scale(1.02)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-state-active-opacity",
+      "definition": "--foundation-state-active-opacity: 0.9",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-state-active-transform",
+      "definition": "--foundation-state-active-transform: scale(0.98)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-state-disabled-opacity",
+      "definition": "--foundation-state-disabled-opacity: 0.4",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-state-disabled-transform",
+      "definition": "--foundation-state-disabled-transform: scale(1)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-state-loading-opacity",
+      "definition": "--foundation-state-loading-opacity: 0.6",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-state-loading-transform",
+      "definition": "--foundation-state-loading-transform: scale(1)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-focus-outline",
+      "definition": "--foundation-focus-outline: 2px solid #007AFF",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-focus-outline-offset",
+      "definition": "--foundation-focus-outline-offset: 2px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-focus-border-radius",
+      "definition": "--foundation-focus-border-radius: 4px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-materialized-opacity",
+      "definition": "--foundation-quantum-materialized-opacity: 1",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-materialized-filter",
+      "definition": "--foundation-quantum-materialized-filter: blur(0px)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-materialized-scale",
+      "definition": "--foundation-quantum-materialized-scale: 1",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-transitional-opacity",
+      "definition": "--foundation-quantum-transitional-opacity: 0.8",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-transitional-filter",
+      "definition": "--foundation-quantum-transitional-filter: blur(1px)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-transitional-scale",
+      "definition": "--foundation-quantum-transitional-scale: 0.98",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-energy-opacity",
+      "definition": "--foundation-quantum-energy-opacity: 0.9",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-energy-filter",
+      "definition": "--foundation-quantum-energy-filter: blur(0px)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-energy-scale",
+      "definition": "--foundation-quantum-energy-scale: 1.02",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-superposition-opacity",
+      "definition": "--foundation-quantum-superposition-opacity: 0.7",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-superposition-filter",
+      "definition": "--foundation-quantum-superposition-filter: blur(2px)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-quantum-superposition-scale",
+      "definition": "--foundation-quantum-superposition-scale: 0.95",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-elevation-flat-shadow",
+      "definition": "--foundation-elevation-flat-shadow: none",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-elevation-flat-z-index",
+      "definition": "--foundation-elevation-flat-z-index: 0",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-elevation-raised-shadow",
+      "definition": "--foundation-elevation-raised-shadow: 0 2px 4px rgba(0, 0, 0, 0.12)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-elevation-raised-z-index",
+      "definition": "--foundation-elevation-raised-z-index: 1",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-elevation-floating-shadow",
+      "definition": "--foundation-elevation-floating-shadow: 0 4px 8px rgba(0, 0, 0, 0.15)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-elevation-floating-z-index",
+      "definition": "--foundation-elevation-floating-z-index: 10",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-elevation-overlay-shadow",
+      "definition": "--foundation-elevation-overlay-shadow: 0 8px 16px rgba(0, 0, 0, 0.2)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-elevation-overlay-z-index",
+      "definition": "--foundation-elevation-overlay-z-index: 100",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-elevation-modal-shadow",
+      "definition": "--foundation-elevation-modal-shadow: 0 16px 32px rgba(0, 0, 0, 0.3)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-elevation-modal-z-index",
+      "definition": "--foundation-elevation-modal-z-index: 1000",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-glass-subtle-background",
+      "definition": "--foundation-glass-subtle-background: var(--foundation-glass-subtle)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-glass-subtle-backdrop-filter",
+      "definition": "--foundation-glass-subtle-backdrop-filter: blur(8px) saturate(120%)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-glass-subtle-shadow",
+      "definition": "--foundation-glass-subtle-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 var(--foundation-glass-border)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-glass-medium-background",
+      "definition": "--foundation-glass-medium-background: var(--foundation-glass-medium)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-glass-medium-backdrop-filter",
+      "definition": "--foundation-glass-medium-backdrop-filter: blur(16px) saturate(125%)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-glass-medium-shadow",
+      "definition": "--foundation-glass-medium-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--foundation-glass-border)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-glass-prominent-background",
+      "definition": "--foundation-glass-prominent-background: var(--foundation-glass-prominent)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-glass-prominent-backdrop-filter",
+      "definition": "--foundation-glass-prominent-backdrop-filter: blur(24px) saturate(130%)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/QuantumFoundation.css",
+      "variable": "--foundation-glass-prominent-shadow",
+      "definition": "--foundation-glass-prominent-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--foundation-glass-border)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/glass-foundation.css",
+      "variable": "--foundation-header-height",
+      "definition": "--foundation-header-height: 80px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/glass-foundation.css",
+      "variable": "--foundation-header-height",
+      "definition": "--foundation-header-height: 60px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/global-glass-theme.css",
+      "variable": "--foundation-header-height",
+      "definition": "--foundation-header-height: 80px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/global-glass-theme.css",
+      "variable": "--foundation-header-height",
+      "definition": "--foundation-header-height: 60px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/index.css",
+      "variable": "--foundation-header-height",
+      "definition": "--foundation-header-height: 80px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/index.css",
+      "variable": "--foundation-header-height",
+      "definition": "--foundation-header-height: 60px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/petersen_theme.css",
+      "variable": "--foundation-background-primary",
+      "definition": "--foundation-background-primary: #0a0a0a",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/petersen_theme.css",
+      "variable": "--foundation-background-secondary",
+      "definition": "--foundation-background-secondary: #141414",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/petersen_theme.css",
+      "variable": "--foundation-foreground-primary",
+      "definition": "--foundation-foreground-primary: #ffffff",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/petersen_theme.css",
+      "variable": "--foundation-foreground-secondary",
+      "definition": "--foundation-foreground-secondary: #a0a0a0",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/petersen_theme.css",
+      "variable": "--foundation-glass-subtle",
+      "definition": "--foundation-glass-subtle: rgba(255, 255, 255, 0.05)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/petersen_theme.css",
+      "variable": "--foundation-glass-medium",
+      "definition": "--foundation-glass-medium: rgba(255, 255, 255, 0.1)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/petersen_theme.css",
+      "variable": "--foundation-glass-prominent",
+      "definition": "--foundation-glass-prominent: rgba(255, 255, 255, 0.15)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/petersen_theme.css",
+      "variable": "--foundation-action-primary",
+      "definition": "--foundation-action-primary: var(--petersen-red-primary)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/petersen_theme.css",
+      "variable": "--foundation-action-primary-hover",
+      "definition": "--foundation-action-primary-hover: var(--petersen-red-light)",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/priority-foundation.css",
+      "variable": "--foundation-header-height",
+      "definition": "--foundation-header-height: 80px",
+      "issue": "Unauthorized foundation variable"
+    },
+    {
+      "file": "assets/priority-foundation.css",
+      "variable": "--foundation-header-height",
+      "definition": "--foundation-header-height: 60px",
+      "issue": "Unauthorized foundation variable"
+    }
+  ],
+  "hardCodedValues": [
+    {
+      "file": "assets/QuantumFoundation.css",
+      "values": [
+        "#5AC8FA",
+        "#5AC8FA",
+        "rgba(97, 63, 231, 0.2)",
+        "#FFFFFF",
+        "rgba(252, 253, 242, 0.85)"
+      ],
+      "count": 80
+    },
+    {
+      "file": "assets/base.css",
+      "values": [
+        "#0A0621",
+        "#131A36",
+        "#331F4A",
+        "#0D0D15",
+        "rgba(0, 0, 0, 0.8)"
+      ],
+      "count": 52
+    },
+    {
+      "file": "assets/cart.css",
+      "values": [
+        "#000000",
+        "#FFFFFF",
+        "rgba(255,255,255,0.7)",
+        "rgba(255,255,255,0.5)",
+        "#007AFF"
+      ],
+      "count": 20
+    },
+    {
+      "file": "assets/facets.css",
+      "values": [
+        "rgba(30, 27, 75, 0.95)",
+        "rgba(45, 27, 105, 0.9)",
+        "rgba(49, 46, 129, 0.85)",
+        "rgba(76, 29, 149, 0.8)",
+        "rgba(30, 27, 75, 0.95)"
+      ],
+      "count": 53
+    },
+    {
+      "file": "assets/glass-foundation.css",
+      "values": [
+        "#000000",
+        "#FCFDF2",
+        "rgba(252, 253, 242, 0.8)",
+        "#19bcfe",
+        "rgba(25, 188, 254, 0.1)"
+      ],
+      "count": 52
+    },
+    {
+      "file": "assets/global-glass-theme.css",
+      "values": [
+        "#000000",
+        "#000000",
+        "rgba(255, 255, 255, 0.05)",
+        "rgba(255, 255, 255, 0.1)",
+        "rgba(255, 255, 255, 0.2)"
+      ],
+      "count": 48
+    },
+    {
+      "file": "assets/index.css",
+      "values": [
+        "#000000",
+        "#FCFDF2",
+        "rgba(252, 253, 242, 0.8)",
+        "#19bcfe",
+        "rgba(25, 188, 254, 0.1)"
+      ],
+      "count": 52
+    },
+    {
+      "file": "assets/petersen_theme.css",
+      "values": [
+        "#8B0000",
+        "#FF0000",
+        "#FF3333",
+        "rgba(255, 0, 0, 0.1)",
+        "rgba(139, 0, 0, 0.1)"
+      ],
+      "count": 28
+    },
+    {
+      "file": "assets/priority-foundation.css",
+      "values": [
+        "#000000",
+        "#FCFDF2",
+        "rgba(252, 253, 242, 0.8)",
+        "#19bcfe",
+        "rgba(25, 188, 254, 0.1)"
+      ],
+      "count": 157
+    },
+    {
+      "file": "assets/product.css",
+      "values": [
+        "#000000",
+        "#FFFFFF",
+        "rgba(255,255,255,0.7)",
+        "rgba(255,255,255,0.5)",
+        "#007AFF"
+      ],
+      "count": 12
+    },
+    {
+      "file": "assets/quantumspatial-color-tokens.css",
+      "values": [
+        "#FCFDF2",
+        "#1A1B26",
+        "#33313A",
+        "#3F3F4B",
+        "#FCFDF2"
+      ],
+      "count": 53
+    },
+    {
+      "file": "assets/quantumspatial-tokens.css",
+      "values": [
+        "#000000",
+        "#0A0A0F",
+        "#15151D",
+        "rgba(10, 10, 15, 0.85)",
+        "rgba(21, 21, 29, 0.9)"
+      ],
+      "count": 35
+    }
+  ],
+  "fixes": [
+    {
+      "priority": "high",
+      "action": "Create foundation-overrides.css",
+      "description": "Force foundation variables with !important",
+      "command": "npm run generate:tokens"
+    },
+    {
+      "priority": "high",
+      "action": "Extract embedded styles",
+      "description": "Extract 147 embedded style blocks",
+      "command": "npm run extract:styles",
+      "files": [
+        "blocks/_announcement.liquid",
+        "blocks/_blog-post-card.liquid",
+        "blocks/_blog-post-image.liquid"
+      ]
+    },
+    {
+      "priority": "medium",
+      "action": "Clean up variable conflicts",
+      "description": "Resolve 320 variable conflicts",
+      "command": "npm run enforce:variables"
+    },
+    {
+      "priority": "low",
+      "action": "Replace hard-coded values",
+      "description": "Convert hard-coded colors to CSS variables",
+      "files": [
+        "assets/QuantumFoundation.css",
+        "assets/base.css",
+        "assets/cart.css"
+      ]
+    }
+  ]
+}

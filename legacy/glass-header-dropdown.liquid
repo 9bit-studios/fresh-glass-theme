@@ -1,0 +1,1618 @@
+{% comment %}
+  Glass Top Header - With Search Modal
+  Main header component with logo, navigation, search, and cart
+{% endcomment %}
+
+<header class="glass-top-header">
+  <div class="glass-header-container">
+    
+    <!-- Logo Section -->
+    <div class="glass-logo-section">
+      <a href="{{ routes.root_url }}" class="glass-logo-link">
+        {% if section.settings.logo %}
+          <img src="https://res.cloudinary.com/ninebitstudios/image/upload/v1750063966/PetersenGames-logo_ka1koe.png" 
+               alt="{{ shop.name }}" 
+               class="glass-logo-image"
+               width="180" 
+               height="36">
+        {% else %}
+          <span class="glass-logo-image">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+    </div>
+
+    <!-- Navigation Menu Section -->
+    <nav class="glass-navigation" id="glass-navigation">
+      <div class="glass-nav-container">
+        <!-- Mega Dropdown Toggle Button -->
+        <div class="nav-dropdown">
+          <button class="dropdown-toggle" onclick="toggleMegaDropdown()" aria-expanded="false" aria-haspopup="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+            <span>Browse Games</span>
+            <svg class="dropdown-arrow" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 10l5 5 5-5z"/>
+            </svg>
+          </button>
+          
+          <div class="mega-dropdown" id="megaDropdown">
+            <div class="dropdown-column">
+              <div class="column-header">Collections</div>
+              <a href="/collections/sandys-games" class="dropdown-item featured">
+                <span>Sandy's Games</span> 
+              </a>
+              <a href="/collections/larval-games" class="dropdown-item">
+                <span>Larval Games</span> 
+              </a>
+              <a href="/collections/featured-games" class="dropdown-item">
+                <span>Featured Games</span> 
+              </a>
+              <a href="/collections/miniatures-1" class="dropdown-item">
+                <span>Miniatures</span> 
+              </a>
+              <a href="/collections/all" class="dropdown-item">
+                <span>All Products</span> 
+              </a>
+            </div>
+            
+            <div class="dropdown-column">
+              <div class="column-header">Game Lines</div>
+              <a href="/collections/all?filter.p.tag=Cthulhu+Wars" class="dropdown-item featured">
+                <span>Cthulhu Wars</span> 
+              </a>
+              <a href="/collections/all?filter.p.tag=Cthulhu+Wars+Duel" class="dropdown-item">
+                <span>Cthulhu Wars</span> 
+              </a>
+              <a href="/collections/all?filter.p.tag=Planet+Apocalypse" class="dropdown-item">
+                <span>Planet Apocalypse</span> 
+              </a>
+              <a href="/collections/all?filter.p.tag=Hyperspace" class="dropdown-item">
+                <span>Hyperspace</span> 
+              </a>
+              <a href="/collections/all?filter.p.tag=8+Bit+Attack" class="dropdown-item">
+                <span>8 Bit Attac</span> k
+              </a>
+              <a href="/collections/all?filter.p.tag=The+Gods+War" class="dropdown-item">
+                <span>⚡The Gods War</span> 
+              </a>
+              <a href="/collections/all?filter.p.tag=Evil+High+Priest" class="dropdown-item">
+                <span>Evil High Priest</span> 
+              </a>
+            </div>
+            
+            <div class="dropdown-column">
+              <div class="column-header">Product Categories</div>
+              <a href="/collections/all?filter.p.tag=category-core-games" class="dropdown-item">Core Games</a>
+              <a href="/collections/all?filter.p.tag=category-expansions" class="dropdown-item">Expansions</a>
+              <a href="/collections/all?filter.p.tag=category-accessories" class="dropdown-item">Accessories</a>
+              <a href="/collections/all?filter.p.tag=category-books" class="dropdown-item">Books & RPG</a>
+              <a href="/collections/all?filter.p.tag=subcategory-dice-sets" class="dropdown-item">Dice Sets</a>
+              <a href="/collections/all?filter.p.tag=subcategory-deluxe-upgrade" class="dropdown-item">Deluxe Upgrades</a>
+              <a href="/collections/all?sort_by=best-selling" class="dropdown-item">Best Sellers</a>
+              <a href="/collections/all?sort_by=created-descending" class="dropdown-item">New Arrivals</a>
+            </div>
+          </div>
+        </div>
+
+        {% for block in section.blocks %}
+          {% if block.type == 'navigation' %}
+            <div class="glass-menu-item" data-has-dropdown="{% if block.settings.menu.links.size > 0 %}true{% else %}false{% endif %}">
+              <button 
+                class="glass-nav-link"
+                {% if block.settings.menu.links.size > 0 %}
+                  onclick="toggleGlassDropdown(this)"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                {% else %}
+                  onclick="window.location.href='{{ block.settings.menu.url }}'"
+                {% endif %}
+              >
+                <span class="glass-nav-text">{{ block.settings.menu_title | default: block.settings.menu.title }}</span>
+                {% if block.settings.menu.links.size > 0 %}
+                  <svg class="glass-nav-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7 10l5 5 5-5z"/>
+                  </svg>
+                {% endif %}
+              </button>
+              
+              {% if block.settings.menu.links.size > 0 %}
+                <div class="glass-mega-dropdown" id="dropdown-{{ forloop.index }}">
+                  <div class="glass-dropdown-content">
+                    {% assign column_count = 0 %}
+                    {% for link in block.settings.menu.links limit: 9 %}
+                      {% assign column_count = column_count | plus: 1 %}
+                      <div class="glass-dropdown-column">
+                        <h4 class="glass-column-header">{{ link.title }}</h4>
+                        {% if link.links.size > 0 %}
+                          <ul class="glass-dropdown-links">
+                            {% for child_link in link.links limit: 8 %}
+                              <li>
+                                <a href="{{ child_link.url }}" class="glass-dropdown-item">
+                                  {{ child_link.title }}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% else %}
+                          <a href="{{ link.url }}" class="glass-dropdown-item glass-dropdown-item--single">
+                            View {{ link.title }}
+                          </a>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </nav>
+          
+    <!-- Right Actions Section -->
+    <div class="glass-actions-section">
+      
+      <!-- Search Button -->
+      <button class="glass-search-trigger" onclick="toggleSearch()" aria-label="Search">
+        <span class="glass-search-placeholder">Search</span>
+        <div class="glass-search-button">
+          <svg class="glass-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </button>
+
+      <!-- Account Toggle -->
+      {% if section.settings.show_account %}
+      <a href="{{ routes.account_url }}" class="glass-button-toggle" aria-label="Account">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </a>
+      {% endif %}
+
+      <!-- Cart Button -->
+      <a href="{{ routes.cart_url }}" class="glass-cart-button" id="cart-icon-bubble" aria-label="Cart">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M3 3h2l.4 2M7 13h10l4-8H5.4m1.6 8L5 3H3m4 10v6a2 2 0 002 2h8a2 2 0 002-2v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        {% if cart.item_count > 0 %}
+          <span class="glass-cart-count">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
+
+    </div>
+  </div>
+</header>
+
+<!-- Sliding Nav Tabs -->
+<nav class="sliding-nav-container" id="sliding-nav">
+  <div class="sliding-nav-inner">
+    <div class="nav-tabs-wrapper">
+      <div class="nav-tabs-scroll">
+        <a href="/collections/cthulhu-wars" class="nav-tab glass-tab">Cthulhu Wars</a>
+        <a href="/collections/planet-apocalypse" class="nav-tab glass-tab">Planet Apocalypse</a>
+        <a href="/collections/evil-high-priest" class="nav-tab glass-tab">Evil High Priest</a>
+        <a href="/collections/orcs-must-die" class="nav-tab glass-tab">Orcs Must Die</a>
+        <a href="/collections/expansions" class="nav-tab glass-tab">Expansions</a>
+        <a href="/collections/miniatures" class="nav-tab glass-tab">Miniatures</a>
+        <a href="/collections/new-releases" class="nav-tab glass-tab">New</a>
+      </div>
+    </div>
+    
+    <div class="nav-actions">
+      <button class="search-toggle glass-tab" onclick="toggleSearch()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+        <span class="search-text">Search</span>
+      </button>
+      
+      <a href="/cart" class="cart-toggle glass-tab">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1z"/>
+        </svg>
+        <span class="cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Search Modal -->
+<div class="search-overlay" id="search-overlay">
+  <div class="search-container">
+    <div class="search-header">
+      <h3>Search Products</h3>
+      <button class="search-close" onclick="closeSearch()" aria-label="Close search">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <form class="search-form" action="{{ routes.search_url }}" method="get">
+      <input type="search" 
+             name="q" 
+             class="search-input" 
+             id="search-input"
+             placeholder="Search for products..." 
+             value="{{ search.terms | escape }}"
+             autocomplete="off">
+      <button type="submit" class="search-submit">Search</button>
+    </form>
+
+    <div class="search-suggestions">
+      <div class="suggestion-category">
+        <h4>Popular Searches</h4>
+        <div class="suggestion-links">
+          <a href="{{ routes.search_url }}?q=cthulhu">Cthulhu Wars</a>
+          <a href="{{ routes.search_url }}?q=miniatures">Miniatures</a>
+          <a href="{{ routes.search_url }}?q=expansion">Expansions</a>
+          <a href="{{ routes.search_url }}?q=planet">Planet Apocalypse</a>
+          <a href="{{ routes.search_url }}?q=dice">Dice Games</a>
+          <a href="{{ routes.search_url }}?q=horror">Horror Games</a>
+        </div>
+      </div>
+
+      <div class="suggestion-category">
+        <h4>Categories</h4>
+        <div class="suggestion-links">
+          <a href="/collections/board-games">Board Games</a>
+          <a href="/collections/miniatures">Miniatures</a>
+          <a href="/collections/expansions">Expansions</a>
+          <a href="/collections/accessories">Accessories</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* ========================================
+   GLASS TOP HEADER STYLES
+======================================== */
+
+.glass-top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--glass-surface, rgba(8, 4, 21, 0.8));
+  backdrop-filter: var(--glass-effect, blur(40px) saturate(200%) brightness(110%));
+  -webkit-backdrop-filter: var(--glass-effect, blur(40px) saturate(200%) brightness(110%));
+  border-bottom: 0.5px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+}
+
+.glass-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--foundation-space-lg, 24px) var(--foundation-space-xl, 32px);
+  gap: var(--foundation-space-lg, 24px);
+  max-width: 1800px;
+  margin: 0 auto;
+  height: var(--foundation-header-height, 80px);
+  box-sizing: border-box;
+}
+
+/* Logo Section */
+.glass-logo-section {
+  display: flex;
+  align-items: center;
+  flex: none;
+  order: 0;
+}
+
+/* Navigation Section */
+.glass-navigation {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  order: 1;
+  position: relative;
+}
+
+.glass-nav-container {
+  display: flex;
+  align-items: left;
+  gap: var(--foundation-space-md, 16px);
+}
+
+.glass-menu-item {
+  position: relative;
+}
+
+.glass-nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-space-xs, 4px);
+  padding: 8px var(--foundation-space-md, 16px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-full, 24px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.2s ease);
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+  text-decoration: none;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  min-height: var(--foundation-touch-target, 44px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-nav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-nav-link[aria-expanded="true"] {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-nav-text {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.glass-nav-arrow {
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+
+.glass-nav-link[aria-expanded="true"] .glass-nav-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Glass Mega Dropdown */
+.glass-mega-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 10%;
+  transform: translateX(-50%);
+  background: rgba(8, 4, 21, 0.95);
+  backdrop-filter: blur(40px) saturate(200%) brightness(110%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(110%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-xl, 16px);
+  padding: var(--foundation-space-xl, 32px);
+  display: none;
+  min-width: 600px;
+  max-width: 90vw;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  z-index: 110;
+  animation: fadeInScale 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-mega-dropdown.active {
+  display: block;
+}
+
+.glass-dropdown-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--foundation-space-xl, 32px);
+  max-width: 100%;
+}
+
+.glass-dropdown-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.glass-column-header {
+  color: var(--foundation-accent-primary);
+  font-size: var(--foundation-text-xs, 12px);
+  font-weight: var(--foundation-font-weight-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 var(--foundation-space-md, 16px) 0;
+  padding-bottom: var(--foundation-space-sm, 8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+}
+
+.glass-dropdown-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.glass-dropdown-item {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: var(--foundation-radius-sm, 8px);
+  transition: var(--foundation-transition, all 0.2s ease);
+  font-size: var(--foundation-text-sm, 14px);
+  display: flex;
+  align-items: center;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  min-height: var(--foundation-touch-target, 44px);
+  font-weight: 400;
+}
+
+.glass-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  transform: translateX(4px);
+}
+
+
+.glass-dropdown-item--single:hover {
+  background: rgba(0, 122, 255, 0.2);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  transform: translateY(-1px);
+}
+
+.glass-logo-link {
+  display: block;
+  text-decoration: none;
+  transition: var(--foundation-transition, all 0.2s ease);
+}
+
+.glass-logo-link:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.glass-logo-image {
+  width: auto;
+  height: 36px;
+  max-width: 180px;
+}
+
+.glass-logo-text {
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--foundation-foreground-primary, #FCFDF2);
+}
+
+/* Desktop Navigation Tabs */
+  .desktop-nav-tabs {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    order: 1;
+  }
+
+  /* Hide desktop tabs on mobile */
+  @media (max-width: 767px) {
+    .desktop-nav-tabs {
+      display: none !important;
+    }
+  }
+  /* Desktop Nav Tabs Wrapper */
+  .desktop-nav-wrapper {
+    flex: 1;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  .desktop-nav-scroll {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 0.25rem 0;
+    justify-content: center;
+  }
+
+  .desktop-nav-scroll::-webkit-scrollbar { display: none; }
+
+  .desktop-glass-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 22px;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-family: 'SF Pro Rounded', var(--font-body-family);
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    cursor: pointer;
+    letter-spacing: 0px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-shrink: 0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .desktop-glass-tab:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white !important;
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .desktop-glass-tab.active {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: rgba(99, 102, 241, 0.3);
+    color: white !important;
+    box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2), inset 0 1px 0 rgba(255, 255, 255,
+  0.1);
+  }
+
+/* Mega Dropdown Container */
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-full, 24px);
+  padding: 8px var(--foundation-space-md, 16px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.2s ease);
+  font-size: 14px;
+  align: left;
+  font-weight: 400;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  min-height: var(--foundation-touch-target, 44px);
+  white-space: nowrap;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.dropdown-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-toggle[aria-expanded="true"] {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+  opacity: 0.7;
+}
+
+.dropdown-toggle[aria-expanded="true"] .dropdown-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.mega-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #060715  (.90);
+  backdrop-filter: blur(40px) saturate(200%) brightness(110%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(110%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-xl, 16px);
+  padding: var(--foundation-space-xl, 32px);
+  display: none;
+  min-width: 650px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  z-index: 110;
+}
+
+.mega-dropdown.active {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  animation: fadeInScale 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+.dropdown-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.column-header {
+  color: var(--foundation-accent-primary);
+  font-size: var(--foundation-text-xs, 12px);
+  font-weight: var(--foundation-font-weight-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--foundation-space-md, 16px);
+  padding-bottom: var(--foundation-space-sm, 8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+}
+
+.dropdown-item {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: var(--foundation-radius-sm, 8px);
+  transition: var(--foundation-transition, all 0.2s ease);
+  font-size: var(--foundation-text-sm, 14px);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-space-sm, 8px);
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  min-height: var(--foundation-touch-target, 44px);
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--foundation-foreground-primary);
+  transform: translateX(4px);
+}
+
+.dropdown-item.featured {
+  background: rgba(0, 122, 255, 0.1);
+  border: 1px solid rgba(0, 122, 255, 0.2);
+  color: var(--foundation-accent-primary);
+  font-weight: var(--foundation-font-weight-medium, 500);
+}
+
+.dropdown-item.featured:hover {
+  background: rgba(0, 122, 255, 0.2);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+}
+
+.glass-menu-container {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-space-sm, 8px);
+  padding: 2px;
+  border-radius: var(--foundation-radius-full, 32px);
+}
+
+.glass-menu-button {
+  display: flex;
+  align-items: center;
+  padding: var(--foundation-space-sm, 8px) var(--foundation-space-md, 16px);
+  gap: var(--foundation-space-sm, 8px);
+  height: 32px;
+  min-height: var(--foundation-touch-target, 44px);
+  border-radius: var(--foundation-radius-full, 32px);
+  text-decoration: none;
+  transition: var(--foundation-transition, all 0.2s ease);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.glass-menu-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transform: translateY(-1px);
+}
+
+.glass-menu-button.active {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+.glass-menu-text {
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--foundation-foreground-primary, #FCFDF2);
+}
+
+/* Right Actions Section */
+.glass-actions-section {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-space-sm, 8px);
+  flex: none;
+  order: 2;
+}
+
+/* Search Field */
+.glass-search-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 4px 4px var(--foundation-space-md, 16px);
+  gap: var(--foundation-space-sm, 8px);
+  width: 220px;
+  height: 40px;
+  min-height: var(--foundation-touch-target, 44px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-lg, 20px);
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.2s ease);
+}
+
+.glass-search-trigger:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.glass-search-placeholder {
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  font-weight: 300;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  flex: 1;
+}
+
+.glass-search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(179.94deg, #161630 1.62%, rgba(8, 4, 21, 0) 99.94%);
+  border-radius: var(--foundation-radius-lg, 20px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+}
+
+/* Button Toggles */
+.glass-button-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--foundation-space-sm, 8px);
+  width: 40px;
+  height: 40px;
+  min-height: var(--foundation-touch-target, 44px);
+  min-width: var(--foundation-touch-target, 44px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-md, 12px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.2s ease);
+}
+
+.glass-button-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Cart Button */
+.glass-cart-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--foundation-space-sm, 8px);
+  width: 40px;
+  height: 40px;
+  min-height: var(--foundation-touch-target, 44px);
+  min-width: var(--foundation-touch-target, 44px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-md, 12px);
+  color: var(--foundation-foreground-secondary, rgba(252, 253, 242, 0.8));
+  text-decoration: none;
+  transition: var(--foundation-transition, all 0.2s ease);
+  position: relative;
+}
+
+.glass-cart-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  transform: translateY(-1px);
+}
+
+.glass-cart-count {
+  background: var(--foundation-accent-primary, #007aff);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  border-radius: var(--foundation-radius-sm, 10px);
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 18px;
+  text-align: center;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+}
+
+/* ========================================
+   SEARCH MODAL STYLES
+======================================== */
+
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(8, 4, 21, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 200;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 10vh;
+}
+
+.search-overlay.active {
+  display: flex;
+}
+
+.search-container {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-xl, 16px);
+  padding: var(--foundation-space-xl, 24px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--foundation-space-lg, 20px);
+}
+
+.search-header h3 {
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+}
+
+.search-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: var(--foundation-space-sm, 8px);
+  border-radius: var(--foundation-radius-sm, 8px);
+  transition: var(--foundation-transition, all 0.2s ease);
+  min-height: var(--foundation-touch-target, 44px);
+  min-width: var(--foundation-touch-target, 44px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+}
+
+.search-form {
+  display: flex;
+  gap: var(--foundation-space-md, 12px);
+  margin-bottom: var(--foundation-space-xl, 24px);
+}
+
+.search-input {
+  flex: 1;
+  padding: 14px var(--foundation-space-md, 16px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--foundation-radius-md, 12px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  font-size: 16px;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  outline: none;
+  transition: var(--foundation-transition, all 0.2s ease);
+  min-height: var(--foundation-input-height, 44px);
+}
+
+.search-input:focus {
+  border-color: var(--foundation-accent-primary, #007aff);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.search-submit {
+  padding: 14px var(--foundation-space-xl, 24px);
+  background: var(--foundation-accent-primary, #007aff);
+  border: none;
+  border-radius: var(--foundation-radius-md, 12px);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  font-weight: 600;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.2s ease);
+  min-height: var(--foundation-touch-target, 44px);
+}
+
+.search-submit:hover {
+  background: #0056cc;
+  transform: translateY(-1px);
+}
+
+.search-suggestions {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: var(--foundation-space-lg, 20px);
+}
+
+.suggestion-category {
+  margin-bottom: var(--foundation-space-lg, 20px);
+}
+
+.suggestion-category:last-child {
+  margin-bottom: 0;
+}
+
+.suggestion-category h4 {
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  margin: 0 0 var(--foundation-space-md, 12px) 0;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  opacity: 0.8;
+}
+
+.suggestion-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--foundation-space-sm, 8px);
+}
+
+.suggestion-links a {
+  padding: 6px var(--foundation-space-md, 12px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-lg, 20px);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+  text-decoration: none;
+  transition: var(--foundation-transition, all 0.2s ease);
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.suggestion-links a:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  border-color: rgba(0, 122, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .glass-mega-dropdown {
+    min-width: 500px;
+  }
+  
+  .glass-dropdown-content {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--foundation-space-lg, 24px);
+  }
+  
+  /* Legacy dropdown styles */
+  .mega-dropdown {
+    min-width: 550px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--foundation-space-xl, 32px);
+  }
+  
+  .dropdown-column:last-child {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 1024px) {
+  .glass-header-container {
+    padding: var(--foundation-space-md, 16px) var(--foundation-space-lg, 24px);
+    gap: var(--foundation-space-md, 16px);
+  }
+  
+  .glass-search-trigger {
+    width: 180px;
+  }
+  
+  .glass-nav-container {
+    gap: var(--foundation-space-sm, 8px);
+  }
+  
+  .glass-nav-link {
+    padding: 6px var(--foundation-space-sm, 12px);
+    font-size: 13px;
+  }
+  
+  .glass-mega-dropdown {
+    min-width: 400px;
+    padding: var(--foundation-space-lg, 24px);
+  }
+  
+  .glass-dropdown-content {
+    gap: var(--foundation-space-md, 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .glass-header-container {
+    padding: 5px var(--foundation-space-md, 16px); /* Equal vertical padding */
+    height: 50px;
+    gap: var(--foundation-space-sm, 8px);
+    align-items: center; /* Center vertically */
+  }
+  
+  /* Hide navigation on mobile */
+  .glass-navigation {
+    display: none;
+  }
+  
+   /* Hide the desktop nav tabs on mobile */
+   .desktop-nav-tabs {
+    display: none;
+   }
+  
+  .dropdown-toggle {
+    padding: 10px 16px;
+    font-size: var(--foundation-text-sm, 14px);
+  }
+  
+  .mega-dropdown {
+    min-width: 90vw;
+    left: 5vw;
+    transform: none;
+    grid-template-columns: 1fr;
+    gap: var(--foundation-space-lg, 24px);
+    padding: var(--foundation-space-lg, 24px);
+  }
+  
+  .dropdown-column:last-child {
+    grid-column: span 1;
+  }
+  
+  .glass-menu-container {
+    gap: var(--foundation-space-xs, 4px);
+  }
+  
+  .glass-menu-button {
+    padding: 6px var(--foundation-space-sm, 8px);
+    font-size: 13px;
+  }
+  
+  /* Right Actions Section - Fix button overflow */
+  .glass-actions-section {
+    gap: var(--foundation-space-xs, 4px);
+    margin-right: 0;
+  }
+  
+  /* Make all action buttons consistent on mobile */
+  .glass-search-trigger,
+  .glass-button-toggle,
+  .glass-cart-button {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--foundation-radius-md, 12px);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Hide search placeholder text on mobile */
+  .glass-search-placeholder {
+    display: none;
+  }
+  
+  /* Remove the inner button styling on mobile */
+  .glass-search-trigger .glass-search-button {
+    background: none;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Remove margin that causes cart to overflow */
+  .glass-cart-button {
+    margin-right: 0;
+  }
+  
+  .glass-button-text {
+    display: none;
+  }
+  
+  .search-container {
+    width: 95%;
+    padding: var(--foundation-space-lg, 20px);
+  }
+  
+  .search-form {
+    flex-direction: column;
+}
+
+@media (max-width: 480px) {
+  .glass-header-container {
+    padding: var(--foundation-space-sm, 8px) var(--foundation-space-md, 12px);
+  }
+  
+  .glass-logo-image {
+    height: 28px;
+  }
+  
+  .glass-menu-button {
+    padding: 4px var(--foundation-space-xs, 6px);
+    font-size: 12px;
+  }
+  
+  /* Keep all action buttons the same on very small screens */
+  .glass-search-trigger,
+  .glass-button-toggle,
+  .glass-cart-button {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+  }
+  
+  .suggestion-links {
+    flex-direction: column;
+  }
+}
+
+/* ========================================
+   SLIDING NAV TABS STYLES
+   ======================================== */
+
+.sliding-nav-container {
+  position: sticky;
+  top: 80px; /* Stack below glass header */
+  width: 100%;
+  z-index: 95; /* Below main header but above content */
+  background: var(--glass-surface, rgba(8, 4, 21, 0.8));
+  backdrop-filter: var(--glass-effect, blur(40px) saturate(200%) brightness(110%));
+  -webkit-backdrop-filter: var(--glass-effect, blur(40px) saturate(200%) brightness(110%));
+  border-bottom: 0.5px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  margin-top: 0;
+}
+
+.sliding-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--foundation-space-lg, 24px) var(--foundation-space-xl, 32px);
+  gap: var(--foundation-space-lg, 24px);
+  max-width: 1800px;
+  margin: 0 auto;
+  height: 56px;
+  box-sizing: border-box;
+}
+
+.nav-tabs-wrapper {
+  flex: 1;
+  overflow: hidden;
+}
+
+.nav-tabs-scroll {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.25rem 0;
+}
+
+.nav-tabs-scroll::-webkit-scrollbar { 
+  display: none; 
+}
+
+.nav-tab, .glass-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 4px 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 22px;
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  letter-spacing: 0px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.nav-tab:hover, .glass-tab:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  transform: translateY(-1px);
+  border-color: rgba(0,122,255,0.3);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.search-toggle {
+  background: rgba(0,122,255,0.2) !important;
+  border-color: rgba(0,122,255,0.4) !important;
+  color: white !important;
+  font-size: 14px !important;
+  padding: 8px 12px !important;
+}
+
+.search-toggle:hover {
+  background: rgba(0,122,255,0.3) !important;
+  border-color: rgba(0,122,255,0.6) !important;
+}
+
+.search-text {
+  font-size: 14px !important;
+  color: white !important;
+  margin-left: 4px;
+}
+
+.cart-toggle {
+  background: rgba(255,255,255,0.05) !important;
+}
+
+.cart-count {
+  background: #007AFF;
+  color: white;
+  border-radius: 12px;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+  margin-left: 4px;
+}
+
+/* Mobile responsive for sliding nav */
+@media (max-width: 1024px) {
+  .sliding-nav-inner {
+    padding: var(--foundation-space-md, 16px) var(--foundation-space-lg, 24px);
+    gap: var(--foundation-space-md, 16px);
+  }
+}
+
+@media (max-width: 768px) {
+  .sliding-nav-inner { 
+    padding: var(--foundation-space-sm, 8px) var(--foundation-space-md, 16px);
+    height: 50px;
+  }
+  
+  .nav-tab, .glass-tab { 
+    min-height: 40px;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .search-text {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .sliding-nav-inner {
+    padding: var(--foundation-space-xs, 4px) var(--foundation-space-sm, 8px);
+  }
+  
+  .nav-tabs-scroll {
+    gap: 0.5rem;
+  }
+  
+  .nav-tab, .glass-tab {
+    padding: 4px 8px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+}
+</style>
+
+<script>
+// Search Modal Functionality
+function toggleSearch() {
+  const overlay = document.getElementById('search-overlay');
+  const input = document.getElementById('search-input');
+  
+  overlay.classList.toggle('active');
+  
+  if (overlay.classList.contains('active')) {
+    setTimeout(() => input.focus(), 100);
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+}
+
+function closeSearch() {
+  const overlay = document.getElementById('search-overlay');
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', function() {
+  // Close search on escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeSearch();
+    }
+  });
+
+  // Close search when clicking outside
+  const searchOverlay = document.getElementById('search-overlay');
+  if (searchOverlay) {
+    searchOverlay.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeSearch();
+      }
+    });
+  }
+
+  // Auto-submit on suggestion click
+  const suggestionLinks = document.querySelectorAll('.suggestion-links a');
+  suggestionLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) {
+        const searchTerm = this.textContent.trim();
+        searchInput.value = searchTerm;
+        closeSearch();
+        // Navigate to search results
+        window.location.href = this.href;
+      }
+    });
+  });
+});
+
+// Glass Mega Dropdown Functionality
+function toggleGlassDropdown(trigger) {
+  const menuItem = trigger.closest('.glass-menu-item');
+  const dropdown = menuItem.querySelector('.glass-mega-dropdown');
+  const isActive = dropdown.classList.contains('active');
+  
+  // Close all other dropdowns
+  closeAllGlassDropdowns();
+  
+  if (!isActive) {
+    dropdown.classList.add('active');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+}
+
+function closeAllGlassDropdowns() {
+  const dropdowns = document.querySelectorAll('.glass-mega-dropdown');
+  const triggers = document.querySelectorAll('.glass-nav-link');
+  
+  dropdowns.forEach(dropdown => {
+    dropdown.classList.remove('active');
+  });
+  
+  triggers.forEach(trigger => {
+    trigger.setAttribute('aria-expanded', 'false');
+  });
+}
+
+// Legacy mega dropdown functionality (keeping for compatibility)
+function toggleMegaDropdown() {
+  const dropdown = document.getElementById('megaDropdown');
+  const toggle = document.querySelector('.dropdown-toggle');
+  if (!dropdown || !toggle) return;
+  
+  const isActive = dropdown.classList.contains('active');
+  
+  if (isActive) {
+    dropdown.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  } else {
+    dropdown.classList.add('active');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  // Handle mega dropdown
+  const dropdown = document.getElementById('megaDropdown');
+  const toggle = document.querySelector('.dropdown-toggle');
+  const isDropdownClick = e.target.closest('.nav-dropdown');
+  
+  if (dropdown && toggle && !isDropdownClick) {
+    dropdown.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  
+  // Handle glass dropdowns (other navigation items)
+  const isGlassMenuItem = e.target.closest('.glass-menu-item');
+  if (!isGlassMenuItem) {
+    closeAllGlassDropdowns();
+  }
+});
+
+// Close dropdown on escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    // Close glass dropdowns
+    closeAllGlassDropdowns();
+    
+    // Close legacy dropdown
+    const dropdown = document.getElementById('megaDropdown');
+    const toggle = document.querySelector('.dropdown-toggle');
+    
+    if (dropdown && dropdown.classList.contains('active')) {
+      dropdown.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+      if (toggle.focus) toggle.focus();
+    }
+  }
+});
+
+// Export functions
+window.toggleSearch = toggleSearch;
+window.closeSearch = closeSearch;
+window.toggleMegaDropdown = toggleMegaDropdown;
+window.toggleGlassDropdown = toggleGlassDropdown;
+window.closeAllGlassDropdowns = closeAllGlassDropdowns;
+</script>
+
+{% schema %}
+{
+  "name": "Glass Top Header",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "header",
+      "content": "Actions"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account button",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "navigation",
+      "name": "Navigation Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "Menu Title",
+          "info": "Override the menu title (optional)"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "info": "Select a menu to display. Create menus in Navigation settings."
+        }
+      ]
+    },
+    {
+      "type": "menu_item",
+      "name": "Menu Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Menu Item"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_active",
+          "label": "Set as active",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glass Top Header",
+      "blocks": [
+        {
+          "type": "menu_item",
+          "settings": {
+            "title": "Games",
+            "link": "/collections/all",
+            "is_active": true
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "title": "Miniatures",
+            "link": "/collections/miniatures"
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "title": "Expansions",
+            "link": "/collections/expansions"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

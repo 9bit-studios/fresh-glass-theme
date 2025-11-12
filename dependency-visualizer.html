@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopify Theme Dependency Visualizer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .controls {
+            padding: 20px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .control-group label {
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        select, input, button {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        button {
+            background: #6366f1;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        
+        button:hover {
+            background: #5b21b6;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #6366f1;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        .visualization-container {
+            position: relative;
+            height: 600px;
+            background: white;
+        }
+        
+        .sidebar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: #f8fafc;
+            border-left: 1px solid #e2e8f0;
+            padding: 20px;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        
+        .sidebar h3 {
+            margin: 0 0 15px 0;
+            color: #374151;
+        }
+        
+        .file-details {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .file-details h4 {
+            margin: 0 0 10px 0;
+            color: #6366f1;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .detail-label {
+            color: #6b7280;
+        }
+        
+        .detail-value {
+            color: #374151;
+            font-weight: 500;
+        }
+        
+        .node {
+            cursor: pointer;
+            stroke-width: 2px;
+        }
+        
+        .node.critical {
+            stroke: #ef4444;
+        }
+        
+        .node.unused {
+            opacity: 0.5;
+            stroke: #9ca3af;
+        }
+        
+        .node.selected {
+            stroke: #6366f1;
+            stroke-width: 3px;
+        }
+        
+        .link {
+            stroke: #9ca3af;
+            stroke-width: 1px;
+            fill: none;
+            opacity: 0.6;
+        }
+        
+        .link.highlighted {
+            stroke: #6366f1;
+            stroke-width: 2px;
+            opacity: 1;
+        }
+        
+        .node-label {
+            font-size: 10px;
+            font-family: monospace;
+            fill: #374151;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+        
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .cleanup-recommendations {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .cleanup-recommendations h3 {
+            margin: 0 0 15px 0;
+            color: #92400e;
+        }
+        
+        .recommendation-item {
+            background: white;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #f59e0b;
+        }
+        
+        .recommendation-item .action {
+            font-weight: 600;
+            color: #92400e;
+        }
+        
+        .recommendation-item .details {
+            font-size: 14px;
+            color: #78716c;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Shopify Theme Dependency Visualizer</h1>
+            <p>Interactive analysis of theme dependencies, redundancies, and cleanup opportunities</p>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>Filter by Type:</label>
+                <select id="typeFilter">
+                    <option value="all">All Files</option>
+                    <option value="sections">Sections</option>
+                    <option value="snippets">Snippets</option>
+                    <option value="templates">Templates</option>
+                    <option value="assets">Assets</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Show:</label>
+                <select id="viewMode">
+                    <option value="used">Used Files Only</option>
+                    <option value="unused">Unused Files Only</option>
+                    <option value="critical">Critical Dependencies</option>
+                    <option value="redundant">Redundant Files</option>
+                    <option value="all">All Files</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Min Usage:</label>
+                <input type="range" id="usageSlider" min="0" max="10" value="0">
+                <span id="usageValue">0</span>
+            </div>
+            
+            <button id="loadData">Load Analysis Data</button>
+            <button id="generateCleanup">Generate Cleanup Script</button>
+        </div>
+        
+        <div class="stats" id="stats">
+            <!-- Stats will be populated by JavaScript -->
+        </div>
+        
+        <div class="visualization-container">
+            <svg id="dependency-graph" width="100%" height="100%"></svg>
+            
+            <div class="sidebar" id="sidebar">
+                <h3>File Details</h3>
+                <div id="file-info">
+                    <p>Select a file to see its details</p>
+                </div>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #10b981;"></div>
+                    <span>Templates & Layouts</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #6366f1;"></div>
+                    <span>Sections</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f59e0b;"></div>
+                    <span>Snippets</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ef4444;"></div>
+                    <span>Assets (CSS/JS)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #9ca3af; opacity: 0.5;"></div>
+                    <span>Unused Files</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="cleanup-recommendations" id="recommendations" style="display: none;">
+            <h3>🧹 Cleanup Recommendations</h3>
+            <div id="recommendation-list">
+                <!-- Recommendations will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="toast" id="toast">
+        Analysis data loaded successfully!
+    </div>
+
+    <script>
+        class DependencyVisualizer {
+            constructor() {
+                this.data = null;
+                this.nodes = [];
+                this.links = [];
+                this.selectedNode = null;
+                
+                this.svg = d3.select('#dependency-graph');
+                this.simulation = null;
+                
+                this.setupEventListeners();
+                this.generateSampleData(); // For demo purposes
+            }
+            
+            setupEventListeners() {
+                document.getElementById('loadData').addEventListener('click', () => {
+                    this.loadAnalysisData();
+                });
+                
+                document.getElementById('generateCleanup').addEventListener('click', () => {
+                    this.generateCleanupScript();
+                });
+                
+                document.getElementById('typeFilter').addEventListener('change', () => {
+                    this.updateVisualization();
+                });
+                
+                document.getElementById('viewMode').addEventListener('change', () => {
+                    this.updateVisualization();
+                });
+                
+                document.getElementById('usageSlider').addEventListener('input', (e) => {
+                    document.getElementById('usageValue').textContent = e.target.value;
+                    this.updateVisualization();
+                });
+            }
+            
+            generateSampleData() {
+                // Generate sample data for demonstration
+                this.data = {
+                    nodes: [
+                        { id: 'theme.liquid', type: 'layout', usageCount: 1, size: 5000, critical: true },
+                        { id: 'header.liquid', type: 'sections', usageCount: 8, size: 3000, critical: true },
+                        { id: 'product-card.liquid', type: 'snippets', usageCount: 15, size: 2000, critical: true },
+                        { id: 'footer.liquid', type: 'sections', usageCount: 6, size: 2500, critical: false },
+                        { id: 'base.css', type: 'assets', usageCount: 1, size: 50000, critical: true },
+                        { id: 'unused-snippet.liquid', type: 'snippets', usageCount: 0, size: 1000, critical: false },
+                        { id: 'old-section.liquid', type: 'sections', usageCount: 0, size: 1500, critical: false },
+                        { id: 'filter.js', type: 'assets', usageCount: 3, size: 8000, critical: false },
+                        { id: 'product.liquid', type: 'templates', usageCount: 1, size: 4000, critical: true },
+                        { id: 'collection.liquid', type: 'templates', usageCount: 1, size: 3500, critical: true }
+                    ],
+                    edges: [
+                        { from: 'theme.liquid', to: 'header.liquid' },
+                        { from: 'theme.liquid', to: 'footer.liquid' },
+                        { from: 'product.liquid', to: 'product-card.liquid' },
+                        { from: 'collection.liquid', to: 'product-card.liquid' },
+                        { from: 'header.liquid', to: 'base.css' },
+                        { from: 'product.liquid', to: 'filter.js' }
+                    ],
+                    stats: {
+                        totalFiles: 10,
+                        usedFiles: 8,
+                        unusedFiles: 2,
+                        criticalFiles: 5,
+                        totalSize: '78.5 KB',
+                        unusedSize: '2.5 KB',
+                        bloatPercentage: 3.2
+                    }
+                };
+                
+                this.processData();
+                this.updateStats();
+                this.createVisualization();
+            }
+            
+            loadAnalysisData() {
+                // In a real implementation, this would load from the analysis report
+                const fileInput = document.createElement('input');
+                fileInput.type = 'file';
+                fileInput.accept = '.json';
+                fileInput.onchange = (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            try {
+                                this.data = JSON.parse(e.target.result);
+                                this.processData();
+                                this.updateStats();
+                                this.createVisualization();
+                                this.showToast('Analysis data loaded successfully!');
+                            } catch (error) {
+                                alert('Error loading data: ' + error.message);
+                            }
+                        };
+                        reader.readAsText(file);
+                    }
+                };
+                fileInput.click();
+            }
+            
+            processData() {
+                if (!this.data) return;
+                
+                this.nodes = this.data.nodes || this.data.dependencyMap?.nodes || [];
+                this.links = this.data.edges || this.data.dependencyMap?.edges || [];
+                
+                // Ensure nodes have required properties
+                this.nodes.forEach(node => {
+                    if (!node.color) {
+                        node.color = this.getNodeColor(node.type);
+                    }
+                    if (node.usageCount === undefined) {
+                        node.usageCount = 1;
+                    }
+                });
+            }
+            
+            getNodeColor(type) {
+                const colors = {
+                    'layout': '#10b981',
+                    'templates': '#10b981',
+                    'sections': '#6366f1',
+                    'snippets': '#f59e0b',
+                    'assets': '#ef4444',
+                    'unknown': '#9ca3af'
+                };
+                return colors[type] || colors['unknown'];
+            }
+            
+            updateStats() {
+                const stats = this.data?.stats || {};
+                const statsContainer = document.getElementById('stats');
+                
+                statsContainer.innerHTML = `
+                    <div class="stat-card">
+                        <div class="stat-value">${stats.totalFiles || this.nodes.length}</div>
+                        <div class="stat-label">Total Files</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${stats.usedFiles || this.nodes.filter(n => n.usageCount > 0).length}</div>
+                        <div class="stat-label">Used Files</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${stats.unusedFiles || this.nodes.filter(n => n.usageCount === 0).length}</div>
+                        <div class="stat-label">Unused Files</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${stats.criticalFiles || this.nodes.filter(n => n.critical).length}</div>
+                        <div class="stat-label">Critical Files</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${stats.totalSize || 'N/A'}</div>
+                        <div class="stat-label">Total Size</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${stats.bloatPercentage || 0}%</div>
+                        <div class="stat-label">Bloat Percentage</div>
+                    </div>
+                `;
+            }
+            
+            createVisualization() {
+                this.svg.selectAll("*").remove();
+                
+                const width = this.svg.node().clientWidth;
+                const height = this.svg.node().clientHeight;
+                
+                this.simulation = d3.forceSimulation(this.nodes)
+                    .force("link", d3.forceLink(this.links).id(d => d.id).distance(100))
+                    .force("charge", d3.forceManyBody().strength(-300))
+                    .force("center", d3.forceCenter(width / 2, height / 2))
+                    .force("collision", d3.forceCollide().radius(d => Math.max(8, Math.sqrt(d.usageCount || 1) * 3)));
+                
+                // Create links
+                const link = this.svg.append("g")
+                    .selectAll("line")
+                    .data(this.links)
+                    .join("line")
+                    .attr("class", "link");
+                
+                // Create nodes
+                const node = this.svg.append("g")
+                    .selectAll("circle")
+                    .data(this.nodes)
+                    .join("circle")
+                    .attr("class", d => `node ${d.critical ? 'critical' : ''} ${d.usageCount === 0 ? 'unused' : ''}`)
+                    .attr("r", d => Math.max(5, Math.sqrt(d.usageCount || 1) * 2))
+                    .attr("fill", d => d.color || this.getNodeColor(d.type))
+                    .on("click", (event, d) => {
+                        this.selectNode(d);
+                    })
+                    .call(d3.drag()
+                        .on("start", (event, d) => {
+                            if (!event.active) this.simulation.alphaTarget(0.3).restart();
+                            d.fx = d.x;
+                            d.fy = d.y;
+                        })
+                        .on("drag", (event, d) => {
+                            d.fx = event.x;
+                            d.fy = event.y;
+                        })
+                        .on("end", (event, d) => {
+                            if (!event.active) this.simulation.alphaTarget(0);
+                            d.fx = null;
+                            d.fy = null;
+                        }));
+                
+                // Add labels
+                const labels = this.svg.append("g")
+                    .selectAll("text")
+                    .data(this.nodes)
+                    .join("text")
+                    .attr("class", "node-label")
+                    .text(d => d.label || d.id)
+                    .attr("dy", -10);
+                
+                this.simulation.on("tick", () => {
+                    link
+                        .attr("x1", d => d.source.x)
+                        .attr("y1", d => d.source.y)
+                        .attr("x2", d => d.target.x)
+                        .attr("y2", d => d.target.y);
+                    
+                    node
+                        .attr("cx", d => d.x)
+                        .attr("cy", d => d.y);
+                    
+                    labels
+                        .attr("x", d => d.x)
+                        .attr("y", d => d.y);
+                });
+                
+                this.updateVisualization();
+            }
+            
+            updateVisualization() {
+                if (!this.simulation) return;
+                
+                const typeFilter = document.getElementById('typeFilter').value;
+                const viewMode = document.getElementById('viewMode').value;
+                const minUsage = parseInt(document.getElementById('usageSlider').value);
+                
+                // Filter nodes based on current settings
+                this.svg.selectAll('.node').style('display', (d) => {
+                    let show = true;
+                    
+                    if (typeFilter !== 'all' && d.type !== typeFilter) {
+                        show = false;
+                    }
+                    
+                    if (viewMode === 'used' && d.usageCount === 0) {
+                        show = false;
+                    } else if (viewMode === 'unused' && d.usageCount > 0) {
+                        show = false;
+                    } else if (viewMode === 'critical' && !d.critical) {
+                        show = false;
+                    }
+                    
+                    if (d.usageCount < minUsage) {
+                        show = false;
+                    }
+                    
+                    return show ? 'block' : 'none';
+                });
+                
+                // Also update labels
+                this.svg.selectAll('.node-label').style('display', (d) => {
+                    // Same filtering logic
+                    let show = true;
+                    
+                    if (typeFilter !== 'all' && d.type !== typeFilter) {
+                        show = false;
+                    }
+                    
+                    if (viewMode === 'used' && d.usageCount === 0) {
+                        show = false;
+                    } else if (viewMode === 'unused' && d.usageCount > 0) {
+                        show = false;
+                    } else if (viewMode === 'critical' && !d.critical) {
+                        show = false;
+                    }
+                    
+                    if (d.usageCount < minUsage) {
+                        show = false;
+                    }
+                    
+                    return show ? 'block' : 'none';
+                });
+            }
+            
+            selectNode(node) {
+                // Update visual selection
+                this.svg.selectAll('.node').classed('selected', false);
+                this.svg.selectAll('.node').filter(d => d.id === node.id).classed('selected', true);
+                
+                // Highlight connected links
+                this.svg.selectAll('.link').classed('highlighted', d => 
+                    d.source.id === node.id || d.target.id === node.id
+                );
+                
+                // Show file details in sidebar
+                this.showFileDetails(node);
+                this.selectedNode = node;
+            }
+            
+            showFileDetails(node) {
+                const sidebar = document.getElementById('sidebar');
+                const fileInfo = document.getElementById('file-info');
+                
+                fileInfo.innerHTML = `
+                    <div class="file-details">
+                        <h4>${node.id}</h4>
+                        <div class="detail-item">
+                            <span class="detail-label">Type:</span>
+                            <span class="detail-value">${node.type}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Usage Count:</span>
+                            <span class="detail-value">${node.usageCount}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Size:</span>
+                            <span class="detail-value">${this.formatBytes(node.size || 0)}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Critical:</span>
+                            <span class="detail-value">${node.critical ? 'Yes' : 'No'}</span>
+                        </div>
+                    </div>
+                `;
+                
+                sidebar.classList.add('open');
+                
+                // Close sidebar when clicking outside
+                setTimeout(() => {
+                    document.addEventListener('click', this.closeSidebarHandler.bind(this), { once: true });
+                }, 100);
+            }
+            
+            closeSidebarHandler(event) {
+                const sidebar = document.getElementById('sidebar');
+                if (!sidebar.contains(event.target)) {
+                    sidebar.classList.remove('open');
+                }
+            }
+            
+            generateCleanupScript() {
+                if (!this.data) {
+                    alert('Please load analysis data first');
+                    return;
+                }
+                
+                const unusedFiles = this.nodes.filter(n => n.usageCount === 0);
+                const recommendations = document.getElementById('recommendations');
+                const recommendationList = document.getElementById('recommendation-list');
+                
+                let script = '#!/bin/bash# Shopify Theme Cleanup Script# Generated from dependency analysis';
+                script += 'echo "🧹 Starting theme cleanup..."';
+                
+                if (unusedFiles.length > 0) {
+                    script += '# Remove unused files';
+                    unusedFiles.forEach(file => {
+                        const filePath = this.getFilePath(file);
+                        script += `echo "Removing unused file: ${filePath}"`;
+                        script += `# rm "${filePath}"`;
+                    });
+                    script += '';
+                }
+                
+                script += 'echo "✅ Cleanup complete!"';
+                script += 'echo "Files removed: ' + unusedFiles.length + '"';
+                
+                // Show recommendations
+                recommendationList.innerHTML = `
+                    <div class="recommendation-item">
+                        <div class="action">Remove ${unusedFiles.length} unused files</div>
+                        <div class="details">Save ${this.formatBytes(unusedFiles.reduce((sum, f) => sum + (f.size || 0), 0))} of storage space</div>
+                    </div>
+                    <div class="recommendation-item">
+                        <div class="action">Review ${this.nodes.filter(n => n.critical).length} critical dependencies</div>
+                        <div class="details">Optimize heavily-used files for better performance</div>
+                    </div>
+                `;
+                
+                recommendations.style.display = 'block';
+                
+                // Download script
+                const blob = new Blob([script], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'theme-cleanup.sh';
+                a.click();
+                URL.revokeObjectURL(url);
+                
+                this.showToast('Cleanup script generated!');
+            }
+            
+            getFilePath(file) {
+                // Reconstruct file path based on type
+                const pathMap = {
+                    'sections': 'sections/',
+                    'snippets': 'snippets/',
+                    'templates': 'templates/',
+                    'layout': 'layout/',
+                    'assets': 'assets/'
+                };
+                
+                return (pathMap[file.type] || '') + file.id;
+            }
+            
+            formatBytes(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            showToast(message) {
+                const toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+        }
+        
+        // Initialize the visualizer when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new DependencyVisualizer();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Desktop Navigation - Petersen Games</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* MODERN APPROACH - Dropdown + Filter Bar */
+        .modern-layout {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .modern-header {
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .brand-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 12px 20px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .dropdown-toggle:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+
+        .mega-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            margin-top: 0.75rem;
+            padding: 2rem;
+            display: none;
+            min-width: 650px;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+        }
+
+        .mega-dropdown.active {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            animation: fadeInScale 0.3s ease;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .dropdown-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .column-header {
+            color: #007AFF;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dropdown-item {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            padding: 10px 12px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .dropdown-item.featured {
+            background: rgba(0,122,255,0.1);
+            border: 1px solid rgba(0,122,255,0.2);
+            color: #007AFF;
+            font-weight: 500;
+        }
+
+        .dropdown-item.featured:hover {
+            background: rgba(0,122,255,0.2);
+            color: white;
+        }
+
+        .filter-control-bar {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .filter-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 10px 16px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-button:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-1px);
+        }
+
+        .filter-count {
+            background: #007AFF;
+            color: white;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .sort-dropdown {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 10px 16px;
+            color: #fff;
+            font-size: 0.9rem;
+            cursor: pointer;
+            min-width: 180px;
+            outline: none;
+        }
+
+        .sort-dropdown:focus {
+            border-color: #007AFF;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .view-toggles {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .view-toggle {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 8px;
+            color: rgba(255,255,255,0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-toggle.active {
+            background: rgba(0,122,255,0.2);
+            border-color: rgba(0,122,255,0.3);
+            color: #007AFF;
+        }
+
+        .active-filter-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: auto;
+            flex-wrap: wrap;
+        }
+
+        .filter-tag {
+            background: rgba(0,122,255,0.2);
+            border: 1px solid rgba(0,122,255,0.3);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .filter-tag button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .filter-tag button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .modern-main {
+            flex: 1;
+            padding: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .content-title {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, rgba(255,255,255,0.6));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-stats {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255,255,255,0.08);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(0,122,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover .product-image::before {
+            opacity: 1;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(0,122,255,0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .product-description {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            color: #007AFF;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .add-to-cart {
+            flex: 1;
+            background: #007AFF;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: white;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: #0056CC;
+            transform: translateY(-1px);
+        }
+
+        .quick-view {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-view:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .nav-action {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .nav-action:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-1px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: #007AFF;
+            color: white;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            min-width: 16px;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .mega-dropdown {
+                min-width: 550px;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .dropdown-column:last-child {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-nav-bar {
+                padding: 0.75rem 1rem;
+            }
+
+            .brand-section {
+                gap: 1rem;
+            }
+
+            .dropdown-toggle {
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+
+            .filter-control-bar {
+                padding: 0.75rem 1rem;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+
+            .active-filter-tags {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .modern-main {
+                padding: 1rem;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 1rem;
+            }
+
+            .content-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="modern-layout">
+        <!-- Modern Header -->
+        <div class="modern-header">
+            <div class="top-nav-bar">
+                <div class="brand-section">
+                    <a href="#" class="brand-logo">Petersen Games</a>
+                    
+                    <div class="nav-dropdown">
+                        <div class="dropdown-toggle" onclick="toggleMegaDropdown()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                            </svg>
+                            <span>Browse Games</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 10l5 5 5-5z"/>
+                            </svg>
+                        </div>
+                        
+                        <div class="mega-dropdown" id="megaDropdown">
+                            <div class="dropdown-column">
+                                <div class="column-header">Game Lines</div>
+                                <a href="#" class="dropdown-item featured">
+                                    <span>🐙</span> Cthulhu Wars
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <span>🌍</span> Planet Apocalypse
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <span>🚀</span> Hyperspace
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <span>⚡</span> Evil High Priest
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <span>⚔️</span> Orcs Must Die
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <span>⚡</span> The Gods War
+                                </a>
+                            </div>
+                            
+                            <div class="dropdown-column">
+                                <div class="column-header">Product Types</div>
+                                <a href="#" class="dropdown-item">Core Games</a>
+                                <a href="#" class="dropdown-item">Expansions</a>
+                                <a href="#" class="dropdown-item">Faction Packs</a>
+                                <a href="#" class="dropdown-item">Miniatures</a>
+                                <a href="#" class="dropdown-item">Deluxe Components</a>
+                                <a href="#" class="dropdown-item">Accessories</a>
+                                <a href="#" class="dropdown-item">RPG Materials</a>
+                            </div>
+                            
+                            <div class="dropdown-column">
+                                <div class="column-header">Special Collections</div>
+                                <a href="#" class="dropdown-item">🆕 New Releases</a>
+                                <a href="#" class="dropdown-item">🔥 On Sale</a>
+                                <a href="#" class="dropdown-item">📦 Pre-Orders</a>
+                                <a href="#" class="dropdown-item">⭐ Limited Edition</a>
+                                <a href="#" class="dropdown-item">🎁 Bundle Deals</a>
+                                <a href="#" class="dropdown-item">💳 Gift Cards</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-actions">
+                    <div class="nav-action">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </div>
+                    <div class="nav-action">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1z"/>
+                        </svg>
+                        <div class="cart-count">3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modern Filter Bar -->
+            <div class="filter-control-bar">
+                <div class="filter-button" onclick="openFilterModal()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                    </svg>
+                    <span>Filter</span>
+                    <div class="filter-count">2</div>
+                </div>
+
+                <select class="sort-dropdown">
+                    <option>Sort: Featured</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Name: A to Z</option>
+                    <option>Newest First</option>
+                    <option>Best Selling</option>
+                    <option>Most Popular</option>
+                </select>
+
+                <div class="view-toggles">
+                    <div class="view-toggle active">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                        </svg>
+                    </div>
+                    <div class="view-toggle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <line x1="8" y1="6" x2="21" y2="6"/>
+                            <line x1="8" y1="12" x2="21" y2="12"/>
+                            <line x1="8" y1="18" x2="21" y2="18"/>
+                            <line x1="3" y1="6" x2="3.01" y2="6"/>
+                            <line x1="3" y1="12" x2="3.01" y2="12"/>
+                            <line x1="3" y1="18" x2="3.01" y2="18"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="active-filter-tags">
+                    <div class="filter-tag">
+                        Cthulhu Wars
+                        <button onclick="removeFilter(this)">×</button>
+                    </div>
+                    <div class="filter-tag">
+                        2-4 Players
+                        <button onclick="removeFilter(this)">×</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modern Main Content -->
+        <main class="modern-main">
+            <div class="content-header">
+                <h1 class="content-title">Strategic Horror Collection</h1>
+                <div class="content-stats">49 products • 2 filters active</div>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">New</div>
+                        Tcho-Tcho Image
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Tcho-Tcho Tribes</div>
+                        <div class="product-description">Strategic depth meets cosmic horror in this legendary board game experience.</div>
+                        <div class="product-price">$6.99</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="quick-view">👁</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">Sale</div>
+                        Cthulhu Image
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Rock-a-Bye Cthulhu</div>
+                        <div class="product-description">From cosmic horror to strategic warfare, each game delivers unforgettable terror.</div>
+                        <div class="product-price">$9.99</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="quick-view">👁</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">Planet Image</div>
+                    <div class="product-info">
+                        <div class="product-title">Planet Apocalypse (5e RPG) Deluxe Edition</div>
+                        <div class="product-description">Strategic mastery. Legendary gameplay. Personal terror.</div>
+                        <div class="product-price">$74.99</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="quick-view">👁</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">Hyperspace Image</div>
+                    <div class="product-info">
+                        <div class="product-title">Hyperspace Core Game</div>
+                        <div class="product-description">Strategic depth meets cosmic horror in this legendary experience.</div>
+                        <div class="product-price">$45.99</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="quick-view">👁</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">Featured</div>
+                        Priest Image
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Evil High Priest Expansion</div>
+                        <div class="product-description">From the mind of Sandy Petersen comes legendary terror.</div>
+                        <div class="product-price">$19.99</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="quick-view">👁</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">Expansion Image</div>
+                    <div class="product-info">
+                        <div class="product-title">Faction Pack Bundle</div>
+                        <div class="product-description">Each game delivers unforgettable moments of terror and triumph.</div>
+                        <div class="product-price">$29.99</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="quick-view">👁</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">Miniature Image</div>
+                    <div class="product-info">
+                        <div class="product-title">Great Old One Miniature Set</div>
+                        <div class="product-description">Legendary gameplay. Personal terror. Strategic mastery.</div>
+                        <div class="product-price">$89.99</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="quick-view">👁</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">Bundle</div>
+                        Bundle Image
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Cosmic Horror Starter Bundle</div>
+                        <div class="product-description">Strategic depth meets cosmic horror in this complete collection.</div>
+                        <div class="product-price">$149.99</div>
+                        <div class="product-actions">
+                            <button class="add-to-cart">Add to Cart</button>
+                            <button class="quick-view">👁</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleMegaDropdown() {
+            const dropdown = document.getElementById('megaDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function openFilterModal() {
+            alert('Filter modal would open here with organized categories:• Game Lines• Player Count• Price Range• Product Type• Availability');
+        }
+
+        function removeFilter(btn) {
+            btn.parentElement.style.animation = 'slideOut 0.3s ease forwards';
+            setTimeout(() => {
+                btn.parentElement.remove();
+                updateFilterCount();
+            }, 300);
+        }
+
+        function updateFilterCount() {
+            const filterCount = document.querySelector('.filter-count');
+            const activeTags = document.querySelectorAll('.filter-tag').length;
+            filterCount.textContent = activeTags;
+            
+            if (activeTags === 0) {
+                filterCount.style.display = 'none';
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('megaDropdown');
+            const toggle = document.querySelector('.dropdown-toggle');
+            
+            if (!toggle.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        // Add slideOut animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideOut {
+                to {
+                    opacity: 0;
+                    transform: translateX(20px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

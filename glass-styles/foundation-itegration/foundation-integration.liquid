@@ -1,0 +1,174 @@
+{%- comment -%}
+  FOUNDATION INTEGRATION STYLES
+  
+  This snippet provides CSS that maps common theme patterns to QuantumFoundation.css variables.
+  Include this in theme.liquid after QuantumFoundation.css is loaded.
+  
+  Usage:
+  {{ 'foundation-integration.css' | asset_url | stylesheet_tag }}
+{%- endcomment -%}
+
+/* ===================================================================
+   FOUNDATION VARIABLE INTEGRATION 
+   Maps theme patterns to QuantumFoundation.css variables
+   =================================================================== */
+
+:root {
+  /* Navigation height fallbacks - use foundation as minimum */
+  --nav-height-baseline: var(--foundation-nav-height); /* 44px */
+  --nav-height-mobile-baseline: var(--foundation-nav-height-mobile); /* 56px */
+  
+  /* Touch target enforcement */
+  --touch-target-min: var(--foundation-touch-target); /* 44px */
+  --touch-target-mobile-min: var(--foundation-touch-target-large); /* 56px */
+  
+  /* Input standardization */
+  --input-height-standard: var(--foundation-input-height); /* 44px */
+  --input-padding-standard: var(--foundation-input-padding); /* 12px */
+  
+  /* Button standardization */
+  --button-padding-standard: var(--foundation-button-padding); /* 16px */
+  --button-height-min: var(--foundation-touch-target); /* 44px */
+  
+  /* Form spacing */
+  --form-gap-standard: var(--foundation-form-gap); /* 16px */
+  
+  /* Card system */
+  --card-padding-standard: var(--foundation-card-padding); /* 16px */
+  --card-gap-standard: var(--foundation-card-gap); /* 24px */
+  
+  /* Layout containers */
+  --sidebar-width-standard: var(--foundation-sidebar-width); /* 280px */
+  --container-padding-standard: var(--foundation-container-padding); /* 32px */
+  --content-max-width: var(--foundation-content-max-width); /* 1440px */
+  
+  /* Section spacing */
+  --section-gap-standard: var(--foundation-section-gap); /* 48px */
+  --content-padding-standard: var(--foundation-content-padding); /* 16px */
+}
+
+/* Apple HIG Touch Target Enforcement */
+button,
+.button,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+.touch-target {
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+}
+
+/* Input standardization */
+input[type="text"],
+input[type="email"], 
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  min-height: var(--input-height-standard);
+  padding-inline: var(--input-padding-standard);
+}
+
+/* Mobile touch target enhancement */
+@media (max-width: 744px) {
+  button,
+  .button,
+  [role="button"],
+  input[type="submit"], 
+  input[type="button"],
+  .touch-target {
+    min-height: var(--touch-target-mobile-min);
+    min-width: var(--touch-target-mobile-min);
+  }
+}
+
+/* Header height integration with foundation baseline */
+header-component {
+  min-height: var(--nav-height-baseline);
+}
+
+/* Glass theme header integration */
+.glass-top-header {
+  height: var(--foundation-header-height, 80px);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.glass-filter-bar-container {
+  position: sticky;
+  top: var(--foundation-header-height, 80px);
+  z-index: 90;
+}
+
+/* Align filter bar with content area in sidebar layout */
+.glass-filter-bar-wrapper {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 var(--foundation-space-lg, 24px);
+}
+
+.glass-filter-bar-wrapper .glass-filter-bar-container {
+  /* Account for sidebar width (320px) + content padding */
+  margin-left: 320px;
+  padding-left: var(--foundation-space-lg, 24px);
+  padding-right: var(--foundation-space-lg, 24px);
+}
+
+/* Mobile alignment */
+@media (max-width: 1023px) {
+  .glass-filter-bar-wrapper {
+    padding: 0 var(--foundation-space-md, 16px);
+  }
+  
+  .glass-filter-bar-wrapper .glass-filter-bar-container {
+    margin-left: 0;
+    padding-left: var(--foundation-space-md, 16px);
+    padding-right: var(--foundation-space-md, 16px);
+  }
+}
+
+/* Adjust main content for fixed headers */
+body {
+  padding-top: var(--foundation-header-height, 80px);
+}
+
+@media (max-width: 744px) {
+  header-component {
+    min-height: var(--nav-height-mobile-baseline);
+  }
+}
+
+/* Product card integration */
+.product-card,
+.product-card__content {
+  --card-internal-padding: var(--card-padding-standard);
+  --card-spacing: var(--card-gap-standard);
+}
+
+/* Sidebar integration */
+.sidebar,
+.drawer,
+[data-drawer] {
+  width: var(--sidebar-width-standard);
+  padding: var(--foundation-sidebar-padding);
+}
+
+/* Section spacing integration */
+.section {
+  --section-spacing: var(--section-gap-standard);
+}
+
+/* Form integration */
+.form,
+form {
+  --form-element-gap: var(--form-gap-standard);
+}
+
+.form > * + *,
+form > * + * {
+  margin-top: var(--form-element-gap);
+}

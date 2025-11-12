@@ -1,0 +1,268 @@
+{%- comment -%}
+  LIQUID GLASS FOUNDATION TOKENS
+  Translates liquidGlassTokens to use QuantumSpatial foundation colors
+  
+  This snippet provides Liquid template variables that map to the QuantumSpatial
+  Color System for use in Shopify themes and liquid templates.
+{%- endcomment -%}
+
+{%- liquid
+  comment 'QuantumSpatial Foundation Color Mappings'
+  
+  comment 'Primary Text Colors (Apple HIG Hierarchy)'
+  assign qs_primary_foreground = '#FCFDF2'
+  assign qs_secondary = '#1A1B26'
+  assign qs_tertiary = '#33313A'
+  assign qs_quaternary = '#3F3F4B'
+  
+  comment 'Background Variants for Glass & Liquid Themes'
+  assign qs_void_black = '#000000'
+  assign qs_void_violet = '#0B010D'
+  assign qs_deep_space_night = '#0D0D15'
+  assign qs_deep_space_violet = '#160918'
+  assign qs_multidimensional_midnight = '#0A0A0F'
+  assign qs_multidimensional_violet = '#110413'
+  assign qs_ultradimensional_marine = '#0A0621'
+  assign qs_ultradimensional_violet = '#150621'
+  assign qs_dimensional_marine = '#1E1F5C'
+  assign qs_dimensional_violet = '#480F92'
+  
+  comment 'UI Action Colors'
+  assign qs_pixel_blue = '#007AFF'
+  assign qs_pixel_marine = '#504CF5'
+  assign qs_pixel_violet = '#613FE7'
+  assign qs_pixel_pink = '#EC4899'
+  assign qs_pixel_green = '#2C5F2D'
+  assign qs_liquid_blue = '#5AC8FA'
+  assign qs_liquid_marine = '#6366F1'
+  assign qs_liquid_violet = '#9151F1'
+  assign qs_plasma_green = '#3DFF74'
+  
+  comment 'Glass Effect Variables'
+  assign qs_glass_border = 'rgba(90, 200, 250, 0.3)'
+  assign qs_glass_subtle = 'rgba(10, 6, 33, 0.4)'
+  assign qs_glass_medium = 'rgba(10, 6, 33, 0.6)'
+  assign qs_glass_prominent = 'rgba(10, 6, 33, 0.8)'
+  
+  comment 'Spatial Gradient Definitions'
+  assign qs_gradient_spatial = 'linear-gradient(90deg, #0A0621 -4.8%, #131A36 26.56%, #331F4A 68.37%, #0D0D15 99.73%)'
+  assign qs_gradient_deep_spatial = 'linear-gradient(90deg, #0A0621 0%, #131A36 30%, #0A0621 70%, #0D0D15 100%)'
+  assign qs_gradient_quantum_depth = 'linear-gradient(90deg, #131A36 -0.02%, #331F4A 49.98%, #6A3093 99.98%)'
+-%}
+
+{%- comment -%}
+  LIQUID GLASS TOKEN MAPPINGS
+  Maps existing liquidGlass token usage to QuantumSpatial foundation
+{%- endcomment -%}
+
+{%- capture liquid_glass_tokens -%}
+:root {
+  /* ===================================================================
+     TRANSLATED LIQUID GLASS TOKENS TO QUANTUMSPATIAL FOUNDATION
+     =================================================================== */
+  
+  /* Primary Colors */
+  --liquid-glass-primary: {{ qs_pixel_blue }};
+  --liquid-glass-primary-hover: {{ qs_liquid_blue }};
+  --liquid-glass-accent: {{ qs_pixel_violet }};
+  --liquid-glass-accent-secondary: {{ qs_liquid_violet }};
+  
+  /* Background Hierarchy */
+  --liquid-glass-bg-primary: {{ qs_void_black }};
+  --liquid-glass-bg-secondary: {{ qs_deep_space_night }};
+  --liquid-glass-bg-elevated: {{ qs_ultradimensional_marine }};
+  --liquid-glass-bg-modal: {{ qs_dimensional_marine }};
+  
+  /* Glass Panel Effects */
+  --liquid-glass-panel-subtle: {{ qs_glass_subtle }};
+  --liquid-glass-panel-medium: {{ qs_glass_medium }};
+  --liquid-glass-panel-prominent: {{ qs_glass_prominent }};
+  --liquid-glass-border: {{ qs_glass_border }};
+  
+  /* Text Colors (Apple HIG Compliant) */
+  --liquid-glass-text-primary: {{ qs_primary_foreground }};
+  --liquid-glass-text-secondary: rgba(252, 253, 242, 0.7);
+  --liquid-glass-text-tertiary: rgba(252, 253, 242, 0.5);
+  --liquid-glass-text-quaternary: rgba(252, 253, 242, 0.3);
+  
+  /* Spatial Gradients */
+  --liquid-glass-gradient-spatial: {{ qs_gradient_spatial }};
+  --liquid-glass-gradient-deep: {{ qs_gradient_deep_spatial }};
+  --liquid-glass-gradient-quantum: {{ qs_gradient_quantum_depth }};
+  
+  /* Action Colors */
+  --liquid-glass-action-primary: {{ qs_pixel_blue }};
+  --liquid-glass-action-secondary: {{ qs_pixel_marine }};
+  --liquid-glass-action-ar: {{ qs_liquid_blue }};
+  --liquid-glass-action-success: {{ qs_plasma_green }};
+  --liquid-glass-action-pink: {{ qs_pixel_pink }};
+  
+  /* State Colors */
+  --liquid-glass-hover: rgba(90, 200, 250, 0.1);
+  --liquid-glass-active: rgba(90, 200, 250, 0.2);
+  --liquid-glass-focus: {{ qs_glass_border }};
+  
+  /* Void Enhancement */
+  --liquid-glass-void-enhanced: {{ qs_void_black }};
+  --liquid-glass-void-overlay: {{ qs_gradient_spatial }};
+  
+  /* Mystic Effects */
+  --liquid-glass-mystic-midnight: rgba(113, 0, 170, 0.0588235);
+  --liquid-glass-mystic-deepspace: rgba(170, 0, 170, 0.0947);
+  
+  /* Touch Targets (Apple HIG) */
+  --liquid-glass-touch-target: 44px;
+  --liquid-glass-touch-target-mobile: 56px;
+  
+  /* Animation Durations */
+  --liquid-glass-transition-fast: 0.15s;
+  --liquid-glass-transition-medium: 0.3s;
+  --liquid-glass-transition-slow: 0.5s;
+  --liquid-glass-spatial-flow: 12s;
+}
+
+/* ===================================================================
+   LIQUID GLASS COMPONENT CLASSES
+   =================================================================== */
+
+/* Glass Panel Base */
+.liquid-glass-panel {
+  background: var(--liquid-glass-panel-subtle);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--liquid-glass-border);
+  border-radius: 12px;
+  color: var(--liquid-glass-text-primary);
+}
+
+.liquid-glass-panel--medium {
+  background: var(--liquid-glass-panel-medium);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.liquid-glass-panel--prominent {
+  background: var(--liquid-glass-panel-prominent);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* Spatial Background */
+.liquid-glass-spatial-bg {
+  background: var(--liquid-glass-bg-primary);
+  position: relative;
+}
+
+.liquid-glass-spatial-bg--animated::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--liquid-glass-gradient-spatial);
+  opacity: 0.1;
+  animation: liquid-glass-spatial-flow var(--liquid-glass-spatial-flow) ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Void Enhancement */
+.liquid-glass-void-enhanced {
+  background: var(--liquid-glass-void-enhanced);
+  position: relative;
+}
+
+.liquid-glass-void-enhanced::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--liquid-glass-void-overlay);
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Action Buttons */
+.liquid-glass-btn {
+  background: var(--liquid-glass-action-primary);
+  color: var(--liquid-glass-text-primary);
+  border: none;
+  border-radius: 8px;
+  min-height: var(--liquid-glass-touch-target);
+  min-width: var(--liquid-glass-touch-target);
+  transition: all var(--liquid-glass-transition-medium) ease;
+}
+
+.liquid-glass-btn:hover {
+  background: var(--liquid-glass-action-secondary);
+  transform: translateY(-1px);
+}
+
+.liquid-glass-btn--ar {
+  background: var(--liquid-glass-action-ar);
+}
+
+.liquid-glass-btn--success {
+  background: var(--liquid-glass-action-success);
+}
+
+/* Text Utilities */
+.liquid-glass-text-primary { color: var(--liquid-glass-text-primary); }
+.liquid-glass-text-secondary { color: var(--liquid-glass-text-secondary); }
+.liquid-glass-text-tertiary { color: var(--liquid-glass-text-tertiary); }
+.liquid-glass-text-quaternary { color: var(--liquid-glass-text-quaternary); }
+
+/* Mystic Overlays */
+.liquid-glass-mystic {
+  background: var(--liquid-glass-mystic-midnight);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.liquid-glass-mystic--deepspace {
+  background: var(--liquid-glass-mystic-deepspace);
+}
+
+/* Responsive Touch Targets */
+@media (max-width: 744px) {
+  .liquid-glass-btn {
+    min-height: var(--liquid-glass-touch-target-mobile);
+    min-width: var(--liquid-glass-touch-target-mobile);
+  }
+}
+
+/* ===================================================================
+   ANIMATIONS
+   =================================================================== */
+
+@keyframes liquid-glass-spatial-flow {
+  0%, 100% { 
+    background: var(--liquid-glass-gradient-spatial);
+    opacity: 0.05;
+  }
+  50% { 
+    background: var(--liquid-glass-gradient-deep);
+    opacity: 0.1;
+  }
+}
+
+@keyframes liquid-glass-mystic-pulse {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.15; }
+}
+
+@keyframes liquid-glass-flow {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 40% 60% 30% 70% / 60% 40% 60% 30%; }
+  75% { border-radius: 70% 30% 40% 60% / 30% 60% 70% 40%; }
+}
+
+/* Liquid Flow Animation */
+.liquid-glass-flowing {
+  animation: liquid-glass-flow 8s ease-in-out infinite;
+}
+
+/* Mystic Pulse Animation */
+.liquid-glass-mystic-animated {
+  animation: liquid-glass-mystic-pulse 8s ease-in-out infinite;
+}
+{%- endcapture -%}
+
+{{ liquid_glass_tokens | strip }}

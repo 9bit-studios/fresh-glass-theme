@@ -1,0 +1,279 @@
+{
+  "name": "@quantum-spatial/fresh-glass-theme",
+  "version": "2.1.0",
+  "description": "Petersen Games Shopify Theme with OksanaPlatform Foundation Model, Apple HIG Compliance, and Quantum Spatial Design System",
+  "private": true,
+  "author": "9Bit Studios <hello@9bitstudios.com>",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "main": "petersen-qa-service.js",
+  "types": "types/index.d.ts",
+  
+  "scripts": {
+    "build": "tsc && npm run build:tokens",
+    "build:clean": "rm -rf dist && npm run build",
+    "dev": "tsc --watch",
+    "clean": "rm -rf assets/dist .shopify dist",
+    "qa": "node petersen-qa-service.js",
+    "qa:foundation-model": "node ../../scripts/validate-platform-integration.js --project=shopify-liquid",
+    "qa:audit": "tsx ../../Oksana/scripts/shopify-theme-auditor.ts --theme-root=.",
+    "qa:validate": "npm run lint && npm run typecheck && npm run test:hig && npm run test:liquid-syntax",
+    "qa:full": "npm run qa:validate && npm run qa:audit && npm run qa:foundation-model && npm run qa",
+    "qa:zero-tolerance": "npm run qa:full --strict-mode --zero-tolerance",
+    "typecheck": "tsc --noEmit --strict --project tsconfig.json",
+    "typecheck:oksana": "tsc --noEmit --project ../../Oksana/tsconfig.json",
+    "typecheck:full": "npm run typecheck && npm run typecheck:oksana",
+    
+    "lint": "eslint . --ext .js,.ts,.tsx --max-warnings 0",
+    "lint:fix": "eslint . --ext .js,.ts,.tsx --fix",
+    "lint:apple-hig": "eslint . --config .eslintrc.apple-hig.js",
+    
+    "test:hig": "tsx scripts/validate-hig-compliance.ts",
+    "test:hig:zero-tolerance": "tsx scripts/validate-hig-compliance.ts --zero-tolerance",
+    "test:tokens": "tsx scripts/validate-token-usage.ts",
+    "test:accessibility": "tsx scripts/validate-accessibility.ts",
+    "test:liquid-syntax": "theme-check .",
+    
+    "build:tokens": "tsx scripts/build-design-tokens.ts",
+    "tokens:validate": "tsx scripts/validate-tokens.ts --source=oksana-platform",
+    "tokens:sync": "tsx scripts/sync-tokens-from-oksana.ts",
+
+    "bridge:test": "tsx src/bridge/test-oksana-connection.ts",
+    "bridge:validate": "tsx src/bridge/validate-bridge-integration.ts",
+    
+    "watch": "nodemon --watch . --ext js,liquid,css,ts --exec 'npm run qa:validate'",
+    "watch:full": "nodemon --watch . --ext js,liquid,css,ts --exec 'npm run qa:full'",
+    
+    "precommit": "npm run qa:zero-tolerance",
+    "prepare": "husky install",
+    "validate:all": "npm run qa:full && npm run security:check",
+    "security:check": "npm audit --audit-level=high",
+    
+    "deploy:dev": "shopify theme push --development",
+    "deploy:prod": "shopify theme push --live",
+    "shopify:auth": "shopify auth login --store petersengames.myshopify.com"
+  },
+  
+  "keywords": [
+    "shopify",
+    "typescript", 
+    "oksana-platform",
+    "apple-intelligence",
+    "apple-hig",
+    "glass-theme",
+    "petersen-games",
+    "strategic-director",
+    "quantum-spatial",
+    "foundation-model",
+    "zero-tolerance-qa"
+  ],
+  
+  "dependencies": {
+    "@shopify/prettier-plugin-liquid": "^1.5.0",
+    "@shopify/theme-check-node": "^2.9.0"
+  },
+  
+  "devDependencies": {
+    "typescript": "^5.8.0",
+    "tsx": "^4.7.0",
+    "@types/node": "^22.0.0",
+
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "nodemon": "^3.0.0",
+    "prettier": "^3.0.0",
+
+    "vitest": "^3.0.0",
+    "axe-core": "^4.10.0",
+    "pa11y": "^8.0.0",
+
+    "@web/test-runner": "^0.19.0",
+    "lighthouse": "^12.0.0"
+  },
+  
+  "peerDependencies": {
+    "@quantum-spatial/design-system": "*"
+  },
+  
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "*.liquid": [
+      "prettier --write --plugin=@shopify/prettier-plugin-liquid",
+      "theme-check"
+    ]
+  },
+  
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking",
+      "plugin:prettier/recommended",
+      "plugin:shopify/esnext",
+      "apple-hig"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2022,
+      "sourceType": "module",
+      "project": "./tsconfig.json"
+    },
+    "rules": {
+      "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/strict-boolean-expressions": "error",
+      "@typescript-eslint/no-unsafe-assignment": "error",
+      "@typescript-eslint/no-unsafe-member-access": "error",
+      "@typescript-eslint/no-unsafe-call": "error",
+      "@typescript-eslint/no-unsafe-return": "error",
+      
+      "no-console": ["warn", { "allow": ["warn", "error"] }],
+      "no-debugger": "error",
+      "no-unused-vars": "error",
+      "prefer-const": "error",
+      
+      "apple-hig/touch-target-size": "error",
+      "apple-hig/contrast-ratio": "error",
+      "apple-hig/typography-scale": "warn"
+    }
+  },
+  
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "printWidth": 100,
+    "arrowParens": "always",
+    "endOfLine": "lf"
+  },
+  
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run qa:validate",
+      "pre-push": "npm run qa:zero-tolerance"
+    }
+  },
+  
+  "apple-hig": {
+    "validation": {
+      "touchTargets": {
+        "min": 44,
+        "unit": "px",
+        "enforced": true,
+        "zeroTolerance": true
+      },
+      "typography": {
+        "fontFamily": "SF Pro Display, SF Pro Text, -apple-system, system-ui",
+        "minFontSize": 11,
+        "preferredFontSize": 17,
+        "enforced": true
+      },
+      "spacing": {
+        "gridBase": 8,
+        "enforced": true
+      },
+      "animations": {
+        "maxDuration": 400,
+        "unit": "ms",
+        "easing": "ease-out",
+        "enforced": true
+      },
+      "colors": {
+        "contrastRatio": {
+          "normal": 4.5,
+          "large": 3.0
+        },
+        "systemColors": true,
+        "darkModeSupport": true
+      },
+      "accessibility": {
+        "screenReader": true,
+        "voiceOver": true,
+        "reducedMotion": true,
+        "highContrast": true
+      }
+    },
+    "compliance": {
+      "level": "strict",
+      "zeroTolerance": true,
+      "failOnViolation": true
+    }
+  },
+  
+  "quantum-spatial": {
+    "tokens": {
+      "source": "../../Oksana/types/tokens",
+      "fallback": "../../quantum-spatial-design-system/tokens",
+      "output": "./assets/tokens",
+      "platforms": ["shopify"],
+      "validation": "strict",
+      "oksanaPlatformIntegration": true
+    },
+    "components": {
+      "glassEffect": true,
+      "quantumSpatialGrid": true,
+      "appleHIGCompliance": true
+    }
+  },
+  
+  "oksanaPlatform": {
+    "foundationModel": {
+      "enabled": true,
+      "bridge": "./src/bridge/oksana-bridge.ts",
+      "types": "../../Oksana/types",
+      "services": "../../Oksana/services"
+    },
+    "appleIntelligence": {
+      "strategicDirector": true,
+      "m4Acceleration": true,
+      "neuralEngine": true,
+      "privacyFirst": true
+    },
+    "validation": {
+      "zeroTolerance": true,
+      "foundationModelCompliance": true,
+      "appleHIGMandatory": true
+    }
+  },
+  
+  "shopify": {
+    "theme": {
+      "name": "Petersen Games Fresh Glass Theme v2.1",
+      "version": "2.1.0",
+      "store": "petersengames.myshopify.com",
+      "author": "9Bit Studios",
+      "documentation_url": "https://github.com/9bit-studios/fresh-glass-theme",
+      "support_url": "https://9bitstudios.com/support"
+    },
+    "features": {
+      "appleHIGCompliant": true,
+      "oksanaPlatformIntegrated": true,
+      "quantumSpatialEnabled": true,
+      "zeroToleranceQA": true
+    }
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/9bit-studios/fresh-glass-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/9bit-studios/fresh-glass-theme/issues"
+  },
+  "homepage": "https://github.com/9bit-studios/fresh-glass-theme#readme"
+}

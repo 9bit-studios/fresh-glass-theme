@@ -1,0 +1,553 @@
+/* ========================================
+   FRAMER PRODUCT HUB INSPIRED MEGA MENU ENHANCEMENT
+   Sophisticated dropdown styling with glass effects and smooth animations
+   ======================================== */
+
+/* ========================================
+   ENHANCED VARIABLES
+   ======================================== */
+:root {
+  /* Framer-inspired menu variables */
+  --framer-menu-bg: linear-gradient(135deg, 
+    rgba(10, 10, 10, 0.95) 0%, 
+    rgba(26, 26, 26, 0.92) 50%, 
+    rgba(10, 10, 10, 0.95) 100%);
+  --framer-menu-border: rgba(255, 255, 255, 0.08);
+  --framer-menu-shadow: 0 24px 64px rgba(0, 0, 0, 0.4), 
+                       0 8px 24px rgba(99, 102, 241, 0.12),
+                       inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --framer-menu-blur: blur(40px) saturate(180%) brightness(110%);
+  --framer-item-hover: rgba(255, 255, 255, 0.04);
+  --framer-item-active: rgba(99, 102, 241, 0.08);
+  --framer-text-primary: rgba(255, 255, 255, 0.95);
+  --framer-text-secondary: rgba(255, 255, 255, 0.7);
+  --framer-text-tertiary: rgba(255, 255, 255, 0.5);
+  --framer-accent: #6366F1;
+  --framer-accent-glow: rgba(99, 102, 241, 0.2);
+  
+  /* Enhanced animations */
+  --framer-transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --framer-transition-smooth: 350ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  --framer-transition-spring: 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ========================================
+   ENHANCED MEGA DROPDOWN - DESKTOP
+   ======================================== */
+
+/* Override existing mega dropdown with Framer styling */
+.mega-dropdown,
+.glass-mega-dropdown {
+  /* Reset existing styles */
+  position: absolute !important;
+  top: calc(100% + 12px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) translateY(8px) scale(0.96) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  z-index: 200 !important;
+  
+  /* Enhanced Framer-inspired styling */
+  background: var(--framer-menu-bg) !important;
+  border: 1px solid var(--framer-menu-border) !important;
+  border-radius: 20px !important;
+  box-shadow: var(--framer-menu-shadow) !important;
+  backdrop-filter: var(--framer-menu-blur) !important;
+  -webkit-backdrop-filter: var(--framer-menu-blur) !important;
+  
+  /* Enhanced dimensions and spacing */
+  min-width: 720px !important;
+  max-width: 900px !important;
+  width: max-content !important;
+  padding: 32px !important;
+  
+  /* Smooth transitions */
+  transition: all var(--framer-transition-smooth), 
+              transform var(--framer-transition-spring) !important;
+  will-change: transform, opacity !important;
+  
+  /* Grid layout */
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 40px !important;
+}
+
+/* Active state with enhanced animation */
+.mega-dropdown.active,
+.glass-mega-dropdown.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(-50%) translateY(0) scale(1) !important;
+  animation: framerMenuFadeIn var(--framer-transition-smooth) var(--framer-transition-fast) both !important;
+}
+
+/* Enhanced fade-in animation */
+@keyframes framerMenuFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px) scale(0.96);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateX(-50%) translateY(-2px) scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+/* ========================================
+   ENHANCED DROPDOWN COLUMNS
+   ======================================== */
+
+.dropdown-column,
+.glass-dropdown-column {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  min-width: 0 !important;
+}
+
+/* Enhanced column headers */
+.column-header,
+.glass-column-header {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  color: var(--framer-accent) !important;
+  margin: 0 0 16px 0 !important;
+  padding: 0 0 8px 0 !important;
+  border-bottom: 1px solid var(--framer-menu-border) !important;
+  position: relative !important;
+}
+
+/* Add subtle glow to headers */
+.column-header::after,
+.glass-column-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--framer-accent), transparent);
+  box-shadow: 0 0 8px var(--framer-accent-glow);
+}
+
+/* Enhanced dropdown links list */
+.glass-dropdown-links {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+
+/* ========================================
+   ENHANCED DROPDOWN ITEMS
+   ======================================== */
+
+.dropdown-item,
+.glass-dropdown-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 16px !important;
+  border-radius: 12px !important;
+  color: var(--framer-text-secondary) !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  min-height: 44px !important;
+  transition: all var(--framer-transition-fast) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Enhanced hover effects */
+.dropdown-item:hover,
+.glass-dropdown-item:hover {
+  background: var(--framer-item-hover) !important;
+  color: var(--framer-text-primary) !important;
+  transform: translateX(4px) translateY(-1px) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Active/current page state */
+.dropdown-item.current,
+.glass-dropdown-item.current {
+  background: var(--framer-item-active) !important;
+  color: var(--framer-text-primary) !important;
+  font-weight: 500 !important;
+  border: 1px solid var(--framer-accent-glow) !important;
+}
+
+/* Add subtle icons to dropdown items */
+.dropdown-item::before,
+.glass-dropdown-item::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--framer-text-tertiary);
+  transition: all var(--framer-transition-fast);
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.dropdown-item:hover::before,
+.glass-dropdown-item:hover::before {
+  opacity: 1;
+  transform: scale(1);
+  background: var(--framer-accent);
+  box-shadow: 0 0 8px var(--framer-accent-glow);
+}
+
+/* ========================================
+   ENHANCED MOBILE MENU INTEGRATION
+   ======================================== */
+
+/* Mobile dropdown toggle improvements */
+@media (max-width: 768px) {
+  .dropdown-toggle {
+    background: rgba(255, 255, 255, 0.06) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid var(--framer-menu-border) !important;
+    border-radius: 12px !important;
+    transition: all var(--framer-transition-fast) !important;
+  }
+  
+  .dropdown-toggle:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--framer-accent-glow) !important;
+    transform: translateY(-1px) !important;
+  }
+  
+  .dropdown-toggle:active {
+    transform: translateY(0) scale(0.98) !important;
+  }
+  
+  /* Enhanced mobile mega dropdown */
+  .mega-dropdown {
+    position: fixed !important;
+    top: 60px !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: translateY(-100%) !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 100vw !important;
+    max-height: calc(100vh - 60px) !important;
+    border-radius: 0 0 24px 24px !important;
+    padding: 24px !important;
+    
+    /* Mobile grid layout */
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    
+    /* Enhanced mobile background */
+    background: linear-gradient(180deg,
+      rgba(10, 10, 10, 0.98) 0%,
+      rgba(26, 26, 26, 0.95) 50%,
+      rgba(10, 10, 10, 0.98) 100%) !important;
+    
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  .mega-dropdown.active {
+    transform: translateY(0) !important;
+    animation: framerMobileSlideDown var(--framer-transition-smooth) var(--framer-transition-fast) both !important;
+  }
+  
+  /* Mobile slide down animation */
+  @keyframes framerMobileSlideDown {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    60% {
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Mobile column layout */
+  .dropdown-column,
+  .glass-dropdown-column {
+    gap: 16px !important;
+  }
+  
+  /* Mobile dropdown items */
+  .dropdown-item,
+  .glass-dropdown-item {
+    padding: 16px 20px !important;
+    font-size: 16px !important;
+    min-height: 52px !important;
+    border-radius: 16px !important;
+  }
+  
+  .dropdown-item:hover,
+  .glass-dropdown-item:hover {
+    transform: translateX(0) translateY(-1px) scale(1.02) !important;
+  }
+}
+
+/* ========================================
+   FRAMER-INSPIRED MOBILE MENU PANEL
+   ======================================== */
+
+/* Enhanced mobile menu panel */
+.mobile-menu-panel {
+  background: linear-gradient(180deg,
+    rgba(10, 10, 10, 0.98) 0%,
+    rgba(26, 26, 26, 0.95) 30%,
+    rgba(10, 10, 10, 0.98) 100%) !important;
+  backdrop-filter: var(--framer-menu-blur) !important;
+  -webkit-backdrop-filter: var(--framer-menu-blur) !important;
+}
+
+/* Enhanced mobile menu header */
+.menu-header {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-bottom: 1px solid var(--framer-menu-border) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.menu-header h2 {
+  color: var(--framer-text-primary) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* Enhanced mobile menu items */
+.menu-link {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+  color: var(--framer-text-secondary) !important;
+  transition: all var(--framer-transition-fast) !important;
+}
+
+.menu-link:hover {
+  background: var(--framer-item-hover) !important;
+  color: var(--framer-text-primary) !important;
+  padding-left: calc(24px + 8px) !important;
+}
+
+/* Add animated indicator */
+.menu-link::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+  width: 4px;
+  height: 24px;
+  background: var(--framer-accent);
+  border-radius: 2px;
+  opacity: 0;
+  transition: all var(--framer-transition-fast);
+}
+
+.menu-link:hover::before {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ========================================
+   ENHANCED DESKTOP DROPDOWN TRIGGER
+   ======================================== */
+
+.dropdown-toggle,
+.glass-nav-link {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid var(--framer-menu-border) !important;
+  backdrop-filter: blur(12px) saturate(120%) !important;
+  transition: all var(--framer-transition-fast) !important;
+}
+
+.dropdown-toggle:hover,
+.glass-nav-link:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--framer-accent-glow) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 
+              0 0 16px var(--framer-accent-glow) !important;
+}
+
+.dropdown-toggle[aria-expanded="true"],
+.glass-nav-link[aria-expanded="true"] {
+  background: var(--framer-item-active) !important;
+  border-color: var(--framer-accent) !important;
+  color: var(--framer-text-primary) !important;
+  box-shadow: 0 0 0 2px var(--framer-accent-glow),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Enhanced dropdown arrow animation */
+.dropdown-arrow {
+  transition: transform var(--framer-transition-smooth) !important;
+  filter: drop-shadow(0 0 4px var(--framer-accent-glow));
+}
+
+.dropdown-toggle[aria-expanded="true"] .dropdown-arrow {
+  transform: rotate(180deg) scale(1.1) !important;
+}
+
+/* ========================================
+   ACCESSIBILITY ENHANCEMENTS
+   ======================================== */
+
+/* Focus states */
+.dropdown-toggle:focus,
+.dropdown-item:focus,
+.glass-dropdown-item:focus,
+.menu-link:focus {
+  outline: 2px solid var(--framer-accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .mega-dropdown,
+  .glass-mega-dropdown {
+    border-width: 2px !important;
+    border-color: var(--framer-text-primary) !important;
+  }
+  
+  .dropdown-item,
+  .glass-dropdown-item {
+    border: 1px solid transparent !important;
+  }
+  
+  .dropdown-item:hover,
+  .glass-dropdown-item:hover {
+    border-color: var(--framer-text-primary) !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .mega-dropdown,
+  .glass-mega-dropdown,
+  .dropdown-toggle,
+  .dropdown-item,
+  .glass-dropdown-item,
+  .menu-link {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .mega-dropdown.active,
+  .glass-mega-dropdown.active {
+    animation: none !important;
+  }
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+.mega-dropdown,
+.glass-mega-dropdown,
+.dropdown-item,
+.glass-dropdown-item,
+.menu-link {
+  will-change: transform, opacity, background-color !important;
+}
+
+/* GPU acceleration for smooth animations */
+.mega-dropdown.active,
+.glass-mega-dropdown.active {
+  transform: translateX(-50%) translateY(0) scale(1) translateZ(0) !important;
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINT ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .mega-dropdown,
+  .glass-mega-dropdown {
+    min-width: 600px !important;
+    padding: 28px !important;
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mega-dropdown {
+    padding: 20px !important;
+    gap: 24px !important;
+    border-radius: 0 0 20px 20px !important;
+  }
+  
+  .dropdown-item,
+  .glass-dropdown-item {
+    font-size: 15px !important;
+    padding: 14px 18px !important;
+  }
+}
+
+/* ========================================
+   LOADING STATES & MICRO-INTERACTIONS
+   ======================================== */
+
+/* Subtle loading indicator */
+.mega-dropdown[data-loading="true"]::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--framer-menu-border);
+  border-top-color: var(--framer-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Stagger animation for dropdown items */
+.mega-dropdown.active .dropdown-item,
+.mega-dropdown.active .glass-dropdown-item {
+  animation: framerItemFadeIn 0.4s ease-out both;
+}
+
+.mega-dropdown.active .dropdown-item:nth-child(1),
+.mega-dropdown.active .glass-dropdown-item:nth-child(1) { animation-delay: 0.05s; }
+.mega-dropdown.active .dropdown-item:nth-child(2),
+.mega-dropdown.active .glass-dropdown-item:nth-child(2) { animation-delay: 0.1s; }
+.mega-dropdown.active .dropdown-item:nth-child(3),
+.mega-dropdown.active .glass-dropdown-item:nth-child(3) { animation-delay: 0.15s; }
+.mega-dropdown.active .dropdown-item:nth-child(4),
+.mega-dropdown.active .glass-dropdown-item:nth-child(4) { animation-delay: 0.2s; }
+.mega-dropdown.active .dropdown-item:nth-child(5),
+.mega-dropdown.active .glass-dropdown-item:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes framerItemFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

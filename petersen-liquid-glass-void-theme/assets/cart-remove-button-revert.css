@@ -1,0 +1,65 @@
+/* ========================================
+   CART REMOVE BUTTON - REVERT TO ORIGINAL
+   ======================================== */
+
+/* Reset cart remove button to original Shopify styling */
+.button--tertiary,
+.cart-items__remove,
+button.button--tertiary,
+.cart-item-remove {
+  /* Revert all glass button styling */
+  display: inline-block !important;
+  padding: revert !important;
+  min-height: revert !important;
+  background: revert !important;
+  box-shadow: revert !important;
+  border-radius: revert !important;
+  color: revert !important;
+  font-size: revert !important;
+  line-height: revert !important;
+  text-shadow: revert !important;
+  backdrop-filter: revert !important;
+  transition: revert !important;
+  font-family: revert !important;
+  font-weight: revert !important;
+  border: revert !important;
+  transform: revert !important;
+  text-decoration: revert !important;
+  position: revert !important;
+  overflow: revert !important;
+  align-items: revert !important;
+  justify-content: revert !important;
+  white-space: revert !important;
+  user-select: revert !important;
+  outline: revert !important;
+}
+
+.button--tertiary:hover,
+.cart-items__remove:hover,
+button.button--tertiary:hover,
+.cart-item-remove:hover {
+  background: revert !important;
+  box-shadow: revert !important;
+  transform: revert !important;
+  text-shadow: revert !important;
+  backdrop-filter: revert !important;
+}
+
+.button--tertiary:active,
+.cart-items__remove:active,
+button.button--tertiary:active,
+.cart-item-remove:active {
+  background: revert !important;
+  box-shadow: revert !important;
+  transform: revert !important;
+  text-shadow: revert !important;
+  transition: revert !important;
+}
+
+.button--tertiary:focus,
+.cart-items__remove:focus,
+button.button--tertiary:focus,
+.cart-item-remove:focus {
+  outline: revert !important;
+  box-shadow: revert !important;
+}

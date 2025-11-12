@@ -1,0 +1,239 @@
+/* ========================================
+   MOBILE NAVIGATION FIXES
+   Addresses wrapper backgrounds, sticky behavior, and touch targets
+   ======================================== */
+
+/* ========================================
+   REMOVE WRAPPER BACKGROUNDS AND BORDERS
+   ======================================== */
+
+/* Remove sliding nav container background and glass effects on mobile */
+@media (max-width: 768px) {
+  .sliding-nav-container {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    padding: 0.75rem 0 !important;
+    margin: 0 !important;
+  }
+
+  .sliding-nav-inner {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+  }
+
+  .nav-tabs-wrapper {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .nav-tabs-scroll {
+    background: transparent !important;
+    padding: 0 1rem !important;
+  }
+
+  /* Remove glass tab backgrounds and borders */
+  .nav-tab,
+  .glass-tab {
+    background: transparent !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0.5rem 1rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 0.875rem !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .nav-tab:hover,
+  .glass-tab:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    color: rgba(255, 255, 255, 1) !important;
+  }
+
+  .nav-tab.active,
+  .glass-tab.active {
+    background: rgba(93, 90, 246, 0.2) !important;
+    border: none !important;
+    color: rgba(255, 255, 255, 1) !important;
+    font-weight: 600 !important;
+    border-radius: 4px !important;
+  }
+}
+
+/* ========================================
+   HIDE/REVEAL HEADER FUNCTIONALITY
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Enable hide/reveal for glass top header */
+  .glass-top-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 100 !important;
+    width: 100% !important;
+    background: rgba(8, 4, 21, 0.95) !important;
+    backdrop-filter: blur(20px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  /* Hide header when scrolling down */
+  .glass-top-header.header-hidden {
+    transform: translateY(-100%) !important;
+  }
+
+  /* Sliding nav becomes sticky when header is hidden */
+  .sliding-nav-container {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 95 !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  }
+
+  /* When header is visible, sliding nav is not sticky */
+  .glass-top-header:not(.header-hidden) + * .sliding-nav-container {
+    position: static !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom: none !important;
+  }
+}
+
+/* ========================================
+   IMPROVED HAMBURGER TOUCH TARGETS
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Improve hamburger menu touch targets - Apple HIG compliant */
+  .dropdown-toggle {
+    padding: 16px 20px !important;
+    min-height: 44px !important;
+    min-width: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+
+    /* Improve touch responsiveness */
+    touch-action: manipulation !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  .dropdown-toggle:hover,
+  .dropdown-toggle:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 1) !important;
+    transform: none !important;
+  }
+
+  .dropdown-toggle:active {
+    background: rgba(255, 255, 255, 0.15) !important;
+    transform: scale(0.98) !important;
+  }
+
+  /* Ensure hamburger icon is properly sized */
+  .dropdown-toggle svg {
+    width: 20px !important;
+    height: 20px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Improve dropdown arrow visibility */
+  .dropdown-arrow {
+    width: 16px !important;
+    height: 16px !important;
+    opacity: 0.8 !important;
+  }
+
+  /* Better spacing for hamburger text */
+  .dropdown-toggle span {
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* ========================================
+   PURPLE MARGIN FIX
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Ensure no purple margins/backgrounds show through */
+  body {
+    background: #0A0A0A !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  html {
+    background: #0A0A0A !important;
+  }
+
+  /* Fix viewport issues */
+  .shopify-section,
+  .section {
+    background: transparent !important;
+  }
+
+  /* Ensure header container has proper background */
+  .glass-header-container {
+    background: transparent !important;
+    padding: 12px 16px !important;
+  }
+
+  /* Account for fixed header spacing */
+  body {
+    padding-top: 60px !important;
+  }
+
+  /* Adjust when header is hidden */
+  body.header-hidden {
+    padding-top: 0 !important;
+  }
+}
+
+/* ========================================
+   SCROLL BEHAVIOR JAVASCRIPT HOOKS
+   ======================================== */
+
+/* Classes for JavaScript to manage scroll behavior */
+.header-hide-on-scroll {
+  /* This class enables the hide/reveal behavior */
+}
+
+.header-always-visible {
+  /* This class disables hide/reveal and keeps header always visible */
+  position: fixed !important;
+  transform: translateY(0) !important;
+}
+
+.header-no-sticky {
+  /* This class completely removes sticky behavior */
+  position: static !important;
+}

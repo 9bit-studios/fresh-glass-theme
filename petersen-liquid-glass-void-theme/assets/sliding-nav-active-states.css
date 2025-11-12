@@ -1,0 +1,37 @@
+/* ========================================
+   SLIDING NAV ACTIVE STATES
+   Enhanced differentiation for current page/collection
+   ======================================== */
+
+/* Override active state with enhanced differentiation - HIGH SPECIFICITY */
+.sliding-nav-container .nav-tab.active,
+.sliding-nav-container .glass-tab.active,
+#sliding-nav .nav-tab.active,
+#sliding-nav .glass-tab.active,
+.nav-tab.active,
+.glass-tab.active {
+  background-color: rgba(81, 47, 235, 1.1) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+  transition: var(--framer-transition-fast) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 6px 20px rgba(81, 47, 235, 0.4), 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  color: rgba(255, 255, 255, 1) !important; /* Full opacity white for better differentiation */
+  font-weight: 600 !important; /* Thicker font weight for better differentiation */
+  border-color: rgba(255, 255, 255, 0.3) !important; /* Brighter border */
+}
+
+/* Extra specific override for any conflicting styles */
+.sliding-nav-container .nav-tabs-scroll .nav-tab.active,
+.sliding-nav-container .nav-tabs-scroll .glass-tab.active {
+  background-color: rgba(81, 47, 235, 1.1) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  font-weight: 600 !important;
+}
+
+/* Mobile responsive adjustments for active state */
+@media (max-width: 768px) {
+  .nav-tab.active, 
+  .glass-tab.active {
+    font-weight: 600 !important;
+    color: rgba(255, 255, 255, 1) !important;
+  }
+}

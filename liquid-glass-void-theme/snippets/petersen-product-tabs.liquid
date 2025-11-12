@@ -1,0 +1,787 @@
+{%- comment -%}
+  Petersen Games Product Information Tabs
+  Brand-aware tabbed component for elegant product information display
+  Supports metafields for game stats, theme info, components, and more
+
+  Usage: {% render 'petersen-product-tabs', product: product %}
+{%- endcomment -%}
+
+{%- assign product_metafields = product.metafields.petersen_games -%}
+{%- assign game_stats = product_metafields.game_stats.value -%}
+{%- assign theme_info = product_metafields.theme_info.value -%}
+{%- assign components = product_metafields.components.value -%}
+{%- assign awards = product_metafields.awards.value -%}
+{%- assign expansions = product_metafields.expansions.value -%}
+{%- assign shipping = product_metafields.shipping.value -%}
+{%- assign gallery = product_metafields.gallery.value -%}
+
+<div class="petersen-product-tabs" data-product-id="{{ product.id }}">
+  <!-- Tab Navigation -->
+  <div class="tab-navigation" role="tablist">
+    <button
+      class="tab-button active"
+      data-tab="overview"
+      role="tab"
+      aria-selected="true"
+      aria-controls="tab-overview"
+    >
+      <span class="tab-icon">📋</span>
+      <span class="tab-label">Overview</span>
+    </button>
+
+    {%- if game_stats -%}
+    <button
+      class="tab-button"
+      data-tab="stats"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-stats"
+    >
+      <span class="tab-icon">🎲</span>
+      <span class="tab-label">Game Stats</span>
+    </button>
+    {%- endif -%}
+
+    {%- if theme_info -%}
+    <button
+      class="tab-button"
+      data-tab="lore"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-lore"
+    >
+      <span class="tab-icon">📖</span>
+      <span class="tab-label">Lore & Theme</span>
+    </button>
+    {%- endif -%}
+
+    {%- if components -%}
+    <button
+      class="tab-button"
+      data-tab="components"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-components"
+    >
+      <span class="tab-icon">🧩</span>
+      <span class="tab-label">Components</span>
+    </button>
+    {%- endif -%}
+
+    {%- if gallery -%}
+    <button
+      class="tab-button"
+      data-tab="gallery"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-gallery"
+    >
+      <span class="tab-icon">🖼️</span>
+      <span class="tab-label">Gallery</span>
+    </button>
+    {%- endif -%}
+
+    {%- if awards -%}
+    <button
+      class="tab-button"
+      data-tab="awards"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-awards"
+    >
+      <span class="tab-icon">🏆</span>
+      <span class="tab-label">Awards</span>
+    </button>
+    {%- endif -%}
+
+    {%- if expansions -%}
+    <button
+      class="tab-button"
+      data-tab="expansions"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-expansions"
+    >
+      <span class="tab-icon">📦</span>
+      <span class="tab-label">Expansions</span>
+    </button>
+    {%- endif -%}
+
+    {%- if shipping -%}
+    <button
+      class="tab-button"
+      data-tab="shipping"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-shipping"
+    >
+      <span class="tab-icon">🚚</span>
+      <span class="tab-label">Shipping</span>
+    </button>
+    {%- endif -%}
+  </div>
+
+  <!-- Tab Content Panels -->
+  <div class="tab-content-container">
+
+    <!-- Overview Tab -->
+    <div
+      class="tab-content active"
+      id="tab-overview"
+      role="tabpanel"
+      aria-labelledby="tab-overview"
+    >
+      <div class="overview-content">
+        <div class="product-description">
+          {%- if product.description != blank -%}
+            {{ product.description }}
+          {%- else -%}
+            <p>Experience the ultimate in cosmic horror gaming with {{ product.title }}.</p>
+          {%- endif -%}
+        </div>
+
+        {%- if game_stats -%}
+        <div class="quick-stats">
+          <h4>Quick Stats</h4>
+          <div class="stats-grid">
+            {%- if game_stats.player_count -%}
+            <div class="stat-item">
+              <span class="stat-label">Players:</span>
+              <span class="stat-value">
+                {%- if game_stats.player_count.min == game_stats.player_count.max -%}
+                  {{ game_stats.player_count.min }}
+                {%- else -%}
+                  {{ game_stats.player_count.min }}-{{ game_stats.player_count.max }}
+                {%- endif -%}
+              </span>
+            </div>
+            {%- endif -%}
+
+            {%- if game_stats.play_time -%}
+            <div class="stat-item">
+              <span class="stat-label">Play Time:</span>
+              <span class="stat-value">
+                {%- if game_stats.play_time.min == game_stats.play_time.max -%}
+                  {{ game_stats.play_time.min }} min
+                {%- else -%}
+                  {{ game_stats.play_time.min }}-{{ game_stats.play_time.max }} min
+                {%- endif -%}
+              </span>
+            </div>
+            {%- endif -%}
+
+            {%- if game_stats.age_range -%}
+            <div class="stat-item">
+              <span class="stat-label">Age:</span>
+              <span class="stat-value">{{ game_stats.age_range.min }}+</span>
+            </div>
+            {%- endif -%}
+
+            {%- if game_stats.complexity -%}
+            <div class="stat-item">
+              <span class="stat-label">Complexity:</span>
+              <span class="stat-value">
+                <div class="complexity-rating">
+                  {%- for i in (1..5) -%}
+                    <span class="complexity-dot {% if i <= game_stats.complexity %}filled{% endif %}"></span>
+                  {%- endfor -%}
+                  <span class="complexity-label">({{ game_stats.complexity }}/5)</span>
+                </div>
+              </span>
+            </div>
+            {%- endif -%}
+          </div>
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Game Stats Tab -->
+    {%- if game_stats -%}
+    <div
+      class="tab-content"
+      id="tab-stats"
+      role="tabpanel"
+      aria-labelledby="tab-stats"
+    >
+      <div class="stats-content">
+        <h3>Game Statistics</h3>
+
+        <div class="detailed-stats">
+          {%- if game_stats.player_count -%}
+          <div class="stat-section">
+            <div class="stat-header">
+              <span class="stat-icon">👥</span>
+              <h4>Player Count</h4>
+            </div>
+            <div class="stat-details">
+              <span class="primary-stat">
+                {%- if game_stats.player_count.min == game_stats.player_count.max -%}
+                  {{ game_stats.player_count.min }} Players
+                {%- else -%}
+                  {{ game_stats.player_count.min }}-{{ game_stats.player_count.max }} Players
+                {%- endif -%}
+              </span>
+              {%- if game_stats.player_count.optimal -%}
+                <span class="optimal-note">Best with {{ game_stats.player_count.optimal }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+          {%- endif -%}
+
+          {%- if game_stats.play_time -%}
+          <div class="stat-section">
+            <div class="stat-header">
+              <span class="stat-icon">⏱️</span>
+              <h4>Play Time</h4>
+            </div>
+            <div class="stat-details">
+              <span class="primary-stat">
+                {%- if game_stats.play_time.min == game_stats.play_time.max -%}
+                  {{ game_stats.play_time.min }} Minutes
+                {%- else -%}
+                  {{ game_stats.play_time.min }}-{{ game_stats.play_time.max }} Minutes
+                {%- endif -%}
+              </span>
+              {%- if game_stats.setup_time -%}
+                <span class="setup-note">Setup: {{ game_stats.setup_time }} min</span>
+              {%- endif -%}
+            </div>
+          </div>
+          {%- endif -%}
+
+          {%- if game_stats.complexity -%}
+          <div class="stat-section">
+            <div class="stat-header">
+              <span class="stat-icon">🧠</span>
+              <h4>Complexity Rating</h4>
+            </div>
+            <div class="stat-details">
+              <div class="complexity-display">
+                <div class="complexity-scale">
+                  {%- for i in (1..5) -%}
+                    <div class="complexity-level {% if i <= game_stats.complexity %}active{% endif %}">
+                      {{ i }}
+                    </div>
+                  {%- endfor -%}
+                </div>
+                <div class="complexity-labels">
+                  <span>Simple</span>
+                  <span>Expert</span>
+                </div>
+              </div>
+              <p class="complexity-description">
+                {%- case game_stats.complexity -%}
+                  {%- when 1 -%}
+                    Perfect for beginners and casual gamers
+                  {%- when 2 -%}
+                    Easy to learn with some strategic depth
+                  {%- when 3 -%}
+                    Moderate complexity with rewarding gameplay
+                  {%- when 4 -%}
+                    Complex strategy requiring experience
+                  {%- when 5 -%}
+                    Expert-level game for serious strategists
+                {%- endcase -%}
+              </p>
+            </div>
+          </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Lore & Theme Tab -->
+    {%- if theme_info -%}
+    <div
+      class="tab-content"
+      id="tab-lore"
+      role="tabpanel"
+      aria-labelledby="tab-lore"
+    >
+      <div class="lore-content">
+        <h3>Lore & Theme</h3>
+
+        {%- if theme_info.primary_theme -%}
+        <div class="theme-header">
+          <span class="theme-badge">{{ theme_info.primary_theme }}</span>
+          {%- if theme_info.horror_level -%}
+          <div class="horror-rating">
+            <span class="horror-label">Horror Level:</span>
+            <div class="horror-skulls">
+              {%- for i in (1..5) -%}
+                <span class="skull {% if i <= theme_info.horror_level %}active{% endif %}">💀</span>
+              {%- endfor -%}
+            </div>
+          </div>
+          {%- endif -%}
+        </div>
+        {%- endif -%}
+
+        {%- if theme_info.setting -%}
+        <div class="lore-section">
+          <h4>Setting</h4>
+          <p>{{ theme_info.setting }}</p>
+        </div>
+        {%- endif -%}
+
+        {%- if theme_info.atmosphere -%}
+        <div class="lore-section">
+          <h4>Atmosphere</h4>
+          <p>{{ theme_info.atmosphere }}</p>
+        </div>
+        {%- endif -%}
+
+        {%- if theme_info.lore_summary -%}
+        <div class="lore-section">
+          <h4>Lore Overview</h4>
+          <div class="lore-text">{{ theme_info.lore_summary }}</div>
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Components Tab -->
+    {%- if components -%}
+    <div
+      class="tab-content"
+      id="tab-components"
+      role="tabpanel"
+      aria-labelledby="tab-components"
+    >
+      <div class="components-content">
+        <h3>What's in the Box</h3>
+
+        <div class="components-grid">
+          {%- if components.miniatures -%}
+          <div class="component-item">
+            <div class="component-header">
+              <span class="component-icon">🏛️</span>
+              <h4>Miniatures</h4>
+            </div>
+            <div class="component-details">
+              <span class="component-count">{{ components.miniatures.count }}+</span>
+              <div class="component-specs">
+                {%- if components.miniatures.scale -%}
+                  <span>{{ components.miniatures.scale }} scale</span>
+                {%- endif -%}
+                {%- if components.miniatures.material -%}
+                  <span>{{ components.miniatures.material }}</span>
+                {%- endif -%}
+              </div>
+              {%- if components.miniatures.description -%}
+                <p>{{ components.miniatures.description }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+          {%- endif -%}
+
+          {%- if components.cards -%}
+          <div class="component-item">
+            <div class="component-header">
+              <span class="component-icon">🃏</span>
+              <h4>Cards</h4>
+            </div>
+            <div class="component-details">
+              <span class="component-count">{{ components.cards.count }}</span>
+              <div class="component-specs">
+                {%- if components.cards.size -%}
+                  <span>{{ components.cards.size }} size</span>
+                {%- endif -%}
+                {%- if components.cards.finish -%}
+                  <span>{{ components.cards.finish }} finish</span>
+                {%- endif -%}
+              </div>
+              {%- if components.cards.description -%}
+                <p>{{ components.cards.description }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+          {%- endif -%}
+
+          {%- if components.board -%}
+          <div class="component-item">
+            <div class="component-header">
+              <span class="component-icon">🗺️</span>
+              <h4>Game Board</h4>
+            </div>
+            <div class="component-details">
+              <div class="component-specs">
+                {%- if components.board.size -%}
+                  <span>{{ components.board.size }}</span>
+                {%- endif -%}
+                {%- if components.board.material -%}
+                  <span>{{ components.board.material }}</span>
+                {%- endif -%}
+                {%- if components.board.finish -%}
+                  <span>{{ components.board.finish }}</span>
+                {%- endif -%}
+              </div>
+              {%- if components.board.description -%}
+                <p>{{ components.board.description }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+          {%- endif -%}
+
+          {%- if components.dice -%}
+          <div class="component-item">
+            <div class="component-header">
+              <span class="component-icon">🎲</span>
+              <h4>Dice</h4>
+            </div>
+            <div class="component-details">
+              <span class="component-count">{{ components.dice.count }}</span>
+              <div class="component-specs">
+                {%- if components.dice.type -%}
+                  <span>{{ components.dice.type }}</span>
+                {%- endif -%}
+                {%- if components.dice.custom -%}
+                  <span class="custom-badge">Custom Design</span>
+                {%- endif -%}
+              </div>
+              {%- if components.dice.description -%}
+                <p>{{ components.dice.description }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+          {%- endif -%}
+
+          {%- if components.tokens -%}
+          <div class="component-item">
+            <div class="component-header">
+              <span class="component-icon">🤓</span>
+              <h4>Tokens & Markers</h4>
+            </div>
+            <div class="component-details">
+              <span class="component-count">{{ components.tokens.count }}+</span>
+              <div class="component-specs">
+                {%- if components.tokens.material -%}
+                  <span>{{ components.tokens.material }}</span>
+                {%- endif -%}
+              </div>
+              {%- if components.tokens.description -%}
+                <p>{{ components.tokens.description }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Gallery Tab -->
+    {%- if gallery -%}
+    <div
+      class="tab-content"
+      id="tab-gallery"
+      role="tabpanel"
+      aria-labelledby="tab-gallery"
+    >
+      <div class="gallery-content">
+        <h3>Product Gallery</h3>
+
+        {%- if gallery.component_photos -%}
+        <div class="gallery-section">
+          <h4>Component Photos</h4>
+          <div class="image-grid">
+            {%- for photo in gallery.component_photos -%}
+              <div class="gallery-item" data-category="{{ photo.category }}">
+                <img
+                  src="{{ photo.url }}"
+                  alt="{{ photo.alt }}"
+                  loading="lazy"
+                  class="gallery-image"
+                >
+                <div class="gallery-caption">{{ photo.alt }}</div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+        {%- endif -%}
+
+        {%- if gallery.miniature_gallery -%}
+        <div class="gallery-section">
+          <h4>Miniature Gallery</h4>
+          <div class="miniature-grid">
+            {%- for miniature in gallery.miniature_gallery -%}
+              <div class="miniature-item {% if miniature.painted %}painted{% endif %}">
+                <img
+                  src="{{ miniature.url }}"
+                  alt="{{ miniature.alt }}"
+                  loading="lazy"
+                  class="miniature-image"
+                >
+                <div class="miniature-info">
+                  {%- if miniature.faction -%}
+                    <span class="faction-badge">{{ miniature.faction }}</span>
+                  {%- endif -%}
+                  {%- if miniature.painted -%}
+                    <span class="painted-badge">Painted</span>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+        {%- endif -%}
+
+        {%- if gallery.video_content -%}
+        <div class="gallery-section">
+          <h4>Video Content</h4>
+          <div class="video-grid">
+            {%- for video in gallery.video_content -%}
+              <div class="video-item">
+                <iframe
+                  src="{{ video.url }}"
+                  title="{{ video.title }}"
+                  frameborder="0"
+                  allowfullscreen
+                  class="video-embed"
+                ></iframe>
+                <div class="video-info">
+                  <h5>{{ video.title }}</h5>
+                  {%- if video.duration -%}
+                    <span class="duration">{{ video.duration }}min</span>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Awards Tab -->
+    {%- if awards -%}
+    <div
+      class="tab-content"
+      id="tab-awards"
+      role="tabpanel"
+      aria-labelledby="tab-awards"
+    >
+      <div class="awards-content">
+        <h3>Awards & Recognition</h3>
+
+        {%- if awards.awards -%}
+        <div class="awards-section">
+          <h4>Industry Awards</h4>
+          <div class="awards-list">
+            {%- for award in awards.awards -%}
+              <div class="award-item">
+                <div class="award-icon">🏆</div>
+                <div class="award-details">
+                  <h5>{{ award.name }}</h5>
+                  <div class="award-meta">
+                    <span class="award-year">{{ award.year }}</span>
+                    <span class="award-category">{{ award.category }}</span>
+                  </div>
+                  <p class="award-organization">{{ award.organization }}</p>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+        {%- endif -%}
+
+        {%- if awards.ratings -%}
+        <div class="ratings-section">
+          <h4>Community Ratings</h4>
+          <div class="ratings-grid">
+            {%- if awards.ratings.customer_rating -%}
+            <div class="rating-item">
+              <div class="rating-header">
+                <span class="rating-icon">⭐</span>
+                <span class="rating-label">Customer Rating</span>
+              </div>
+              <div class="rating-value">{{ awards.ratings.customer_rating }}/5</div>
+              {%- if awards.ratings.review_count -%}
+                <div class="rating-count">{{ awards.ratings.review_count }} reviews</div>
+              {%- endif -%}
+            </div>
+            {%- endif -%}
+
+            {%- if awards.ratings.bgg_rating -%}
+            <div class="rating-item">
+              <div class="rating-header">
+                <span class="rating-icon">🎲</span>
+                <span class="rating-label">BGG Rating</span>
+              </div>
+              <div class="rating-value">{{ awards.ratings.bgg_rating }}/10</div>
+              {%- if awards.ratings.bgg_weight -%}
+                <div class="rating-weight">Weight: {{ awards.ratings.bgg_weight }}/5</div>
+              {%- endif -%}
+            </div>
+            {%- endif -%}
+          </div>
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Expansions Tab -->
+    {%- if expansions -%}
+    <div
+      class="tab-content"
+      id="tab-expansions"
+      role="tabpanel"
+      aria-labelledby="tab-expansions"
+    >
+      <div class="expansions-content">
+        <h3>Expansions & Add-ons</h3>
+
+        {%- if expansions.base_game_required -%}
+          <div class="expansion-notice">
+            <span class="notice-icon">ℹ️</span>
+            <span>Base game required for all expansions</span>
+          </div>
+        {%- endif -%}
+
+        {%- if expansions.compatible_expansions -%}
+        <div class="expansions-grid">
+          {%- for expansion in expansions.compatible_expansions -%}
+            <div class="expansion-item {% if expansion.essential %}essential{% endif %}">
+              <div class="expansion-header">
+                <h4>{{ expansion.name }}</h4>
+                {%- if expansion.essential -%}
+                  <span class="essential-badge">Essential</span>
+                {%- endif -%}
+              </div>
+              <div class="expansion-price">${{ expansion.price }}</div>
+              <p class="expansion-description">{{ expansion.description }}</p>
+              <a href="/products/{{ expansion.handle }}" class="expansion-link">
+                View Expansion →
+              </a>
+            </div>
+          {%- endfor -%}
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Shipping Tab -->
+    {%- if shipping -%}
+    <div
+      class="tab-content"
+      id="tab-shipping"
+      role="tabpanel"
+      aria-labelledby="tab-shipping"
+    >
+      <div class="shipping-content">
+        <h3>Shipping Information</h3>
+
+        <div class="shipping-details">
+          {%- if shipping.box_dimensions -%}
+          <div class="shipping-section">
+            <h4>Package Dimensions</h4>
+            <div class="dimensions">
+              {{ shipping.box_dimensions.length }}" ×
+              {{ shipping.box_dimensions.width }}" ×
+              {{ shipping.box_dimensions.height }}"
+              {%- if shipping.weight -%}
+                <span class="weight">{{ shipping.weight.value }} {{ shipping.weight.unit }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+          {%- endif -%}
+
+          {%- if shipping.shipping_class -%}
+          <div class="shipping-section">
+            <h4>Shipping Class</h4>
+            <span class="shipping-class">{{ shipping.shipping_class }}</span>
+          </div>
+          {%- endif -%}
+
+          {%- if shipping.international_shipping -%}
+          <div class="shipping-section">
+            <h4>International Shipping</h4>
+            <span class="international-status">
+              {%- if shipping.international_shipping -%}
+                ✅ Available
+              {%- else -%}
+                ❌ Not Available
+              {%- endif -%}
+            </span>
+          </div>
+          {%- endif -%}
+
+          {%- if shipping.special_handling -%}
+          <div class="shipping-section">
+            <h4>Special Handling</h4>
+            <p>{{ shipping.special_handling }}</p>
+          </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tabContainer = document.querySelector('.petersen-product-tabs');
+  if (!tabContainer) return;
+
+  const tabButtons = tabContainer.querySelectorAll('.tab-button');
+  const tabContents = tabContainer.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-tab');
+
+      // Remove active class from all buttons and contents
+      tabButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      tabContents.forEach(content => {
+        content.classList.remove('active');
+      });
+
+      // Add active class to clicked button and corresponding content
+      this.classList.add('active');
+      this.setAttribute('aria-selected', 'true');
+
+      const targetContent = tabContainer.querySelector(`#tab-${targetTab}`);
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+    });
+  });
+
+  // Handle keyboard navigation
+  tabContainer.addEventListener('keydown', function(e) {
+    if (e.target.classList.contains('tab-button')) {
+      let currentIndex = Array.from(tabButtons).indexOf(e.target);
+      let nextIndex;
+
+      switch(e.key) {
+        case 'ArrowLeft':
+          nextIndex = currentIndex > 0 ? currentIndex - 1 : tabButtons.length - 1;
+          tabButtons[nextIndex].focus();
+          e.preventDefault();
+          break;
+        case 'ArrowRight':
+          nextIndex = currentIndex < tabButtons.length - 1 ? currentIndex + 1 : 0;
+          tabButtons[nextIndex].focus();
+          e.preventDefault();
+          break;
+        case 'Enter':
+        case ' ':
+          e.target.click();
+          e.preventDefault();
+          break;
+      }
+    }
+  });
+});
+</script>

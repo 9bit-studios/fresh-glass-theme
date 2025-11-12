@@ -1,0 +1,202 @@
+/* ========================================
+   CRITICAL MOBILE SPACING FIXES
+   Direct targeting of problem elements
+   ======================================== */
+
+/* ========================================
+   PRODUCT PAGE SPECIFIC FIXES
+   ======================================== */
+
+@media screen and (max-width: 749px) {
+  /* Target the specific product-information section class you mentioned */
+  .product-information.section.section--page-width.spacing-style .product-information{
+    /* Override inline styles with !important for mobile */
+    padding-top: calc(var(--header-height, 100px) + 8px) !important;
+    margin-top: calc(-120px + var(--header-height, 100px)) !important; /* Your requested 120px reduction + header clearance */
+    
+    /* Reset any inherited spacing */
+    --padding-block-start: calc(var(--header-height, 80px) + 8px) !important;
+    --padding-block-end: 8px !important;
+  }
+  
+  /* Fix any gap issues specifically */
+  .product-information.section.spacing-style {
+    --gap: 16px !important; /* Reduce from 48px to 16px on mobile */
+  }
+  
+  /* Target the price to add-to-cart spacing specifically */
+  .product-details .price-wrapper + .product-form,
+  .product-details .price + .product-form,
+  .product-form {
+    margin-top: 8px !important; /* Your requested 40px reduction from typical 48px */
+  }
+  
+  /* Ensure skip-to-content-link doesn't interfere */
+  .skip-to-content-link.button-secondary {
+    position: absolute !important;
+    top: -999px !important;
+    left: -999px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: none;
+  }
+}
+
+/* ========================================
+   COLLECTION PAGE SPECIFIC FIXES
+   ======================================== */
+
+@media screen and (max-width: 749px) {
+  /* Target collection container */
+  .main-collection.section,
+  .product-grid-container.section,
+  results-list.section {
+    /* Reduce top padding with header clearance */
+    --padding-block-start: calc(var(--header-height, 60px) + 110px) !important;
+    --padding-block-end: 16px !important;
+    margin-top: calc(-40px + var(--header-height, 80px)) !important; /* Your requested 30px reduction + header clearance */
+  }
+  
+  /* Collection wrapper spacing */
+  .collection-wrapper {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  /* Facets to collection header spacing */
+  .collection-wrapper .facets-block-wrapper,
+  .collection-wrapper .glass-filter-bar {
+    margin-bottom: 8px !important; /* Reduced from typical 38px */
+  }
+}
+
+/* ========================================
+   SEARCH PAGE SPECIFIC FIXES
+   ======================================== */
+
+@media screen and (max-width: 749px) {
+  /* Search results section */
+  .search-results.section {
+    --padding-block-start: calc(var(--header-height, 100px) + 8px) !important;
+    --padding-block-end: 16px !important;
+    margin-top: calc(-60px + var(--header-height, 100px)) !important; /* Your requested 60px reduction + header clearance */
+  }
+  
+  /* Search header to results spacing */
+  .search-header + .search-results,
+  .predictive-search + .search-results {
+    margin-top: 8px !important;
+  }
+  
+  /* Facets to search field spacing */
+  .search-results .facets-block-wrapper,
+  .search-results .glass-filter-bar {
+    margin-bottom: 8px !important; /* Reduced from typical 68px */
+  }
+}
+
+/* ========================================
+   GENERAL SECTION SPACING OVERRIDES
+   ======================================== */
+
+@media screen and (max-width: 749px) {
+  /* Target any section with spacing-style class */
+  .section.spacing-style {
+    /* More aggressive mobile spacing reduction */
+    --spacing-scale: 0.3 !important; /* Even more aggressive than 0.5 */
+  }
+  
+  /* Specific section combinations that cause issues */
+  .section.section--page-width.spacing-style,
+  .section.section--full-width.spacing-style {
+    min-height: auto !important;
+    padding-top: clamp(8px, 2vw, 16px) !important;
+    padding-bottom: clamp(8px, 2vw, 24px) !important;
+  }
+  
+  /* Reset any problematic margins between sections */
+  .section + .section {
+    margin-top: 0 !important;
+  }
+  
+  /* Target the gap variable specifically */
+  [style*="--gap:"] {
+    --gap: clamp(8px, 3vw, 24px) !important;
+  }
+}
+
+/* ========================================
+   ELEMENT-SPECIFIC MOBILE FIXES
+   ======================================== */
+
+@media screen and (max-width: 749px) {
+  /* Product grid spacing */
+  .product-information__grid {
+    gap: 16px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Product details internal spacing */
+  .product-details > * {
+    margin-bottom: 12px !important;
+  }
+  
+  .product-details > *:last-child {
+    margin-bottom: 0 !important;
+  }
+  
+  /* Price specific spacing */
+  .price-wrapper,
+  .product-details .price {
+    margin-bottom: 8px !important;
+  }
+  
+  /* Button spacing */
+  .product-form__buttons,
+  .add-to-cart-button {
+    margin-top: 16px !important;
+  }
+}
+
+/* ========================================
+   DESKTOP PROPORTIONAL REDUCTIONS
+   ======================================== */
+
+@media screen and (min-width: 750px) and (max-width: 989px) {
+  /* Tablet spacing - smaller reductions with header clearance */
+  .product-information.section.spacing-style {
+    margin-top: calc(-60px + var(--header-height, 100px)) !important; /* Half the mobile reduction + header */
+    padding-top: calc(var(--header-height, 100px) + 16px) !important;
+  }
+  
+  .main-collection.section,
+  .product-grid-container.section {
+    margin-top: calc(-15px + var(--header-height, 100px)) !important; /* Half the mobile reduction + header */
+    padding-top: calc(var(--header-height, 100px) + 16px) !important;
+  }
+  
+  .search-results.section {
+    margin-top: calc(-30px + var(--header-height, 100px)) !important; /* Half the mobile reduction + header */
+    padding-top: calc(var(--header-height, 100px) + 16px) !important;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  /* Desktop - minimal reductions with header clearance */
+  .product-information.section.spacing-style {
+    margin-top: calc(-40px + var(--header-height, 100px)) !important; /* Third of mobile reduction + header */
+    padding-top: calc(var(--header-height, 100px)) !important;
+  }
+  
+  .main-collection.section,
+  .product-grid-container.section {
+    margin-top: calc(-10px + var(--header-height, 100px)) !important;
+    padding-top: calc(var(--header-height, 100px)) !important;
+  }
+  
+  .search-results.section {
+    margin-top: calc(-20px + var(--header-height, 100px)) !important;
+    padding-top: calc(var(--header-height, 100px)) !important;
+  }
+}

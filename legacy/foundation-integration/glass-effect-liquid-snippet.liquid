@@ -1,0 +1,150 @@
+{%- comment -%}
+  Glass Effect Snippet for Shopify Liquid
+  Version: 1.0.0
+  
+  Usage:
+  {% render 'glass-effect',
+    type: 'regular',
+    element: 'button',
+    content: 'Click me',
+    classes: 'custom-class',
+    id: 'unique-id'
+  %}
+  
+  Parameters:
+  - type: 'regular' | 'prominent' | 'subtle' | 'ultra-thin' (default: 'regular')
+  - element: 'div' | 'button' | 'card' | 'container' (default: 'div')
+  - content: HTML content to wrap
+  - classes: Additional CSS classes
+  - id: Element ID
+  - animated: true/false for shimmer effect
+{%- endcomment -%}
+
+{%- liquid
+  # Set defaults
+  assign glass_type = type | default: 'regular'
+  assign glass_element = element | default: 'div'
+  assign additional_classes = classes | default: ''
+  assign element_id = id | default: ''
+  assign is_animated = animated | default: false
+  
+  # Build class list based on element type
+  case glass_element
+    when 'button'
+      assign base_class = 'glass-button'
+      if glass_type != 'regular'
+        assign base_class = base_class | append: ' glass-button-' | append: glass_type
+      endif
+    when 'card'
+      assign base_class = 'glass-card'
+    when 'container'
+      assign base_class = 'glass-container-with-bg'
+    else
+      assign base_class = 'glass-effect'
+      if glass_type != 'regular'
+        assign base_class = base_class | append: '-' | append: glass_type
+      endif
+  endcase
+  
+  # Add quantum-spatial class mapping
+  assign quantum_class = 'quantum-spatial-glass-' | append: glass_type
+  assign final_classes = base_class | append: ' ' | append: quantum_class
+  
+  # Add animation class if requested
+  if is_animated
+    assign final_classes = final_classes | append: ' glass-shimmer'
+  endif
+  
+  # Add custom classes
+  if additional_classes != ''
+    assign final_classes = final_classes | append: ' ' | append: additional_classes
+  endif
+-%}
+
+{%- case glass_element -%}
+  {%- when 'button' -%}
+    <button 
+      class="{{ final_classes }}"
+      {%- if element_id != '' %} id="{{ element_id }}"{% endif -%}
+      {%- if button_type %} type="{{ button_type }}"{% endif -%}
+      {%- if button_action %} onclick="{{ button_action }}"{% endif -%}>
+      {{ content }}
+    </button>
+    
+  {%- when 'card' -%}
+    <div class="{{ final_classes }}"
+      {%- if element_id != '' %} id="{{ element_id }}"{% endif -%}>
+      {%- if card_image -%}
+        <div class="glass-card__image">
+          {{ card_image }}
+        </div>
+      {%- endif -%}
+      <div class="glass-card__content">
+        {{ content }}
+      </div>
+    </div>
+    
+  {%- when 'container' -%}
+    <div class="{{ final_classes }}"
+      {%- if element_id != '' %} id="{{ element_id }}"{% endif -%}>
+      {{ content }}
+    </div>
+    
+  {%- else -%}
+    <div class="{{ final_classes }}"
+      {%- if element_id != '' %} id="{{ element_id }}"{% endif -%}>
+      {{ content }}
+    </div>
+{%- endcase -%}
+
+{%- comment -%}
+  Product Card Glass Effect Example
+{%- endcomment -%}
+{%- if glass_element == 'product-card' -%}
+  <div class="product-card-glass {{ additional_classes }}"
+    {%- if element_id != '' %} id="{{ element_id }}"{% endif -%}>
+    
+    {%- if product.featured_image -%}
+      <div class="card__media">
+        <img
+          src="{{ product.featured_image | image_url: width: 300 }}"
+          alt="{{ product.featured_image.alt | escape }}"
+          loading="lazy"
+          width="300"
+          height="{{ 300 | divided_by: product.featured_image.aspect_ratio | round }}"
+        >
+        {%- if product.compare_at_price > product.price -%}
+          <div class="card__badge glass-effect-prominent">
+            {{ 'products.product.on_sale' | t }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    
+    <div class="card__content">
+      <h3 class="card__heading">
+        <a href="{{ product.url }}" class="full-unstyled-link">
+          {{ product.title | escape }}
+        </a>
+      </h3>
+      
+      <div class="card__info">
+        <span class="price">
+          {{ product.price | money }}
+        </span>
+        {%- if product.compare_at_price > product.price -%}
+          <span class="price price--compare">
+            {{ product.compare_at_price | money }}
+          </span>
+        {%- endif -%}
+      </div>
+      
+      {%- render 'glass-effect',
+        type: 'subtle',
+        element: 'button',
+        content: 'Quick Shop',
+        classes: 'card__button'
+      -%}
+    </div>
+  </div>
+{%- endif -%}

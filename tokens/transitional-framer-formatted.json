@@ -1,0 +1,97 @@
+{
+  "$schema": "https://framer.com/schema/design-system.json",
+  "name": "9Bit Studios Quantum-Spatial Design System (transitional)",
+  "version": "1.0.0",
+  "tokens": {
+    "colors": {
+      "primary-main": {
+        "value": "#131A36"
+      },
+      "primary-dark": {
+        "value": "#0D0D15"
+      },
+      "primary-light": {
+        "value": "#1E1F5C"
+      },
+      "primary-contrastText": {
+        "value": "#FFFFFF"
+      },
+      "secondary-main": {
+        "value": "#331F4A"
+      },
+      "secondary-dark": {
+        "value": "#0D0D15"
+      },
+      "secondary-light": {
+        "value": "#613FE7"
+      },
+      "secondary-contrastText": {
+        "value": "#FFFFFF"
+      },
+      "accent-main": {
+        "value": "#5AC8FA"
+      },
+      "accent-dark": {
+        "value": "#126D71"
+      },
+      "accent-light": {
+        "value": "#00FFC8"
+      },
+      "accent-contrastText": {
+        "value": "#131A36"
+      },
+      "background-default": {
+        "value": "#131A36"
+      },
+      "background-paper": {
+        "value": "#0D0D15"
+      },
+      "background-subtle": {
+        "value": "#0A0621"
+      },
+      "text-primary": {
+        "value": "#FFFFFF"
+      },
+      "text-secondary": {
+        "value": "#CCCCCC"
+      },
+      "text-disabled": {
+        "value": "#888888"
+      },
+      "text-hint": {
+        "value": "#AAAAAA"
+      },
+      "semantic-success": {
+        "value": "#34C759"
+      },
+      "semantic-warning": {
+        "value": "#FF9500"
+      },
+      "semantic-error": {
+        "value": "#FF3B30"
+      },
+      "semantic-info": {
+        "value": "#5AC8FA"
+      }
+    },
+    "typography": {
+      "fontFamily": {}
+    },
+    "spacing": {},
+    "borderRadius": {},
+    "shadows": {
+      "subtle": {
+        "value": "0 2px 4px rgba(10, 6, 33, 0.3)"
+      },
+      "medium": {
+        "value": "0 4px 8px rgba(10, 6, 33, 0.3), 0 0 8px rgba(90, 200, 250, 0.2)"
+      },
+      "prominent": {
+        "value": "0 8px 16px rgba(10, 6, 33, 0.3), 0 0 16px rgba(90, 200, 250, 0.2)"
+      },
+      "glow": {
+        "value": "0 0 20px rgba(90, 200, 250, 0.2)"
+      }
+    }
+  }
+}

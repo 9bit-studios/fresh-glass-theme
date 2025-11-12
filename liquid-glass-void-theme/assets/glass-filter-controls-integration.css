@@ -1,0 +1,122 @@
+/* ========================================
+   GLASS FILTER CONTROLS INTEGRATION
+   Simple integration of glass-filter-bar controls into horizontal facets
+   Working with existing functionality - no conflicts
+   ======================================== */
+
+/* ========================================
+   DESKTOP ONLY - MINIMAL INTEGRATION
+   ======================================== */
+
+@media (min-width: 750px) {
+  /* Style the existing sorting-filter component to match glass-filter-bar */
+  .facets--horizontal .sorting-filter-component,
+  .facets--horizontal .sorting-filter {
+    background: var(--unified-glass-medium) !important;
+    backdrop-filter: var(--unified-backdrop-medium) !important;
+    -webkit-backdrop-filter: var(--unified-backdrop-medium) !important;
+    border: 1px solid var(--unified-quantum-border) !important;
+    border-radius: 10px !important;
+    padding: 0.75rem 1rem !important;
+    margin: 0 !important;
+  }
+  
+  /* Style the sort select dropdown */
+  .facets--horizontal .sorting-filter select,
+  .facets--horizontal .facets__summary {
+    background: var(--unified-glass-subtle) !important;
+    backdrop-filter: var(--unified-backdrop-subtle) !important;
+    -webkit-backdrop-filter: var(--unified-backdrop-subtle) !important;
+    border: 1px solid var(--unified-quantum-border) !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 2rem 0.75rem 1rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    min-width: 180px !important;
+  }
+  
+  .facets--horizontal .sorting-filter select:hover,
+  .facets--horizontal .facets__summary:hover {
+    border-color: var(--unified-quantum-border-hover) !important;
+    color: rgba(255, 255, 255, 1) !important;
+    transform: translateY(-1px) !important;
+  }
+  
+  /* Position the sorting component on the left */
+  .facets-controls-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 1rem !important;
+    padding: 0.75rem 0 !important;
+  }
+  
+  .facets-controls-wrapper .sorting-filter-component,
+  .facets-controls-wrapper .sorting-filter {
+    order: -1 !important;
+    margin-right: auto !important;
+  }
+  
+  /* Keep column options on the right */
+  .column-options-wrapper {
+    order: 1 !important;
+    margin-left: auto !important;
+  }
+  
+  /* Add a subtle divider between sort and column options */
+  .facets-controls-wrapper::before {
+    content: '' !important;
+    width: 1px !important;
+    height: 30px !important;
+    background: var(--unified-quantum-border) !important;
+    opacity: 0.5 !important;
+    order: 0 !important;
+    margin: 0 0.5rem !important;
+  }
+}
+
+/* ========================================
+   MOBILE CLEAR ALL BUTTON FIX
+   Stay on filter screen after clearing
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Ensure Clear All button functionality stays on filter screen */
+  .mobile-facets__footer .facets__clear-all,
+  .mobile-facets__footer .mobile-facets__clear {
+    /* Keep existing styling - just fix the action */
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY AND POLISH
+   ======================================== */
+
+@media (min-width: 750px) {
+  /* Focus states */
+  .facets--horizontal .sorting-filter select:focus,
+  .facets--horizontal .facets__summary:focus {
+    outline: 2px solid var(--unified-quantum-primary) !important;
+    outline-offset: 2px !important;
+    border-color: var(--unified-quantum-primary) !important;
+  }
+  
+  /* Loading state for sort changes */
+  .facets--horizontal .sorting-filter select.loading {
+    opacity: 0.6 !important;
+    pointer-events: none !important;
+  }
+  
+  /* High contrast support */
+  @media (prefers-contrast: high) {
+    .facets--horizontal .sorting-filter-component,
+    .facets--horizontal .sorting-filter,
+    .facets--horizontal .sorting-filter select,
+    .facets--horizontal .facets__summary {
+      border-width: 2px !important;
+    }
+  }
+}

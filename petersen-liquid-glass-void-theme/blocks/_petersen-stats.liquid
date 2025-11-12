@@ -1,0 +1,534 @@
+{%- comment -%}
+  Petersen Games - Game Statistics Block
+  Modular block for displaying game specifications with Petersen glyphs
+  Configurable as blocks within sections with demo content
+{%- endcomment -%}
+
+<div class="petersen-game-stats-block" {{ block.shopify_attributes }}>
+  <div class="game-stats-block-container">
+    <div class="stats-header">
+      {%- if block.settings.show_title -%}
+        <h3 class="stats-block-title">{{ block.settings.title | default: 'Game Specifications' }}</h3>
+      {%- endif -%}
+      {%- if block.settings.subtitle != blank -%}
+        <p class="stats-block-subtitle">{{ block.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="stats-grid">
+      {%- comment -%} Player Count {%- endcomment -%}
+      {%- if block.settings.show_players -%}
+      <div class="stat-item">
+        <div class="stat-icon">
+          <img
+            src="{{ block.settings.players_icon | default: 'https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-02.svg?v=1757991638' }}"
+            alt="Players icon"
+            class="glyph-icon"
+            loading="lazy"
+          >
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">{{ block.settings.players_label | default: 'Players' }}</span>
+          <span class="stat-value">{{ block.settings.players_value | default: '2-5' }}</span>
+          {%- if block.settings.players_note != blank -%}
+            <span class="stat-note">{{ block.settings.players_note }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- endif -%}
+
+      {%- comment -%} Play Time {%- endcomment -%}
+      {%- if block.settings.show_time -%}
+      <div class="stat-item">
+        <div class="stat-icon">
+          <img
+            src="{{ block.settings.time_icon | default: 'https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-07.svg?v=1757991638' }}"
+            alt="Time icon"
+            class="glyph-icon"
+            loading="lazy"
+          >
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">{{ block.settings.time_label | default: 'Play Time' }}</span>
+          <span class="stat-value">{{ block.settings.time_value | default: '90-120 min' }}</span>
+          {%- if block.settings.time_note != blank -%}
+            <span class="stat-note">{{ block.settings.time_note }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- endif -%}
+
+      {%- comment -%} Age Range {%- endcomment -%}
+      {%- if block.settings.show_age -%}
+      <div class="stat-item">
+        <div class="stat-icon">
+          <img
+            src="{{ block.settings.age_icon | default: 'https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-09.svg?v=1757991638' }}"
+            alt="Age icon"
+            class="glyph-icon"
+            loading="lazy"
+          >
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">{{ block.settings.age_label | default: 'Age' }}</span>
+          <span class="stat-value">{{ block.settings.age_value | default: '14+' }}</span>
+          {%- if block.settings.age_note != blank -%}
+            <span class="stat-note">{{ block.settings.age_note }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- endif -%}
+
+      {%- comment -%} Complexity {%- endcomment -%}
+      {%- if block.settings.show_complexity -%}
+      <div class="stat-item">
+        <div class="stat-icon">
+          <img
+            src="{{ block.settings.complexity_icon | default: 'https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-03.svg?v=1757991638' }}"
+            alt="Complexity icon"
+            class="glyph-icon"
+            loading="lazy"
+          >
+        </div>
+        <div class="stat-content">
+          <span class="stat-label">{{ block.settings.complexity_label | default: 'Complexity' }}</span>
+          <span class="stat-value">
+            {%- if block.settings.show_complexity_visual -%}
+              <div class="complexity-visual">
+                {%- assign complexity_level = block.settings.complexity_level | default: 4 -%}
+                {%- for i in (1..5) -%}
+                  <span class="complexity-dot {% if i <= complexity_level %}filled{% endif %}"></span>
+                {%- endfor -%}
+                <span class="complexity-text">{{ complexity_level }}/5</span>
+              </div>
+            {%- else -%}
+              {{ block.settings.complexity_value | default: '4/5' }}
+            {%- endif -%}
+          </span>
+          {%- if block.settings.complexity_note != blank -%}
+            <span class="stat-note">{{ block.settings.complexity_note }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- endif -%}
+    </div>
+
+    {%- if block.settings.show_description -%}
+    <div class="stats-description">
+      <p>{{ block.settings.description | default: 'Experience the ultimate in cosmic horror gaming with strategic depth and beautiful components.' }}</p>
+    </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+.petersen-game-stats-block {
+  margin: {{ block.settings.margin_top | default: 40 }}px 0 {{ block.settings.margin_bottom | default: 40 }}px 0;
+}
+
+.game-stats-block-container {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  color: white;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.stats-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.stats-block-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.02em;
+}
+
+.stats-block-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax({{ block.settings.min_column_width | default: 250 }}px, 1fr));
+  gap: 24px;
+  margin-bottom: {{ block.settings.show_description | default: false | if: '24px', '0' }};
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.glyph-icon {
+  width: 24px;
+  height: 24px;
+  filter: invert(1) brightness(0.9);
+  transition: all 0.2s ease;
+}
+
+.stat-item:hover .glyph-icon {
+  filter: invert(1) brightness(1);
+  transform: scale(1.1);
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 255, 255, 0.08);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.stat-note {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+.complexity-visual {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.complexity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.complexity-dot.filled {
+  background: #667eea;
+  box-shadow: 0 0 6px rgba(102, 126, 234, 0.4);
+}
+
+.complexity-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-left: 4px;
+}
+
+.stats-description {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stats-description p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .game-stats-block-container {
+    padding: 24px 16px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .stat-item {
+    padding: 16px;
+  }
+
+  .stats-block-title {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .stat-content {
+    align-items: center;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Game Statistics",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Block Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show block title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Block title",
+      "default": "Game Specifications"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle (optional)",
+      "info": "Brief description below the title"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Experience the ultimate in cosmic horror gaming with strategic depth and beautiful components."
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "min_column_width",
+      "min": 200,
+      "max": 400,
+      "step": 25,
+      "unit": "px",
+      "label": "Minimum column width",
+      "default": 250
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Player Count"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_players",
+      "label": "Show player count",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "players_label",
+      "label": "Players label",
+      "default": "Players"
+    },
+    {
+      "type": "text",
+      "id": "players_value",
+      "label": "Players value",
+      "default": "2-5"
+    },
+    {
+      "type": "text",
+      "id": "players_note",
+      "label": "Players note (optional)",
+      "placeholder": "e.g., Best with 4"
+    },
+    {
+      "type": "url",
+      "id": "players_icon",
+      "label": "Players icon URL"
+    },
+    {
+      "type": "header",
+      "content": "Play Time"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_time",
+      "label": "Show play time",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "time_label",
+      "label": "Time label",
+      "default": "Play Time"
+    },
+    {
+      "type": "text",
+      "id": "time_value",
+      "label": "Time value",
+      "default": "90-120 min"
+    },
+    {
+      "type": "text",
+      "id": "time_note",
+      "label": "Time note (optional)",
+      "placeholder": "e.g., Setup: 15 min"
+    },
+    {
+      "type": "url",
+      "id": "time_icon",
+      "label": "Time icon URL"
+    },
+    {
+      "type": "header",
+      "content": "Age Range"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_age",
+      "label": "Show age range",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "age_label",
+      "label": "Age label",
+      "default": "Age"
+    },
+    {
+      "type": "text",
+      "id": "age_value",
+      "label": "Age value",
+      "default": "14+"
+    },
+    {
+      "type": "text",
+      "id": "age_note",
+      "label": "Age note (optional)",
+      "placeholder": "e.g., Adult themes"
+    },
+    {
+      "type": "url",
+      "id": "age_icon",
+      "label": "Age icon URL"
+    },
+    {
+      "type": "header",
+      "content": "Complexity"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_complexity",
+      "label": "Show complexity",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "complexity_label",
+      "label": "Complexity label",
+      "default": "Complexity"
+    },
+    {
+      "type": "text",
+      "id": "complexity_value",
+      "label": "Complexity value (if not using visual)",
+      "default": "4/5"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_complexity_visual",
+      "label": "Show visual complexity dots",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "complexity_level",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "label": "Complexity level (1-5)",
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "complexity_note",
+      "label": "Complexity note (optional)",
+      "placeholder": "e.g., Strategic depth"
+    },
+    {
+      "type": "url",
+      "id": "complexity_icon",
+      "label": "Complexity icon URL"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,558 @@
+{%- comment -%}
+  Petersen Games - FREE STL Newsletter Section
+  FREE STL opt-in offer with miniature preview and glyph icons
+  Configurable in theme builder with brand-aware validation
+{%- endcomment -%}
+
+<div class="petersen-newsletter" id="section-{{ section.id }}">
+  <div class="newsletter-container">
+    <div class="newsletter-content">
+      <div class="newsletter-image">
+        {%- if section.settings.stl_image != blank -%}
+          <img
+            src="{{ section.settings.stl_image | img_url: '400x400' }}"
+            alt="{{ section.settings.stl_image_alt | default: 'Free STL miniature preview' }}"
+            class="stl-preview"
+            loading="lazy"
+          >
+        {%- else -%}
+          <div class="stl-placeholder">
+            <span class="placeholder-icon">🎲</span>
+            <span class="placeholder-text">STL Preview</span>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.show_free_badge -%}
+          <div class="free-badge">{{ section.settings.free_badge_text | default: 'FREE' }}</div>
+        {%- endif -%}
+      </div>
+
+      <div class="newsletter-text">
+        {%- if section.settings.show_title -%}
+          <h2 class="newsletter-title">{{ section.settings.title | default: 'Get Your FREE STL File' }}</h2>
+        {%- endif -%}
+
+        {%- if section.settings.subtitle != blank -%}
+          <p class="newsletter-subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+
+        <form class="newsletter-form" action="/contact#ContactFooter" method="post" accept-charset="UTF-8">
+          <input type="hidden" name="form_type" value="customer" />
+          <input type="hidden" name="utf8" value="✓" />
+          <input type="hidden" name="contact[tags]" value="newsletter,stl-download,product-{{ product.handle | default: 'general' }}">
+
+          <div class="form-group">
+            <div class="input-wrapper">
+              <input
+                type="email"
+                name="contact[email]"
+                id="newsletter-email-{{ section.id }}"
+                class="newsletter-input"
+                placeholder="{{ section.settings.email_placeholder | default: 'Enter your email for FREE STL download' }}"
+                required
+                aria-label="Email address for STL download"
+              >
+              <button type="submit" class="newsletter-button">
+                {%- if section.settings.button_text != blank -%}
+                  {{ section.settings.button_text }}
+                {%- else -%}
+                  Download FREE STL
+                {%- endif -%}
+                <span class="button-icon" aria-hidden="true">
+                  {%- if section.settings.custom_icon_url != blank -%}
+                    <img src="{{ section.settings.custom_icon_url }}" alt="" class="custom-icon">
+                  {%- else -%}
+                    →
+                  {%- endif -%}
+                </span>
+              </button>
+            </div>
+
+            {%- if section.settings.show_privacy_note -%}
+              <p class="privacy-note">{{ section.settings.privacy_text | default: 'We respect your privacy. Unsubscribe anytime.' }}</p>
+            {%- endif -%}
+          </div>
+
+          {%- if section.settings.show_benefits -%}
+            <div class="newsletter-benefits">
+              {%- if section.settings.benefit_1 != blank -%}
+                <div class="benefit-item">
+                  <img src="https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-02.svg?v=1757991638" alt="" class="benefit-glyph">
+                  <span class="benefit-text">{{ section.settings.benefit_1 }}</span>
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.benefit_2 != blank -%}
+                <div class="benefit-item">
+                  <img src="https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-07.svg?v=1757991638" alt="" class="benefit-glyph">
+                  <span class="benefit-text">{{ section.settings.benefit_2 }}</span>
+                </div>
+              {%- endif -%}
+
+              {%- if section.settings.benefit_3 != blank -%}
+                <div class="benefit-item">
+                  <img src="https://cdn.shopify.com/s/files/1/0701/0277/8037/files/1-09.svg?v=1757991638" alt="" class="benefit-glyph">
+                  <span class="benefit-text">{{ section.settings.benefit_3 }}</span>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.petersen-newsletter {
+  margin: {{ section.settings.margin_top }}px 0 {{ section.settings.margin_bottom }}px 0;
+  padding: 0 20px;
+  background: transparent;
+}
+
+.newsletter-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  color: white;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.newsletter-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.newsletter-image {
+  flex-shrink: 0;
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.stl-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stl-placeholder {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.placeholder-icon {
+  font-size: 48px;
+  opacity: 0.3;
+}
+
+.placeholder-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.free-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.newsletter-text {
+  flex: 1;
+  text-align: left;
+}
+
+.newsletter-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.newsletter-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  margin: 0 0 32px 0;
+  line-height: 1.5;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 255, 255, 0.08);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+}
+
+.newsletter-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 4px;
+  transition: all 0.2s ease;
+}
+
+.input-wrapper:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.input-wrapper:focus-within {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.newsletter-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 16px 20px;
+  outline: none;
+  font-family: inherit;
+}
+
+.newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.newsletter-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.newsletter-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.newsletter-button:active {
+  transform: translateY(0);
+}
+
+.button-icon {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.newsletter-button:hover .button-icon {
+  transform: translateX(4px);
+}
+
+.custom-icon {
+  width: 20px;
+  height: 20px;
+  filter: invert(1) brightness(1);
+}
+
+.privacy-note {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-style: italic;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.newsletter-benefits {
+  display: flex;
+  justify-content: flex-start;
+  gap: 32px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 8px rgba(255, 255, 255, 0.06);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 500;
+}
+
+.benefit-glyph {
+  width: 16px;
+  height: 16px;
+  filter: invert(1) brightness(0.9);
+  transition: all 0.2s ease;
+}
+
+.benefit-item:hover .benefit-glyph {
+  filter: invert(1) brightness(1);
+  transform: scale(1.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .newsletter-container {
+    padding: 24px 16px;
+  }
+
+  .newsletter-content {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .newsletter-image {
+    width: 250px;
+    height: 250px;
+  }
+
+  .newsletter-text {
+    text-align: center;
+  }
+
+  .newsletter-title {
+    font-size: 1.5rem;
+  }
+
+  .input-wrapper {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .newsletter-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .newsletter-benefits {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .newsletter-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .newsletter-benefits {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .benefit-item {
+    justify-content: center;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "FREE STL Newsletter",
+  "tag": "section",
+  "class": "petersen-newsletter-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "STL Offer Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "stl_image",
+      "label": "STL Preview Image",
+      "info": "Image of the miniature or STL file preview"
+    },
+    {
+      "type": "text",
+      "id": "stl_image_alt",
+      "label": "STL Image Alt Text",
+      "default": "Free STL miniature preview"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_free_badge",
+      "label": "Show FREE badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "free_badge_text",
+      "label": "FREE badge text",
+      "default": "FREE"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show title",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Newsletter title",
+      "default": "Get Your FREE STL File"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle (optional)",
+      "default": "Download an exclusive miniature STL file and join thousands of creators in the Petersen Games community."
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder text",
+      "default": "Enter your email for FREE STL download"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Download FREE STL"
+    },
+    {
+      "type": "url",
+      "id": "custom_icon_url",
+      "label": "Custom button icon URL (optional)",
+      "info": "Use a Petersen Games glyph or custom icon"
+    },
+    {
+      "type": "header",
+      "content": "Privacy & Benefits"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_privacy_note",
+      "label": "Show privacy note",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "privacy_text",
+      "label": "Privacy note text",
+      "default": "We respect your privacy. Unsubscribe anytime."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_benefits",
+      "label": "Show benefits list",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Benefit 1",
+      "default": "Early access to new releases"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Benefit 2",
+      "default": "Exclusive insider content"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Benefit 3",
+      "default": "Special member discounts"
+    },
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "FREE STL Newsletter",
+      "settings": {
+        "show_title": true,
+        "title": "Get Your FREE STL File",
+        "show_free_badge": true,
+        "show_benefits": true,
+        "show_privacy_note": true,
+        "benefit_1": "Early access to new releases",
+        "benefit_2": "Exclusive insider content",
+        "benefit_3": "Special member discounts"
+      }
+    }
+  ]
+}
+{% endschema %}

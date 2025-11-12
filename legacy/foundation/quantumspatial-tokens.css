@@ -1,0 +1,200 @@
+
+:root {
+
+  --quantum-void-black: #000000;
+  --deep-space-indigo: #0A0A0F;
+  --ultra-indigo: #15151D;
+  --quantum-card-background: rgba(10, 10, 15, 0.85);
+  --quantum-elevated-background: rgba(21, 21, 29, 0.9);
+  --oil-slick-purple: #2D1B69;
+  --oil-slick-indigo: #1E1B4B;
+  --deep-cosmic-purple: #4C1D95;
+  --cosmic-indigo: #312E81;
+  --subtle-violet: #6366F1;
+  --electric-indigo: #4F46E5;
+  --apple-blue-bright: #007AFF;        /* Primary UI Action */
+  --apple-blue-hover: #409CFF;         /* Hover state */
+  --apple-purple: #8B5CF6;             /* Secondary action */
+  --apple-teal: #64D2FF;               /* Accent color */
+  --text-primary: #FCFDF2;                    /* Replace #FFFFFF */
+  --text-secondary: rgba(252, 253, 242, 0.85);
+  --text-tertiary: rgba(252, 253, 242, 0.7);
+  --text-quaternary: rgba(252, 253, 242, 0.6);
+  --text-placeholder: rgba(252, 253, 242, 0.45);
+  --glass-deep-indigo: rgba(30, 27, 75, 0.85);
+  --glass-cosmic-purple: rgba(45, 27, 105, 0.9);
+  --glass-electric-indigo: rgba(79, 70, 229, 0.8);
+  
+  /* Background variants with infinite glass variations */
+  --ultradimensional-bg: rgba(10, 6, 33, 0.95);
+  --mystic-bg: rgba(19, 26, 54, 0.92);
+  --deep-space-bg: rgba(30, 31, 92, 0.88);
+  --multidimensional-bg: rgba(51, 31, 74, 0.85);
+  --void-bg: rgba(106, 48, 147, 0.82);
+  --border-primary: rgba(252, 253, 242, 0.1);
+  --border-secondary: rgba(252, 253, 242, 0.08);
+  --border-active: rgba(99, 102, 241, 0.6);
+  
+  --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --letter-spacing: -0.022em;
+  --line-height: 1.47059;
+  
+  /* Font sizes (Apple hierarchy) */
+  --font-size-large: 32px;        /* Hero */
+  --font-size-title3: 20px;       /* Section headers */
+  --font-size-headline: 17px;     /* Primary text */
+  --font-size-body: 14px;         /* Body text */
+  --font-size-subheadline: 12px;  /* Secondary text */
+  --font-size-caption: 11px;      /* Captions */
+  
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-xxl: 24px;
+  --spacing-xxxl: 32px;
+  --spacing-xxxxl: 44px;          /* Apple nav height / touch target */
+
+  --backdrop-blur: saturate(180%) blur(20px);
+  --glass-effect: blur(20px) saturate(150%);
+  --quantum-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+  --apple-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  
+  /* Animation durations */
+  --animation-fast: 150ms;
+  --animation-medium: 250ms;
+  --animation-slow: 350ms;
+  
+  /* Apple easing functions */
+  --apple-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --quantum-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  
+
+  /* Product cards */
+  --product-card-bg: var(--quantum-elevated-background);
+  --product-card-border: var(--border-primary);
+  --product-card-hover-shadow: var(--quantum-shadow);
+  
+  /* Filter system */
+  --filter-bg: var(--glass-deep-indigo);
+  --filter-border: var(--border-primary);
+  --filter-active-bg: var(--glass-electric-indigo);
+  --filter-active-border: var(--border-active);
+  
+  /* Navigation */
+  --nav-bg: rgba(0, 0, 0, 0.8);
+  --nav-backdrop: var(--backdrop-blur);
+  --nav-border: var(--border-primary);
+  --nav-height: var(--spacing-xxxxl);
+  
+  /* Buttons */
+  --button-primary-bg: linear-gradient(135deg, var(--electric-indigo), var(--apple-blue-bright));
+  --button-secondary-bg: var(--glass-electric-indigo);
+  --button-border: var(--border-primary);
+  --button-text: var(--text-primary);
+  
+  /* Touch targets (Apple HIG) */
+  --touch-target-min: 44px;
+  --touch-target-recommended: 48px;
+}
+
+
+.quantum-glass {
+  background: var(--glass-deep-indigo);
+  backdrop-filter: var(--glass-effect);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--spacing-lg);
+}
+
+.quantum-glass-hover:hover {
+  background: var(--glass-electric-indigo);
+  border-color: var(--border-active);
+  box-shadow: var(--quantum-shadow);
+  transform: translateY(-2px);
+  transition: all var(--animation-medium) var(--quantum-ease);
+}
+
+.ultradimensional-bg {
+  background: var(--ultradimensional-bg);
+  backdrop-filter: blur(40px);
+  border: 1px solid var(--border-primary);
+}
+
+.mystic-liquid {
+  background: linear-gradient(135deg, var(--mystic-bg) 0%, var(--deep-space-bg) 100%);
+  backdrop-filter: var(--backdrop-blur);
+}
+
+.void-space-gradient {
+  background: linear-gradient(135deg, var(--void-bg) 0%, var(--multidimensional-bg) 100%);
+  backdrop-filter: var(--glass-effect);
+}
+
+.hig-touch-target {
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+}
+
+.hig-touch-target-recommended {
+  min-height: var(--touch-target-recommended);
+  min-width: var(--touch-target-recommended);
+}
+
+.hig-text-primary {
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  letter-spacing: var(--letter-spacing);
+  line-height: var(--line-height);
+}
+
+
+.quantum-hover {
+  transition: all var(--animation-medium) var(--quantum-ease);
+}
+
+.quantum-hover:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--quantum-shadow);
+}
+
+.apple-spring {
+  transition: all var(--animation-medium) var(--apple-ease);
+}
+
+.quantum-fade-in {
+  animation: quantumFadeIn var(--animation-slow) var(--quantum-ease);
+}
+
+@keyframes quantumFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+@media (max-width: 768px) {
+  :root {
+    --spacing-container: var(--spacing-lg);
+    --font-size-large: 28px;
+    --font-size-title3: 18px;
+  }
+  
+  .hig-touch-target {
+    min-height: var(--touch-target-recommended);
+    min-width: var(--touch-target-recommended);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --spacing-container: var(--spacing-md);
+    --font-size-large: 24px;
+    --font-size-title3: 16px;
+  }
+}

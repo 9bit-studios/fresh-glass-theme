@@ -1,0 +1,99 @@
+{%- comment -%}
+  Petersen Games Metafields Helper
+  Quick access functions for product metafields
+
+  Usage: {% render 'petersen-metafields-helper', product: product %}
+{%- endcomment -%}
+
+{%- liquid
+  assign petersen_metafields = product.metafields.petersen_games
+  assign game_stats = petersen_metafields.game_stats.value
+  assign theme_info = petersen_metafields.theme_info.value
+  assign components = petersen_metafields.components.value
+  assign awards = petersen_metafields.awards.value
+  assign expansions = petersen_metafields.expansions.value
+  assign shipping = petersen_metafields.shipping.value
+  assign gallery = petersen_metafields.gallery.value
+-%}
+
+{%- comment -%} Game Stats Helpers {%- endcomment -%}
+{%- if game_stats -%}
+  {%- capture player_count_display -%}
+    {%- if game_stats.player_count -%}
+      {%- if game_stats.player_count.min == game_stats.player_count.max -%}
+        {{ game_stats.player_count.min }}
+      {%- else -%}
+        {{ game_stats.player_count.min }}-{{ game_stats.player_count.max }}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endcapture -%}
+
+  {%- capture play_time_display -%}
+    {%- if game_stats.play_time -%}
+      {%- if game_stats.play_time.min == game_stats.play_time.max -%}
+        {{ game_stats.play_time.min }} min
+      {%- else -%}
+        {{ game_stats.play_time.min }}-{{ game_stats.play_time.max }} min
+      {%- endif -%}
+    {%- endif -%}
+  {%- endcapture -%}
+
+  {%- capture complexity_display -%}
+    {%- if game_stats.complexity -%}
+      {%- for i in (1..5) -%}
+        <span class="complexity-dot {% if i <= game_stats.complexity %}filled{% endif %}"></span>
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endcapture -%}
+{%- endif -%}
+
+{%- comment -%} Theme Info Helpers {%- endcomment -%}
+{%- if theme_info -%}
+  {%- capture horror_rating_display -%}
+    {%- if theme_info.horror_level -%}
+      {%- for i in (1..5) -%}
+        <span class="skull {% if i <= theme_info.horror_level %}active{% endif %}">💀</span>
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endcapture -%}
+{%- endif -%}
+
+{%- comment -%} Component Count Helper {%- endcomment -%}
+{%- if components -%}
+  {%- capture total_components -%}
+    {%- assign total = 0 -%}
+    {%- if components.miniatures.count -%}
+      {%- assign total = total | plus: components.miniatures.count -%}
+    {%- endif -%}
+    {%- if components.cards.count -%}
+      {%- assign total = total | plus: components.cards.count -%}
+    {%- endif -%}
+    {%- if components.tokens.count -%}
+      {%- assign total = total | plus: components.tokens.count -%}
+    {%- endif -%}
+    {%- if components.dice.count -%}
+      {%- assign total = total | plus: components.dice.count -%}
+    {%- endif -%}
+    {{ total }}+ Components
+  {%- endcapture -%}
+{%- endif -%}
+
+{%- comment -%} Awards Badge Helper {%- endcomment -%}
+{%- if awards and awards.awards -%}
+  {%- capture awards_display -%}
+    {%- for award in awards.awards limit: 3 -%}
+      <div class="award-badge">
+        <span class="award-icon">🏆</span>
+        <span class="award-text">{{ award.name }} {{ award.year }}</span>
+      </div>
+    {%- endfor -%}
+  {%- endcapture -%}
+{%- endif -%}
+
+{%- comment -%} Export variables for use in templates {%- endcomment -%}
+{%- assign petersen_player_count = player_count_display -%}
+{%- assign petersen_play_time = play_time_display -%}
+{%- assign petersen_complexity = complexity_display -%}
+{%- assign petersen_horror_rating = horror_rating_display -%}
+{%- assign petersen_total_components = total_components -%}
+{%- assign petersen_awards = awards_display -%}

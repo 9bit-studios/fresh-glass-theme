@@ -1,0 +1,312 @@
+/* ========================================
+   COLLECTION FILTER POPULATION STYLES
+   Visual styling for collection-specific filter states
+   Complements collection-filter-population.js
+   ======================================== */
+
+/* ========================================
+   COLLECTION-SPECIFIC FILTER STYLING
+   Different visual treatments for required vs suggested filters
+   ======================================== */
+
+/* Required filters - usually pre-selected for the collection */
+.collection-filter-required {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%) !important;
+  border: 1px solid rgba(99, 102, 241, 0.3) !important;
+  border-radius: 8px !important;
+  margin: 0.25rem 0 !important;
+  padding: 0.5rem !important;
+  position: relative !important;
+}
+
+.collection-filter-required::before {
+  content: "★" !important;
+  position: absolute !important;
+  top: 0.5rem !important;
+  right: 0.5rem !important;
+  color: rgba(99, 102, 241, 0.8) !important;
+  font-size: 0.75rem !important;
+  opacity: 0.7 !important;
+}
+
+/* Suggested filters - available but not pre-selected */
+.collection-filter-suggested {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 6px !important;
+  margin: 0.1rem 0 !important;
+  padding: 0.25rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.collection-filter-suggested:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Pre-selected filter styling */
+.collection-filter-preselected {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0.1) 100%) !important;
+  border-color: rgba(34, 197, 94, 0.4) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 2px 8px rgba(34, 197, 94, 0.2) !important;
+}
+
+.collection-filter-preselected::after {
+  content: "✓" !important;
+  position: absolute !important;
+  top: 0.5rem !important;
+  left: 0.5rem !important;
+  color: rgba(34, 197, 94, 1) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  z-index: 10 !important;
+}
+
+/* ========================================
+   COLLECTION-SPECIFIC COLOR SCHEMES
+   Different themes for different collections
+   ======================================== */
+
+/* Planet Apocalypse - Dark red/orange theme */
+.collection-planet-apocalypse .collection-filter-required {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.08) 100%) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.collection-planet-apocalypse .collection-filter-required::before {
+  color: rgba(239, 68, 68, 0.9) !important;
+}
+
+/* Sandy's Games - Warm brown/gold theme */
+.collection-sandys-games .collection-filter-required {
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.15) 0%, rgba(217, 119, 6, 0.08) 100%) !important;
+  border-color: rgba(217, 119, 6, 0.4) !important;
+}
+
+.collection-sandys-games .collection-filter-required::before {
+  color: rgba(217, 119, 6, 0.9) !important;
+}
+
+/* Cthulhu Mythos - Deep green/teal theme */
+.collection-cthulhu-mythos .collection-filter-required {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.15) 0%, rgba(20, 184, 166, 0.08) 100%) !important;
+  border-color: rgba(20, 184, 166, 0.4) !important;
+}
+
+.collection-cthulhu-mythos .collection-filter-required::before {
+  color: rgba(20, 184, 166, 0.9) !important;
+}
+
+/* Board Games - Blue theme */
+.collection-board-games .collection-filter-required {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.08) 100%) !important;
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+.collection-board-games .collection-filter-required::before {
+  color: rgba(59, 130, 246, 0.9) !important;
+}
+
+/* RPG - Purple theme */
+.collection-rpg .collection-filter-required {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(147, 51, 234, 0.08) 100%) !important;
+  border-color: rgba(147, 51, 234, 0.4) !important;
+}
+
+.collection-rpg .collection-filter-required::before {
+  color: rgba(147, 51, 234, 0.9) !important;
+}
+
+/* ========================================
+   FILTER LABEL ENHANCEMENTS
+   Better visibility for collection-relevant filters
+   ======================================== */
+
+.collection-filter-required .facets__label,
+.collection-filter-required .mobile-facets__label {
+  font-weight: 500 !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.collection-filter-suggested .facets__label,
+.collection-filter-suggested .mobile-facets__label {
+  color: rgba(255, 255, 255, 0.85) !important;
+  transition: color 0.3s ease !important;
+}
+
+.collection-filter-suggested:hover .facets__label,
+.collection-filter-suggested:hover .mobile-facets__label {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.collection-filter-preselected .facets__label,
+.collection-filter-preselected .mobile-facets__label {
+  color: rgba(255, 255, 255, 1) !important;
+  font-weight: 600 !important;
+}
+
+/* ========================================
+   CHECKBOX AND INPUT STYLING
+   Enhanced styling for collection-specific inputs
+   ======================================== */
+
+/* Required filter checkboxes */
+.collection-filter-required input[type="checkbox"] {
+  accent-color: rgba(99, 102, 241, 1) !important;
+  transform: scale(1.1) !important;
+}
+
+.collection-filter-preselected input[type="checkbox"] {
+  accent-color: rgba(34, 197, 94, 1) !important;
+  transform: scale(1.15) !important;
+}
+
+/* Suggested filter checkboxes */
+.collection-filter-suggested input[type="checkbox"] {
+  opacity: 0.8 !important;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+
+.collection-filter-suggested:hover input[type="checkbox"] {
+  opacity: 1 !important;
+  transform: scale(1.05) !important;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE ADJUSTMENTS
+   Ensure collection filters work well on mobile
+   ======================================== */
+
+@media (max-width: 768px) {
+  .collection-filter-required,
+  .collection-filter-suggested {
+    margin: 0.15rem 0 !important;
+    padding: 0.4rem !important;
+  }
+  
+  .collection-filter-required::before,
+  .collection-filter-preselected::after {
+    font-size: 0.7rem !important;
+    top: 0.4rem !important;
+    right: 0.4rem !important;
+  }
+  
+  .collection-filter-preselected::after {
+    left: 0.4rem !important;
+  }
+}
+
+/* ========================================
+   ANIMATION ENHANCEMENTS
+   Smooth transitions for collection filter interactions
+   ======================================== */
+
+@keyframes collection-filter-highlight {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(99, 102, 241, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
+}
+
+.collection-filter-preselected {
+  animation: collection-filter-highlight 2s ease-out !important;
+}
+
+/* Stagger animation for multiple pre-selected filters */
+.collection-filter-preselected:nth-child(1) { animation-delay: 0s !important; }
+.collection-filter-preselected:nth-child(2) { animation-delay: 0.2s !important; }
+.collection-filter-preselected:nth-child(3) { animation-delay: 0.4s !important; }
+.collection-filter-preselected:nth-child(4) { animation-delay: 0.6s !important; }
+
+/* ========================================
+   LOADING STATE STYLING
+   Visual feedback during filter population
+   ======================================== */
+
+.collection-filters-loading {
+  opacity: 0.6 !important;
+  pointer-events: none !important;
+  position: relative !important;
+}
+
+.collection-filters-loading::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(90deg, transparent 0%, rgba(99, 102, 241, 0.2) 50%, transparent 100%) !important;
+  animation: collection-loading-shimmer 1.5s ease-in-out infinite !important;
+  z-index: 1 !important;
+}
+
+@keyframes collection-loading-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ========================================
+   ACCESSIBILITY ENHANCEMENTS
+   Better focus states and screen reader support
+   ======================================== */
+
+.collection-filter-required:focus-within,
+.collection-filter-suggested:focus-within {
+  outline: 2px solid rgba(99, 102, 241, 0.6) !important;
+  outline-offset: 2px !important;
+  border-radius: 6px !important;
+}
+
+.collection-filter-preselected:focus-within {
+  outline-color: rgba(34, 197, 94, 0.6) !important;
+}
+
+/* Screen reader text for collection context */
+.collection-filter-sr-text {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ========================================
+   HIGH CONTRAST MODE SUPPORT
+   Enhanced visibility for accessibility
+   ======================================== */
+
+@media (prefers-contrast: high) {
+  .collection-filter-required,
+  .collection-filter-suggested,
+  .collection-filter-preselected {
+    border-width: 2px !important;
+    border-style: solid !important;
+  }
+  
+  .collection-filter-required {
+    border-color: rgba(99, 102, 241, 1) !important;
+    background: rgba(99, 102, 241, 0.2) !important;
+  }
+  
+  .collection-filter-preselected {
+    border-color: rgba(34, 197, 94, 1) !important;
+    background: rgba(34, 197, 94, 0.2) !important;
+  }
+}
+
+/* ========================================
+   IMPLEMENTATION COMPLETE
+   Collection Filter Population Styling
+   Coordinating with collection-filter-population.js
+   ======================================== */

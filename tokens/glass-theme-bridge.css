@@ -1,0 +1,635 @@
+/* ========================================
+   GLASS THEME BRIDGE - Rise Variable Mapping
+   Maps your glass design tokens to Rise's hardcoded variables
+   Include AFTER design-tokens.css
+   ======================================== */
+
+/* Override Rise's hardcoded color scheme variables with glass system */
+:root,
+.color-scheme-1,
+.color-scheme-2,
+.color-scheme-3,
+.color-scheme-4,
+.color-scheme-5 {
+  /* Background Colors - Map to Glass Dark System */
+  --color-background: 11, 1, 13 !important; /* #0B010D from design-tokens */
+  --gradient-background: var(--foundation-gradient-deep-spatial) !important;
+  
+  /* Text Colors - Map to Glass Light System with Apple opacity hierarchy */
+  --color-foreground: 255, 255, 255 !important; /* Primary text - full white */
+  --color-foreground-secondary: 252, 253, 242, 0.85 !important; /* Secondary text - 85% opacity */
+  --color-foreground-tertiary: 252, 253, 242, 0.7 !important; /* Tertiary text - 70% opacity */
+  --color-text-secondary: 252, 253, 242, 0.85 !important; /* Map Shopify secondary text */
+  --color-text-tertiary: 252, 253, 242, 0.7 !important; /* Map Shopify tertiary text */
+  --color-background-contrast: 13, 13, 21 !important; /* #0D0D15 from design-tokens */
+  
+  /* Shadow Colors */
+  --color-shadow: 0, 0, 0 !important;
+  
+  /* Button Colors - Map to Glass Action Colors */
+  --color-button: 93, 90, 246 !important; /* #5D5AF6 from design-tokens */
+  --color-button-text: 255, 255, 255 !important;
+  --color-secondary-button: 11, 1, 13 !important; /* Match background */
+  --color-secondary-button-text: 255, 255, 255 !important; /* Use white as requested */
+  --color-link: 0, 122, 255 !important; /* Use light blue #007AFF like glass-top-header */
+  
+  /* Badge Colors */
+  --color-badge-foreground: 255, 255, 255 !important;
+  --color-badge-background: 11, 1, 13 !important;
+  --color-badge-border: 90, 200, 250 !important;
+}
+
+/* Force body and root backgrounds to use glass deep midnight colors with proper Apple typography */
+body {
+  color: var(--foundation-text-secondary) !important; /* Use secondary text opacity */
+  font-family: var(--foundation-font-family) !important; /* Apple system fonts */
+  font-size: var(--foundation-body-size) !important; /* 17px */
+  font-weight: var(--foundation-font-weight-normal) !important; /* 400 */
+  line-height: var(--foundation-body-line-height) !important; /* 22px */
+  letter-spacing: var(--foundation-body-letter-spacing) !important; /* -0.022em */
+  background-color: var(--foundation-background-primary) !important;
+  background-image: var(--foundation-gradient-deep-spatial) !important;
+}
+
+/* Stronger override for any elements still showing black */
+html,
+body,
+.color-scheme-1,
+.color-scheme-2,
+#shopify-section-header,
+.main-page-content,
+main {
+  background-color: var(--foundation-background-primary) !important;
+  background-image: var(--foundation-gradient-deep-spatial) !important;
+}
+
+/* Force RGB values to match deep midnight colors */
+:root {
+  --color-background: 11, 1, 13 !important; /* Force #0B010D deep midnight */
+  --color-foreground: 252, 253, 242 !important; /* Use foundation text color as default */
+  --color-foreground-secondary: 252, 253, 242 !important;
+  --gradient-background: var(--foundation-gradient-deep-spatial) !important;
+}
+
+/* CRITICAL: Override ALL text to use proper opacity - base.css uses rgba(var(--color-foreground)) */
+html,
+body,
+* {
+  color: rgba(252, 253, 242, 0.85) !important; /* Default to secondary text opacity */
+}
+
+/* Primary text elements get full opacity */
+h1, .h1,
+h2, .h2,
+.product-title,
+.collection-title {
+  color: rgb(252, 253, 242) !important; /* Full opacity white for headers */
+}
+
+/* Secondary text elements use 85% opacity */  
+h3, .h3,
+h4, .h4,
+h5, .h5,
+p,
+.card__content,
+.price {
+  color: rgba(252, 253, 242, 0.85) !important; /* 85% opacity */
+}
+
+/* Tertiary text elements use 70% opacity */
+h6, .h6,
+.caption,
+.product-description,
+small {
+  color: rgba(252, 253, 242, 0.7) !important; /* 70% opacity */
+}
+
+/* Quaternary text elements use 60% opacity */
+.vendor,
+.meta,
+.label {
+  color: rgba(252, 253, 242, 0.6) !important; /* 60% opacity */
+}
+
+/* Override Rise's layout variables with glass foundation tokens */
+:root {
+  /* Page Layout - Keep Rise's existing width behavior, just adjust margins */
+  --page-width-margin: 2rem !important; /* Keep reasonable margins, not full width */
+  
+  /* Product Cards - Preserve existing corner radius but add glass effects */
+  --product-card-border-width: 0.1rem !important;
+  --product-card-border-opacity: 0.1 !important; /* More subtle borders */
+  --product-card-shadow-opacity: 0.25 !important; /* Keep existing shadow strength */
+  
+  /* Collection Cards - Preserve existing corner radius but add glass effects */
+  --collection-card-border-width: 0.1rem !important;
+  --collection-card-border-opacity: 0.1 !important; /* More subtle borders */
+  --collection-card-shadow-opacity: 0.25 !important; /* Keep existing shadow strength */
+  
+  /* Media Elements - Keep existing radius from settings */
+  --media-shadow-opacity: 0.15 !important; /* Keep existing from settings */
+}
+
+/* Apply subtle glass effects to product cards without overriding borders */
+.card {
+  background: var(--foundation-glass-subtle) !important;
+  backdrop-filter: var(--foundation-glass-subtle-backdrop-filter) !important;
+  /* Remove border override to preserve theme's border settings */
+}
+
+.card:hover {
+  background: var(--foundation-glass-medium) !important;
+  backdrop-filter: var(--foundation-glass-medium-backdrop-filter) !important;
+  /* Remove border and transform overrides that cause white borders */
+  transition: all var(--foundation-transition) !important;
+}
+
+/* CRITICAL: Override base.css button styling with stronger specificity */
+html body .button,
+html body .btn,
+html body button,
+.button,
+.btn,
+button {
+  background: var(--foundation-glass-medium) !important;
+  backdrop-filter: blur(16px) saturate(120%) !important;
+  border: none !important; /* Remove any default borders */
+  border-width: 0 !important; /* Force border removal */
+  color: var(--foundation-text-primary) !important;
+  transition: all var(--foundation-transition) !important;
+  outline: none !important; /* Remove focus borders */
+}
+
+html body .button:hover,
+html body .btn:hover,
+html body button:hover,
+.button:hover,
+.btn:hover,
+button:hover {
+  background: var(--foundation-glass-prominent) !important;
+  border: none !important; /* Force no borders on hover */
+  border-width: 0 !important;
+  outline: none !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Primary buttons use action colors with maximum specificity */
+html body .button--primary,
+html body .btn--primary,
+.button--primary,
+.btn--primary,
+button[class*="primary"] {
+  background: linear-gradient(135deg, var(--foundation-action-primary), var(--foundation-action-secondary)) !important;
+  border: none !important; /* Remove white outline border */
+  border-width: 0 !important; /* Force border removal */
+  outline: none !important; /* Remove all outlines */
+  color: white !important;
+}
+
+html body .button--primary:hover,
+html body .btn--primary:hover,
+.button--primary:hover,
+.btn--primary:hover,
+button[class*="primary"]:hover {
+  background: linear-gradient(135deg, var(--foundation-action-hover-primary), var(--foundation-action-hover-secondary)) !important;
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  box-shadow: 0 8px 32px rgba(93, 90, 246, 0.4) !important;
+}
+
+/* Force removal of focus/active borders from base.css */
+html body .button:focus,
+html body .button:focus-visible,
+html body .button:active,
+html body .button.focused,
+.button:focus,
+.button:focus-visible,
+.button:active,
+.button.focused {
+  border: none !important;
+  border-width: 0 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px var(--foundation-action-primary) !important; /* Custom focus ring */
+}
+
+/* CRITICAL: Override base.css pseudo-elements that create white borders via box-shadow */
+html body .button:before,
+html body .button:after,
+html body .shopify-challenge__button:before,
+html body .shopify-challenge__button:after,
+html body .customer button:before,
+html body .customer button:after,
+html body button.shopify-payment-button__button--unbranded:before,
+html body button.shopify-payment-button__button--unbranded:after,
+.button:before,
+.button:after,
+.shopify-challenge__button:before,
+.shopify-challenge__button:after,
+.customer button:before,
+.customer button:after,
+button.shopify-payment-button__button--unbranded:before,
+button.shopify-payment-button__button--unbranded:after {
+  display: none !important; /* Remove pseudo-elements completely */
+  content: none !important;
+  box-shadow: none !important; /* Remove box-shadow borders */
+}
+
+/* Force removal on hover states too */
+html body .button:not([disabled]):hover::after,
+html body .button:hover::after,
+html body .shopify-challenge__button:hover::after,
+html body .customer button:hover::after,
+html body button.shopify-payment-button__button--unbranded:hover::after,
+.button:not([disabled]):hover::after,
+.button:hover::after,
+.shopify-challenge__button:hover::after,
+.customer button:hover::after,
+button.shopify-payment-button__button--unbranded:hover::after {
+  display: none !important;
+  content: none !important;
+  box-shadow: none !important;
+}
+
+/* Override base.css line 4212 - remove hardcoded white borders */
+.field__input:focus,
+.field__input:active,
+input:focus,
+input:active,
+textarea:focus,
+textarea:active {
+  border: 1px solid var(--foundation-action-primary) !important; /* Purple focus instead of white */
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(93, 90, 246, 0.2) !important;
+  transition: all var(--foundation-transition) !important;
+}
+
+/* Apply glass effects to header */
+.header {
+  background: var(--foundation-glass-subtle) !important;
+  backdrop-filter: var(--foundation-nav-backdrop-filter) !important;
+  border-bottom: var(--foundation-nav-border-bottom) !important;
+}
+
+/* Apply glass effects to modals and overlays */
+.modal,
+.popup,
+.overlay {
+  background: var(--foundation-glass-prominent) !important;
+  backdrop-filter: var(--foundation-modal-backdrop-filter) !important;
+  border: var(--foundation-modal-border) !important;
+  border-radius: var(--foundation-modal-border-radius) !important;
+  box-shadow: var(--foundation-modal-box-shadow) !important;
+}
+
+/* Apple-style typography with proper opacity hierarchy and font scales */
+/* H1 - Large Title Style */
+h1, .h1,
+.product-title,
+.collection-title {
+  color: var(--foundation-text-primary) !important; /* #FFFFFF - full opacity */
+  font-family: var(--foundation-font-family) !important;
+  font-size: var(--foundation-h1-size) !important; /* 34px */
+  font-weight: var(--foundation-h1-weight) !important; /* 700 - bold */
+  line-height: var(--foundation-h1-line-height) !important; /* 41px */
+  letter-spacing: var(--foundation-h1-letter-spacing) !important; /* -0.5px */
+}
+
+/* H2 - Title 1 Style */
+h2, .h2 {
+  color: var(--foundation-text-primary) !important; /* #FFFFFF - full opacity */
+  font-family: var(--foundation-font-family) !important;
+  font-size: var(--foundation-h2-size) !important; /* 28px */
+  font-weight: var(--foundation-h2-weight) !important; /* 600 - semibold */
+  line-height: var(--foundation-h2-line-height) !important; /* 34px */
+  letter-spacing: var(--foundation-h2-letter-spacing) !important; /* -0.3px */
+}
+
+/* H3 - Title 2 Style */
+h3, .h3,
+.card__content h3,
+.card__content .h3 {
+  color: var(--foundation-text-secondary) !important; /* rgba(252, 253, 242, 0.85) */
+  font-family: var(--foundation-font-family) !important;
+  font-size: var(--foundation-h3-size) !important; /* 22px */
+  font-weight: var(--foundation-h3-weight) !important; /* 600 - semibold */
+  line-height: var(--foundation-h3-line-height) !important; /* 28px */
+  letter-spacing: var(--foundation-h3-letter-spacing) !important; /* -0.2px */
+}
+
+/* H4 - Title 3 Style */
+h4, .h4,
+.card__content h4,
+.card__content .h4 {
+  color: var(--foundation-text-secondary) !important; /* rgba(252, 253, 242, 0.85) */
+  font-family: var(--foundation-font-family) !important;
+  font-size: var(--foundation-h4-size) !important; /* 20px */
+  font-weight: var(--foundation-h4-weight) !important; /* 600 - semibold */
+  line-height: var(--foundation-h4-line-height) !important; /* 25px */
+  letter-spacing: var(--foundation-h4-letter-spacing) !important; /* -0.1px */
+}
+
+/* H5 - Headline Style */
+h5, .h5 {
+  color: var(--foundation-text-secondary) !important; /* rgba(252, 253, 242, 0.85) */
+  font-family: var(--foundation-font-family) !important;
+  font-size: var(--foundation-h5-size) !important; /* 17px */
+  font-weight: var(--foundation-h5-weight) !important; /* 600 - semibold */
+  line-height: var(--foundation-h5-line-height) !important; /* 22px */
+  letter-spacing: var(--foundation-h5-letter-spacing) !important; /* -0.05em */
+}
+
+/* H6 - Subheadline Style */
+h6, .h6 {
+  color: var(--foundation-text-tertiary) !important; /* rgba(252, 253, 242, 0.7) */
+  font-family: var(--foundation-font-family) !important;
+  font-size: var(--foundation-h6-size) !important; /* 15px */
+  font-weight: var(--foundation-h6-weight) !important; /* 600 - semibold */
+  line-height: var(--foundation-h6-line-height) !important; /* 20px */
+}
+
+/* Body text and card content */
+.card__content,
+.card-wrapper,
+.product-card-wrapper,
+p {
+  color: var(--foundation-text-secondary) !important; /* rgba(252, 253, 242, 0.85) */
+  font-family: var(--foundation-font-family) !important;
+  font-size: var(--foundation-body-size) !important; /* 17px */
+  font-weight: var(--foundation-font-weight-normal) !important; /* 400 */
+  line-height: var(--foundation-body-line-height) !important; /* 22px */
+  letter-spacing: var(--foundation-body-letter-spacing) !important; /* -0.022em */
+}
+
+/* Tertiary text - descriptions, captions */
+.caption,
+.caption-with-letter-spacing,
+.product-description,
+.collection-description {
+  color: var(--foundation-text-tertiary) !important; /* rgba(252, 253, 242, 0.7) */
+  font-family: var(--foundation-font-family) !important;
+  font-size: var(--foundation-caption-size) !important; /* 13px */
+  font-weight: var(--foundation-font-weight-normal) !important; /* 400 */
+  line-height: var(--foundation-caption-line-height) !important; /* 18px */
+}
+
+/* Price and product info - secondary emphasis */
+.card__content .price,
+.card__content .price__container,
+.price,
+.price__container,
+.price__regular,
+.price__sale {
+  color: var(--foundation-text-secondary) !important; /* rgba(252, 253, 242, 0.85) */
+  font-weight: var(--foundation-font-weight-medium) !important;
+}
+
+/* Metadata, labels, small text */
+.vendor,
+.product-vendor,
+.collection-count,
+small {
+  color: var(--foundation-text-quaternary) !important; /* rgba(252, 253, 242, 0.6) */
+  font-weight: var(--foundation-font-weight-normal) !important;
+}
+
+/* Fix product badges - override base.css badge styles */
+html body .badge,
+.badge,
+.product-badge,
+.sold-out-badge,
+.sale-badge {
+  background: var(--foundation-glass-medium) !important; /* Glass background instead of black */
+  color: var(--foundation-text-primary) !important; /* White text */
+  border: 1px solid var(--foundation-glass-border) !important; /* Glass border instead of white */
+  backdrop-filter: blur(16px) saturate(120%) !important;
+  font-weight: var(--foundation-font-weight-medium) !important;
+  padding: 4px 8px !important;
+  border-radius: 6px !important;
+}
+
+.badge:hover,
+.product-badge:hover {
+  background: var(--foundation-glass-prominent) !important;
+  border-color: var(--foundation-action-primary) !important;
+}
+
+/* Placeholder and input text */
+input::placeholder,
+textarea::placeholder,
+.placeholder-text {
+  color: var(--foundation-text-placeholder) !important; /* rgba(252, 253, 242, 0.45) */
+  font-weight: var(--foundation-font-weight-normal) !important;
+}
+
+/* Ensure proper contrast for links - white with purple hover */
+a, 
+.link {
+  color: rgba(255, 255, 255, 0.9) !important; /* White text */
+  text-decoration: none !important; /* Remove underlines */
+}
+
+a:hover,
+.link:hover {
+  text-decoration: none !important; /* Remove underlines on hover */
+}
+
+/* Apply quantum background pattern to main content areas */
+.main-page-content,
+.collection,
+.product {
+  position: relative;
+}
+
+.main-page-content::before,
+.collection::before,
+.product::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(var(--foundation-quantum-bg-line-color) var(--foundation-quantum-bg-line-width), transparent var(--foundation-quantum-bg-line-width)),
+    linear-gradient(90deg, var(--foundation-quantum-bg-line-color) var(--foundation-quantum-bg-line-width), transparent var(--foundation-quantum-bg-line-width));
+  background-size: var(--foundation-quantum-bg-cell-size) var(--foundation-quantum-bg-cell-size);
+  opacity: var(--foundation-quantum-bg-opacity);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Glass Top Header Element Overrides - Ensure correct styling */
+.glass-button-toggle,
+.glass-cart-button {
+  color: rgba(255, 255, 255, 0.9) !important; /* White as requested */
+}
+
+.glass-button-toggle:hover,
+.glass-cart-button:hover {
+  color: var(--foundation-action-primary) !important; /* Purple hover */
+}
+
+.dropdown-item {
+  color: rgba(255, 255, 255, 0.9) !important; /* White as requested */
+}
+
+/* Remove featured styling - make all dropdown items appear the same */
+.dropdown-item.featured {
+  background: transparent !important; /* Remove featured background */
+  border: none !important; /* Remove featured border */
+  color: rgba(255, 255, 255, 0.9) !important; /* Same color as regular items */
+  font-weight: 400 !important; /* Same weight as regular items */
+}
+
+/* Apply the featured style as hover state for all dropdown items - override embedded CSS */
+.mega-dropdown .dropdown-item:hover,
+.mega-dropdown .dropdown-item.featured:hover,
+.dropdown-item:hover,
+.dropdown-item.featured:hover {
+  background: rgba(0, 122, 255, 0.1) !important; /* Light blue background like featured */
+  border: 1px solid rgba(0, 122, 255, 0.2) !important; /* Light blue border like featured */
+  color: var(--foundation-accent-primary) !important; /* Light blue text */
+  font-weight: 500 !important; /* Medium weight like featured */
+  transform: none !important; /* Remove glitchy translateX transform */
+}
+
+/* Fix nav-dropdown alignment and border-radius issues */
+.glass-navigation {
+  justify-content: flex-start !important; /* Align to left instead of center */
+}
+
+.glass-nav-container {
+  align-items: flex-start !important; /* Align to left instead of center */
+}
+
+.nav-dropdown {
+  /* Remove any border-radius overrides that might conflict with glass-top-header */
+  border-radius: initial !important;
+}
+
+.dropdown-toggle,
+.nav-dropdown .dropdown-toggle,
+.nav-dropdown button.dropdown-toggle {
+  /* Ensure the toggle button uses glass-top-header radius, not bridge overrides */
+  border-radius: 24px !important; /* Force 24px pill shape, not oval */
+  /* Preserve glass-top-header styling completely */
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.1) !important; /* Subtle glass border */
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+.mega-dropdown {
+  /* Remove border-radius overrides and ensure proper alignment */
+  border-radius: var(--foundation-radius-xl, 16px) !important;
+  left: 0 !important; /* Align to left edge of parent */
+  transform: none !important; /* Remove center transform */
+}
+
+/* Fix glass-navigation layout - align to left instead of center */
+.glass-navigation {
+  justify-content: flex-start !important;
+  order: 0 !important; /* Move before logo */
+  flex: none !important; /* Don't stretch to fill space */
+}
+
+.glass-logo-section {
+  order: 1 !important; /* Move after navigation */
+  flex: none !important; /* Don't stretch to fill space */
+  margin-left: var(--foundation-space-lg, 24px) !important; /* Add gap between nav and logo */
+}
+
+.glass-actions-section {
+  order: 2 !important; /* Keep on right */
+  margin-left: auto !important; /* Push to far right */
+}
+
+/* Override glass-top-header embedded CSS with highest specificity */
+.glass-top-header .glass-navigation .nav-dropdown .mega-dropdown.active,
+.glass-top-header .nav-dropdown .mega-dropdown.active,
+.nav-dropdown .mega-dropdown.active,
+.mega-dropdown.active {
+  /* Fix positioning - align to left edge of viewport */
+  position: fixed !important;
+  left: 0px !important; /* Align with header container padding */
+  top: calc(var(--foundation-header-height, 80px) + 0px) !important;
+  transform: none !important;
+  /* True translucent glass background effect - override broken embedded CSS */
+  background: rgba(8, 4, 21, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05), 0px 15px 30px rgba(0, 0, 0, 0.05), 0px 30px 60px rgba(0, 0, 0, 0.1), inset 0px 50px 100px rgba(255, 255, 255, 0.15) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  z-index: 120 !important; /* Ensure it appears above everything */
+}
+
+/* Sliding Nav Tabs - Ensure proper stacking and scroll behavior with glass-top-header */
+.sliding-nav-container {
+  position: sticky !important;
+  top: 80px !important; /* Stick below glass-top-header when scrolling */
+  z-index: 95 !important; /* Below glass-top-header (100) but above content */
+  width: 100% !important;
+  background: var(--glass-surface, rgba(8, 4, 21, 0.8)) !important;
+  backdrop-filter: var(--glass-effect, blur(40px) saturate(200%) brightness(110%)) !important;
+  -webkit-backdrop-filter: var(--glass-effect, blur(40px) saturate(200%) brightness(110%)) !important;
+  border-bottom: 0.5px solid var(--glass-border, rgba(255, 255, 255, 0.1)) !important;
+  min-height: 56px !important;
+  display: block !important; /* Force visibility */
+}
+
+/* Ensure proper stacking with glass-top-header */
+.glass-top-header + .sections-group .sliding-nav-container,
+#shopify-section-sliding_nav_tabs_main .sliding-nav-container {
+  position: sticky !important;
+  top: 80px !important; /* Stack below glass header */
+  z-index: 95 !important;
+}
+
+/* Force the nav to be visible even if theme tries to hide it */
+nav.sliding-nav-container {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Make sure the inner content is visible */
+.sliding-nav-inner {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Navigation tab styling to match glass design */
+.sliding-nav-container .nav-tab {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: var(--foundation-text-secondary) !important;
+  border-radius: 24px !important;
+  transition: all var(--foundation-transition) !important;
+}
+
+.sliding-nav-container .nav-tab:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--foundation-action-primary) !important;
+  color: var(--foundation-text-primary) !important;
+}
+
+.sliding-nav-container .nav-tab--active {
+  background: linear-gradient(135deg, var(--foundation-action-primary), var(--foundation-action-secondary)) !important;
+  border-color: var(--foundation-action-primary) !important;
+  color: white !important;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 749px) {
+  :root {
+    --page-width-margin: calc(var(--foundation-content-mobile-padding) / 16 * 1rem) !important;
+  }
+}
+
+@media screen and (min-width: 750px) and (max-width: 1023px) {
+  :root {
+    --page-width-margin: calc(var(--foundation-content-tablet-padding) / 16 * 1rem) !important;
+  }
+}

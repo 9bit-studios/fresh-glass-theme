@@ -1,0 +1,77 @@
+{%- comment -%}
+  ULTRA DARK MODE TYPOGRAPHY DEMONSTRATION
+  Shows the complete Apple HIG text hierarchy with opacity system
+  
+  Use this snippet for reference or testing typography implementation
+{%- endcomment -%}
+
+<div class="ultra-dark-glass-panel" style="padding: 2rem; margin: 2rem 0;">
+  <h1 class="ultra-dark-large-title">Large Title - #FCFDF2 (100%)</h1>
+  <h2 class="ultra-dark-title1">Title 1 - Primary Text</h2>
+  <h3 class="ultra-dark-title2">Title 2 - Primary Text</h3>
+  <h4 class="ultra-dark-title3">Title 3 - Primary Text</h4>
+  <h5 class="ultra-dark-headline">Headline - Primary Text</h5>
+  
+  <div style="margin: 1.5rem 0;">
+    <p class="ultra-dark-body">Body text using primary color #FCFDF2 at 100% opacity. This is the main text color for maximum readability in ultra dark mode.</p>
+    
+    <p class="ultra-dark-callout">Callout text - slightly smaller but still primary color for important information.</p>
+    
+    <p class="ultra-dark-subheadline ultra-text-secondary">Subheadline text using secondary color with 70% opacity - rgba(252, 253, 242, 0.7)</p>
+    
+    <p class="ultra-dark-footnote ultra-text-tertiary">Footnote text using tertiary color with 50% opacity - rgba(252, 253, 242, 0.5)</p>
+    
+    <p class="ultra-dark-caption1 ultra-text-secondary">Caption 1 text using secondary color (70% opacity)</p>
+    
+    <p class="ultra-dark-caption2 ultra-text-tertiary">Caption 2 text using tertiary color (50% opacity)</p>
+    
+    <p class="ultra-text-quaternary">Quaternary text with 30% opacity - rgba(252, 253, 242, 0.3) for placeholders</p>
+  </div>
+  
+  <div style="margin: 1.5rem 0;">
+    <p class="ultra-label">Label Text (Secondary with medium weight)</p>
+    <p class="ultra-placeholder">Placeholder text (Quaternary, italic)</p>
+    <p class="ultra-disabled">Disabled text (Quaternary with reduced opacity)</p>
+  </div>
+  
+  <div style="margin: 1.5rem 0;">
+    <a href="#" class="ultra-link">Link text (#007AFF)</a> | 
+    <span class="ultra-error-text">Error text (#FF3B30)</span> | 
+    <span class="ultra-success-text">Success text (#3DFF74)</span> | 
+    <span class="ultra-warning-text">Warning text (#FF9500)</span>
+  </div>
+  
+  <div class="ultra-dark-glass-panel" style="padding: 1rem; margin: 1rem 0;">
+    <p class="ultra-text-on-glass">Text on glass backgrounds with enhanced shadow for better readability</p>
+  </div>
+</div>
+
+{%- comment -%}
+  UTILITY CLASS EXAMPLES:
+  
+  <!-- Primary text (100% opacity) -->
+  <p class="ultra-text-primary">Most important text</p>
+  
+  <!-- Secondary text (70% opacity) -->
+  <p class="ultra-text-secondary">Secondary information</p>
+  
+  <!-- Tertiary text (50% opacity) -->
+  <p class="ultra-text-tertiary">Less important details</p>
+  
+  <!-- Quaternary text (30% opacity) -->
+  <p class="ultra-text-quaternary">Placeholder or disabled text</p>
+  
+  <!-- Apple HIG Typography Classes -->
+  <h1 class="ultra-dark-large-title">Hero titles</h1>
+  <h2 class="ultra-dark-title1">Main headings</h2>
+  <h3 class="ultra-dark-title2">Section headings</h3>
+  <h4 class="ultra-dark-title3">Subsection headings</h4>
+  <h5 class="ultra-dark-headline">Content headlines</h5>
+  
+  <p class="ultra-dark-body">Main body text</p>
+  <p class="ultra-dark-callout">Important callouts</p>
+  <p class="ultra-dark-subheadline">Subheadings</p>
+  <p class="ultra-dark-footnote">Fine print</p>
+  <p class="ultra-dark-caption1">Image captions</p>
+  <p class="ultra-dark-caption2">Small annotations</p>
+{%- endcomment -%}

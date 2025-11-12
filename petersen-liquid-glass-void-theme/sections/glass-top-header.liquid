@@ -1,0 +1,542 @@
+{% comment %}
+  Glass Top Header - With Search Modal
+  Main header component with logo, navigation, search, and cart
+{% endcomment %}
+
+<header class="glass-top-header">
+  <div class="glass-header-container">
+    
+    <!-- Logo Section -->
+    <div class="glass-logo-section">
+      <a href="{{ routes.root_url }}" class="glass-logo-link">
+        {% if section.settings.logo %}
+          {{ section.settings.logo | image_url: width: 360 | image_tag: 
+            class: 'glass-logo-image', 
+            alt: shop.name, 
+            width: 180, 
+            height: 36 }}
+        {% elsif settings.logo %}
+          {{ settings.logo | image_url: width: 360 | image_tag: 
+            class: 'glass-logo-image', 
+            alt: shop.name, 
+            width: 180, 
+            height: 36 }}
+        {% else %}
+          <span class="glass-logo-text">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+    </div>
+
+    <!-- Navigation Menu Section -->
+    <nav class="glass-navigation" id="glass-navigation">
+      <div class="glass-nav-container">
+        <!-- Mega Dropdown Toggle Button -->
+        <div class="nav-dropdown">
+          <button class="dropdown-toggle" onclick="toggleMegaDropdown()" aria-expanded="false" aria-haspopup="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+            <span>Browse Games</span>
+            <svg class="dropdown-arrow" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 10l5 5 5-5z"/>
+            </svg>
+          </button>
+          
+          <div class="mega-dropdown" id="megaDropdown">
+            <div class="dropdown-column">
+              <div class="column-header">Collections</div>
+              <a href="/collections/sandys-games" class="dropdown-item featured">
+                <span>Sandy's Games</span> 
+              </a>
+              <a href="/collections/larval-games" class="dropdown-item">
+                <span>Larval Games</span> 
+              </a>
+              <a href="/collections/featured-games" class="dropdown-item">
+                <span>Featured Games</span> 
+              </a>
+              <a href="/collections/miniatures-1" class="dropdown-item">
+                <span>Miniatures</span> 
+              </a>
+              <a href="/collections/all" class="dropdown-item">
+                <span>All Products</span> 
+              </a>
+            </div>
+            
+            <div class="dropdown-column">
+              <div class="column-header">Game Lines</div>
+              <a href="/collections/all?filter.p.tag=Cthulhu+Wars" class="dropdown-item featured">
+                <span>Cthulhu Wars</span> 
+              </a>
+              <a href="/collections/all?filter.p.tag=Cthulhu+Wars+Duel" class="dropdown-item">
+                <span>Cthulhu Wars</span> 
+              </a>
+              <a href="/collections/all?filter.p.tag=Planet+Apocalypse" class="dropdown-item">
+                <span>Planet Apocalypse</span> 
+              </a>
+              <a href="/collections/all?filter.p.tag=Hyperspace" class="dropdown-item">
+                <span>Hyperspace</span> 
+              </a>
+              <a href="/collections/all?filter.p.tag=8+Bit+Attack" class="dropdown-item">
+                <span>8 Bit Attac</span> k
+              </a>
+              <a href="/collections/all?filter.p.tag=The+Gods+War" class="dropdown-item">
+                <span>⚡The Gods War</span> 
+              </a>
+              <a href="/collections/all?filter.p.tag=Evil+High+Priest" class="dropdown-item">
+                <span>Evil High Priest</span> 
+              </a>
+            </div>
+            
+            <div class="dropdown-column">
+              <div class="column-header">Product Categories</div>
+              <a href="/collections/all?filter.p.tag=category-core-games" class="dropdown-item">Core Games</a>
+              <a href="/collections/all?filter.p.tag=category-expansions" class="dropdown-item">Expansions</a>
+              <a href="/collections/all?filter.p.tag=category-accessories" class="dropdown-item">Accessories</a>
+              <a href="/collections/all?filter.p.tag=category-books" class="dropdown-item">Books & RPG</a>
+              <a href="/collections/all?filter.p.tag=subcategory-dice-sets" class="dropdown-item">Dice Sets</a>
+              <a href="/collections/all?filter.p.tag=subcategory-deluxe-upgrade" class="dropdown-item">Deluxe Upgrades</a>
+              <a href="/collections/all?filter.p.tag=subcategory=best-selling" class="dropdown-item">Best Sellers</a>
+              <a href="/collections/all?sort_by=created-descending" class="dropdown-item">New Arrivals</a>
+            </div>
+          </div>
+        </div>
+
+        {% for block in section.blocks %}
+          {% if block.type == 'navigation' %}
+            <div class="glass-menu-item" data-has-dropdown="{% if block.settings.menu.links.size > 0 %}true{% else %}false{% endif %}">
+              <button 
+                class="glass-nav-link"
+                {% if block.settings.menu.links.size > 0 %}
+                  onclick="toggleGlassDropdown(this)"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                {% else %}
+                  onclick="window.location.href='{{ block.settings.menu.url }}'"
+                {% endif %}
+              >
+                <span class="glass-nav-text">{{ block.settings.menu_title | default: block.settings.menu.title }}</span>
+                {% if block.settings.menu.links.size > 0 %}
+                  <svg class="glass-nav-arrow" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7 10l5 5 5-5z"/>
+                  </svg>
+                {% endif %}
+              </button>
+              
+              {% if block.settings.menu.links.size > 0 %}
+                <div class="glass-mega-dropdown" id="dropdown-{{ forloop.index }}">
+                  <div class="glass-dropdown-content">
+                    {% assign column_count = 0 %}
+                    {% for link in block.settings.menu.links limit: 9 %}
+                      {% assign column_count = column_count | plus: 1 %}
+                      <div class="glass-dropdown-column">
+                        <h4 class="glass-column-header">{{ link.title }}</h4>
+                        {% if link.links.size > 0 %}
+                          <ul class="glass-dropdown-links">
+                            {% for child_link in link.links limit: 8 %}
+                              <li>
+                                <a href="{{ child_link.url }}" class="glass-dropdown-item">
+                                  {{ child_link.title }}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% else %}
+                          <a href="{{ link.url }}" class="glass-dropdown-item glass-dropdown-item--single">
+                            View {{ link.title }}
+                          </a>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </nav>
+          
+    <!-- Right Actions Section -->
+    <div class="glass-actions-section">
+      
+      <!-- Search Button -->
+      <button class="glass-search-trigger" onclick="toggleSearch()" aria-label="Search">
+        <span class="glass-search-placeholder">Search</span>
+        <div class="glass-search-button">
+          <svg class="glass-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </button>
+
+      <!-- Account Toggle -->
+      {% if section.settings.show_account %}
+      <a href="{{ routes.account_url }}" class="glass-button-toggle" aria-label="Account">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </a>
+      {% endif %}
+
+      <!-- Cart Button -->
+      <a href="{{ routes.cart_url }}" class="glass-cart-button" id="cart-icon-bubble" aria-label="Cart">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M3 3h2l.4 2M7 13h10l4-8H5.4m1.6 8L5 3H3m4 10v6a2 2 0 002 2h8a2 2 0 002-2v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        {% if cart.item_count > 0 %}
+          <span class="glass-cart-count">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
+
+    </div>
+  </div>
+</header>
+
+
+<!-- Search Modal -->
+<div class="search-overlay" id="search-overlay">
+  <div class="search-container">
+    <div class="search-header">
+      <h3>Search Products</h3>
+      <button class="search-close" onclick="closeSearch()" aria-label="Close search">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <form class="search-form" action="{{ routes.search_url }}" method="get">
+      <input type="search" 
+             name="q" 
+             class="search-input" 
+             id="search-input"
+             placeholder="Search for products..." 
+             value="{{ search.terms | escape }}"
+             autocomplete="off">
+      <button type="submit" class="search-submit">Search</button>
+    </form>
+
+    <div class="search-suggestions">
+      <div class="suggestion-category">
+        <h4>Popular Searches</h4>
+        <div class="suggestion-links">
+          <a href="{{ routes.search_url }}?q=cthulhu">Cthulhu Wars</a>
+          <a href="{{ routes.search_url }}?q=miniatures">Miniatures</a>
+          <a href="{{ routes.search_url }}?q=expansion">Expansions</a>
+          <a href="{{ routes.search_url }}?q=planet">Planet Apocalypse</a>
+          <a href="{{ routes.search_url }}?q=dice">Dice Games</a>
+          <a href="{{ routes.search_url }}?q=horror">Horror Games</a>
+        </div>
+      </div>
+
+      <div class="suggestion-category">
+        <h4>Categories</h4>
+        <div class="suggestion-links">
+          <a href="/collections/board-games">Board Games</a>
+          <a href="/collections/miniatures">Miniatures</a>
+          <a href="/collections/expansions">Expansions</a>
+          <a href="/collections/accessories">Accessories</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+// Search Modal Functionality
+function toggleSearch() {
+  const overlay = document.getElementById('search-overlay');
+  const input = document.getElementById('search-input');
+  
+  overlay.classList.toggle('active');
+  
+  if (overlay.classList.contains('active')) {
+    setTimeout(() => input.focus(), 100);
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+}
+
+function closeSearch() {
+  const overlay = document.getElementById('search-overlay');
+  overlay.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', function() {
+  // Close search on escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeSearch();
+    }
+  });
+
+  // Close search when clicking outside
+  const searchOverlay = document.getElementById('search-overlay');
+  if (searchOverlay) {
+    searchOverlay.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeSearch();
+      }
+    });
+  }
+
+  // Auto-submit on suggestion click
+  const suggestionLinks = document.querySelectorAll('.suggestion-links a');
+  suggestionLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) {
+        const searchTerm = this.textContent.trim();
+        searchInput.value = searchTerm;
+        closeSearch();
+        // Navigate to search results
+        window.location.href = this.href;
+      }
+    });
+  });
+});
+
+// Glass Mega Dropdown Functionality
+function toggleGlassDropdown(trigger) {
+  const menuItem = trigger.closest('.glass-menu-item');
+  const dropdown = menuItem.querySelector('.glass-mega-dropdown');
+  const isActive = dropdown.classList.contains('active');
+  
+  // Close all other dropdowns
+  closeAllGlassDropdowns();
+  
+  if (!isActive) {
+    dropdown.classList.add('active');
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+}
+
+function closeAllGlassDropdowns() {
+  const dropdowns = document.querySelectorAll('.glass-mega-dropdown');
+  const triggers = document.querySelectorAll('.glass-nav-link');
+  
+  dropdowns.forEach(dropdown => {
+    dropdown.classList.remove('active');
+  });
+  
+  triggers.forEach(trigger => {
+    trigger.setAttribute('aria-expanded', 'false');
+  });
+}
+
+// Legacy mega dropdown functionality (keeping for compatibility)
+function toggleMegaDropdown() {
+  const dropdown = document.getElementById('megaDropdown');
+  const toggle = document.querySelector('.dropdown-toggle');
+  if (!dropdown || !toggle) return;
+  
+  const isActive = dropdown.classList.contains('active');
+  
+  if (isActive) {
+    dropdown.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  } else {
+    dropdown.classList.add('active');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(e) {
+  // Handle mega dropdown
+  const dropdown = document.getElementById('megaDropdown');
+  const toggle = document.querySelector('.dropdown-toggle');
+  const isDropdownClick = e.target.closest('.nav-dropdown');
+  
+  if (dropdown && toggle && !isDropdownClick) {
+    dropdown.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  
+  // Handle glass dropdowns (other navigation items)
+  const isGlassMenuItem = e.target.closest('.glass-menu-item');
+  if (!isGlassMenuItem) {
+    closeAllGlassDropdowns();
+  }
+});
+
+// Close dropdown on escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    // Close glass dropdowns
+    closeAllGlassDropdowns();
+    
+    // Close legacy dropdown
+    const dropdown = document.getElementById('megaDropdown');
+    const toggle = document.querySelector('.dropdown-toggle');
+    
+    if (dropdown && dropdown.classList.contains('active')) {
+      dropdown.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+      if (toggle.focus) toggle.focus();
+    }
+  }
+});
+
+// Configure mobile navigation behavior based on theme settings
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileHeaderBehavior = '{{ section.settings.mobile_header_behavior | default: "hide_reveal" }}';
+
+  // Wait for MobileMenuIOS to be available
+  setTimeout(function() {
+    if (window.MobileMenuIOS) {
+      switch(mobileHeaderBehavior) {
+        case 'always_visible':
+          window.MobileMenuIOS.alwaysVisible();
+          break;
+        case 'no_sticky':
+          window.MobileMenuIOS.disableSticky();
+          break;
+        case 'hide_reveal':
+        default:
+          // Default behavior is already initialized
+          break;
+      }
+      console.log('🎛️ Mobile header behavior set to:', mobileHeaderBehavior);
+    }
+  }, 200);
+});
+
+// Export functions
+window.toggleSearch = toggleSearch;
+window.closeSearch = closeSearch;
+window.toggleMegaDropdown = toggleMegaDropdown;
+window.toggleGlassDropdown = toggleGlassDropdown;
+window.closeAllGlassDropdowns = closeAllGlassDropdowns;
+</script>
+
+{% schema %}
+{
+  "name": "Glass Top Header",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "header",
+      "content": "Actions"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account button",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Mobile Navigation Behavior"
+    },
+    {
+      "type": "select",
+      "id": "mobile_header_behavior",
+      "label": "Mobile header behavior",
+      "options": [
+        {
+          "value": "hide_reveal",
+          "label": "Hide/reveal on scroll (recommended)"
+        },
+        {
+          "value": "always_visible",
+          "label": "Always visible (sticky)"
+        },
+        {
+          "value": "no_sticky",
+          "label": "No sticky behavior"
+        }
+      ],
+      "default": "hide_reveal",
+      "info": "Choose how the header behaves on mobile devices"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "navigation",
+      "name": "Navigation Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_title",
+          "label": "Menu Title",
+          "info": "Override the menu title (optional)"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "info": "Select a menu to display. Create menus in Navigation settings."
+        }
+      ]
+    },
+    {
+      "type": "menu_item",
+      "name": "Menu Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Menu Item"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_active",
+          "label": "Set as active",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glass Top Header",
+      "blocks": [
+        {
+          "type": "menu_item",
+          "settings": {
+            "title": "Games",
+            "link": "/collections/all",
+            "is_active": true
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "title": "Miniatures",
+            "link": "/collections/miniatures"
+          }
+        },
+        {
+          "type": "menu_item",
+          "settings": {
+            "title": "Expansions",
+            "link": "/collections/expansions"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

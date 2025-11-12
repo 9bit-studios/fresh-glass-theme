@@ -1,0 +1,93 @@
+/* ========================================
+   RESTORE NATIVE FULL-WIDTH FUNCTIONALITY
+   Fixes overrides that prevent theme builder full-width from working
+   Specifically addresses 2400px content-width limitations
+   ======================================== */
+
+/* Ensure full-width sections can actually extend full width */
+.section--full-width > * {
+  /* Restore the native Shopify full-width behavior */
+  grid-column: 1 / -1 !important;
+}
+
+/* Make sure full-width sections don't get constrained by page-width overrides */
+.section--full-width {
+  /* Remove any width constraints */
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* Ensure full-width sections can break out of container constraints */
+.section--full-width > .page-width,
+.section--full-width > .container,
+.section--full-width > *[class*="container"] {
+  max-width: none !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Fix any spacing-style overrides that might constrain full-width sections */
+.section--full-width.spacing-style {
+  /* Let the native full-width styles take precedence */
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Ensure slideshows and carousels can be full-width when section is set to full-width */
+.section--full-width slideshow-component,
+.section--full-width .resource-list__carousel,
+.section--full-width .slideshow {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+/* Allow full-width section content to extend to edges */
+.section--full-width slideshow-slides,
+.section--full-width .slideshow__slides {
+  width: 100% !important;
+}
+
+/* Override any margin constraints on full-width sections */
+.section--full-width {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Fix 2400px content-width limitation from glass-theme-variables.liquid */
+/* This specifically targets the problematic content wrapper constraints at lines 140-145 */
+.section--full-width .section-content-wrapper > * {
+  max-width: none !important; /* Remove the 1800px constraint */
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Override glass-theme-variables.liquid content constraints that limit full-width */
+.section--full-width .header__columns,
+.section--full-width .footer__content,
+.section--full-width .main-content > .shopify-section:not(.section--full-width) .section {
+  max-width: none !important; /* Remove the 1800px limit */
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Responsive: ensure full-width works on all screen sizes */
+@media screen and (max-width: 749px) {
+  .section--full-width {
+    width: 100vw !important;
+    max-width: none !important;
+  }
+  
+  .section--full-width > * {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .section--full-width {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}

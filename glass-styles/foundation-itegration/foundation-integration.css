@@ -1,0 +1,6 @@
+/* ========================================
+   SNIPPETS/FOUNDATION-INTEGRATION.LIQUID STYLES
+   Foundation-integrated component styles
+   ======================================== */
+
+{% render 'foundation-integration' %}

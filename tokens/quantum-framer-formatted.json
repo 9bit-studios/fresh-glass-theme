@@ -1,0 +1,107 @@
+{
+  "colors": {
+    "quantum-primary-main": "#6A3093",
+    "quantum-primary-dark": "#331F4A",
+    "quantum-primary-light": "#613FE7",
+    "quantum-primary-contrastText": "#FFFFFF",
+    "quantum-secondary-main": "#BF4080",
+    "quantum-secondary-dark": "#331F4A",
+    "quantum-secondary-light": "#FF2D55",
+    "quantum-secondary-contrastText": "#FFFFFF",
+    "quantum-accent-main": "#5AC8FA",
+    "quantum-accent-dark": "#126D71",
+    "quantum-accent-light": "#00FFC8",
+    "quantum-accent-contrastText": "#131A36",
+    "quantum-background-default": "#131A36",
+    "quantum-background-paper": "#0D0D15",
+    "quantum-background-subtle": "#0A0621",
+    "quantum-text-primary": "#FFFFFF",
+    "quantum-text-secondary": "#CCCCCC",
+    "quantum-text-disabled": "#888888",
+    "quantum-text-hint": "#AAAAAA",
+    "quantum-semantic-success": "#34C759",
+    "quantum-semantic-warning": "#FF9500",
+    "quantum-semantic-error": "#FF3B30",
+    "quantum-semantic-info": "#5AC8FA"
+  },
+  "spacing": {
+    "quantum-quantum": "4px",
+    "quantum-xxs": "4px",
+    "quantum-xs": "8px",
+    "quantum-sm": "16px",
+    "quantum-md": "24px",
+    "quantum-lg": "32px",
+    "quantum-xl": "48px",
+    "quantum-xxl": "64px"
+  },
+  "typography": {
+    "quantum-fontFamilies-heading": "'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif",
+    "quantum-fontFamilies-body": "'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif",
+    "quantum-fontFamilies-mono": "'SF Mono', 'JetBrains Mono', monospace",
+    "quantum-fontSizes-xs": "12px",
+    "quantum-fontSizes-sm": "14px",
+    "quantum-fontSizes-md": "16px",
+    "quantum-fontSizes-lg": "20px",
+    "quantum-fontSizes-xl": "24px",
+    "quantum-fontSizes-xxl": "32px",
+    "quantum-fontSizes-display": "48px",
+    "quantum-fontWeights-regular": 400,
+    "quantum-fontWeights-medium": 500,
+    "quantum-fontWeights-semibold": 600,
+    "quantum-fontWeights-bold": 700,
+    "quantum-lineHeights-xs": "16px",
+    "quantum-lineHeights-sm": "20px",
+    "quantum-lineHeights-md": "24px",
+    "quantum-lineHeights-lg": "28px",
+    "quantum-lineHeights-xl": "32px",
+    "quantum-lineHeights-xxl": "40px",
+    "quantum-lineHeights-display": "56px",
+    "quantum-letterSpacings-tighter": "-0.05em",
+    "quantum-letterSpacings-tight": "-0.025em",
+    "quantum-letterSpacings-normal": "0",
+    "quantum-letterSpacings-wide": "0.025em",
+    "quantum-letterSpacings-wider": "0.05em"
+  },
+  "shadows": {
+    "quantum-subtle": "0 2px 4px rgba(10, 6, 33, 0.3)",
+    "quantum-medium": "0 4px 8px rgba(10, 6, 33, 0.3), 0 0 8px rgba(191, 64, 128, 0.2)",
+    "quantum-prominent": "0 8px 16px rgba(10, 6, 33, 0.3), 0 0 16px rgba(191, 64, 128, 0.2)",
+    "quantum-glow": "0 0 20px rgba(191, 64, 128, 0.2)"
+  },
+  "borders": {
+    "quantum-radius": {
+      "xs": "2.4px",
+      "sm": "4.8px",
+      "md": "9.6px",
+      "lg": "14.399999999999999px",
+      "xl": "19.2px",
+      "pill": "9999px"
+    },
+    "quantum-width": {
+      "thin": "1px",
+      "medium": "2px",
+      "thick": "3px"
+    }
+  },
+  "opacities": {
+    "quantum-subtle": 0.7,
+    "quantum-verySubtle": 0.3,
+    "quantum-hover": 0.85,
+    "quantum-active": 0.95,
+    "quantum-disabled": 0.5
+  },
+  "easing": {
+    "quantum-standard": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+    "quantum-decelerate": "cubic-bezier(0.0, 0.0, 0.2, 1)",
+    "quantum-accelerate": "cubic-bezier(0.4, 0.0, 1, 1)",
+    "quantum-quantum": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "quantum-energy": "cubic-bezier(0.17, 0.89, 0.32, 1.25)"
+  },
+  "durations": {
+    "quantum-instant": "40ms",
+    "quantum-fast": "120ms",
+    "quantum-medium": "240ms",
+    "quantum-slow": "400ms",
+    "quantum-deliberate": "640ms"
+  }
+}

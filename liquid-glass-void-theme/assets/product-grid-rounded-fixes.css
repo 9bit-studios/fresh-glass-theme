@@ -1,0 +1,874 @@
+/* Product Grid Rounded Corners & Layout Fixes - Grid Animation Compatible */
+
+/* ========================================
+   PRODUCT CARD STYLING - GLASS EFFECTS
+   ======================================== */
+
+/* Add rounded corners and glass effects to product cards */
+.product-card,
+.card--product {
+  border-radius: var(--foundation-radius-m, 12px);
+  overflow: hidden;
+  background: var(--glass-surface);
+  backdrop-filter: blur(12px) saturate(1.2);
+  
+  /* Allow smooth transitions for grid animations */
+  transition: all var(--duration-default, 0.3s) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Product card images - rounded corners */
+.product-card img,
+.card--product img,
+.product-image {
+  border-radius: var(--foundation-radius-m, 12px);
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  
+  /* Smooth image transitions */
+  transition: transform var(--duration-default, 0.3s) ease;
+}
+
+/* Media component images - maintain rounded corners without conflicts */
+.media img {
+  border-radius: var(--foundation-radius-m, 12px);
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  filter: none;
+  opacity: 1;
+  transition: transform var(--duration-default, 0.3s) ease;
+}
+
+/* ========================================
+   HOVER EFFECTS - GLASS INTERACTIONS
+   ======================================== */
+
+/* Glass hover effects for product cards */
+.product-card:hover,
+.card--product:hover {
+  transform: translateY(-4px);
+}
+
+/* Product media hover effects */
+.product-media:hover img,
+.product__media:hover img,
+.media:hover img {
+  transform: scale(1.02);
+}
+
+/* ========================================
+   SHOPIFY GRID SYSTEM INTEGRATION
+   ======================================== */
+
+/* Work WITH the existing .product-grid system - don't override it */
+.product-grid {
+  /* Ensure smooth transitions for grid layout changes */
+  transition: grid-template-columns var(--animation-speed, 0.3s) var(--animation-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+/* Support the product-grid-view attribute system */
+.product-grid[product-grid-view] {
+  /* Allow the JavaScript view transition system to work */
+  view-transition-name: product-grid;
+}
+
+
+/* ========================================
+   PRODUCT GRID ITEM ANIMATIONS
+   ======================================== */
+
+/* Support for grid item animations during view transitions */
+.product-grid__item {
+  /* Enhanced glass product cards - work with existing system */
+  transition: opacity var(--animation-speed, 0.3s) var(--animation-easing, cubic-bezier(0.4, 0, 0.2, 1)),
+              transform var(--animation-speed, 0.3s) var(--animation-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+/* Smooth animations when layout changes */
+:root:active-view-transition-type(product-grid) .product-grid__item {
+  /* Disable individual transitions during view transition to avoid conflicts */
+  transition: none;
+}
+
+/* Support for the results-list initialization system */
+results-list[initialized] .product-grid__item {
+  /* This works with the existing system in base.css */
+  @starting-style {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* ========================================
+   RESPONSIVE GRID ENHANCEMENTS
+   ======================================== */
+
+/* Work with existing responsive system - don't override */
+@media (max-width: 768px) {
+  /* Only modify non-conflicting properties */
+  .main-content:not([data-grid-controlled]),
+  .container:not(.product-grid-container),
+  .page-width:not(.product-grid-container) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Ensure mobile grid animations work smoothly */
+  .product-grid {
+    transition: grid-template-columns var(--animation-speed, 0.3s) var(--animation-easing, cubic-bezier(0.4, 0, 0.2, 1));
+  }
+}
+
+/* ========================================
+   PRODUCT PAGE SPECIFIC STYLES
+   ======================================== */
+
+/* Product page media - maintain glass effects */
+.product-media img,
+.product__media img {
+  border-radius: var(--foundation-radius-m, 12px);
+  object-fit: cover;
+}
+
+/* ========================================
+   VIEW TRANSITION SUPPORT
+   ======================================== */
+
+/* Enhance the existing view transition system */
+::view-transition-group(product-grid) {
+  /* Smoother animation timing */
+  animation-duration: var(--animation-speed, 0.4s);
+  animation-timing-function: var(--animation-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+/* Support grid layout transitions */
+::view-transition-new(product-grid) {
+  /* Work with the existing fadeInUp animation */
+  animation-delay: 0.15s;
+  animation-name: fadeInUp;
+  animation-duration: var(--animation-speed, 0.4s);
+  animation-timing-function: var(--animation-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+/* Enhanced transition for grid state changes */
+:root:active-view-transition-type(product-grid) {
+  /* Ensure smooth transitions for all grid elements */
+  .product-grid {
+    will-change: grid-template-columns;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY & PERFORMANCE
+   ======================================== */
+
+/* Reduced motion support for grid animations */
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .card--product,
+  .product-grid,
+  .product-grid__item,
+  ::view-transition-group(product-grid),
+  ::view-transition-new(product-grid) {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Performance optimizations for smooth grid animations */
+.product-grid {
+  /* GPU acceleration for smooth grid template changes */
+  will-change: grid-template-columns;
+  /* Optimize for layout transitions */
+  contain: layout style;
+}
+
+.product-card,
+.card--product {
+  /* Optimize for transform animations */
+  will-change: transform, opacity;
+  /* Enable hardware acceleration */
+  transform: translateZ(0);
+}
+
+/* Products Section */
+
+/* ========================================
+   PRODUCT PAGE LAYOUT FOUNDATION
+   ======================================== */
+
+/* Product page container - integrates with existing layout system */
+.product-detail {
+  background: var(--foundation-background-primary,);
+  padding: var(--foundation-lg) 0;
+  min-height: calc(100vh - var(--total-fixed-height));
+  /* Account for sticky breadcrumbs on desktop */
+  padding-top: calc(var(--foundation-header-height) + var(--breadcrumb-height) + var(--foundation-md));
+}
+
+/* Mobile: no sticky breadcrumbs, so reduce top padding */
+@media (max-width: 768px) {
+  .product-detail {
+    padding-top: calc(var(--foundation-header-height) + var(--foundation-xs)) !important; /* Minimal top padding - reduced gap to breadcrumbs */
+  }
+  
+  /* Reduce breadcrumb bottom padding on mobile */
+  .breadcrumbs {
+    padding-bottom: var(--foundation-xs) !important; /* Reduced from 16px to 4px */
+  }
+}
+
+/* Breadcrumbs - foundation integration */
+.breadcrumbs {
+  background: var(--foundation-background-secondary);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--foundation-border-primary);
+  padding: var(--foundation-md) 0;
+  position: static; /* Static by default for mobile */
+  margin-bottom: 0; /* Remove bottom margin */
+}
+
+/* Make breadcrumbs sticky on desktop only */
+@media (min-width: 769px) {
+  .breadcrumbs {
+    position: sticky; /* Make sticky on desktop */
+    top: var(--foundation-header-height); /* Position below header */
+    z-index: 60; /* Above filter bar (50) but below header (100) */
+    /* Ensure content can scroll underneath */
+    pointer-events: none; /* Allow scroll events to pass through */
+    background: var(--foundation-background-secondary);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  /* Re-enable pointer events for breadcrumb links */
+  .breadcrumbs * {
+    pointer-events: auto;
+  }
+}
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-xs);
+  font-size: var(--foundation-text-sm);
+  color: var(--foundation-foreground-tertiary);
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 var(--foundation-lg);
+}
+
+.breadcrumb-nav a {
+  color: var(--foundation-foreground-secondary);
+  text-decoration: none;
+  transition: var(--foundation-transition, all 0.2s ease);
+}
+
+.breadcrumb-nav a:hover {
+  color: var(--foundation-accent-primary);
+}
+
+.breadcrumb-separator {
+  color: var(--foundation-foreground-tertiary);
+  font-size: 12px;
+}
+
+/* Product images section */
+.product-images {
+  display: flex;
+  flex-direction: column;
+  gap: var(--foundation-lg);
+  position: sticky;
+  /* Account for header + breadcrumbs + padding */
+  top: calc(var(--foundation-header-height) + 60px + var(--foundation-lg));
+}
+
+.main-image {
+  background: var(--foundation-background-secondary);
+  border: 1px solid var(--foundation-border-primary);
+  border-radius: var(--foundation-radius-m);
+  overflow: hidden;
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--foundation-transition, all 0.3s ease);
+}
+
+.thumbnail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--foundation-md);
+}
+
+.thumbnail {
+  aspect-ratio: 1;
+  background: var(--foundation-background-secondary);
+  border-radius: var(--foundation-radius-sm);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color var(--foundation-transition);
+  overflow: hidden;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  border-color: var(--foundation-accent-primary);
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Product details section - minimal spacing */
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--foundation-sm); /* Further reduced from 16px to 8px */
+}
+
+.product-details h1 {
+  font-family: var(--foundation-font-family);  
+  font-size: var(--foundation-text-xl);
+  font-weight: var(--foundation-font-weight-bold);
+  color: var(--foundation-foreground-primary);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.product-brand {
+  font-size: var(--foundation-text-lg);
+  color: var(--foundation-foreground-secondary);
+  font-weight: var(--foundation-font-weight-medium);
+  margin: 0;
+}
+
+/* Price section - reduced margins */
+.price-section {
+  display: flex;
+  align-items: baseline;
+  gap: var(--foundation-md);
+  margin-bottom: var(--foundation-lg); /* Reduced from 40px to 24px */
+}
+
+.current-price {
+  font-size: var(--foundation-text-2xl);
+  font-weight: var(--foundation-font-weight-bold);
+  color: var(--foundation-foreground-primary);
+}
+
+.original-price {
+  font-size: var(--foundation-text-lg);
+  color: var(--foundation-foreground-tertiary);
+  text-decoration: line-through;
+}
+
+/* Game specifications - reduced spacing */
+.game-specs {
+  background: var(--foundation-background-secondary);
+  border: 1px solid var(--foundation-border-primary);
+  border-radius: var(--foundation-radius-md);
+  padding: var(--foundation-md); /* Reduced from 24px to 16px */
+  margin-bottom: var(--foundation-lg); /* Reduced from 40px to 24px */
+  backdrop-filter: blur(20px);
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--foundation-md);
+}
+
+.spec-item {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-xs);
+  font-size: var(--foundation-text-sm);
+  color: var(--foundation-foreground-primary);
+}
+
+.spec-item span:first-child {
+  font-size: var(--foundation-text-md);
+}
+
+/* Description section - no background/border per wireframe */
+.description {
+  margin-bottom: var(--foundation-xl);
+  line-height: 1.7;
+}
+
+.description h3 {
+  font-family: var(--foundation-font-family);
+  font-size: var(--foundation-text-lg);
+  font-weight: var(--foundation-font-weight-semibold);
+  color: var(--foundation-foreground-primary);
+  margin: 0 0 var(--foundation-md) 0;
+}
+
+.description p {
+  color: var(--foundation-foreground-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Variant selection */
+.variant-section {
+  background: var(--foundation-background-secondary);
+  border: 1px solid var(--foundation-border-primary);
+  border-radius: var(--foundation-radius-m);
+  padding: var(--foundation-lg);
+  backdrop-filter: blur(20px);
+}
+
+.variant-section h4 {
+  font-family: var(--foundation-font-family);
+  font-size: var(--foundation-text-md);
+  font-weight: var(--foundation-font-weight-semibold);
+  color: var(--foundation-foreground-primary);
+  margin: 0 0 var(--foundation-md) 0;
+}
+
+.variant-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--foundation-sm);
+}
+
+.variant-option {
+  padding: var(--foundation-sm) var(--foundation-md);
+  background: var(--foundation-background-secondary);
+  border: 1px solid var(--foundation-border-primary);
+  border-radius: var(--foundation-radius-md);
+  color: var(--foundation-foreground-primary);
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.3s ease);
+  font-weight: var(--foundation-font-weight-medium);
+  min-height: var(--foundation-touch-target);
+  display: flex;
+  align-items: center;
+}
+
+.variant-option:hover {
+  background: var(--foundation-background-secondary);
+  border-color: var(--foundation-accent-primary);
+  transform: translateY(-2px);
+}
+
+.variant-option.selected {
+  background: var(--foundation-accent-primary);
+  border-color: var(--foundation-accent-primary);
+  color: white;
+}
+
+.variant-option.unavailable {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--foundation-background-secondary);
+}
+
+/* Add to cart section - glass container per wireframe */
+.add-to-cart-section {
+  background: var(--foundation-background-secondary);
+  border: 1px solid var(--foundation-border-primary);
+  border-radius: var(--foundation-radius-md);
+  padding: var(--foundation-lg);
+  backdrop-filter: blur(20px);
+}
+
+/* Quantity section - foundation integration with base.css */
+.quantity-section {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-md);
+  margin-bottom: var(--foundation-lg);
+}
+
+.quantity-label {
+  font-weight: var(--foundation-font-weight-semibold);
+  color: var(--foundation-foreground-primary);
+  font-size: var(--foundation-text-md);
+}
+
+/* Override base.css quantity-selector for product page */
+.product-detail .quantity-selector {
+  background: var(--foundation-background-secondary);
+  border: 1px solid var(--foundation-border-primary);
+  border-radius: var(--foundation-radius-md);
+  overflow: hidden;
+  --quantity-selector-width: auto;
+}
+
+.product-detail .quantity-selector :is(.quantity-minus, .quantity-plus) {
+  background: transparent;
+  border: none;
+  color: var(--foundation-foreground-primary);
+  font-size: var(--foundation-text-lg);
+  font-weight: var(--foundation-font-weight-semibold);
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.2s ease);
+  min-width: var(--foundation-touch-target);
+  min-height: var(--foundation-touch-target);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.product-detail .quantity-selector :is(.quantity-minus, .quantity-plus):hover {
+  background: var(--foundation-background-secondary);
+}
+
+.product-detail .quantity-selector input[type='number'] {
+  background: transparent;
+  border: none;
+  color: var(--foundation-foreground-primary);
+  text-align: center;
+  font-size: var(--foundation-text-md);
+  font-weight: var(--foundation-font-weight-semibold);
+  width: 40px;
+  height: var(--foundation-touch-target);
+  outline: none;
+  max-width: none;
+}
+
+/* Primary button - foundation styling */
+.btn-primary {
+  padding: 12px 24px;
+  min-height: 48px;
+  background: var(--button-primary-gradient);
+  box-shadow: var(--button-primary-shadow);
+  border-radius: 10px;
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+  
+  /* Glass overlay for extra juiciness */
+  backdrop-filter: blur(10px) saturate(1.2);
+}
+
+/* Primary button hover effect */
+.btn-primary:hover {
+  background: linear-gradient(14.76deg, #4A47F6 17.16%, #6B68F7 75%);
+  box-shadow: var(--button-primary-shadow-hover);
+  transform: translateY(-2px) scale(1.02);
+  text-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Primary button active/pressed effect */
+.btn-primary:active {
+  background: linear-gradient(14.76deg, #3A37F4 17.16%, #5248F5 75%);
+  box-shadow: var(--button-primary-shadow-active);
+  transform: translateY(1px) scale(0.98);
+  text-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  transition: var(--button-transition-fast);
+}
+
+/* Primary button focus state */
+.btn-primary:focus {
+  outline: 2px solid rgba(115, 137, 255, 0.6);
+  outline-offset: 3px;
+  box-shadow: 
+    var(--button-primary-shadow-hover),
+    0 0 0 4px rgba(93, 90, 246, 0.2);
+}
+
+/* Mobile First - Fix layout issues */
+@media (max-width: 1024px) {
+  .product-layout {
+    display: flex !important; /* Force flex layout on mobile */
+    flex-direction: column !important; /* Stack vertically */
+    gap: var(--foundation-xs); /* Minimal gap for mobile */
+    padding: 0 var(--foundation-md);
+    margin: 0; /* Remove any negative margins */
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .product-images {
+    order: 1; /* Ensure images come first */
+    position: static;
+    width: 100% !important; /* Force full width */
+    max-width: 100% !important;
+    margin: 0 0 var(--foundation-md) 0 !important; /* HIG-compliant 16px bottom margin */
+    padding: 0 !important; /* Remove all padding */
+    box-sizing: border-box !important;
+    flex: none; /* Don't grow or shrink */
+  }
+  
+  .product-details {
+    order: 2; /* Ensure details come second */
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none; /* Don't grow or shrink */
+  }
+  
+  .thumbnail-grid {
+    grid-template-columns: repeat(6, 1fr);
+    margin-top: var(--foundation-xs);  
+    width: 100% !important;
+  }
+  
+  .main-image {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    aspect-ratio: 1;
+    box-sizing: border-box !important;
+  }
+  
+  .main-image img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    object-fit: cover !important;
+    display: block !important; /* Ensure image is visible */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Force product container full width and remove any inherited margins */
+  .product-detail {
+    padding: var(--foundation-md) 0; /* Reduced bottom padding */
+    margin: 0 !important; /* Force no margin issues */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    /* Top padding already set above in mobile breakpoint */
+  }
+  
+  .breadcrumb-nav {
+    padding: 0 var(--foundation-md);
+  }
+  
+  .product-layout {
+    display: flex !important; /* Force flex layout on mobile */
+    flex-direction: column !important; /* Stack vertically */
+    gap: var(--foundation-xs) !important; /* Minimal gap on mobile */
+    padding: 0 var(--foundation-md);
+    margin: 0 !important; /* Remove any conflicting margins */
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Force mobile image container fixes */
+  .product-images,
+  .product-images-container,
+  .product-image-wrapper {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+  
+  /* Main image visibility enforcement */
+  .main-image {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    aspect-ratio: 1;
+    max-width: 100% !important;
+    background: var(--foundation-background-secondary) !important;
+    border: 1px solid var(--foundation-border-primary) !important;
+  }
+  
+  .main-image img,
+  .product-media img,
+  .product-image img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  
+  /* Ultra-minimal vertical spacing for mobile */
+  .product-details {
+    gap: 2px !important; /* Ultra-minimal gap on mobile */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Reduce spacing between all product detail elements */
+  .product-details > * {
+    margin-top: 0 !important;
+    margin-bottom: 2px !important;
+  }
+  
+  /* Mobile typography optimizations */
+  .product-details h1 {
+    font-size: 1.5rem !important; /* Smaller mobile title */
+    line-height: 1.2 !important;
+    margin-bottom: 2px !important;
+  }
+  
+  .product-brand {
+    font-size: 14px !important; /* Smaller mobile brand */
+    margin-bottom: 4px !important;
+  }
+  
+  /* Specific element spacing reductions */
+  .product-title,
+  .product-brand,
+  .product-price,
+  .price-section,
+  .game-specs,
+  .description,
+  .variant-section {
+    margin-bottom: 2px;
+    padding-bottom: 0;
+  }
+  
+  /* Price section mobile optimization */
+  .price-section {
+    margin-bottom: 4px !important;
+  }
+  
+  .current-price {
+    font-size: 1.75rem !important; /* Smaller mobile price */
+  }
+  
+  .original-price {
+    font-size: 1rem; /* Smaller mobile crossed-out price */
+  }
+  
+  /* Game specs mobile optimization */
+  .game-specs {
+    padding: 6px !important;
+    margin-bottom: 4px !important;
+  }
+  
+  .spec-item {
+    font-size: 13px !important; /* Smaller mobile spec text */
+  }
+  
+  .specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--foundation-xs); /* Ultra-minimal gap */
+  }
+  
+  /* Quantity section mobile optimization */
+  .quantity-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--foundation-xs); /* Minimal gap */
+    margin-bottom: var(--foundation-xs);
+  }
+  
+  .quantity-controls {
+    align-self: stretch;
+  }
+  
+  /* Touch target compliance for mobile buttons */
+  button,
+  .button,
+  [role="button"],
+  input[type="submit"],
+  input[type="button"],
+  .touch-target,
+  .variant-option,
+  .mobile-filter-toggle {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 8px 16px !important;
+    touch-action: manipulation !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .thumbnail-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .specs-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .variant-options {
+    flex-direction: column;
+  }
+  
+  .variant-option {
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* Products Section */
+.collection-products-section {
+  margin-bottom: var(--foundation-space-xl);
+}
+
+/* No Products State */
+.no-products {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: var(--foundation-space-xl);
+}
+
+.no-products-content {
+  text-align: center;
+  max-width: 400px;
+}
+
+.no-products-icon {
+  color: var(--foundation-foreground-tertiary);
+  margin-bottom: var(--foundation-space-lg);
+}
+
+.no-products-title {
+  font-size: var(--foundation-text-xl);
+  font-weight: var(--foundation-font-weight-semibold);
+  color: var(--foundation-foreground-primary);
+  margin: 0 0 var(--foundation-space-sm);
+}
+
+.no-products-description {
+  font-size: var(--foundation-text-base);
+  color: var(--foundation-foreground-secondary);
+  margin: 0 0 var(--foundation-space-lg);
+  line-height: 1.5;
+}
+
+.no-products-button {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--foundation-space-md) var(--foundation-space-lg);
+  background: var(--foundation-accent-primary);
+  color: var(--foundation-foreground-primary);
+  text-decoration: none;
+  border-radius: var(--foundation-radius-md);
+  font-weight: var(--foundation-font-weight-medium);
+  transition: var(--foundation-transition);
+  min-height: var(--foundation-touch-target);
+}
+
+.no-products-button:hover {
+  background: var(--foundation-accent-primary);
+  transform: translateY(-1px);
+}
+
+.product-detail .btn-primary {
+  font-size: var(--foundation-text-md) !important;
+  min-height: 44px;
+}

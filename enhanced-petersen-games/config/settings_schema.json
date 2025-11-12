@@ -1,0 +1,98 @@
+[
+  {
+    "name": "OksanaPlatform Enhanced Theme",
+    "settings": [
+      {
+        "type": "header",
+        "content": "🦄 OksanaPlatform Integration"
+      },
+      {
+        "type": "paragraph",
+        "content": "Enhanced with Strategic Intelligence, Creative Intelligence, and Quantum-Spatial Design"
+      },
+      {
+        "type": "select",
+        "id": "quantum_design_state",
+        "label": "Quantum-Spatial Design State",
+        "info": "Controls the active design token set",
+        "options": [
+          {
+            "value": "heritage",
+            "label": "🏛️ Heritage - Classic Foundation"
+          },
+          {
+            "value": "quantum",
+            "label": "🌟 Quantum - Modern Innovation"
+          },
+          {
+            "value": "superposition",
+            "label": "⚡ Superposition - Dual State"
+          },
+          {
+            "value": "transitional",
+            "label": "🔄 Transitional - Adaptive Flow"
+          }
+        ],
+        "default": "quantum"
+      },
+      {
+        "type": "checkbox",
+        "id": "apple_hig_compliance",
+        "label": "🍎 Apple HIG Compliance Mode",
+        "info": "Enforces Apple Human Interface Guidelines",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "strategic_intelligence_enabled",
+        "label": "🧠 Strategic Intelligence Enhancement",
+        "info": "Enables AI-powered content optimization",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "m4_acceleration",
+        "label": "⚡ M4 Neural Engine Acceleration",
+        "info": "Optimizes performance on Apple Silicon",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "creative_intelligence_bridge",
+        "label": "🎨 Creative Intelligence Bridge",
+        "info": "Connects Figma designs to Shopify automatically",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Petersen Games Brand Configuration",
+    "settings": [
+      {
+        "type": "header",
+        "content": "🎮 Brand-Aware Content Settings"
+      },
+      {
+        "type": "text",
+        "id": "brand_voice_tone",
+        "label": "Brand Voice Tone",
+        "default": "horror-gaming",
+        "info": "Defines the brand voice for AI content generation"
+      },
+      {
+        "type": "text",
+        "id": "target_audience",
+        "label": "Target Audience",
+        "default": "collectors",
+        "info": "Primary audience for content optimization"
+      },
+      {
+        "type": "textarea",
+        "id": "brand_values",
+        "label": "Brand Values",
+        "default": "exclusivity, quality, legendary",
+        "info": "Core brand values for content validation"
+      }
+    ]
+  }
+]

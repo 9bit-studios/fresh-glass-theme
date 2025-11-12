@@ -1,0 +1,107 @@
+{
+  "colors": {
+    "superposition-primary-main": "#6A3093",
+    "superposition-primary-dark": "#331F4A",
+    "superposition-primary-light": "#613FE7",
+    "superposition-primary-contrastText": "#FFFFFF",
+    "superposition-secondary-main": "#BF4080",
+    "superposition-secondary-dark": "#331F4A",
+    "superposition-secondary-light": "#FF2D55",
+    "superposition-secondary-contrastText": "#FFFFFF",
+    "superposition-accent-main": "#5AC8FA",
+    "superposition-accent-dark": "#126D71",
+    "superposition-accent-light": "#00FFC8",
+    "superposition-accent-contrastText": "#131A36",
+    "superposition-background-default": "#131A36",
+    "superposition-background-paper": "#0D0D15",
+    "superposition-background-subtle": "#0A0621",
+    "superposition-text-primary": "#FFFFFF",
+    "superposition-text-secondary": "#CCCCCC",
+    "superposition-text-disabled": "#888888",
+    "superposition-text-hint": "#AAAAAA",
+    "superposition-semantic-success": "#34C759",
+    "superposition-semantic-warning": "#FF9500",
+    "superposition-semantic-error": "#FF3B30",
+    "superposition-semantic-info": "#5AC8FA"
+  },
+  "spacing": {
+    "superposition-quantum": "4px",
+    "superposition-xxs": "4px",
+    "superposition-xs": "8px",
+    "superposition-sm": "16px",
+    "superposition-md": "24px",
+    "superposition-lg": "32px",
+    "superposition-xl": "48px",
+    "superposition-xxl": "64px"
+  },
+  "typography": {
+    "superposition-fontFamilies-heading": "'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif",
+    "superposition-fontFamilies-body": "'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif",
+    "superposition-fontFamilies-mono": "'SF Mono', 'JetBrains Mono', monospace",
+    "superposition-fontSizes-xs": "12px",
+    "superposition-fontSizes-sm": "14px",
+    "superposition-fontSizes-md": "16px",
+    "superposition-fontSizes-lg": "20px",
+    "superposition-fontSizes-xl": "24px",
+    "superposition-fontSizes-xxl": "32px",
+    "superposition-fontSizes-display": "48px",
+    "superposition-fontWeights-regular": 400,
+    "superposition-fontWeights-medium": 500,
+    "superposition-fontWeights-semibold": 600,
+    "superposition-fontWeights-bold": 700,
+    "superposition-lineHeights-xs": "16px",
+    "superposition-lineHeights-sm": "20px",
+    "superposition-lineHeights-md": "24px",
+    "superposition-lineHeights-lg": "28px",
+    "superposition-lineHeights-xl": "32px",
+    "superposition-lineHeights-xxl": "40px",
+    "superposition-lineHeights-display": "56px",
+    "superposition-letterSpacings-tighter": "-0.05em",
+    "superposition-letterSpacings-tight": "-0.025em",
+    "superposition-letterSpacings-normal": "0",
+    "superposition-letterSpacings-wide": "0.025em",
+    "superposition-letterSpacings-wider": "0.05em"
+  },
+  "shadows": {
+    "superposition-subtle": "0 2px 4px rgba(10, 6, 33, 0.3)",
+    "superposition-medium": "0 4px 8px rgba(10, 6, 33, 0.3), 0 0 8px rgba(106, 48, 147, 0.2)",
+    "superposition-prominent": "0 8px 16px rgba(10, 6, 33, 0.3), 0 0 16px rgba(106, 48, 147, 0.2)",
+    "superposition-glow": "0 0 20px rgba(106, 48, 147, 0.2)"
+  },
+  "borders": {
+    "superposition-radius": {
+      "xs": "2.8px",
+      "sm": "5.6px",
+      "md": "11.2px",
+      "lg": "16.799999999999997px",
+      "xl": "22.4px",
+      "pill": "9999px"
+    },
+    "superposition-width": {
+      "thin": "1px",
+      "medium": "2px",
+      "thick": "3px"
+    }
+  },
+  "opacities": {
+    "superposition-subtle": 0.7,
+    "superposition-verySubtle": 0.3,
+    "superposition-hover": 0.85,
+    "superposition-active": 0.95,
+    "superposition-disabled": 0.5
+  },
+  "easing": {
+    "superposition-standard": "cubic-bezier(0.4, 0.0, 0.2, 1)",
+    "superposition-decelerate": "cubic-bezier(0.0, 0.0, 0.2, 1)",
+    "superposition-accelerate": "cubic-bezier(0.4, 0.0, 1, 1)",
+    "superposition-quantum": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "superposition-energy": "cubic-bezier(0.17, 0.89, 0.32, 1.25)"
+  },
+  "durations": {
+    "superposition-instant": "50ms",
+    "superposition-fast": "150ms",
+    "superposition-medium": "300ms",
+    "superposition-slow": "500ms",
+    "superposition-deliberate": "800ms"
+  }
+}

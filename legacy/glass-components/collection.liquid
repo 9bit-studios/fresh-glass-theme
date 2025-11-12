@@ -1,0 +1,775 @@
+
+{% layout 'theme' %}
+
+<!-- Set CSS custom properties for layout calculations -->
+<style>
+  :root {
+    --foundation-header-height: 80px;
+    --filter-bar-height: 56px;
+    --total-fixed-height: calc(var(--foundation-header-height) + var(--filter-bar-height));
+  }
+
+  /* Main content area adjustment */
+  .main-content {
+    padding-top: var(--total-fixed-height);
+    min-height: calc(100vh - var(--total-fixed-height));
+  }
+
+  /* Layout grid for desktop with sidebar */
+  .layout-with-sidebar {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 0;
+    max-width: 1800px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 var(--foundation-space-lg, 24px);
+  }
+
+  .sidebar-area {
+    position: sticky;
+    top: var(--total-fixed-height);
+    height: calc(100vh - var(--total-fixed-height));
+    overflow-y: auto;
+  }
+
+  .content-area {
+    padding: 0 var(--foundation-space-lg, 24px) var(--foundation-space-lg, 24px);
+    background: var(--foundation-background-primary, #000000);
+    /* Ensure content uses full available width */
+    max-width: none;
+    width: 100%;
+  }
+
+  /* Mobile layout adjustments */
+  @media (max-width: 1023px) {
+    .layout-with-sidebar {
+      grid-template-columns: 1fr;
+      padding: 0 var(--foundation-space-md, 16px);
+    }
+    
+    .sidebar-area {
+      display: none; /* Hidden on mobile, shown via overlay */
+    }
+    
+    .content-area {
+      padding: 0 var(--foundation-space-md, 16px) var(--foundation-space-md, 16px);
+    }
+  }
+
+  @media (max-width: 767px) {
+    :root {
+      --foundation-header-height: 60px;
+      --filter-bar-height: 48px;
+    }
+    
+    .layout-with-sidebar {
+      padding: 0 var(--foundation-space-md, 12px);
+    }
+    
+    .content-area {
+      padding: 0 var(--foundation-space-md, 12px) var(--foundation-space-sm, 8px);
+    }
+  }
+</style>
+
+
+<!-- Main Content Area -->
+<main class="main-content">
+  <div class="layout-with-sidebar">
+    
+    <!-- Desktop Sidebar (Hidden on Mobile) -->
+    <aside class="sidebar-area">
+      <!-- Facets Integration -->
+      <facets-form-component section-id="collection-{{ collection.id }}">
+        {% section 'glass-filter-sidebar' %}
+      </facets-form-component>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="content-area">
+      
+      <!-- Active Filters Display -->
+      <section class="active-filters-section" id="active-filters-section">
+        <div class="active-filters-content">
+          <div class="active-filters-list" id="facets-applied-filters">
+            <!-- Populated by JavaScript from URL parameters -->
+          </div>
+          {% if collection.current_type or collection.current_vendor %}
+            <div class="collection-context-filters">
+              {% if collection.current_type %}
+                <span class="context-filter">Type: {{ collection.current_type }}</span>
+              {% endif %}
+              {% if collection.current_vendor %}
+                <span class="context-filter">Brand: {{ collection.current_vendor }}</span>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </section>
+
+      <!-- Products Section -->
+      <section class="collection-products-section" id="collection-products-all">
+        
+        <!-- Product Grid -->
+        <div class="products-grid" id="products-grid">
+          {% assign featured_collection = collections['all'] %}
+          {% paginate featured_collection.products by 24 %}
+            
+            {% comment %} No Products State {% endcomment %}
+            {% if featured_collection.products.size == 0 %}
+              <div class="no-products">
+                <div class="no-products-content">
+                  <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor" class="no-products-icon">
+                    <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                  </svg>
+                  <h3 class="no-products-title">No products found</h3>
+                  <p class="no-products-description">Try adjusting your filters or browse all products.</p>
+                  <a href="{{ collection.url }}" class="no-products-button">View All Products</a>
+                </div>
+              </div>
+            {% else %}
+              
+              <div class="product-grid-container">
+                {% for product in featured_collection.products %}
+                  <div class="product-card" data-product-id="{{ product.id }}">
+                    <a href="{{ product.url }}" class="product-link">
+                      <div class="product-image">
+                        {% if product.featured_image %}
+                          <img src="{{ product.featured_image | image_url: width: 400 }}" 
+                               alt="{{ product.title }}"
+                               loading="lazy"
+                               width="400"
+                               height="400">
+                        {% else %}
+                          <div class="product-image-placeholder">
+                            <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                            </svg>
+                          </div>
+                        {% endif %}
+                        
+                        <!-- Product badges -->
+                        <div class="product-badges">
+                          {% if product.available == false %}
+                            <span class="badge sold-out">Sold Out</span>
+                          {% elsif product.compare_at_price > product.price %}
+                            <span class="badge sale">Sale</span>
+                          {% elsif product.tags contains 'new' %}
+                            <span class="badge new">New</span>
+                          {% elsif product.tags contains 'limited-edition' %}
+                            <span class="badge limited">Limited</span>
+                          {% endif %}
+                        </div>
+
+                        <!-- Quick view overlay (for future enhancement) -->
+                        <div class="product-overlay">
+                          <button class="quick-view-button" data-product-url="{{ product.url }}">
+                            Quick View
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="product-info">
+                        <h3 class="product-title">{{ product.title }}</h3>
+                        <div class="product-price">
+                          {% if product.compare_at_price > product.price %}
+                            <span class="price-sale">{{ product.price | money }}</span>
+                            <span class="price-compare">{{ product.compare_at_price | money }}</span>
+                            <span class="price-save">Save {{ product.compare_at_price | minus: product.price | money }}</span>
+                          {% else %}
+                            <span class="price-regular">{{ product.price | money }}</span>
+                          {% endif %}
+                        </div>
+                        {% if product.vendor %}
+                          <p class="product-vendor">{{ product.vendor }}</p>
+                        {% endif %}
+                        
+                        <!-- Product variant indicator -->
+                        {% if product.variants.size > 1 %}
+                          <div class="product-variants">
+                            <span class="variants-count">{{ product.variants.size }} variants</span>
+                          </div>
+                        {% endif %}
+                      </div>
+                    </a>
+                  </div>
+                {% endfor %}
+              </div>
+
+              <!-- Pagination -->
+              {% if paginate.pages > 1 %}
+                <nav class="pagination" aria-label="Pagination">
+                  {% if paginate.previous %}
+                    <a href="{{ paginate.previous.url }}" class="pagination-link pagination-prev">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15 18l-6-6 6-6v12z"/>
+                      </svg>
+                      Previous
+                    </a>
+                  {% endif %}
+
+                  <div class="pagination-pages">
+                    {% for part in paginate.parts %}
+                      {% if part.is_link %}
+                        <a href="{{ part.url }}" class="pagination-link">{{ part.title }}</a>
+                      {% else %}
+                        {% if part.title == paginate.current_page %}
+                          <span class="pagination-link current">{{ part.title }}</span>
+                        {% else %}
+                          <span class="pagination-ellipsis">{{ part.title }}</span>
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+
+                  {% if paginate.next %}
+                    <a href="{{ paginate.next.url }}" class="pagination-link pagination-next">
+                      Next
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 18l6-6-6-6v12z"/>
+                      </svg>
+                    </a>
+                  {% endif %}
+                </nav>
+              {% endif %}
+            {% endif %}
+          {% endpaginate %}
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<style>
+/* ========================================
+   INDEX PAGE STYLES
+======================================== */
+
+/* Collection Header */
+.collection-header {
+  margin-bottom: var(--foundation-space-xl, 32px);
+  text-align: center;
+}
+
+.collection-header-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.collection-title {
+  font-size: var(--foundation-text-4xl, 36px);
+  font-weight: var(--foundation-font-weight-bold, 700);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  margin: 0 0 var(--foundation-space-md, 16px) 0;
+  font-family: var(--foundation-font-family, 'SF Pro Rounded', system-ui);
+}
+
+.collection-description {
+  font-size: var(--foundation-text-lg, 18px);
+  color: var(--foundation-foreground-secondary, rgba(252, 253, 242, 0.8));
+  line-height: 1.6;
+  margin: 0 0 var(--foundation-space-md, 16px) 0;
+}
+
+.collection-meta {
+  display: flex;
+  justify-content: center;
+  gap: var(--foundation-space-md, 16px);
+}
+
+.collection-count {
+  font-size: var(--foundation-text-sm, 14px);
+  color: var(--foundation-accent-primary, #19bcfe);
+  font-weight: var(--foundation-font-weight-medium, 500);
+  padding: var(--foundation-space-xs, 4px) var(--foundation-space-md, 12px);
+  background: rgba(25, 188, 254, 0.1);
+  border: 1px solid rgba(25, 188, 254, 0.3);
+  border-radius: var(--foundation-radius-lg, 20px);
+}
+
+/* Active Filters Section */
+.active-filters-section {
+  margin-bottom: var(--foundation-space-lg, 24px);
+}
+
+.active-filters-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--foundation-space-sm, 8px);
+  align-items: center;
+}
+
+.active-filters-list {
+  display: flex;
+  gap: var(--foundation-space-sm, 8px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.collection-context-filters {
+  display: flex;
+  gap: var(--foundation-space-sm, 8px);
+  flex-wrap: wrap;
+}
+
+.context-filter {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--foundation-radius-md, 12px);
+  padding: var(--foundation-space-xs, 4px) var(--foundation-space-md, 12px);
+  font-size: var(--foundation-text-sm, 14px);
+  color: var(--foundation-foreground-secondary, rgba(252, 253, 242, 0.8));
+}
+
+/* Products Section */
+.collection-products-section {
+  margin-bottom: var(--foundation-space-xl, 32px);
+}
+
+/* No Products State */
+.no-products {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  padding: var(--foundation-space-xl, 40px);
+}
+
+.no-products-content {
+  text-align: center;
+  max-width: 400px;
+}
+
+.no-products-icon {
+  color: var(--foundation-foreground-tertiary, rgba(252, 253, 242, 0.4));
+  margin-bottom: var(--foundation-space-lg, 24px);
+}
+
+.no-products-title {
+  font-size: var(--foundation-text-xl, 20px);
+  font-weight: var(--foundation-font-weight-semibold, 600);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  margin: 0 0 var(--foundation-space-sm, 8px) 0;
+}
+
+.no-products-description {
+  font-size: var(--foundation-text-base, 16px);
+  color: var(--foundation-foreground-secondary, rgba(252, 253, 242, 0.8));
+  margin: 0 0 var(--foundation-space-lg, 24px) 0;
+  line-height: 1.5;
+}
+
+.no-products-button {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--foundation-space-md, 12px) var(--foundation-space-lg, 24px);
+  background: var(--foundation-accent-primary, #19bcfe);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  text-decoration: none;
+  border-radius: var(--foundation-radius-md, 12px);
+  font-weight: var(--foundation-font-weight-medium, 500);
+  transition: var(--foundation-transition, all 0.2s ease);
+  min-height: var(--foundation-touch-target, 44px);
+}
+
+.no-products-button:hover {
+  background: #1597d3;
+  transform: translateY(-1px);
+}
+
+/* Product Grid */
+.product-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--foundation-space-lg, 24px);
+  margin-bottom: var(--foundation-space-xl, 32px);
+}
+
+.product-card {
+  background: var(--glass-surface, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--foundation-radius-lg, 16px);
+  overflow: hidden;
+  transition: var(--foundation-transition, all 0.3s ease);
+  backdrop-filter: var(--glass-effect, blur(20px));
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  border-color: var(--glass-border-hover, rgba(255, 255, 255, 0.2));
+}
+
+.product-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-image {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--glass-subtle, rgba(255, 255, 255, 0.02));
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--foundation-transition, all 0.3s ease);
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.product-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--foundation-foreground-tertiary, rgba(252, 253, 242, 0.4));
+  background: var(--glass-subtle, rgba(255, 255, 255, 0.02));
+}
+
+.product-badges {
+  position: absolute;
+  top: var(--foundation-space-sm, 8px);
+  right: var(--foundation-space-sm, 8px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--foundation-space-xs, 4px);
+  z-index: 2;
+}
+
+.badge {
+  padding: 2px var(--foundation-space-sm, 8px);
+  border-radius: var(--foundation-radius-md, 12px);
+  font-size: var(--foundation-text-xs, 11px);
+  font-weight: var(--foundation-font-weight-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
+}
+
+.badge.sold-out {
+  background: rgba(255, 59, 48, 0.9);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+}
+
+.badge.sale {
+  background: rgba(255, 149, 0, 0.9);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+}
+
+.badge.new {
+  background: rgba(52, 199, 89, 0.9);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+}
+
+.badge.limited {
+  background: rgba(191, 64, 128, 0.9);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+}
+
+.product-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--foundation-transition, all 0.3s ease);
+  z-index: 1;
+}
+
+.product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+.quick-view-button {
+  background: var(--foundation-accent-primary, #19bcfe);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  border: none;
+  border-radius: var(--foundation-radius-md, 12px);
+  padding: var(--foundation-space-sm, 8px) var(--foundation-space-md, 16px);
+  font-weight: var(--foundation-font-weight-medium, 500);
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.2s ease);
+  min-height: var(--foundation-touch-target, 44px);
+}
+
+.quick-view-button:hover {
+  background: #1597d3;
+  transform: scale(1.05);
+}
+
+.product-info {
+  padding: var(--foundation-space-md, 16px);
+}
+
+.product-title {
+  font-size: var(--foundation-text-base, 16px);
+  font-weight: var(--foundation-font-weight-medium, 500);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  margin: 0 0 var(--foundation-space-xs, 4px) 0;
+  line-height: 1.4;
+}
+
+.product-price {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-space-sm, 8px);
+  margin-bottom: var(--foundation-space-xs, 4px);
+  flex-wrap: wrap;
+}
+
+.price-regular,
+.price-sale {
+  font-size: var(--foundation-text-base, 16px);
+  font-weight: var(--foundation-font-weight-semibold, 600);
+  color: var(--foundation-accent-primary, #19bcfe);
+}
+
+.price-compare {
+  font-size: var(--foundation-text-sm, 14px);
+  color: var(--foundation-foreground-tertiary, rgba(252, 253, 242, 0.6));
+  text-decoration: line-through;
+}
+
+.price-save {
+  font-size: var(--foundation-text-xs, 12px);
+  color: var(--foundation-success, #34c759);
+  background: rgba(52, 199, 89, 0.1);
+  padding: 2px var(--foundation-space-xs, 6px);
+  border-radius: var(--foundation-radius-sm, 6px);
+  font-weight: var(--foundation-font-weight-medium, 500);
+}
+
+.product-vendor {
+  font-size: var(--foundation-text-xs, 12px);
+  color: var(--foundation-foreground-secondary, rgba(252, 253, 242, 0.8));
+  margin: 0 0 var(--foundation-space-xs, 4px) 0;
+}
+
+.product-variants {
+  margin-top: var(--foundation-space-xs, 4px);
+}
+
+.variants-count {
+  font-size: var(--foundation-text-xs, 12px);
+  color: var(--foundation-foreground-tertiary, rgba(252, 253, 242, 0.6));
+  font-style: italic;
+}
+
+/* Pagination - Reuse from index.liquid */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--foundation-space-sm, 8px);
+  padding: var(--foundation-space-xl, 32px) 0;
+}
+
+.pagination-link {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-space-xs, 4px);
+  padding: var(--foundation-space-sm, 8px) var(--foundation-space-md, 12px);
+  background: var(--glass-surface, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--foundation-radius-md, 12px);
+  color: var(--foundation-foreground-secondary, rgba(252, 253, 242, 0.8));
+  text-decoration: none;
+  font-size: var(--foundation-text-sm, 14px);
+  font-weight: var(--foundation-font-weight-medium, 500);
+  transition: var(--foundation-transition, all 0.2s ease);
+  min-height: var(--foundation-touch-target, 44px);
+}
+
+.pagination-link:hover {
+  background: var(--glass-surface-hover, rgba(255, 255, 255, 0.1));
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  transform: translateY(-1px);
+}
+
+.pagination-link.current {
+  background: var(--foundation-accent-primary, #19bcfe);
+  color: var(--foundation-foreground-primary, #FCFDF2);
+  border-color: var(--foundation-accent-primary, #19bcfe);
+}
+
+.pagination-ellipsis {
+  padding: var(--foundation-space-sm, 8px);
+  color: var(--foundation-foreground-tertiary, rgba(252, 253, 242, 0.6));
+}
+
+.pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-space-xs, 4px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .collection-title {
+    font-size: var(--foundation-text-3xl, 28px);
+  }
+
+  .product-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--foundation-space-md, 16px);
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    gap: var(--foundation-space-xs, 4px);
+  }
+
+  .pagination-pages {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: var(--foundation-space-sm, 8px);
+  }
+}
+
+@media (max-width: 480px) {
+  .collection-title {
+    font-size: var(--foundation-text-2xl, 24px);
+  }
+
+  .product-grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: var(--foundation-space-sm, 8px);
+  }
+
+  .product-info {
+    padding: var(--foundation-space-sm, 8px) var(--foundation-space-md, 12px);
+  }
+
+  .product-title {
+    font-size: var(--foundation-text-sm, 14px);
+  }
+
+  .pagination-link {
+    padding: var(--foundation-space-xs, 6px) var(--foundation-space-sm, 8px);
+    font-size: var(--foundation-text-xs, 12px);
+  }
+
+  .active-filters-content {
+    align-items: stretch;
+  }
+
+  .active-filters-list {
+    justify-content: flex-start;
+  }
+}
+
+/* Loading States for Filter Updates */
+.products-grid.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.products-grid.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(25, 188, 254, 0.2);
+  border-top: 4px solid var(--foundation-accent-primary, #19bcfe);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+</style>
+
+<script>
+// Collection Page Specific Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Update results count when filters change
+  function updateResultsCount() {
+    const productCards = document.querySelectorAll('.product-card');
+    const count = productCards.length;
+    
+    // Update the filter bar results count
+    if (typeof glassFilterBar === 'function') {
+      const filterBarInstance = glassFilterBar();
+      if (filterBarInstance) {
+        filterBarInstance.updateResultsCount(count);
+      }
+    }
+  }
+
+  // Initial update
+  updateResultsCount();
+
+  // Listen for filter updates
+  document.addEventListener('filter-update', function() {
+    updateResultsCount();
+  });
+
+  // Quick view functionality (placeholder)
+  const quickViewButtons = document.querySelectorAll('.quick-view-button');
+  quickViewButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const productUrl = this.dataset.productUrl;
+      console.log('Quick view for:', productUrl);
+      // TODO: Implement quick view modal
+    });
+  });
+
+  // Product card animation on scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationDelay = `${Math.random() * 0.3}s`;
+        entry.target.classList.add('animate-in');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.product-card').forEach(card => {
+    observer.observe(card);
+  });
+});
+</script>
+
+<style>
+/* Animation for product cards on scroll */
+.product-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
