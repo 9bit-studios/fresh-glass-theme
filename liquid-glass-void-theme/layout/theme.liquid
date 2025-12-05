@@ -18,6 +18,30 @@
       {{ 'glass-filter-controls-integration.css' | asset_url | stylesheet_tag }}
     {{ 'framer-inspired-mega-menu-enhancement.css' | asset_url | stylesheet_tag }}
     {{ 'mobile-menu-ios-fixes.css' | asset_url | stylesheet_tag }}
+ 
+  {%- comment -%} OksanaPlatform Enhanced Meta Tags {%- endcomment -%}
+  <meta name="theme-architecture" content="apple-native-quantum-secured-shopify-optimized">
+  <meta name="oksana-platform-version" content="2.1.0">
+  <meta name="apple-hig-compliant" content="{{ settings.apple_hig_compliance }}">
+  <meta name="quantum-design-state" content="{{ settings.quantum_design_state | default: 'quantum' }}">
+  
+  <title>
+    {{ page_title }}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  {% render 'meta-tags' %}
+  {% render 'quantum-spatial-styles', design_state: settings.quantum_design_state %}
+  {% if settings.strategic_intelligence_enabled %}
+    {% render 'strategic-intelligence-tracking' %}
+  {% endif %}
+  {% if settings.apple_hig_compliance %}
+    {% render 'apple-hig-accessibility' %}
+  {% endif %}
 
     {%- if settings.favicon != blank -%}
       <link
@@ -58,6 +82,18 @@
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
+  class="template-{{ template | replace: '.', ' ' | handle }}{% if settings.apple_hig_compliance %} apple-hig-compliant{% endif %}{% if settings.m4_acceleration %} m4-optimized{% endif %}"
+  data-quantum-state="{{ settings.quantum_design_state | default: 'quantum' }}"
+  data-oksana-platform="enhanced"
+>
+  <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+    {{ "accessibility.skip_to_text" | t }}
+  </a>
+
+  {% section 'header' %}
+  
+  <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+    {{ content_for_layout }}
 
     <!-- Header Section -->
     {% sections 'header-group' %}
@@ -76,6 +112,7 @@
 
     {% sections 'footer-group' %}
 
+
     {% render 'search-modal' %}
 
     {% if settings.quick_add or settings.mobile_quick_add %}
@@ -84,6 +121,30 @@
       {{ 'sliding-nav-active-states.js' | asset_url | script_tag }}
       {{ 'framer-inspired-menu-interactions.js' | asset_url | script_tag }}
       {{ 'mobile-menu-ios-interactions.js' | asset_url | script_tag }}
+
+  {%- comment -%} OksanaPlatform Enhanced Scripts {%- endcomment -%}
+  <script>
+    window.OksanaPlatform = {
+      version: '2.1.0',
+      architecture: 'apple-native-quantum-secured-shopify-optimized',
+      integrations: {
+        shopifyBridge: true,
+        swiftFrontend: true,
+        creativeIntelligence: false,
+        figmaMCP: false,
+        quantumSpatial: true
+      },
+      settings: {
+        quantumDesignState: '{{ settings.quantum_design_state | default: 'quantum' }}',
+        appleHIGCompliance: {{ settings.apple_hig_compliance }},
+        strategicIntelligence: {{ settings.strategic_intelligence_enabled }},
+        m4Acceleration: {{ settings.m4_acceleration }},
+        creativeIntelligenceBridge: {{ settings.creative_intelligence_bridge }}
+      }
+    };
+  </script>
+  
+  <script src="{{ 'oksana-platform-enhanced.js' | asset_url }}" defer="defer"></script>
 
   </body>
 </html>

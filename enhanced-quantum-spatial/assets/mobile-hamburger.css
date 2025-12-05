@@ -1,0 +1,208 @@
+/* ========================================
+   MOBILE HAMBURGER MENU EXTENSION
+   Extends navigation.css with mobile hamburger functionality
+   ======================================== */
+
+/* ========================================
+   MOBILE HAMBURGER MENU
+   ======================================== */
+
+.mobile-hamburger-menu {
+  display: none;
+  position: relative;
+}
+
+.mobile-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 8px;
+  background: var(--foundation-background-secondary);
+  border: 0.5px solid var(--foundation-border-primary);
+  border-radius: var(--foundation-radius-md);
+  color: var(--foundation-foreground-primary);
+  cursor: pointer;
+  transition: var(--foundation-transition, all 0.2s ease);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 0 var(--foundation-background-secondary);
+}
+
+.mobile-menu-toggle:hover {
+  background: var(--foundation-background-secondary);
+  border-color: var(--foundation-border-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--foundation-shadow-primary), inset 0 1px 0 var(--foundation-background-secondary);
+}
+
+.mobile-menu-toggle[aria-expanded="true"] {
+  background: var(--foundation-accent-primary);
+  border-color: var(--foundation-accent-primary);
+  box-shadow: 0 0 0 1px var(--foundation-accent-primary), inset 0 1px 0 var(--foundation-background-secondary);
+}
+
+/* ========================================
+   MOBILE LAYOUT MODIFICATIONS
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Show mobile hamburger menu */
+  .mobile-hamburger-menu {
+    display: block !important;
+    order: 0;
+  }
+
+  /* Update logo sizes for mobile */
+  .glass-top-header .header__logo-image,
+  .glass-logo-image,
+  .header__logo-image {
+    height: 28px !important;
+    max-width: 140px !important;
+  }
+
+  /* Modify header container layout for mobile */
+  .glass-header-container {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: var(--foundation-space-sm, 8px) !important;
+  }
+
+  /* Logo section positioning */
+  .glass-logo-section {
+    flex: 1 !important;
+    display: flex !important;
+    justify-content: center !important;
+    order: 1 !important;
+  }
+
+  /* Show the nav-dropdown as a mobile slide-down menu */
+  .nav-dropdown {
+    display: block !important;
+    position: fixed !important;
+    top: 50px !important; /* Position below mobile header */
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
+    background: var(--foundation-background-primary) !important;
+    backdrop-filter: var(--foundation-backdrop-filter, blur(40px) saturate(200%) brightness(110%)) !important;
+    -webkit-backdrop-filter: var(--foundation-backdrop-filter, blur(40px) saturate(200%) brightness(110%)) !important;
+    border-bottom: 1px solid var(--foundation-border-primary) !important;
+    box-shadow: 0 8px 32px var(--foundation-shadow-primary) !important;
+    transform: translateY(-100%) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  /* Show dropdown when active */
+  .nav-dropdown:has(.mega-dropdown.active) {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Hide the dropdown toggle button itself (we're using the hamburger instead) */
+  .nav-dropdown .dropdown-toggle {
+    display: none !important;
+  }
+
+  /* Make mega dropdown full-width slide-down */
+  .mega-dropdown {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: var(--foundation-space-lg, 24px) !important;
+    min-width: auto !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    display: none !important;
+  }
+
+  .mega-dropdown.active {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: var(--foundation-space-lg, 24px) !important;
+    animation: none !important;
+  }
+
+  /* Update dropdown columns for mobile */
+  .dropdown-column {
+    width: 100% !important;
+  }
+
+  .column-header {
+    font-size: 16px !important;
+    margin-bottom: var(--foundation-space-md, 16px) !important;
+  }
+
+  .dropdown-item {
+    padding: 12px 0 !important;
+    font-size: 16px !important;
+    border-bottom: 1px solid var(--foundation-border-primary) !important;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .dropdown-item:last-child {
+    border-bottom: none !important;
+  }
+
+  .dropdown-item:hover {
+    background: var(--foundation-background-secondary) !important;
+    transform: translateX(8px) !important;
+    border-radius: var(--foundation-radius-sm, 8px) !important;
+  }
+}
+
+/* ========================================
+   MOBILE HAMBURGER INTERACTION FIXES
+   ======================================== */
+
+/* Ensure proper click handling for mobile hamburger */
+@media (max-width: 768px) {
+  /* Update the JavaScript selector to target both buttons */
+  .dropdown-toggle.mobile-menu-toggle,
+  .mobile-hamburger-menu .dropdown-toggle {
+    position: relative;
+    z-index: 1001; /* Above the dropdown */
+  }
+
+  /* Prevent body scroll when mobile menu is open */
+  body:has(.nav-dropdown .mega-dropdown.active) {
+    overflow: hidden !important;
+  }
+
+  /* Add overlay for mobile menu */
+  .nav-dropdown::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .nav-dropdown:has(.mega-dropdown.active)::before {
+    opacity: 1;
+    visibility: visible;
+  }
+}

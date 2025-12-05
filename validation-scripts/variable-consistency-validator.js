@@ -10,7 +10,7 @@ const path = require('path');
 
 class VariableConsistencyValidator {
   constructor() {
-    this.themeDir = '/Users/pennyplatt/9bit-studios/petersen-portal/fresh-glass-theme/petersen-glass-theme';
+    this.themeDir = '/Users/pennyplatt/Documents/9BitStudios/petersen-portal/fresh-glass-theme/petersen-glass-theme';
     this.variableDefinitions = new Map();
     this.variableUsage = new Map();
     this.report = {

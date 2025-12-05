@@ -1,0 +1,180 @@
+/* Product Grid Rounded Corners & Layout Fixes - Grid Animation Compatible */
+
+/* ========================================
+   PRODUCT CARD STYLING - GLASS EFFECTS
+   ======================================== */
+
+/* Add rounded corners and glass effects to product cards */
+.product-card,
+.card--product {
+  border-radius: var(--foundation-radius-lg, 12px);
+  overflow: hidden;
+  background: var(--glass-surface, rgba(8, 4, 21, 0.8));
+  border: 1px solid var(--glass-border, rgba(93, 90, 246, 0.2));
+  backdrop-filter: blur(12px) saturate(1.2);
+  
+  /* Allow smooth transitions for grid animations */
+  transition: all var(--duration-default, 0.3s) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Product card images - rounded corners */
+.product-card img,
+.card--product img,
+.product-image {
+  border-radius: var(--foundation-radius-lg, 12px);
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  
+  /* Smooth image transitions */
+  transition: transform var(--duration-default, 0.3s) ease;
+}
+
+/* Media component images - maintain rounded corners without conflicts */
+.media img {
+  border-radius: var(--foundation-radius-lg, 12px);
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  filter: none;
+  opacity: 1;
+  transition: transform var(--duration-default, 0.3s) ease;
+}
+
+/* ========================================
+   HOVER EFFECTS - GLASS INTERACTIONS
+   ======================================== */
+
+/* Glass hover effects for product cards */
+.product-card:hover,
+.card--product:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--foundation-shadow-primary, 0 4px 12px rgba(93, 90, 246, 0.3)), 
+              0 8px 32px rgba(8, 4, 21, 0.4);
+  border-color: var(--glass-border-hover, rgba(93, 90, 246, 0.4));
+}
+
+/* Product media hover effects */
+.product-media:hover img,
+.product__media:hover img,
+.media:hover img {
+  transform: scale(1.02);
+}
+
+/* ========================================
+   RESPONSIVE GRID ENHANCEMENTS
+   ======================================== */
+
+/* Work with existing responsive system - don't override */
+@media (max-width: 768px) {
+  /* Only modify non-conflicting properties */
+  .main-content:not([data-grid-controlled]),
+  .container:not(.product-grid-container),
+  .page-width:not(.product-grid-container) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Ensure mobile grid animations work smoothly */
+  .product-grid {
+    transition: grid-template-columns var(--animation-speed, 0.3s) var(--animation-easing, cubic-bezier(0.4, 0, 0.2, 1));
+  }
+}
+
+/* ========================================
+   PRODUCT PAGE SPECIFIC STYLES
+   ======================================== */
+
+/* Product page media - maintain glass effects */
+.product-media img,
+.product__media img {
+  border-radius: var(--foundation-radius-lg, 12px);
+  object-fit: cover;
+}
+
+/* ========================================
+   PRODUCT GRID ITEM ANIMATIONS
+   ======================================== */
+
+/* Support for grid item animations during view transitions */
+.product-grid__item {
+  /* Enhanced glass product cards - work with existing system */
+  transition: opacity var(--animation-speed, 0.3s) var(--animation-easing, cubic-bezier(0.4, 0, 0.2, 1)),
+              transform var(--animation-speed, 0.3s) var(--animation-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+/* Smooth animations when layout changes */
+:root:active-view-transition-type(product-grid) .product-grid__item {
+  /* Disable individual transitions during view transition to avoid conflicts */
+  transition: none;
+}
+
+/* Support for the results-list initialization system */
+results-list[initialized] .product-grid__item {
+  /* This works with the existing system in base.css */
+  @starting-style {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* ========================================
+   VIEW TRANSITION SUPPORT
+   ======================================== */
+
+/* Enhance the existing view transition system */
+::view-transition-group(product-grid) {
+  /* Smoother animation timing */
+  animation-duration: var(--animation-speed, 0.4s);
+  animation-timing-function: var(--animation-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+/* Support grid layout transitions */
+::view-transition-new(product-grid) {
+  /* Work with the existing fadeInUp animation */
+  animation-delay: 0.15s;
+  animation-name: fadeInUp;
+  animation-duration: var(--animation-speed, 0.4s);
+  animation-timing-function: var(--animation-easing, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+/* Enhanced transition for grid state changes */
+:root:active-view-transition-type(product-grid) {
+  /* Ensure smooth transitions for all grid elements */
+  .product-grid {
+    will-change: grid-template-columns;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY & PERFORMANCE
+   ======================================== */
+
+/* Reduced motion support for grid animations */
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .card--product,
+  .product-grid,
+  .product-grid__item,
+  ::view-transition-group(product-grid),
+  ::view-transition-new(product-grid) {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* Performance optimizations for smooth grid animations */
+.product-grid {
+  /* GPU acceleration for smooth grid template changes */
+  will-change: grid-template-columns;
+  /* Optimize for layout transitions */
+  contain: layout style;
+}
+
+.product-card,
+.card--product {
+  /* Optimize for transform animations */
+  will-change: transform, opacity;
+  /* Enable hardware acceleration */
+  transform: translateZ(0);
+}

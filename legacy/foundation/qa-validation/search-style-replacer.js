@@ -7,7 +7,7 @@ const path = require('path');
 
 class SearchStyleReplacer {
     constructor() {
-        this.themePath = '/Users/pennyplatt/9bit-studios/petersen-portal/petersen-glass-theme';
+        this.themePath = '/Users/pennyplatt/Documents/9BitStudios/petersen-portal/petersen-glass-theme';
         this.searchJsonPath = path.join(this.themePath, 'templates/search.json');
         this.backupPath = path.join(this.themePath, 'templates/search.json.backup');
         

@@ -1,0 +1,244 @@
+/* ========================================
+   FRAMER BUTTON STYLES - EXACT TRANSLATION
+   Direct implementation from your Framer design system
+   ======================================== */
+
+/* Framer Button Variables - Exact Values */
+:root {
+  --framer-primary-bg: rgb(81, 47, 235);
+  --framer-primary-border: rgba(255, 255, 255, 0.15);
+  --framer-primary-shadow: 
+    rgba(0, 85, 255, 0.5) 0px 8px 40px 0px,
+    rgba(255, 255, 255, 0) 0px 0px 10px 1px inset,
+    rgba(0, 85, 255, 0.12) 0px 0px 0px 1px;
+  --framer-primary-shadow-hover:
+    rgba(0, 85, 255, 0.6) 0px 10px 50px 0px,
+    rgba(255, 255, 255, 0) 0px 0px 12px 1px inset,
+    rgba(0, 85, 255, 0.18) 0px 0px 0px 1px;
+  --framer-primary-shadow-active:
+    rgba(0, 85, 255, 0.4) 0px 4px 20px 0px,
+    rgba(255, 255, 255, 0) 0px 0px 8px 1px inset,
+    rgba(0, 85, 255, 0.15) 0px 0px 0px 1px;
+  
+  /* Typography Variables */
+  --framer-font-family: "DM Sans", "DM Sans Placeholder", sans-serif;
+  --framer-font-weight: 500;
+  --framer-letter-spacing: -0.5px;
+  --framer-line-height: 26px;
+  --framer-text-color: rgb(255, 255, 255);
+}
+
+/* ========================================
+   PRIMARY BUTTON - FRAMER EXACT STYLING
+   ======================================== */
+
+/* Override all primary button styles with Framer design */
+.btn-primary .add-to-cart-button,
+.button--primary,
+button[type="submit"]:not(.button--secondary):not(.button--tertiary),
+.btn-glass.btn-primary,
+.product-form__cart .btn:not(.btn-secondary):not(.btn-tertiary) {
+  /* Core Framer Styling */
+  background-color: var(--framer-primary-bg) !important;
+  border: 3px solid var(--framer-primary-border) !important;
+  border-radius: 10px !important;
+  box-shadow: var(--framer-primary-shadow) !important;
+  
+  /* Remove backdrop filters */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  
+  /* Typography - DM Sans */
+  font-family: var(--framer-font-family) !important;
+  font-weight: var(--framer-font-weight) !important;
+  letter-spacing: var(--framer-letter-spacing) !important;
+  line-height: var(--framer-line-height) !important;
+  color: var(--framer-text-color) !important;
+  
+  /* Layout */
+  padding: 12px 24px !important;
+  min-height: 48px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+  /* Animation Properties */
+  will-change: transform !important;
+  opacity: 1 !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  
+  /* Reset conflicting properties */
+  text-shadow: none !important;
+  background-image: none !important;
+  background-gradient: none !important;
+}
+
+/* Hover State - Framer Style */
+.btn-primary:hover .add-to-cart-button,
+.button--primary:hover,
+button[type="submit"]:hover:not(.button--secondary):not(.button--tertiary),
+.btn-glass.btn-primary:hover,
+.product-form__cart .btn:hover:not(.btn-secondary):not(.btn-tertiary) {
+  background-color: rgb(91, 57, 245) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: var(--framer-primary-shadow-hover) !important;
+  transform: translateY(-2px) scale(1.01) !important;
+}
+
+/* Active/Pressed State - Framer Style */
+.btn-primary:active .add-to-cart-button,
+.button--primary:active,
+button[type="submit"]:active:not(.button--secondary):not(.button--tertiary),
+.btn-glass.btn-primary:active,
+.product-form__cart .btn:active:not(.btn-secondary):not(.btn-tertiary) {
+  background-color: rgb(71, 37, 225) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: var(--framer-primary-shadow-active) !important;
+  transform: translateY(1px) scale(0.98) !important;
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Focus State */
+.btn-primary:focus .add-to-cart-button,
+.button--primary:focus,
+button[type="submit"]:focus:not(.button--secondary):not(.button--tertiary),
+.btn-glass.btn-primary:focus,
+.product-form__cart .btn:focus:not(.btn-secondary):not(.btn-tertiary) {
+  outline: 2px solid rgba(0, 85, 255, 0.5) !important;
+  outline-offset: 3px !important;
+}
+
+/* ========================================
+   FRAMER BORDER PSEUDO-ELEMENT SUPPORT
+   ======================================== */
+
+/* Add border pseudo-element support for enhanced border effects */
+.btn-primary .add-to-cart-button::after,
+.button--primary::after,
+button[type="submit"]:not(.button--secondary):not(.button--tertiary)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid var(--framer-primary-border);
+  border-radius: inherit;
+  pointer-events: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+  .btn-primary .add-to-cart-button,
+  .button--primary,
+  button[type="submit"]:not(.button--secondary):not(.button--tertiary) {
+    padding: 14px 20px !important;
+    min-height: 44px !important; /* iOS touch target minimum */
+    font-size: 15px !important;
+    border-width: 2px !important; /* Slightly thinner border on mobile */
+  }
+}
+
+/* ========================================
+   HIGH CONTRAST & ACCESSIBILITY
+   ======================================== */
+
+@media (prefers-contrast: high) {
+  .btn-primary .add-to-cart-button,
+  .button--primary,
+  button[type="submit"]:not(.button--secondary):not(.button--tertiary) {
+    border-color: rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 
+      rgba(0, 85, 255, 0.8) 0px 8px 40px 0px,
+      rgba(255, 255, 255, 0.2) 0px 0px 10px 1px inset !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary .add-to-cart-button,
+  .button--primary,
+  button[type="submit"]:not(.button--secondary):not(.button--tertiary) {
+    transition: none !important;
+  }
+  
+  .btn-primary:hover .add-to-cart-button,
+  .button--primary:hover,
+  button[type="submit"]:hover:not(.button--secondary):not(.button--tertiary) {
+    transform: none !important;
+  }
+  
+  .btn-primary:active .add-to-cart-button,
+  .button--primary:active,
+  button[type="submit"]:active:not(.button--secondary):not(.button--tertiary) {
+    transform: none !important;
+  }
+}
+
+/* ========================================
+   LOADING STATE OVERRIDE
+   ======================================== */
+
+.btn-primary.loading .add-to-cart-button,
+.button--primary.loading {
+  pointer-events: none !important;
+  opacity: 0.7 !important;
+}
+
+.btn-primary.loading .add-to-cart-button::before,
+.button--primary.loading::before {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* ========================================
+   SHOPIFY-SPECIFIC SELECTORS
+   ======================================== */
+
+/* Target specific Shopify button classes */
+.product-form__buttons .btn,
+.shopify-payment-button .shopify-payment-button__button--unbranded,
+.cart__ctas .btn:not(.btn--secondary),
+form[action="/cart/add"] button[type="submit"] {
+  background-color: var(--framer-primary-bg) !important;
+  border: 3px solid var(--framer-primary-border) !important;
+  border-radius: 10px !important;
+  box-shadow: var(--framer-primary-shadow) !important;
+  font-family: var(--framer-font-family) !important;
+  font-weight: var(--framer-font-weight) !important;
+  letter-spacing: var(--framer-letter-spacing) !important;
+  color: var(--framer-text-color) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Override Shopify Payment Button Styling */
+.shopify-payment-button__button--unbranded {
+  background: var(--framer-primary-bg) !important;
+  border: 3px solid var(--framer-primary-border) !important;
+  box-shadow: var(--framer-primary-shadow) !important;
+}
+
+.shopify-payment-button__button--unbranded:hover {
+  background: rgb(91, 57, 245) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: var(--framer-primary-shadow-hover) !important;
+}

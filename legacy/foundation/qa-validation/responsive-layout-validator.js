@@ -15,7 +15,7 @@ const path = require('path');
 
 class ResponsiveLayoutValidator {
   constructor() {
-    this.baseDir = '/Users/pennyplatt/9bit-studios/petersen-portal/fresh-glass-theme/petersen-glass-theme';
+    this.baseDir = '/Users/pennyplatt/Documents/9BitStudios/petersen-portal/fresh-glass-theme/petersen-glass-theme';
     this.appleBreakpoints = {
       mobile: { min: 320, max: 744, name: 'iPhone/Mobile' },
       tablet: { min: 744, max: 1024, name: 'iPad/Tablet' },

@@ -1,0 +1,308 @@
+/* ========================================
+   FILTER STATE DISPLAY FIXES
+   Enhanced visibility of applied filter tags
+   Phase 11 Collection Page Enhancements
+   ======================================== */
+
+/* ========================================
+   PROBLEM ANALYSIS & SOLUTION
+   ======================================== */
+/*
+  ISSUE: Filter components on collection pages don't display selected tags
+  - facets__status elements are hidden or not properly styled
+  - Active filter values not visible when applied
+  - Users can't see which filters are currently active
+  
+  SOLUTION: Enhanced visibility and styling for active filter states
+  - Force display of facets__status components
+  - Improve styling for active filter bubbles
+  - Add visual indicators for applied filters
+  - Ensure consistency across all filter types
+*/
+
+/* ========================================
+   FACETS STATUS VISIBILITY FIXES
+   Force display of active filter indicators
+   ======================================== */
+
+/* Core facets status display */
+.facets__status,
+.facets__status-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure facets status is never hidden when has active values */
+.facets__status:not(:empty) {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Force visibility for swatch status indicators */
+.facets__status--swatches {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.facets__status--swatches .facets__swatch-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+}
+
+/* ========================================
+   ACTIVE FILTER BUBBLE ENHANCEMENTS
+   Improved styling for better visibility
+   ======================================== */
+
+/* Filter bubble base styling */
+.facets__bubble {
+  background: var(--unified-quantum-primary, #6366F1) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  padding: 0.25rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 24px !important;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.facets__bubble:hover {
+  background: var(--unified-quantum-secondary, #8B5CF6) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* Active filter value display */
+.facets__status span[ref="facetStatus"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Hide-when-empty override for active states */
+[hide-when-empty] {
+  display: inline-flex !important;
+}
+
+[hide-when-empty]:empty {
+  display: none !important;
+}
+
+/* ========================================
+   SINGLE ACTIVE VALUE STYLING
+   Enhanced display for individual filter labels
+   ======================================== */
+
+/* Single active filter value styling */
+.facets__status span[ref="facetStatus"]:not(.facets__bubble) {
+  background: var(--unified-glass-medium) !important;
+  backdrop-filter: var(--unified-backdrop-medium) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-medium) !important;
+  border: 1px solid var(--unified-quantum-border, rgba(99, 102, 241, 0.3)) !important;
+  border-radius: 8px !important;
+  padding: 0.25rem 0.5rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.facets__status span[ref="facetStatus"]:not(.facets__bubble):hover {
+  border-color: var(--unified-quantum-border-hover, rgba(99, 102, 241, 0.6)) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ========================================
+   SWATCH FILTER STATUS ENHANCEMENTS
+   Improved visibility for color/swatch filters
+   ======================================== */
+
+/* Swatch wrapper styling */
+.facets__swatch-wrapper {
+  background: var(--unified-glass-subtle) !important;
+  backdrop-filter: var(--unified-backdrop-subtle) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-subtle) !important;
+  border: 1px solid var(--unified-quantum-border, rgba(99, 102, 241, 0.3)) !important;
+  border-radius: 8px !important;
+  padding: 0.25rem 0.5rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.facets__swatch-wrapper:hover {
+  border-color: var(--unified-quantum-border-hover, rgba(99, 102, 241, 0.6)) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Individual swatch styling in status */
+.facets__status--swatches .swatch {
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.facets__status--swatches .swatch:hover {
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ========================================
+   FACETS SUMMARY ENHANCEMENTS
+   Better integration with active state display
+   ======================================== */
+
+/* Enhanced facets summary when active */
+.facets__summary:has(.facets__status:not(:empty)) {
+  background: var(--unified-glass-subtle) !important;
+  backdrop-filter: var(--unified-backdrop-subtle) !important;
+  -webkit-backdrop-filter: var(--unified-backdrop-subtle) !important;
+  border: 1px solid var(--unified-quantum-border, rgba(99, 102, 241, 0.3)) !important;
+  border-radius: 8px !important;
+  padding: 0.75rem !important;
+  margin-bottom: 0.5rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.facets__summary:has(.facets__status:not(:empty)):hover {
+  border-color: var(--unified-quantum-border-hover, rgba(99, 102, 241, 0.6)) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ========================================
+   HORIZONTAL FACETS SPECIFIC FIXES
+   Desktop filter bar enhancements
+   ======================================== */
+
+/* Horizontal facets status visibility */
+.facets--horizontal .facets__status {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.facets--horizontal .facets__status--swatches {
+  display: flex !important;
+}
+
+/* Horizontal facets summary adjustments */
+.facets--horizontal .facets__summary {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1rem !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.facets--horizontal .facets__status-wrapper {
+  gap: 0.75rem !important;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE ENHANCEMENTS
+   Improved mobile filter state visibility
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Mobile facets status adjustments */
+  .facets__status,
+  .facets__status-wrapper {
+    gap: 0.375rem !important;
+  }
+  
+  .facets__bubble {
+    padding: 0.2rem 0.6rem !important;
+    font-size: 0.8125rem !important;
+    min-height: 22px !important;
+  }
+  
+  .facets__status span[ref="facetStatus"]:not(.facets__bubble) {
+    padding: 0.2rem 0.4rem !important;
+    font-size: 0.8125rem !important;
+  }
+  
+  .facets__swatch-wrapper {
+    padding: 0.2rem 0.4rem !important;
+  }
+  
+  /* Mobile facets summary adjustments */
+  .facets__summary:has(.facets__status:not(:empty)) {
+    padding: 0.6rem !important;
+  }
+}
+
+/* ========================================
+   DEBUGGING & TROUBLESHOOTING STYLES
+   Temporary visibility aids for development
+   ======================================== */
+
+/* DEBUG: Force visibility for all facets status elements */
+.facets__status[style*="display: none"] {
+  display: flex !important;
+}
+
+.facets__status[style*="visibility: hidden"] {
+  visibility: visible !important;
+}
+
+.facets__status[style*="opacity: 0"] {
+  opacity: 1 !important;
+}
+
+/* DEBUG: Visual indicator for empty status elements */
+.facets__status:empty::after {
+  content: "No filters applied";
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+/* ========================================
+   ACCESSIBILITY ENHANCEMENTS
+   Better focus and keyboard navigation
+   ======================================== */
+
+/* Focus states for filter status elements */
+.facets__bubble:focus,
+.facets__status span[ref="facetStatus"]:focus,
+.facets__swatch-wrapper:focus {
+  outline: 2px solid var(--unified-quantum-primary, #6366F1) !important;
+  outline-offset: 2px !important;
+  border-radius: 4px !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .facets__bubble {
+    border: 2px solid var(--unified-quantum-primary, #6366F1) !important;
+  }
+  
+  .facets__status span[ref="facetStatus"]:not(.facets__bubble),
+  .facets__swatch-wrapper {
+    border-width: 2px !important;
+    border-color: rgba(255, 255, 255, 0.8) !important;
+  }
+}
+
+/* ========================================
+   IMPLEMENTATION COMPLETE
+   Filter State Display Following Phase 11 Requirements
+   ======================================== */

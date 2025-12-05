@@ -20,9 +20,10 @@ export default class ThemeArchitectureAnalyzer {
         }
         
         // Default paths for comparison
-        this.riseThemePath = '/Users/pennyplatt/9bit-studios/petersen-games/rise-theme';
-        this.petersenGlassThemePath = '/Users/pennyplatt/9bit-studios/petersen-games/petersen-glass-theme';
-        this.currentThemePath = themePath || this.riseThemePath;
+        this.designSystemPath = '/Users/pennyplatt/Documents/9BitStudios/quantum-spatial/design-system';
+        this.freshGlassThemePath = '/Users/pennyplatt/Documents/9BitStudios/quantum-spatial/fresh-glass-theme';
+        this.enhancedQuantumSpatialPath = '/Users/pennyplatt/Documents/9BitStudios/quantum-spatial/fresh-glass-theme/enhanced-quantum-spatial';
+        this.currentThemePath = themePath || this.designSystemPath;
         
         this.analysisResults = {
             rise: {},

@@ -1,159 +1,43 @@
 {
-  // Extends OksanaPlatform master configuration
-  "extends": "../../Oksana/tsconfig.json",
-  
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "_comment": "Fresh Glass Theme - TypeScript Configuration",
+  "_authority": "Quantum Spatial Workspace Base Configuration",
+  "_purpose": "HIG-compliant design theme with Apple Design Language",
+
+  "extends": "../tsconfig.base.json",
+
   "compilerOptions": {
-    "composite": true,
     "outDir": "./dist",
-    "rootDir": "./",
-    
-    // Apple-First compilation with Shopify compatibility
-    "target": "ES2022",        // Apple M4 optimization, Shopify compatible
-    "module": "ESNext",         // Apple-first ES modules, with CommonJS fallback
-    "jsx": "preserve",          // Preserve JSX for Liquid template processing
-    
-    // Enhanced Liquid template support
-    "allowJs": true,            // Allow .js files for theme scripts
-    "checkJs": false,           // Don't check .liquid files as JS
-    "resolveJsonModule": true,  // For theme settings and config files
-    
-    // Shopify types
-    "types": [
-      "node"
-    ],
-    
-    // Apple-First path mappings with priority order
+    "rootDir": ".",
+    "composite": true,
+    "declarationDir": "./dist/types",
+    "noPropertyAccessFromIndexSignature": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "baseUrl": ".",
     "paths": {
-      // Apple Intelligence (PRIMARY AUTHORITY)
-      "@apple-intelligence/*": [
-        "./types/apple-intelligence-enhanced.d.ts",
-        "./apple-priority/*"
-      ],
-      
-      // OksanaPlatform types and services
-      "@oksana/types/*": ["../../Oksana/types/*"],
-      "@oksana/services/*": [
-        "../../Oksana/scripts/services/*",
-        "../../Oksana/scripts/services/frontend-design/*"
-      ],
-      "@oksana/9bit-studios-foundations/*": ["../../9bit-studios/9bit-studios-foundations/Oksana/apple-intelligence/foundation-model/*"],
-      "@oksana/security/*": ["../../Oksana/security/*"],
-      
-      // Apple Intelligence Strategic Director integration
-      "@apple-intelligence/*": [
-        "../../Oksana/apple-intelligence/*",
-        "../../Oksana/scripts/services/apple-intelligence/*"
-      ],
-      "@strategic-director/*": [
-        "../../Oksana/strategic-director/*"
-      ],
-      
-      // Apple HIG and validation (MANDATORY for Petersen Games)
-      "@apple-hig/*": [
-        "../../Oksana/apple-hig/*",
-        "../../Oksana/validation/apple-hig/*"
-      ],
-      "@hig-validator/*": [
-        "./validation/hig-validator/*",
-        "../../Oksana/validation/hig-validator/*"
-      ],
-      
-      // Design Tokens (PRIMARY AUTHORITY from claude-quantum-design-framework)
-      "@tokens/*": [
-        "../../claude-quantum-design-framework/design-system-queue/tokens/*",
-        "./tokens/*",
-        "./assets/tokens/*",
-        "../../Oksana/types/tokens/*",
-        "../../quantum-spatial-design-system/tokens/*"
-      ],
-      "@quantum-spatial/*": [
-        "../../quantum-spatial-design-system/*",
-        "../../Oksana/quantum-spatial/*"
-      ],
-      
-      // Shopify theme structure paths
-      "@theme/*": ["./src/*", "./*"],
-      "@assets/*": ["./assets/*"],
-      "@snippets/*": ["./snippets/*"],
-      "@sections/*": ["./sections/*"],
-      "@templates/*": ["./templates/*"],
-      "@locales/*": ["./locales/*"],
-      "@config/*": ["./config/*"],
-      
-      // Liquid-specific types and validation
-      "@liquid-types/*": [
-        "./types/liquid/*",
-        "./types/*"
-      ],
-      "@theme-types/*": [
-        "./types/theme/*",
-        "./types/*"
-      ],
-      "@shopify-types/*": [
-        "./types/shopify/*"
-      ],
-      
-      // Bridge integration for OksanaPlatform connectivity
-      "@bridge/*": [
-        "./src/bridge/*",
-        "../../Oksana/bridge/*",
-        "../../Oksana/security/bridge/*"
-      ],
-      
-      // QA and validation systems
-      "@qa/*": [
-        "./qa/*",
-        "./validation/*"
-      ],
-      "@validation/*": [
-        "./validation/*"
-      ],
-      
-      // Working Examples and Verified Sources
-      "@working-examples/*": [
-        "../../9bit-studios-foundations/sources-of-truth/9bit-verified-sources/working-examples/*"
-      ]
+      "@fresh-glass/*": ["./src/*"],
+      "@/tokens/*": ["./tokens/*"],
+      "@/theme/*": ["./theme/*"],
+      "@/components/*": ["./components/*"]
     }
   },
-  
+
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "types/**/*.d.ts",
-    "types/**/*.ts",
-    "assets/**/*.ts",
-    "assets/**/*.js",
-    "scripts/**/*.ts",
-    "scripts/**/*.js",
-    "validation/**/*.ts",
-    "qa/**/*.ts",
-    "*.ts",
-    "*.js",
-    "../../claude-quantum-design-framework/design-system-queue/tokens/**/*.ts",
-    "../../9bit-studios-foundations/sources-of-truth/9bit-verified-sources/working-examples/**/*.ts"
+    "src/**/*",
+    "tokens/**/*",
+    "theme/**/*",
+    "components/**/*"
   ],
-  
+
   "exclude": [
     "node_modules",
     "dist",
-    ".shopify",
-    ".theme-check",
-    "coverage",
-    "assets/*.liquid.js",
-    "assets/*.min.js",
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "**/*.spec.ts",
-    "**/*.spec.tsx"
-  ],
-  
-  "references": [
-    {
-      "path": "../../Oksana/tsconfig.json"
-    },
-    {
-      "path": "../../quantum-spatial-design-system/tsconfig.json"
-    }
+    "build",
+    "*.test.ts",
+    "*.spec.ts",
+    "**/*.js",
+    "petersen-*/**/*",
+    "liquid-*/**/*"
   ]
 }

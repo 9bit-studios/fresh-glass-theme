@@ -1,4 +1,4 @@
-// Apple HIG Runtime Validator
+ // Apple HIG Runtime Validator
 // Based on your existing type definitions
 
 interface HIGValidationResult {

@@ -1,0 +1,586 @@
+/*
+============================================================================
+FACETS.CSS - Glass Morphic Filter Sidebar Styling
+============================================================================
+
+Foundation Integration:
+- Relies on QuantumFoundation.css for core spacing and touch targets
+- Follows foundation-integration pattern for variable system
+- Integrates with quantumspatial-color-tokens.css for glass effects
+- Maintains Apple HIG compliance with 44px touch targets
+- Part of complete CSS loading hierarchy
+
+Loading Order:
+QuantumFoundation.css → foundation-integration → quantumspatial-color-tokens.css 
+→ base.css → priority-foundation.css → facets.css → global-glass-theme.css
+
+Glass Morphic Design:
+- Quantum-spatial glass effects with backdrop-filter
+- Gaming-focused UI with cosmic color palette
+- Responsive design with mobile-first approach
+- Accessibility compliant with reduced motion support
+
+Apple HIG Compliance:
+- Minimum 44px touch targets for all interactive elements
+- Proper contrast ratios for accessibility
+- Focus states and keyboard navigation support
+- Optimized for both desktop and mobile interactions
+
+============================================================================
+*/
+
+/* =========================================================================
+   GLASS FILTER SIDEBAR - CORE STRUCTURE
+   ========================================================================= */
+
+.glass-filter-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100vh;
+  background: linear-gradient(180deg, 
+    rgba(30, 27, 75, 0.95) 0%, 
+    rgba(45, 27, 105, 0.9) 25%, 
+    rgba(49, 46, 129, 0.85) 50%, 
+    rgba(76, 29, 149, 0.8) 75%, 
+    rgba(30, 27, 75, 0.95) 100%
+  );
+  backdrop-filter: blur(40px) saturate(200%) brightness(110%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(110%);
+  border-right: 1px solid rgba(76, 29, 149, 0.3);
+  z-index: 1500;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(76, 29, 149, 0.2),
+    8px 0 32px rgba(45, 27, 105, 0.4),
+    0 0 40px rgba(76, 29, 149, 0.2);
+}
+
+.glass-filter-sidebar.active {
+  transform: translateX(0);
+}
+
+.glass-filter-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1400;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.glass-filter-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =========================================================================
+   FILTER SIDEBAR HEADER
+   ========================================================================= */
+
+.filter-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--foundation-lg, 24px) var(--foundation-lg, 24px) var(--foundation-md, 16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  background: inherit;
+  backdrop-filter: inherit;
+  -webkit-backdrop-filter: inherit;
+  z-index: 10;
+}
+
+.filter-sidebar-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.filter-sidebar-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--foundation-xs, 8px);
+  padding: var(--foundation-xs, 8px);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--foundation-touch-target, 44px);
+  min-width: var(--foundation-touch-target, 44px);
+}
+
+.filter-sidebar-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* =========================================================================
+   FILTER SIDEBAR CONTENT
+   ========================================================================= */
+
+.glass-filter-sidebar-content {
+  padding: 0 var(--foundation-lg, 24px) var(--foundation-lg, 24px);
+}
+
+/* =========================================================================
+   FACETS FORM
+   ========================================================================= */
+
+.facets__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--foundation-tiny, 4px);
+}
+
+/* =========================================================================
+   FILTER SECTIONS
+   ========================================================================= */
+
+.filter-section {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: var(--foundation-tiny, 4px);
+}
+
+.filter-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.filter-section-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: var(--foundation-md, 16px) 0;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  list-style: none;
+  min-height: var(--foundation-touch-target, 44px);
+}
+
+.filter-section-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.filter-section-toggle:hover {
+  color: rgba(99, 102, 241, 0.8);
+}
+
+.filter-section-title {
+  font-size: var(--foundation-md, 16px);
+  font-weight: 600;
+  text-align: left;
+}
+
+.filter-section-arrow {
+  transition: transform 0.2s ease;
+  opacity: 0.6;
+}
+
+.filter-section[open] .filter-section-arrow {
+  transform: rotate(180deg);
+}
+
+.filter-section-content {
+  padding-bottom: var(--foundation-md, 16px);
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================================
+   FILTER OPTIONS
+   ========================================================================= */
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--foundation-xs, 8px);
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: var(--foundation-sm, 12px);
+  cursor: pointer;
+  padding: var(--foundation-xs, 8px) 0;
+  transition: all 0.2s ease;
+  user-select: none;
+  min-height: var(--foundation-touch-target, 44px);
+}
+
+.filter-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--foundation-xs, 8px);
+  padding: var(--foundation-xs, 8px) var(--foundation-sm, 12px);
+  margin: 0 -var(--foundation-sm, 12px);
+}
+
+.filter-option input[type="checkbox"] {
+  display: none;
+}
+
+.filter-option-checkmark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--foundation-tiny, 4px);
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.filter-option input[type="checkbox"]:checked + .filter-option-checkmark {
+  background: rgba(99, 102, 241, 0.8);
+  border-color: rgba(99, 102, 241, 1);
+}
+
+.filter-option input[type="checkbox"]:checked + .filter-option-checkmark::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.filter-option-label {
+  flex: 1;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+}
+
+.filter-option-count {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+/* =========================================================================
+   FACET STATUS
+   ========================================================================= */
+
+.facet-status {
+  background: rgba(99, 102, 241, 0.8);
+  color: white;
+  border-radius: 10px;
+  padding: 2px var(--foundation-xs, 8px);
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 16px;
+  text-align: center;
+  display: none;
+}
+
+.facet-status:not(:empty) {
+  display: inline-block;
+}
+
+/* =========================================================================
+   PRICE RANGE SPECIFIC
+   ========================================================================= */
+
+.price-range-container {
+  margin-bottom: var(--foundation-md, 16px);
+}
+
+.price-inputs {
+  display: flex;
+  gap: var(--foundation-sm, 12px);
+  margin-bottom: var(--foundation-md, 16px);
+}
+
+.price-input-group {
+  flex: 1;
+}
+
+.price-input-label {
+  display: block;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: var(--foundation-tiny, 4px);
+  font-weight: 500;
+}
+
+.price-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--foundation-xs, 8px);
+  padding: var(--foundation-xs, 8px) var(--foundation-sm, 12px);
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+  min-height: var(--foundation-input-height, 44px);
+}
+
+.price-input:focus {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.price-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* =========================================================================
+   FILTER ACTIONS
+   ========================================================================= */
+
+.filter-sidebar-actions {
+  position: sticky;
+  bottom: 0;
+  background: inherit;
+  backdrop-filter: inherit;
+  -webkit-backdrop-filter: inherit;
+  padding: var(--foundation-md, 16px) var(--foundation-lg, 24px) var(--foundation-lg, 24px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: var(--foundation-sm, 12px);
+}
+
+.filter-action-button {
+  flex: 1;
+  padding: var(--foundation-sm, 12px) var(--foundation-md, 20px);
+  border-radius: var(--foundation-sm, 12px);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: var(--foundation-touch-target, 44px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.filter-action-button.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.filter-action-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.filter-action-button.primary {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  border: none;
+  color: white;
+}
+
+.filter-action-button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+}
+
+/* =========================================================================
+   RESPONSIVE DESIGN - MOBILE FIRST
+   ========================================================================= */
+
+@media (max-width: 768px) {
+  .glass-filter-sidebar {
+    width: 100%;
+    max-width: 360px;
+  }
+  
+  .filter-sidebar-header {
+    padding: 20px 20px 12px;
+  }
+  
+  .glass-filter-sidebar-content {
+    padding: 0 20px 20px;
+  }
+  
+  .filter-sidebar-actions {
+    padding: 12px 20px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-filter-sidebar {
+    max-width: 100%;
+  }
+  
+  .filter-sidebar-header {
+    padding: var(--foundation-md, 16px) var(--foundation-md, 16px) var(--foundation-sm, 12px);
+  }
+  
+  .filter-sidebar-title {
+    font-size: 18px;
+  }
+  
+  .glass-filter-sidebar-content {
+    padding: 0 var(--foundation-md, 16px) var(--foundation-md, 16px);
+  }
+  
+  .filter-sidebar-actions {
+    padding: var(--foundation-sm, 12px) var(--foundation-md, 16px) var(--foundation-md, 16px);
+    flex-direction: column;
+  }
+  
+  .filter-action-button {
+    width: 100%;
+  }
+}
+
+/* =========================================================================
+   DESKTOP INTEGRATION
+   ========================================================================= */
+
+@media (min-width: 1024px) {
+  .glass-filter-sidebar {
+    position: static;
+    transform: none;
+    height: auto;
+    width: var(--foundation-sidebar-width, 280px);
+    background: var(--sidebar-enhanced, linear-gradient(180deg, 
+      rgba(30, 27, 75, 0.9) 0%, 
+      rgba(45, 27, 105, 0.85) 25%, 
+      rgba(49, 46, 129, 0.8) 50%, 
+      rgba(76, 29, 149, 0.75) 75%, 
+      rgba(30, 27, 75, 0.9) 100%
+    ));
+    border-right: 1px solid rgba(76, 29, 149, 0.3);
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .filter-sidebar-header {
+    position: static;
+  }
+  
+  .filter-sidebar-close {
+    display: none;
+  }
+  
+  .glass-filter-overlay {
+    display: none;
+  }
+}
+
+/* =========================================================================
+   APPLE HIG ACCESSIBILITY ENHANCEMENTS
+   ========================================================================= */
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .glass-filter-sidebar,
+  .glass-filter-overlay,
+  .filter-option,
+  .filter-action-button,
+  .filter-section-content {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  @keyframes slideDown {
+    from, to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+  .glass-filter-sidebar {
+    border-right: 2px solid #ffffff;
+    background: rgba(0, 0, 0, 0.95);
+  }
+  
+  .filter-option-checkmark {
+    border-color: #ffffff;
+  }
+  
+  .filter-action-button.secondary {
+    border-color: #ffffff;
+  }
+}
+
+/* Focus visible support for keyboard navigation */
+.filter-sidebar-close:focus-visible,
+.filter-section-toggle:focus-visible,
+.filter-option:focus-visible,
+.filter-action-button:focus-visible,
+.price-input:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.8);
+  outline-offset: 2px;
+}
+
+/* Large text support */
+@media (prefers-font-size: large) {
+  .filter-sidebar-title {
+    font-size: 24px;
+  }
+  
+  .filter-section-title {
+    font-size: 18px;
+  }
+  
+  .filter-option-label {
+    font-size: 16px;
+  }
+}
+
+/* =========================================================================
+   DARK MODE OPTIMIZATION
+   ========================================================================= */
+
+@media (prefers-color-scheme: dark) {
+  .glass-filter-sidebar {
+    /* Enhanced dark mode glass effect */
+    background: linear-gradient(180deg, 
+      rgba(15, 13, 35, 0.98) 0%, 
+      rgba(25, 15, 55, 0.95) 25%, 
+      rgba(30, 25, 70, 0.9) 50%, 
+      rgba(40, 15, 80, 0.85) 75%, 
+      rgba(15, 13, 35, 0.98) 100%
+    );
+  }
+}
+
+/* =========================================================================
+   PRINT STYLES
+   ========================================================================= */
+
+@media print {
+  .glass-filter-sidebar,
+  .glass-filter-overlay {
+    display: none !important;
+  }
+}

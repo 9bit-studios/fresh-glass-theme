@@ -88,7 +88,7 @@ node diagnostic/validate-frontend-services.js
 ## Sources of Truth Confirmation
 
 All development must continue to align with:
-1. `/9bit-studios-foundations/sources-of-truth/` - PRIMARY AUTHORITY
+1. `/apple-intelligence/foundation/sources-of-truth/` - PRIMARY AUTHORITY
 2. Strategic Director Framework (`StrategicDirector.swift`)
 3. Apple Intelligence validation protocols
 

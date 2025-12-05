@@ -1,0 +1,767 @@
+{% comment %}
+  Glass Filter Sidebar - Integrated with Shopify Facets
+  Connected to facets.js system with glass morphic styling
+{% endcomment %}
+
+<aside class="glass-filter-sidebar" id="glass-filter-sidebar">
+  <div class="glass-filter-sidebar-content">
+    
+    <div class="filter-sidebar-header">
+      <h3 class="filter-sidebar-title">Filters</h3>
+      <button class="filter-sidebar-close" onclick="closeGlassFilters()" aria-label="Close filters">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+      </button>
+    </div>
+
+    <facets-form-component section-id="{{ section.id }}">
+      <form class="facets__form" id="facets-form-{{ section.id }}">
+        
+        {% if section.settings.show_product_type and collections.all.all_types.size > 0 %}
+        <details class="filter-section" open>
+          <summary class="filter-section-toggle">
+            <span class="filter-section-title">Product Type</span>
+            <facet-status-component>
+              <span class="facet-status"></span>
+            </facet-status-component>
+            <svg class="filter-section-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+          </summary>
+          
+          <div class="filter-section-content">
+            <facet-inputs-component>
+              <div class="filter-options">
+                {% for product_type in collections.all.all_types limit: 10 %}
+                  {% if product_type != blank %}
+                    <label class="filter-option">
+                      <input type="checkbox" 
+                             name="filter.p.product_type" 
+                             value="{{ product_type | handle }}"
+                             data-label="{{ product_type }}"
+                             {% if current_tags contains product_type %}checked{% endif %}>
+                      <span class="filter-option-checkmark"></span>
+                      <span class="filter-option-label">{{ product_type }}</span>
+                      <span class="filter-option-count">({{ collections.all.products | where: 'type', product_type | size }})</span>
+                    </label>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </facet-inputs-component>
+          </div>
+        </details>
+        {% endif %}
+
+        {% if section.settings.show_vendor and collections.all.all_vendors.size > 0 %}
+        <details class="filter-section">
+          <summary class="filter-section-toggle">
+            <span class="filter-section-title">Brand</span>
+            <facet-status-component>
+              <span class="facet-status"></span>
+            </facet-status-component>
+            <svg class="filter-section-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+          </summary>
+          
+          <div class="filter-section-content">
+            <facet-inputs-component>
+              <div class="filter-options">
+                {% for vendor in collections.all.all_vendors limit: 10 %}
+                  {% if vendor != blank %}
+                    <label class="filter-option">
+                      <input type="checkbox" 
+                             name="filter.p.vendor" 
+                             value="{{ vendor | handle }}"
+                             data-label="{{ vendor }}">
+                      <span class="filter-option-checkmark"></span>
+                      <span class="filter-option-label">{{ vendor }}</span>
+                      <span class="filter-option-count">({{ collections.all.products | where: 'vendor', vendor | size }})</span>
+                    </label>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </facet-inputs-component>
+          </div>
+        </details>
+        {% endif %}
+
+        {% if section.settings.show_price_filter %}
+        <details class="filter-section">
+          <summary class="filter-section-toggle">
+            <span class="filter-section-title">Price</span>
+            <facet-status-component>
+              <span class="facet-status"></span>
+            </facet-status-component>
+            <svg class="filter-section-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+          </summary>
+          
+          <div class="filter-section-content">
+            <price-facet-component>
+              <div class="price-range-container">
+                <div class="price-inputs">
+                  <div class="price-input-group">
+                    <label class="price-input-label">From</label>
+                    <input type="number" 
+                           class="price-input" 
+                           name="filter.v.price.gte" 
+                           placeholder="0" 
+                           min="0"
+                           data-min="0"
+                           data-max="1000">
+                  </div>
+                  <div class="price-input-group">
+                    <label class="price-input-label">To</label>
+                    <input type="number" 
+                           class="price-input" 
+                           name="filter.v.price.lte" 
+                           placeholder="1000" 
+                           min="0"
+                           data-min="0"
+                           data-max="1000">
+                  </div>
+                </div>
+              </div>
+            </price-facet-component>
+          </div>
+        </details>
+        {% endif %}
+
+        {% if section.settings.show_availability %}
+        <details class="filter-section">
+          <summary class="filter-section-toggle">
+            <span class="filter-section-title">Availability</span>
+            <facet-status-component>
+              <span class="facet-status"></span>
+            </facet-status-component>
+            <svg class="filter-section-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+          </summary>
+          
+          <div class="filter-section-content">
+            <facet-inputs-component>
+              <div class="filter-options">
+                <label class="filter-option">
+                  <input type="checkbox" 
+                         name="filter.v.availability" 
+                         value="1"
+                         data-label="In Stock">
+                  <span class="filter-option-checkmark"></span>
+                  <span class="filter-option-label">In Stock</span>
+                </label>
+                <label class="filter-option">
+                  <input type="checkbox" 
+                         name="filter.v.availability" 
+                         value="0"
+                         data-label="Out of Stock">
+                  <span class="filter-option-checkmark"></span>
+                  <span class="filter-option-label">Out of Stock</span>
+                </label>
+              </div>
+            </facet-inputs-component>
+          </div>
+        </details>
+        {% endif %}
+
+        {% if section.settings.show_tags %}
+        <details class="filter-section">
+          <summary class="filter-section-toggle">
+            <span class="filter-section-title">Features</span>
+            <facet-status-component>
+              <span class="facet-status"></span>
+            </facet-status-component>
+            <svg class="filter-section-arrow" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+          </summary>
+          
+          <div class="filter-section-content">
+            <facet-inputs-component>
+              <div class="filter-options">
+                {% assign common_tags = 'miniatures,expansion,dice,cards,board,strategy,horror,cosmic,limited-edition,pre-order' | split: ',' %}
+                {% for tag in common_tags %}
+                  <label class="filter-option">
+                    <input type="checkbox" 
+                           name="filter.p.tag" 
+                           value="{{ tag }}"
+                           data-label="{{ tag | capitalize }}">
+                    <span class="filter-option-checkmark"></span>
+                    <span class="filter-option-label">{{ tag | capitalize }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+            </facet-inputs-component>
+          </div>
+        </details>
+        {% endif %}
+
+      </form>
+    </facets-form-component>
+
+    <div class="filter-sidebar-actions">
+      <facet-clear-component>
+        <button class="filter-action-button secondary clear-button" type="button">
+          Clear All
+        </button>
+      </facet-clear-component>
+      <button class="filter-action-button primary" onclick="closeGlassFilters()">
+        Apply Filters
+      </button>
+    </div>
+
+  </div>
+</aside>
+
+<div class="glass-filter-overlay" id="glass-filter-overlay" onclick="closeGlassFilters()"></div>
+
+<style>
+
+.glass-filter-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100vh;
+  background: linear-gradient(180deg, 
+    rgba(30, 27, 75, 0.95) 0%, 
+    rgba(45, 27, 105, 0.9) 25%, 
+    rgba(49, 46, 129, 0.85) 50%, 
+    rgba(76, 29, 149, 0.8) 75%, 
+    rgba(30, 27, 75, 0.95) 100%
+  );
+  backdrop-filter: blur(40px) saturate(200%) brightness(110%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(110%);
+  border-right: 1px solid rgba(76, 29, 149, 0.3);
+  z-index: 1500;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(76, 29, 149, 0.2),
+    8px 0 32px rgba(45, 27, 105, 0.4),
+    0 0 40px rgba(76, 29, 149, 0.2);
+}
+
+.glass-filter-sidebar.active {
+  transform: translateX(0);
+}
+
+.glass-filter-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1400;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.glass-filter-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Filter Sidebar Header */
+.filter-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  background: inherit;
+  backdrop-filter: inherit;
+  -webkit-backdrop-filter: inherit;
+  z-index: 10;
+}
+
+.filter-sidebar-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.filter-sidebar-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--foundation-touch-target, 44px);
+  min-width: var(--foundation-touch-target, 44px);
+}
+
+.filter-sidebar-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Filter Sidebar Content */
+.glass-filter-sidebar-content {
+  padding: 0 24px 24px;
+}
+
+/* Facets Form */
+.facets__form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Filter Sections */
+.filter-section {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 4px;
+}
+
+.filter-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.filter-section-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 16px 0;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  list-style: none;
+  min-height: var(--foundation-touch-target, 44px);
+}
+
+.filter-section-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.filter-section-toggle:hover {
+  color: rgba(99, 102, 241, 0.8);
+}
+
+.filter-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.filter-section-arrow {
+  transition: transform 0.2s ease;
+  opacity: 0.6;
+}
+
+.filter-section[open] .filter-section-arrow {
+  transform: rotate(180deg);
+}
+
+.filter-section-content {
+  padding-bottom: 16px;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Filter Options */
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: all 0.2s ease;
+  user-select: none;
+  min-height: var(--foundation-touch-target, 44px);
+}
+
+.filter-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 0 -12px;
+}
+
+.filter-option input[type="checkbox"] {
+  display: none;
+}
+
+.filter-option-checkmark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.filter-option input[type="checkbox"]:checked + .filter-option-checkmark {
+  background: rgba(99, 102, 241, 0.8);
+  border-color: rgba(99, 102, 241, 1);
+}
+
+.filter-option input[type="checkbox"]:checked + .filter-option-checkmark::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.filter-option-label {
+  flex: 1;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+}
+
+.filter-option-count {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+}
+
+/* Facet Status */
+.facet-status {
+  background: rgba(99, 102, 241, 0.8);
+  color: white;
+  border-radius: 10px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 16px;
+  text-align: center;
+  display: none;
+}
+
+.facet-status:not(:empty) {
+  display: inline-block;
+}
+
+/* Price Range Specific */
+.price-range-container {
+  margin-bottom: 16px;
+}
+
+.price-inputs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.price-input-group {
+  flex: 1;
+}
+
+.price-input-label {
+  display: block;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.price-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+  min-height: var(--foundation-input-height, 44px);
+}
+
+.price-input:focus {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.price-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Filter Actions */
+.filter-sidebar-actions {
+  position: sticky;
+  bottom: 0;
+  background: inherit;
+  backdrop-filter: inherit;
+  -webkit-backdrop-filter: inherit;
+  padding: 16px 24px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 12px;
+}
+
+.filter-action-button {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: var(--foundation-touch-target, 44px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.filter-action-button.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.filter-action-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.filter-action-button.primary {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  border: none;
+  color: white;
+}
+
+.filter-action-button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .glass-filter-sidebar {
+    width: 100%;
+    max-width: 360px;
+  }
+  
+  .filter-sidebar-header {
+    padding: 20px 20px 12px;
+  }
+  
+  .glass-filter-sidebar-content {
+    padding: 0 20px 20px;
+  }
+  
+  .filter-sidebar-actions {
+    padding: 12px 20px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-filter-sidebar {
+    max-width: 100%;
+  }
+  
+  .filter-sidebar-header {
+    padding: 16px 16px 12px;
+  }
+  
+  .filter-sidebar-title {
+    font-size: 18px;
+  }
+  
+  .glass-filter-sidebar-content {
+    padding: 0 16px 16px;
+  }
+  
+  .filter-sidebar-actions {
+    padding: 12px 16px 16px;
+    flex-direction: column;
+  }
+  
+  .filter-action-button {
+    width: 100%;
+  }
+}
+
+/* Desktop Integration */
+@media (min-width: 1024px) {
+  .glass-filter-sidebar {
+    position: static;
+    transform: none;
+    height: auto;
+    width: 280px;
+    background: var(--sidebar-enhanced, linear-gradient(180deg, 
+      rgba(30, 27, 75, 0.9) 0%, 
+      rgba(45, 27, 105, 0.85) 25%, 
+      rgba(49, 46, 129, 0.8) 50%, 
+      rgba(76, 29, 149, 0.75) 75%, 
+      rgba(30, 27, 75, 0.9) 100%
+    ));
+    border-right: 1px solid rgba(76, 29, 149, 0.3);
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .filter-sidebar-header {
+    position: static;
+  }
+  
+  .filter-sidebar-close {
+    display: none;
+  }
+  
+  .glass-filter-overlay {
+    display: none;
+  }
+}
+</style>
+
+<script>
+// Glass Filter Sidebar Integration with Facets.js
+function openGlassFilters() {
+  const sidebar = document.getElementById('glass-filter-sidebar');
+  const overlay = document.getElementById('glass-filter-overlay');
+  
+  if (sidebar) {
+    sidebar.classList.add('active');
+  }
+  
+  if (overlay) {
+    overlay.classList.add('active');
+  }
+  
+  document.body.classList.add('filter-sidebar-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGlassFilters() {
+  const sidebar = document.getElementById('glass-filter-sidebar');
+  const overlay = document.getElementById('glass-filter-overlay');
+  
+  if (sidebar) {
+    sidebar.classList.remove('active');
+  }
+  
+  if (overlay) {
+    overlay.classList.remove('active');
+  }
+  
+  document.body.classList.remove('filter-sidebar-open');
+  document.body.style.overflow = 'auto';
+}
+
+// Integration with Facets Components
+document.addEventListener('DOMContentLoaded', function() {
+  // Connect facet inputs to change events
+  const facetInputs = document.querySelectorAll('facet-inputs-component input');
+  facetInputs.forEach(input => {
+    input.addEventListener('change', function() {
+      // The facets.js system handles the actual filtering
+      console.log('Filter changed:', this.name, this.value, this.checked);
+    });
+  });
+
+  // Connect price inputs
+  const priceInputs = document.querySelectorAll('price-facet-component input');
+  priceInputs.forEach(input => {
+    input.addEventListener('change', function() {
+      console.log('Price filter changed:', this.name, this.value);
+    });
+  });
+
+  // Connect clear button
+  const clearButton = document.querySelector('facet-clear-component .clear-button');
+  if (clearButton) {
+    clearButton.addEventListener('click', function() {
+      console.log('Clear all filters');
+    });
+  }
+});
+
+// Export functions for global access
+window.openGlassFilters = openGlassFilters;
+window.closeGlassFilters = closeGlassFilters;
+</script>
+
+{% schema %}
+{
+  "name": "Glass Filter Sidebar",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Filter Options"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_type",
+      "label": "Show product type filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show brand filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price_filter",
+      "label": "Show price filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_availability",
+      "label": "Show availability filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "label": "Show tags/features filter",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glass Filter Sidebar"
+    }
+  ]
+}
+{% endschema %}

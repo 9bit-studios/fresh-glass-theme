@@ -1,0 +1,644 @@
+/* ========================================
+   COMPREHENSIVE DESIGN TOKENS & VARIABLES
+   Priority: glass-top-header > priority-foundation > foundation
+   ======================================== */
+
+/* ========================================
+   CORE FOUNDATION TOKENS
+   ======================================== */
+
+:root {
+  /* Base Unit System */
+  --foundation-base: 8;
+  --foundation-px: 1px;
+  --foundation-micro: 2px;
+  --foundation-tiny: 4px;
+  --foundation-xs: 8px;
+  --foundation-sm: 16px;
+  --foundation-md: 24px;
+  --foundation-lg: 32px;
+  --foundation-xl: 40px;
+  --foundation-xxl: 48px;
+  --foundation-xxxl: 64px;
+  --foundation-xxxxl: 80px;
+  --foundation-xxxxxl: 96px;
+
+  /* Spacing System - Semantic Aliases */
+  --spacing-xs: var(--foundation-tiny);
+  --spacing-sm: var(--foundation-xs);
+  --spacing-md: var(--foundation-sm);
+  --spacing-lg: var(--foundation-md);
+  --spacing-xl: var(--foundation-lg);
+  --spacing-2xl: var(--foundation-xxl);
+
+  /* Alternative Spacing Names for Compatibility */
+  --foundation-space-xs: var(--foundation-tiny);
+  --foundation-space-sm: var(--foundation-xs);
+  --foundation-space-md: var(--foundation-sm);
+  --foundation-space-lg: var(--foundation-md);
+  --foundation-space-xl: var(--foundation-lg);
+  --foundation-space-xxl: var(--foundation-xxl);
+
+  /* Border Radius System */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 50%;
+  
+  /* Foundation Radius Aliases */
+  --foundation-radius-sm: var(--radius-sm);
+  --foundation-radius-md: var(--radius-md);
+  --foundation-radius-lg: var(--radius-lg);
+  --foundation-radius-xl: var(--radius-xl);
+  --foundation-radius-full: var(--radius-full);
+
+  /* Touch Targets & Interactive Elements */
+  --foundation-touch-target: 44px;
+  --foundation-touch-target-large: 56px;
+  --foundation-input-height: 44px;
+  --foundation-input-padding: 12px;
+
+  /* Layout Structure Tokens */
+  --foundation-header-height: 80px;
+  --foundation-nav-height: 44px;
+  --foundation-nav-height-mobile: 56px;
+  --foundation-nav-mobile-height: 56px;
+  --breadcrumb-height: 48px;
+  --filter-bar-height: 56px;
+  --total-fixed-height: calc(var(--foundation-header-height) + var(--breadcrumb-height) + var(--filter-bar-height));
+  --total-nav-height: calc(var(--foundation-header-height) + var(--filter-bar-height));
+
+  /* Container & Content Widths */
+  --foundation-content-max-width: 1440px;
+  --foundation-container-padding: 32px;
+  --foundation-content-padding: 32px;
+  --foundation-content-mobile-padding: 16px;
+  --foundation-content-tablet-padding: 24px;
+  --foundation-sidebar-width: 280px;
+  --foundation-sidebar-mobile-width: 320px;
+  --foundation-sidebar-padding: 24px;
+
+  /* Component Spacing */
+  --foundation-section-gap: 48px;
+  --foundation-card-padding: 16px;
+  --foundation-card-gap: 24px;
+  --foundation-form-gap: 16px;
+  --foundation-button-padding: 16px;
+  --foundation-nav-padding: 16px;
+
+  /* Transitions & Animation */
+  --transition: 0.15s cubic-bezier(0.25, 0.1, 0.25, 1);
+  --foundation-transition: var(--transition);
+
+  /* ========================================
+     BREAKPOINT SYSTEM
+     ======================================== */
+
+  --foundation-breakpoint-xs: 320px;
+  --foundation-breakpoint-sm: 375px;
+  --foundation-breakpoint-md: 428px;
+  --foundation-breakpoint-lg: 744px;
+  --foundation-breakpoint-xl: 834px;
+  --foundation-breakpoint-xxl: 1024px;
+  --foundation-breakpoint-xxxl: 1194px;
+  --foundation-breakpoint-xxxxl: 1440px;
+  --foundation-breakpoint-xxxxxl: 1920px;
+
+  /* Container Widths by Breakpoint */
+  --foundation-container-xs: 100%;
+  --foundation-container-sm: 100%;
+  --foundation-container-md: 100%;
+  --foundation-container-lg: 100%;
+  --foundation-container-xl: 100%;
+  --foundation-container-xxl: 960px;
+  --foundation-container-xxxl: 1140px;
+  --foundation-container-xxxxl: 1320px;
+  --foundation-container-xxxxxl: 1520px;
+
+  /* Grid System */
+  --foundation-columns-mobile: 4;
+  --foundation-columns-tablet: 8;
+  --foundation-columns-desktop: 12;
+
+  /* Responsive Gutters */
+  --foundation-gutter-xs: 16px;
+  --foundation-gutter-sm: 16px;
+  --foundation-gutter-md: 20px;
+  --foundation-gutter-lg: 24px;
+  --foundation-gutter-xl: 24px;
+  --foundation-gutter-xxl: 32px;
+  --foundation-gutter-xxxl: 32px;
+  --foundation-gutter-xxxxl: 40px;
+  --foundation-gutter-xxxxxl: 40px;
+
+  /* Responsive Margins */
+  --foundation-margin-xs: 16px;
+  --foundation-margin-sm: 16px;
+  --foundation-margin-md: 24px;
+  --foundation-margin-lg: 32px;
+  --foundation-margin-xl: 32px;
+  --foundation-margin-xxl: 48px;
+  --foundation-margin-xxxl: 48px;
+  --foundation-margin-xxxxl: 64px;
+  --foundation-margin-xxxxxl: 64px;
+}
+
+/* ========================================
+   COLOR SYSTEM & GLASS EFFECTS
+   Priority: glass-top-header styles
+   ======================================== */
+
+:root {
+  /* Primary Color Palette */
+  --foundation-text-primary: #FFFFFF;
+  --foundation-text-secondary: rgba(252, 253, 242, 0.85);
+  --foundation-text-tertiary: rgba(252, 253, 242, 0.7);
+  --foundation-text-quaternary: rgba(252, 253, 242, 0.6);
+  --foundation-text-placeholder: rgba(252, 253, 242, 0.45);
+
+  /* Semantic Color Aliases */
+  --color-text: var(--foundation-text-primary);
+  --color-text-secondary: var(--foundation-text-secondary);
+  --color-text-tertiary: var(--foundation-text-tertiary);
+  --foundation-foreground-primary: var(--foundation-text-primary);
+  --foundation-foreground-secondary: var(--foundation-text-secondary);
+  --foundation-foreground-tertiary: var(--foundation-text-tertiary);
+
+  /* Background System */
+  --foundation-background-primary: #0B010D;
+  --foundation-background-secondary: #0D0D15;
+  --foundation-background-tertiary: #0A0A0F;
+  --foundation-background-elevated: #0A0621;
+  --foundation-background-modal: #1E1F5C;
+
+  /* Background Aliases */
+  --color-bg: var(--foundation-background-primary);
+  --color-background: var(--foundation-background-primary);
+
+  /* Dimensional Backgrounds */
+  --foundation-background-ultradimensional-marine: #0A0621;
+  --foundation-background-ultradimensional-violet: #150621;
+  --foundation-background-mystic-midnight: rgba(113, 0, 170, 0.0588235);
+  --foundation-background-mystic-deepspace: rgba(170, 0, 170, 0.0947);
+  --foundation-background-deep-space-night: #0D0D15;
+  --foundation-background-deep-space-violet: #160918;
+  --foundation-background-multidimensional-midnight: #0A0A0F;
+  --foundation-background-multidimensional-violet: #110413;
+  --foundation-background-void-black: #000000;
+  --foundation-background-void-violet: #0B010D;
+  --foundation-background-dimensional-marine: #1E1F5C;
+  --foundation-background-dimensional-violet: #480F92;
+
+  /* Glass System - Primary from glass-top-header */
+  --glass-surface: rgba(8, 4, 21, 0.8);
+  --glass-subtle: rgba(10, 6, 33, 0.4);
+  --glass-medium: rgba(10, 6, 33, 0.6);
+  --glass-prominent: rgba(10, 6, 33, 0.8);
+  --glass-border: rgba(90, 200, 250, 0.3);
+  --glass-border-hover: rgba(255, 255, 255, 0.2);
+  --glass-effect: blur(40px) saturate(200%) brightness(110%);
+  
+
+  /* Foundation Glass Aliases */
+  --foundation-glass-subtle: var(--glass-subtle);
+  --foundation-glass-medium: var(--glass-medium);
+  --foundation-glass-prominent: var(--glass-prominent);
+  --foundation-glass-border: var(--glass-border);
+
+  /* Color System Aliases */
+  --color-glass: rgba(255, 255, 255, 0.02);
+  --color-glass-hover: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border, rgba(93, 90, 246, 0.2)) ;
+
+  /* Action Colors */
+  --foundation-action-primary: #5D5AF6;
+  --foundation-action-secondary: #512CF9;
+  --foundation-action-tertiary: #613fe7;
+  --foundation-action-success: #3DFF74;
+  --foundation-action-primary-ar: #5AC8FA;
+
+  /* Action Hover States */
+  --foundation-action-hover-primary: #423DF5;
+  --foundation-action-hover-secondary: #5040D9;
+  --foundation-action-hover-tertiary: #5D5AF6;
+  --foundation-action-hover-success: #30D46E;
+  --foundation-action-primary-ar-hover: #007AFF;
+
+  /* Semantic Colors */
+  --color-primary: var(--foundation-action-primary-ar) #5AC8FA;
+  --color-primary: var(--foundation-action-hover-primary-ar)hsl(199, 94.10%, 66.70%);
+  --color-success: var(--foundation-action-success);
+  --color-warning: #EC4899;
+  --color-danger: #FF4F52;
+  --foundation-success: var(--color-success) #3DFF74;
+
+  --foundation-accent-primary: #5D5AF6;
+  --foundation-action-primary: var(--foundation-accent-primary);
+  --foundation-action-hover-primary: #423DF5;
+
+
+  /* Border System */
+  --foundation-border-primary: var(--color-border) rgba(93, 90, 246, 0.2));
+  --foundation-border-high-contrast: #ffffff;
+}
+
+/* ========================================
+   GRADIENT SYSTEM
+   ======================================== */
+
+:root {
+  --foundation-gradient-deep-spatial: linear-gradient(90deg, #0A0621 0%, #131A36 30%, #0A0621 70%, #0D0D15 100%);
+  --foundation-gradient-spatial: linear-gradient(90deg, #0A0621 -4.8%, #131A36 26.56%, #331F4A 68.37%, #0D0D15 99.73%);
+  --foundation-gradient-quantum-depth: linear-gradient(90deg, #131A36 -0.02%, #331F4A 49.98%, #6A3093 99.98%);
+  --foundation-gradient-spatial-simple: linear-gradient(90deg, #0A0621 -0.02%, #131A36 99.98%);
+}
+
+/* ========================================
+   QUANTUM BACKGROUND EFFECTS
+   ======================================== */
+
+:root {
+  --foundation-quantum-bg-opacity: 0.05;
+  --foundation-quantum-bg-line-color:rgba(93, 90, 246, 0.2));
+  --foundation-quantum-bg-line-width: 0.5px;
+  --foundation-quantum-bg-cell-size: 32px;
+  --foundation-quantum-bg-perspective: 60deg;
+  --foundation-quantum-interface-opacity: 0.08;
+  --foundation-quantum-interface-line-color: rgba(93, 90, 246, 0.2));
+  --foundation-quantum-interface-line-width: 0.5px;
+  --foundation-quantum-interface-cell-size: 24px;
+  --foundation-quantum-interface-perspective: 45deg;
+  --foundation-quantum-feature-opacity: 0.08;
+  --foundation-quantum-feature-line-color: rgba(97, 63, 231, 0.2);
+  --foundation-quantum-feature-line-width: 1px;
+  --foundation-quantum-feature-cell-size: 16px;
+  --foundation-quantum-feature-perspective: 30deg;
+}
+
+/* ========================================
+   TYPOGRAPHY SYSTEM
+   ======================================== */
+
+:root {
+  /* Font Family */
+  --foundation-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Rounded", system-ui, sans-serif;
+
+  /* Font Weights */
+  --foundation-font-weight-light: 300;
+  --foundation-font-weight-normal: 400;
+  --foundation-font-weight-medium: 500;
+  --foundation-font-weight-semibold: 600;
+  --foundation-font-weight-bold: 700;
+
+  /* Heading Scales */
+  --foundation-h1-size: 34px;
+  --foundation-h1-weight: var(--foundation-font-weight-bold);
+  --foundation-h1-line-height: 41px;
+  --foundation-h1-letter-spacing: -0.5px;
+
+  --foundation-h2-size: 28px;
+  --foundation-h2-weight: var(--foundation-font-weight-semibold);
+  --foundation-h2-line-height: 34px;
+  --foundation-h2-letter-spacing: -0.3px;
+
+  --foundation-h3-size: 22px;
+  --foundation-h3-weight: var(--foundation-font-weight-semibold);
+  --foundation-h3-line-height: 28px;
+  --foundation-h3-letter-spacing: -0.2px;
+
+  --foundation-h4-size: 20px;
+  --foundation-h4-weight: var(--foundation-font-weight-semibold);
+  --foundation-h4-line-height: 25px;
+  --foundation-h4-letter-spacing: -0.1px;
+
+  --foundation-h5-size: 17px;
+  --foundation-h5-weight: var(--foundation-font-weight-semibold);
+  --foundation-h5-line-height: 22px;
+  --foundation-h5-letter-spacing: -0.05em;
+
+  --foundation-h6-size: 15px;
+  --foundation-h6-weight: var(--foundation-font-weight-semibold);
+  --foundation-h6-line-height: 20px;
+
+  /* Body Text Scales */
+  --foundation-body-size: 17px;
+  --foundation-body-weight: var(--foundation-font-weight-normal);
+  --foundation-body-line-height: 22px;
+  --foundation-body-letter-spacing: -0.022em;
+
+  --foundation-text-xs: 11px;
+  --foundation-text-sm: 14px;
+  --foundation-text-base: 16px;
+  --foundation-text-md: var(--foundation-text-base);
+  --foundation-text-lg: 18px;
+  --foundation-text-xl: 20px;
+  --foundation-text-2xl: 24px;
+  --foundation-text-3xl: 28px;
+  --foundation-text-4xl: 36px;
+
+  /* Apple System Text Styles */
+  --foundation-large-title-size: 34px;
+  --foundation-large-title-weight: var(--foundation-font-weight-bold);
+  --foundation-large-title-line-height: 41px;
+
+  --foundation-title1-size: 28px;
+  --foundation-title1-weight: var(--foundation-font-weight-normal);
+  --foundation-title1-line-height: 34px;
+
+  --foundation-title2-size: 22px;
+  --foundation-title2-weight: var(--foundation-font-weight-normal);
+  --foundation-title2-line-height: 28px;
+
+  --foundation-title3-size: 20px;
+  --foundation-title3-weight: var(--foundation-font-weight-normal);
+  --foundation-title3-line-height: 25px;
+
+  --foundation-headline-size: 17px;
+  --foundation-headline-weight: var(--foundation-font-weight-semibold);
+  --foundation-headline-line-height: 22px;
+
+  --foundation-interface-body-size: 17px;
+  --foundation-interface-body-weight: var(--foundation-font-weight-normal);
+  --foundation-interface-body-line-height: 22px;
+
+  --foundation-callout-size: 16px;
+  --foundation-callout-weight: var(--foundation-font-weight-normal);
+  --foundation-callout-line-height: 21px;
+
+  --foundation-subheadline-size: 15px;
+  --foundation-subheadline-weight: var(--foundation-font-weight-normal);
+  --foundation-subheadline-line-height: 20px;
+
+  --foundation-footnote-size: 13px;
+  --foundation-footnote-weight: var(--foundation-font-weight-normal);
+  --foundation-footnote-line-height: 18px;
+
+  --foundation-caption-size: 13px;
+  --foundation-caption-weight: var(--foundation-font-weight-normal);
+  --foundation-caption-line-height: 18px;
+
+  --foundation-caption1-size: 12px;
+  --foundation-caption1-weight: var(--foundation-font-weight-normal);
+  --foundation-caption1-line-height: 16px;
+
+  --foundation-caption2-size: 11px;
+  --foundation-caption2-weight: var(--foundation-font-weight-normal);
+  --foundation-caption2-line-height: 13px;
+
+  /* Line Height System */
+  --foundation-rhythm-tight: 1.2;
+  --foundation-rhythm-normal: 1.5;
+  --foundation-rhythm-relaxed: 1.8;
+  --foundation-rhythm-loose: 2.0;
+}
+
+/* ========================================
+   COMPONENT SPACING & LAYOUT TOKENS
+   ======================================== */
+
+:root {
+  /* Section Spacing */
+  --foundation-section-xs: 32px;
+  --foundation-section-sm: 48px;
+  --foundation-section-md: 64px;
+  --foundation-section-lg: 80px;
+  --foundation-section-xl: 96px;
+
+  /* Component Relationships */
+  --foundation-component-related: 8px;
+  --foundation-component-unrelated: 24px;
+  --foundation-component-sections: 48px;
+  --foundation-component-features: 64px;
+
+  /* Navigation Structure */
+  --foundation-nav-z-index: 1000;
+  --foundation-nav-backdrop-filter: blur(20px) saturate(120%);
+  --foundation-nav-background: var(--foundation-background-primary);
+  --foundation-nav-border-bottom: 0.5px solid var(--foundation-glass-border);
+
+  /* Sidebar Structure */
+  --foundation-sidebar-z-index: 999;
+  --foundation-sidebar-background: var(--foundation-glass-subtle);
+  --foundation-sidebar-backdrop-filter: blur(24px) saturate(120%);
+  --foundation-sidebar-border-right: 0.5px solid var(--foundation-glass-border);
+
+  /* Card Components */
+  --foundation-card-border-radius: 14px;
+  --foundation-card-background: var(--foundation-glass-subtle);
+  --foundation-card-backdrop-filter: blur(16px) saturate(120%);
+  --foundation-card-border: 0.5px solid var(--foundation-glass-border);
+  --foundation-card-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--foundation-glass-border);
+
+  /* Modal Components */
+  --foundation-modal-max-width: 600px;
+  --foundation-modal-padding: 32px;
+  --foundation-modal-border-radius: 20px;
+  --foundation-modal-z-index: 2000;
+  --foundation-modal-background: var(--foundation-glass-prominent);
+  --foundation-modal-backdrop-filter: blur(40px) saturate(130%);
+  --foundation-modal-border: 1px solid var(--foundation-glass-border);
+  --foundation-modal-box-shadow: 0 32px 64px rgba(0, 0, 0, 0.6), inset 0 1px 0 var(--foundation-glass-border);
+}
+
+/* ========================================
+   Z-INDEX SYSTEM
+   ======================================== */
+
+:root {
+  --foundation-z-background: -10;
+  --foundation-z-base: 0;
+  --foundation-z-above: 10;
+  --foundation-z-overlay: 100;
+  --foundation-z-dropdown: 200;
+  --foundation-z-sticky: 300;
+  --foundation-z-header: 400;
+  --foundation-z-modal: 1000;
+  --foundation-z-popover: 1100;
+  --foundation-z-tooltip: 1200;
+  --foundation-z-toast: 1300;
+  --foundation-z-loading: 1400;
+  --foundation-z-max: 9999;
+}
+
+/* ========================================
+   ELEVATION & SHADOW SYSTEM
+   ======================================== */
+
+:root {
+  /* Elevation Shadows */
+  --foundation-elevation-flat-shadow: none;
+  --foundation-elevation-flat-z-index: 0;
+
+  --foundation-elevation-raised-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+  --foundation-elevation-raised-z-index: 1;
+
+  --foundation-elevation-floating-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --foundation-elevation-floating-z-index: 10;
+
+  --foundation-elevation-overlay-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --foundation-elevation-overlay-z-index: 100;
+
+  --foundation-elevation-modal-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+  --foundation-elevation-modal-z-index: 1000;
+
+  /* Glass Elevation Effects */
+  --foundation-glass-subtle-background: var(--foundation-glass-subtle);
+  --foundation-glass-subtle-backdrop-filter: blur(8px) saturate(120%);
+  --foundation-glass-subtle-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 var(--foundation-glass-border);
+
+  --foundation-glass-medium-background: var(--foundation-glass-medium);
+  --foundation-glass-medium-backdrop-filter: blur(16px) saturate(125%);
+  --foundation-glass-medium-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--foundation-glass-border);
+
+  --foundation-glass-prominent-background: var(--foundation-glass-prominent);
+  --foundation-glass-prominent-backdrop-filter: blur(24px) saturate(130%);
+  --foundation-glass-prominent-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--foundation-glass-border);
+}
+
+/* ========================================
+   INTERACTION & STATE TOKENS
+   ======================================== */
+
+:root {
+  /* Default States */
+  --foundation-state-default-opacity: 1;
+  --foundation-state-default-transform: scale(1);
+
+  /* Hover States */
+  --foundation-state-hover-opacity: 0.8;
+  --foundation-state-hover-transform: scale(1.02);
+
+  /* Active States */
+  --foundation-state-active-opacity: 0.9;
+  --foundation-state-active-transform: scale(0.98);
+
+  /* Disabled States */
+  --foundation-state-disabled-opacity: 0.4;
+  --foundation-state-disabled-transform: scale(1);
+
+  /* Loading States */
+  --foundation-state-loading-opacity: 0.6;
+  --foundation-state-loading-transform: scale(1);
+
+  /* Focus System */
+  --foundation-focus-outline: 2px solid #007AFF;
+  --foundation-focus-outline-offset: 2px;
+  --foundation-focus-border-radius: 4px;
+
+  /* Quantum States */
+  --foundation-quantum-materialized-opacity: 1;
+  --foundation-quantum-materialized-filter: blur(0px);
+  --foundation-quantum-materialized-scale: 1;
+
+  --foundation-quantum-transitional-opacity: 0.8;
+  --foundation-quantum-transitional-filter: blur(1px);
+  --foundation-quantum-transitional-scale: 0.98;
+
+  --foundation-quantum-energy-opacity: 0.9;
+  --foundation-quantum-energy-filter: blur(0px);
+  --foundation-quantum-energy-scale: 1.02;
+
+  --foundation-quantum-superposition-opacity: 0.7;
+  --foundation-quantum-superposition-filter: blur(2px);
+  --foundation-quantum-superposition-scale: 0.95;
+}
+
+/* ========================================
+   SHOPIFY THEME COMPATIBILITY LAYER
+   ======================================== */
+
+:root {
+  /* Map to common Shopify variable names */
+  --color-base-text: var(--foundation-text-primary);
+  --color-base-background-1: var(--foundation-background-primary);
+  --color-base-background-2: var(--foundation-background-secondary);
+  --color-base-solid-button-labels: var(--foundation-text-primary);
+  --color-base-outline-button-labels: var(--foundation-text-secondary);
+  --color-base-accent-1: var(--foundation-accent-primary);
+  --color-base-accent-2: var(--foundation-action-secondary);
+
+  /* Page width tokens */
+  --page-width: var(--foundation-content-max-width);
+  --page-width-margin: var(--foundation-container-padding);
+
+  /* Media object tokens */
+  --media-radius: var(--foundation-radius-lg);
+  --media-shadow-opacity: 0.3;
+  --media-shadow-horizontal-offset: 0px;
+  --media-shadow-vertical-offset: 4px;
+  --media-shadow-blur-radius: 8px;
+
+  /* Text size scale for Shopify compatibility */
+  --font-heading-scale: 1.0;
+  --font-body-scale: 1.0;
+  --font-size-base: var(--foundation-body-size);
+
+  /* Button tokens */
+  --buttons-radius: var(--foundation-radius-md);
+  --buttons-radius-outset: calc(var(--buttons-radius) + 1px);
+  --buttons-border-width: 1px;
+  --buttons-border-opacity: 1.0;
+  --buttons-shadow-opacity: 0.0;
+  --buttons-shadow-horizontal-offset: 0px;
+  --buttons-shadow-vertical-offset: 4px;
+  --buttons-shadow-blur-radius: 5px;
+
+  /* Variant pill tokens */
+  --variant-pills-radius: var(--foundation-radius-lg);
+  --variant-pills-border-width: 1px;
+  --variant-pills-border-opacity: 0.55;
+  --variant-pills-shadow-opacity: 0.0;
+  --variant-pills-shadow-horizontal-offset: 0px;
+  --variant-pills-shadow-vertical-offset: 4px;
+  --variant-pills-shadow-blur-radius: 5px;
+
+  /* Input tokens */
+  --inputs-radius: var(--foundation-radius-sm);
+  --inputs-border-width: 1px;
+  --inputs-border-opacity: 0.55;
+  --inputs-shadow-opacity: 0.0;
+  --inputs-shadow-horizontal-offset: 0px;
+  --inputs-shadow-vertical-offset: 4px;
+  --inputs-shadow-blur-radius: 5px;
+
+  /* Card tokens */
+  --card-style: standard;
+  --card-image-padding: 0.0rem;
+  --card-corner-radius: var(--foundation-radius-lg);
+  --card-text-alignment: left;
+  --card-border-width: 0.0rem;
+  --card-border-opacity: 0.0;
+  --card-shadow-opacity: 0.0;
+  --card-shadow-horizontal-offset: 0.0rem;
+  --card-shadow-vertical-offset: 0.4rem;
+  --card-shadow-blur-radius: 0.5rem;
+
+  /* Badge tokens */
+  --badge-corner-radius: var(--foundation-radius-full);
+
+  /* Popup tokens */
+  --popup-border-width: 1px;
+  --popup-border-opacity: 0.1;
+  --popup-corner-radius: var(--foundation-radius-lg);
+  --popup-shadow-opacity: 0.05;
+  --popup-shadow-horizontal-offset: 0px;
+  --popup-shadow-vertical-offset: 4px;
+  --popup-shadow-blur-radius: 5px;
+
+  /* Drawer tokens */
+  --drawer-border-width: 1px;
+  --drawer-border-opacity: 0.1;
+  --drawer-shadow-opacity: 0.0;
+  --drawer-shadow-horizontal-offset: 0px;
+  --drawer-shadow-vertical-offset: 4px;
+  --drawer-shadow-blur-radius: 5px;
+
+  /* Social icon tokens */
+  --social-icons-accent-disabled: 0.3;
+
+  /* Animation duration - for reduced motion */
+  --duration-short: 100ms;
+  --duration-default: 200ms;
+  --duration-announce-bar: 250ms;
+}

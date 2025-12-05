@@ -1,17 +1,16 @@
 {
   "name": "@quantum-spatial/fresh-glass-theme",
   "version": "2.1.0",
-  "description": "Petersen Games Shopify Theme with OksanaPlatform Foundation Model, Apple HIG Compliance, and Quantum Spatial Design System",
+  "description": "Oksana Demo Shopify Theme with OksanaPlatform Foundation Model, Apple HIG Compliance, and Quantum Spatial Design System",
   "private": true,
   "author": "9Bit Studios <hello@9bitstudios.com>",
   "license": "UNLICENSED",
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "node": ">=25.2.0",
+    "npm": ">=11.6.2"
   },
   "main": "petersen-qa-service.js",
   "types": "types/index.d.ts",
-  
   "scripts": {
     "build": "tsc && npm run build:tokens",
     "build:clean": "rm -rf dist && npm run build",
@@ -26,84 +25,70 @@
     "typecheck": "tsc --noEmit --strict --project tsconfig.json",
     "typecheck:oksana": "tsc --noEmit --project ../../Oksana/tsconfig.json",
     "typecheck:full": "npm run typecheck && npm run typecheck:oksana",
-    
     "lint": "eslint . --ext .js,.ts,.tsx --max-warnings 0",
     "lint:fix": "eslint . --ext .js,.ts,.tsx --fix",
     "lint:apple-hig": "eslint . --config .eslintrc.apple-hig.js",
-    
     "test:hig": "tsx scripts/validate-hig-compliance.ts",
     "test:hig:zero-tolerance": "tsx scripts/validate-hig-compliance.ts --zero-tolerance",
     "test:tokens": "tsx scripts/validate-token-usage.ts",
     "test:accessibility": "tsx scripts/validate-accessibility.ts",
     "test:liquid-syntax": "theme-check .",
-    
     "build:tokens": "tsx scripts/build-design-tokens.ts",
     "tokens:validate": "tsx scripts/validate-tokens.ts --source=oksana-platform",
     "tokens:sync": "tsx scripts/sync-tokens-from-oksana.ts",
-
     "bridge:test": "tsx src/bridge/test-oksana-connection.ts",
     "bridge:validate": "tsx src/bridge/validate-bridge-integration.ts",
-    
     "watch": "nodemon --watch . --ext js,liquid,css,ts --exec 'npm run qa:validate'",
     "watch:full": "nodemon --watch . --ext js,liquid,css,ts --exec 'npm run qa:full'",
-    
     "precommit": "npm run qa:zero-tolerance",
     "prepare": "husky install",
     "validate:all": "npm run qa:full && npm run security:check",
     "security:check": "npm audit --audit-level=high",
-    
     "deploy:dev": "shopify theme push --development",
     "deploy:prod": "shopify theme push --live",
-    "shopify:auth": "shopify auth login --store petersengames.myshopify.com"
+    "shopify:auth": "shopify auth login --store your-demo-store.myshopify.com"
   },
-  
   "keywords": [
     "shopify",
-    "typescript", 
+    "typescript",
     "oksana-platform",
     "apple-intelligence",
     "apple-hig",
     "glass-theme",
-    "petersen-games",
     "strategic-director",
     "quantum-spatial",
     "foundation-model",
     "zero-tolerance-qa"
   ],
-  
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.69.0",
+    "@notionhq/client": "^5.4.0",
     "@shopify/prettier-plugin-liquid": "^1.5.0",
     "@shopify/theme-check-node": "^2.9.0"
   },
-  
   "devDependencies": {
-    "typescript": "^5.8.0",
-    "tsx": "^4.7.0",
-    "@types/node": "^22.0.0",
-
+    "@types/node": "^24.10.1",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
+    "@web/test-runner": "^0.19.0",
+    "axe-core": "^4.10.0",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
-
     "husky": "^9.0.0",
+    "lighthouse": "^12.0.0",
     "lint-staged": "^15.0.0",
     "nodemon": "^3.0.0",
-    "prettier": "^3.0.0",
-
-    "vitest": "^3.0.0",
-    "axe-core": "^4.10.0",
     "pa11y": "^8.0.0",
-
-    "@web/test-runner": "^0.19.0",
-    "lighthouse": "^12.0.0"
+    "prettier": "^3.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.9.3",
+    "vercel": "^48.10.2",
+    "vitest": "^4.0.9"
   },
-  
   "peerDependencies": {
     "@quantum-spatial/design-system": "*"
   },
-  
   "lint-staged": {
     "*.{js,ts,tsx}": [
       "eslint --fix",
@@ -117,7 +102,6 @@
       "theme-check"
     ]
   },
-  
   "eslintConfig": {
     "extends": [
       "eslint:recommended",
@@ -140,18 +124,23 @@
       "@typescript-eslint/no-unsafe-member-access": "error",
       "@typescript-eslint/no-unsafe-call": "error",
       "@typescript-eslint/no-unsafe-return": "error",
-      
-      "no-console": ["warn", { "allow": ["warn", "error"] }],
+      "no-console": [
+        "warn",
+        {
+          "allow": [
+            "warn",
+            "error"
+          ]
+        }
+      ],
       "no-debugger": "error",
       "no-unused-vars": "error",
       "prefer-const": "error",
-      
       "apple-hig/touch-target-size": "error",
       "apple-hig/contrast-ratio": "error",
       "apple-hig/typography-scale": "warn"
     }
   },
-  
   "prettier": {
     "semi": true,
     "singleQuote": true,
@@ -161,14 +150,12 @@
     "arrowParens": "always",
     "endOfLine": "lf"
   },
-  
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged && npm run qa:validate",
       "pre-push": "npm run qa:zero-tolerance"
     }
   },
-  
   "apple-hig": {
     "validation": {
       "touchTargets": {
@@ -196,7 +183,7 @@
       "colors": {
         "contrastRatio": {
           "normal": 4.5,
-          "large": 3.0
+          "large": 3
         },
         "systemColors": true,
         "darkModeSupport": true
@@ -214,13 +201,14 @@
       "failOnViolation": true
     }
   },
-  
   "quantum-spatial": {
     "tokens": {
       "source": "../../Oksana/types/tokens",
-      "fallback": "../../quantum-spatial-design-system/tokens",
+      "fallback": "../quantum-spatial-design-system/tokens",
       "output": "./assets/tokens",
-      "platforms": ["shopify"],
+      "platforms": [
+        "shopify"
+      ],
       "validation": "strict",
       "oksanaPlatformIntegration": true
     },
@@ -230,7 +218,6 @@
       "appleHIGCompliance": true
     }
   },
-  
   "oksanaPlatform": {
     "foundationModel": {
       "enabled": true,
@@ -250,14 +237,13 @@
       "appleHIGMandatory": true
     }
   },
-  
   "shopify": {
     "theme": {
-      "name": "Petersen Games Fresh Glass Theme v2.1",
+      "name": "Oksana Demo Store 1.0",
       "version": "2.1.0",
-      "store": "petersengames.myshopify.com",
+      "store": "your-demo-store.myshopify.com",
       "author": "9Bit Studios",
-      "documentation_url": "https://github.com/9bit-studios/fresh-glass-theme",
+      "documentation_url": "https://github.com/9BitStudios/fresh-glass-theme",
       "support_url": "https://9bitstudios.com/support"
     },
     "features": {
@@ -267,13 +253,12 @@
       "zeroToleranceQA": true
     }
   },
-  
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/9bit-studios/fresh-glass-theme.git"
+    "url": "git+https://github.com/9BitStudios/fresh-glass-theme.git"
   },
   "bugs": {
-    "url": "https://github.com/9bit-studios/fresh-glass-theme/issues"
+    "url": "https://github.com/9BitStudios/fresh-glass-theme/issues"
   },
-  "homepage": "https://github.com/9bit-studios/fresh-glass-theme#readme"
+  "homepage": "https://github.com/9BitStudios/fresh-glass-theme#readme"
 }

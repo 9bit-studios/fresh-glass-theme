@@ -26,7 +26,7 @@ class EnhancedPetersenQAService extends BaseService {
     // Relative path to Petersen theme - adjust based on actual location
     const projectRoot = path.join(__dirname, '..', '..');
     const studioRoot = path.join(projectRoot, '..');
-    this.baseDir = path.join(studioRoot, 'fresh-glass-theme', 'petersen-glass-theme');
+    this.baseDir = path.join(studioRoot, 'fresh-glass-theme');
     this.foundationVariables = new Set();
     this.glassComponents = new Map();
     this.javascriptPatterns = new Map();

@@ -1,0 +1,568 @@
+{% style %}
+  {% comment %} Glass Theme Variable Integration {% endcomment %}
+  {% comment %} Maps design-tokens.css to Shopify theme system {% endcomment %}
+
+  :root {
+    {% comment %} ===================================== {% endcomment %}
+    {% comment %} GLASS THEME PRIMARY INTEGRATION {% endcomment %}
+    {% comment %} ===================================== {% endcomment %}
+
+    /* Foundation Accent Primary - Critical Missing Variable */
+    --foundation-accent-primary: #5D5AF6;
+    --foundation-accent-hover: #423DF5;
+
+        /* Framer-inspired color system */
+    --framer-bg: #0A0A0A;
+    --framer-surface: #111111;
+    --framer-surface-elevated: #1A1A1A;
+    --framer-text-primary: #FFFFFF;
+    --framer-text-secondary: rgba(255, 255, 255, 0.7);
+    --framer-text-tertiary: rgba(255, 255, 255, 0.5);
+    --framer-accent: #6366F1;
+    --framer-accent-hover: #5048E5;
+    --framer-purple: #8B5CF6;
+    
+    
+  /* Map to common Shopify variable names */
+  --color-base-text: var(--foundation-text-primary);
+  --color-base-background-1: var(--foundation-background-primary);
+  --color-base-background-2: var(--foundation-background-secondary);
+  --color-base-solid-button-labels: var(--foundation-text-primary);
+  --color-base-outline-button-labels: var(--foundation-text-secondary);
+  --color-base-accent-1: var(--foundation-accent-primary);
+  --color-base-accent-2: var(--foundation-action-secondary);
+
+  /* Page width tokens */
+  --page-width: var(--foundation-content-max-width);
+  --page-width-margin: var(--foundation-container-padding);
+
+
+    /* Glass Theme Color Mapping */
+    --glass-surface: rgba(35, 16, 95, 0.71);
+    --glass-medium: linear-gradient(135deg, rgba(45, 27, 105, 0.9) 0%, rgba(76, 29, 149, 0.7) 50%, rgba(45, 27, 105, 0.9) 100%);
+    --glass-subtle: radial-gradient(circle at 30% 70%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+radial-gradient(circle at 70% 30%, rgba(236, 72, 153, 0.08) 0%, transparent 50%),
+radial-gradient(circle at 90% 10%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+    --glass-deep: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(45, 27, 105, 0.6) 50%, rgba(0, 0, 0, 0.8) 100%);
+    --glass-prominent: rgba(10, 6, 33, 0.8);
+    --glass-border: rgba(93, 90, 246, 0.4);
+    --glass-border-hover: rgba(93, 90, 246, 0.6);
+    --glass-effect: blur(40px) saturate(200%) brightness(110%);
+    
+    /* Foundation Color System */
+    --foundation-background-secondary: #0D0D15;
+    --foundation-text-primary: #FFFFFF;
+    --foundation-text-secondary: rgba(252, 253, 242, 0.85);
+    --foundation-foreground-primary: var(--foundation-text-primary);
+    --foundation-foreground-secondary: var(--foundation-text-secondary);
+
+        --foundation-background-primary: radial-gradient(circle at 15% 85%,rgba(45,27,105,.25) 0,transparent 60%),radial-gradient(circle at 85% 15%,rgba(76,29,149,.22) 0,transparent 60%),radial-gradient(circle at 40% 40%,rgba(49,46,129,.18) 0,transparent 60%),radial-gradient(circle at 60% 80%,rgba(99,102,241,.15) 0,transparent 60%),radial-gradient(circle at 70% 20%,rgba(139,92,246,.12) 0,transparent 70%),radial-gradient(circle at 20% 60%,rgba(79,70,229,.1) 0,transparent 70%),linear-gradient(135deg,rgba(15,10,25,.95),rgba(30,27,75,.8) 25%,rgba(45,27,105,.7) 50%,rgba(30,27,75,.8) 75%,rgba(15,10,25,.95)),linear-gradient(180deg,#0F0A19,#1E1B4B 50%,#0F0A19);
+
+    
+    {% comment %} ===================================== {% endcomment %}
+    {% comment %} SHOPIFY THEME SYSTEM INTEGRATION {% endcomment %}
+    {% comment %} ===================================== {% endcomment %}
+
+    /* Primary Button Styling - Glass Purple */
+    --color-button-primary: var(--foundation-action-primary);
+    --color-button-primary-hover: var(--foundation-action-hover);
+    --color-button-primary-text: #ffffff;
+    --color-button-primary-background: var(--foundation-action-primary);
+    --color-button-primary-border: var(--foundation-action-primary);
+    
+    /* Secondary Button Styling - Glass Effect */
+    --color-button-secondary-background: var(--glass-subtle);
+    --color-button-secondary-text: var(--foundation-text-primary);
+    --color-button-secondary-border: var(--glass-border);
+    --color-button-secondary-hover-background: var(--glass-medium);
+    --color-button-secondary-hover-border: var(--glass-border-hover);
+    
+    /* Input Styling - Glass Effect */
+    --color-input-background: var(--glass-subtle);
+    --color-input-text: var(--foundation-text-primary);
+    --color-input-border: var(--glass-border);
+    --color-input-focus-border: var(--foundation-accent-primary);
+    --color-input-hover-background: var(--glass-medium);
+    
+    /* Card Styling - Glass Effect */
+    --card-background: var(--glass-subtle);
+    --card-border: var(--glass-border);
+    --card-hover-background: var(--glass-medium);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--glass-border);
+    
+    /* Navigation Styling - Glass Effect */
+    --nav-background: var(--glass-surface);
+    --nav-border: var(--glass-border);
+    --nav-backdrop-filter: var(--glass-effect);
+    --nav-link-background: var(--glass-subtle);
+    --nav-link-hover-background: var(--glass-medium);
+    --nav-link-active-background: var(--foundation-accent-primary);
+    
+    {% comment %} ===================================== {% endcomment %}
+    {% comment %} GLASS COMPONENT VARIABLES {% endcomment %}
+    {% comment %} ===================================== {% endcomment %}
+
+    /* Glass Top Header - Full Width Configuration */
+    --glass-top-header-background: var(--glass-surface);
+    --glass-top-header-backdrop-filter: var(--glass-effect);
+    --glass-top-header-height: 80px;
+    --glass-top-header-max-width: var(--page-width-max);
+    --glass-top-header-z-index: 1000;
+    
+    /* Glass Navigation Tabs */
+    --glass-nav-tab-background: rgba(255, 255, 255, 0.05);
+    --glass-nav-tab-border: 1px solid rgba(255, 255, 255, 0.1);
+    --glass-nav-tab-border-radius: 22px;
+    --glass-nav-tab-hover-background: var(--foundation-background-secondary);
+    --glass-nav-tab-active-background: var(--foundation-accent-primary);
+    --glass-nav-tab-active-border: var(--foundation-accent-primary);
+    
+    /* Glass Filter Bar */
+    --glass-filter-background: var(--glass-subtle);
+    --glass-filter-border: var(--glass-border);
+    --glass-filter-backdrop-filter: blur(20px) saturate(120%);
+    
+    /* Glass Product Grid */
+    --glass-product-card-background: var(--glass-subtle);
+    --glass-product-card-border: var(--glass-border);
+    --glass-product-card-hover-background: var(--glass-medium);
+    --glass-product-card-border-radius: 16px;
+    --glass-product-card-backdrop-filter: blur(16px) saturate(120%);
+    
+    {% comment %} ===================================== {% endcomment %}
+    {% comment %} FOUNDATION VARIABLES INTEGRATION {% endcomment %}
+    {% comment %} ===================================== {% endcomment %}
+
+    /* Foundation Spacing System */
+    --foundation-space-xs: 4px;
+    --foundation-space-sm: 8px;
+    --foundation-space-md: 16px;
+    --foundation-space-lg: 24px;
+    --foundation-space-xl: 32px;
+    
+    /* Foundation Border Radius */
+    --foundation-radius-sm: 8px;
+    --foundation-radius-md: 12px;
+    --foundation-radius-lg: 16px;
+    --foundation-radius-xl: 24px;
+    --foundation-radius-full: 50%;
+    
+    /* Foundation Touch Targets */
+    --foundation-touch-target: 44px;
+    --foundation-input-height: 44px;
+    
+    /* Foundation Transitions */
+    --foundation-transition: all 0.2s ease;
+    
+    /* Foundation Typography */
+    --foundation-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Rounded", system-ui, sans-serif;
+    
+    {% comment %} ===================================== {% endcomment %}
+    {% comment %} SHOPIFY COMPATIBILITY OVERRIDES {% endcomment %}
+    {% comment %} ===================================== {% endcomment %}
+
+    /* Override default Shopify variables with glass theme */
+    --color-base-background-1: var(--foundation-background-primary);
+    --color-base-background-2: var(--foundation-background-secondary);
+    --color-base-text: var(--foundation-text-primary);
+    --color-base-accent-1: var(--foundation-accent-primary);
+    --color-base-accent-2: #5AC8FA;
+    
+    /* Button System Override */
+    --buttons-radius: var(--foundation-radius-md);
+    --buttons-border-width: 1px;
+    --buttons-border-opacity: .7;
+    
+    /* Input System Override */
+    --inputs-radius: var(--foundation-radius-md);
+    --inputs-border-width: 1px;
+    --inputs-border-opacity: 0.3;
+    
+    /* Card System Override */
+    --card-corner-radius: var(--foundation-radius-lg);
+    --card-border-width: 0px;
+    --card-shadow-opacity: 0.4;
+    --card-shadow-blur-radius: 32px;
+    
+    /* Page Width Override - Updated to 1800px */
+    --page-width: 1800px;
+    --page-width-margin: 32px;
+    --page-width-max: 1800px;
+    
+    /* Override theme-styles-variables page widths */
+    --narrow-page-width: 180rem; /* 2880px - larger than 1800px max-width */
+    --normal-page-width: 180rem; /* 2880px */
+    --wide-page-width: 180rem;   /* 2880px */
+    
+  /* Action Colors */
+  --foundation-action-primary: #5D5AF6;
+  --foundation-action-secondary: #512CF9;
+  --foundation-action-tertiary: #613fe7;
+  --foundation-action-success: #3DFF74;
+  --foundation-action-primary-ar: #5AC8FA;
+
+  /* Action Hover States */
+  --foundation-action-hover-primary: #423DF5;
+  --foundation-action-hover-secondary: #5040D9;
+  --foundation-action-hover-tertiary: #5D5AF6;
+  --foundation-action-hover-success: #30D46E;
+  --foundation-action-primary-ar-hover: #007AFF;
+
+  /* Semantic Colors */
+  --color-primary: var(--foundation-action-primary-ar) #5AC8FA;
+  --color-primary: var(--foundation-action-hover-primary-ar)hsl(199, 94.10%, 66.70%);
+  --color-success: var(--foundation-action-success);
+  --color-warning: #EC4899;
+  --color-danger: #FF4F52;
+  --foundation-success: var(--color-success) #3DFF74;
+
+  --foundation-accent-primary: #5D5AF6;
+  --foundation-action-primary: var(--foundation-accent-primary);
+  --foundation-action-hover-primary: #423DF5;
+
+
+  /* Border System */
+  --foundation-border-primary: var(--color-border);
+  --foundation-border-high-contrast: #ffffff;
+}
+
+/* ========================================
+   GRADIENT SYSTEM
+   ======================================== */
+
+:root {
+  --foundation-gradient-deep-spatial: linear-gradient(90deg, #0A0621 0%, #131A36 30%, #0A0621 70%, #0D0D15 100%);
+  --foundation-gradient-spatial: linear-gradient(90deg, #0A0621 -4.8%, #131A36 26.56%, #331F4A 68.37%, #0D0D15 99.73%);
+  --foundation-gradient-quantum-depth: linear-gradient(90deg, #131A36 -0.02%, #331F4A 49.98%, #6A3093 99.98%);
+  --foundation-gradient-spatial-simple: linear-gradient(90deg, #0A0621 -0.02%, #131A36 99.98%);
+}
+
+
+    {% comment %} ===================================== {% endcomment %}
+    {% comment %} GLASS EFFECT UTILITIES {% endcomment %}
+    {% comment %} ===================================== {% endcomment %}
+
+    /* Glass Shadow System */
+    --foundation-shadow-primary: 0 4px 12px rgba(93, 90, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    --foundation-shadow-secondary: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--glass-border);
+    --foundation-shadow-elevated: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--glass-border);
+    
+    /* Glass Backdrop Filters */
+    --foundation-backdrop-filter: blur(40px) saturate(200%) brightness(110%);
+    --foundation-backdrop-filter-subtle: blur(8px) saturate(120%);
+    --foundation-backdrop-filter-medium: blur(16px) saturate(125%);
+    --foundation-backdrop-filter-prominent: blur(24px) saturate(130%);
+    
+    {% comment %} ===================================== {% endcomment %}
+    {% comment %} RESPONSIVE GLASS VARIABLES {% endcomment %}
+    {% comment %} ===================================== {% endcomment %}
+
+    /* Mobile Glass Adjustments */
+    @media (max-width: 768px) {
+      --glass-top-header-height: 50px;
+      --glass-nav-tab-border-radius: 20px;
+      --glass-product-card-border-radius: 12px;
+      --foundation-space-lg: 16px;
+      --foundation-space-xl: 24px;
+      --page-width-margin: 8px; /* Reduce mobile margins */
+    }
+    
+    /* Mobile Content Width Overrides */
+    @media (max-width: 768px) {
+      .main-content,
+      #MainContent,
+      .content-for-layout,
+      .page-width,
+      .container,
+      .content-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+    }
+    
+    /* Desktop Glass Enhancements */
+    @media (min-width: 1024px) {
+      --glass-effect: blur(40px) saturate(200%) brightness(110%);
+      --foundation-backdrop-filter: blur(40px) saturate(200%) brightness(110%);
+    }
+  }
+
+  {% comment %} ===================================== {% endcomment %}
+  {% comment %} GLASS THEME UTILITY CLASSES {% endcomment %}
+  {% comment %} ===================================== {% endcomment %}
+
+  
+  /* Override Section Width Constraints */
+.section--full-width {
+  grid-template-columns: 1fr !important;
+}
+
+.section--full-width > * {
+  grid-column: 1 / -1 !important;
+}
+
+/* Override the nested content wrappers for full-width */
+.section--full-width .custom-section-content,
+.section--full-width .section-content-wrapper {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Allow content inside full-width sections to have proper margins */
+.section--full-width .section-content-wrapper > * {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+  /* Glass Header Styling for Standard Header */
+  .header-section,
+  .header {
+    width: 100% !important;
+    max-width: none !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: var(--glass-top-header-z-index) !important;
+    background: var(--glass-top-header-background) !important;
+    backdrop-filter: var(--glass-top-header-backdrop-filter) !important;
+    -webkit-backdrop-filter: var(--glass-top-header-backdrop-filter) !important;
+    border-bottom: var(--glass-border) !important;
+  }
+
+  .header__row {
+    background: var(--glass-top-header-background) !important;
+    backdrop-filter: var(--glass-top-header-backdrop-filter) !important;
+    -webkit-backdrop-filter: var(--glass-top-header-backdrop-filter) !important;
+    border-bottom: var(--glass-border) !important;
+  }
+
+  .header__columns {
+    max-width: var(--glass-top-header-max-width) !important;
+    margin: 0 auto !important;
+    padding-left: var(--page-width-margin) !important;
+    padding-right: var(--page-width-margin) !important;
+  }
+
+  /* Logo Section Styling */
+  .header-logo,
+  .header-logo__link {
+    position: relative !important;
+    z-index: 1002 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .header-logo__image {
+    max-height: 60px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  .header-logo__text {
+    color: var(--foundation-text-primary) !important;
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+  }
+
+  /* Full-width elements override */
+  .section--full-width,
+  .section--full-width-margin,
+  .hero,
+  .hero-section {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  /* Override body page-width constraints */
+  .page-width-narrow,
+  .page-width-normal,
+  .page-width-wide {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Headers and footers should be full-width with centered content */
+  .header-section,
+  .header,
+  .footer,
+  .shopify-section-group-footer-group {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  /* Content containers get max-width */
+  .header__columns,
+  .footer__content,
+  .main-content > .shopify-section:not(.section--full-width) .section {
+    max-width: 1800px !important;
+    margin: 0 auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+
+  /* Product content slightly narrower */
+  .product-form,
+  .product-info,
+  .collection-grid,
+  .product-grid {
+    max-width: 1600px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Sliding Navigation Tabs Section */
+  .sliding-nav-section {
+    width: 100% !important;
+    max-width: none !important;
+    background: var(--glass-surface) !important;
+    backdrop-filter: var(--glass-effect) !important;
+    -webkit-backdrop-filter: var(--glass-effect) !important;
+    border-bottom: var(--glass-border) !important;
+    padding: .5rem 0 !important;
+    margin: 0 !important;
+  }
+
+  .sliding-nav-container {
+    max-width: var(--glass-top-header-max-width) !important;
+    margin: 0 auto !important;
+    padding: 0 var(--page-width-margin) !important;
+  }
+
+  /* Glass Effect Utility Classes */
+  .glass-surface {
+    background: var(--glass-surface);
+    backdrop-filter: var(--glass-effect);
+    -webkit-backdrop-filter: var(--glass-effect);
+    border: 0.5px solid var(--glass-border);
+  }
+  
+  .glass-subtle {
+    background: var(--glass-subtle);
+    backdrop-filter: var(--foundation-backdrop-filter-subtle);
+    -webkit-backdrop-filter: var(--foundation-backdrop-filter-subtle);
+    border: 0.5px solid var(--glass-border);
+  }
+  
+  .glass-medium {
+    background: var(--glass-medium);
+    backdrop-filter: var(--foundation-backdrop-filter-medium);
+    -webkit-backdrop-filter: var(--foundation-backdrop-filter-medium);
+    border: 1px solid var(--glass-border);
+  }
+  
+  .glass-prominent {
+    background: var(--glass-prominent);
+    backdrop-filter: var(--foundation-backdrop-filter-prominent);
+    -webkit-backdrop-filter: var(--foundation-backdrop-filter-prominent);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--foundation-shadow-elevated);
+  }
+
+  /* Foundation Button Styles */
+  .foundation-button-primary {
+    background: var(--foundation-action-primary);
+    color: #ffffff;
+    border: 1px solid var(--foundation-action-primary);
+    border-radius: var(--foundation-radius-lg);
+    padding: 8px var(--foundation-space-md);
+    min-height: var(--foundation-touch-target);
+    font-family: var(--foundation-font-family);
+    font-weight: 500;
+    transition: var(--foundation-transition);
+    box-shadow: var(--foundation-shadow-primary);
+  }
+  
+  .foundation-button-primary:hover {
+    background: var(--foundation-action-hover);
+    border-color: var(--foundation-action-hover);
+    transform: translateY(-1px);
+  }
+  
+  .foundation-button-secondary {
+    background: var(--glass-subtle);
+    color: var(--foundation-text-primary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--foundation-radius-lg);
+    padding: 8px var(--foundation-space-md);
+    min-height: var(--foundation-touch-target);
+    font-family: var(--foundation-font-family);
+    font-weight: 400;
+    transition: var(--foundation-transition);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: inset 0 1px 0 var(--glass-border);
+  }
+  
+  .foundation-button-secondary:hover {
+    background: var(--glass-medium);
+    border-color: var(--glass-border-hover);
+    transform: translateY(-1px);
+  }
+
+.input {
+  width: 100%;
+  padding: 24px 32px;
+  border-radius: 25px;
+  border: 2px solid rgba(139, 92, 246, 0.4);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(45, 27, 105, 0.6) 50%, rgba(0, 0, 0, 0.8) 100%);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  outline: currentcolor;
+  transition: 0.3s;
+  box-shadow: rgba(99, 102, 241, 0.2) 0px 8px 32px, rgba(255, 255, 255, 0.1) 0px 1px 0px inset;
+}
+.input:focus,
+.input:focus-visible {
+  width: 100%;
+  padding: 24px 32px;
+  border-radius: 25px;
+  border: 2px solid rgba(99, 102, 241, 0.8);
+  background: linear-gradient(135deg, rgba(45, 27, 105, 0.9) 0%, rgba(76, 29, 149, 0.7) 50%, rgba(45, 27, 105, 0.9) 100%);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  outline: currentcolor;
+  transition: 0.3s;
+  box-shadow: rgba(99, 102, 241, 0.2) 0px 0px 0px 4px, rgba(99, 102, 241, 0.4) 0px 8px 32px;
+}
+
+.glass-card {
+  background: linear-gradient(135deg,rgba(0,0,0,.75),rgba(5,5,10,.7) 25%,rgba(8,8,12,.65) 50%,rgba(10,10,15,.6) 75%,rgba(0,0,0,.75)),linear-gradient(45deg,rgba(15,10,25,.4),rgba(20,15,30,.35) 30%,rgba(25,20,35,.3) 70%,rgba(15,10,25,.25));
+  backdrop-filter: blur(80px) saturate(180%) brightness(110%);
+  -webkit-backdrop-filter: blur(80px) saturate(180%) brightness(110%);
+  border: 1px solid rgba(76,29,149,.2);
+  border-radius: 32px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05),inset 0 -1px 0 rgba(76,29,149,.08),0 32px 80px rgba(0,0,0,.9),0 20px 50px rgba(0,0,0,.8),0 12px 30px rgba(0,0,0,.7),0 0 80px rgba(76,29,149,.15);
+  transition: all .4s cubic-bezier(.4,0,.2,1);
+  transform: translateZ(0);
+  position: relative;
+}
+
+.glass-card:hover {
+  background: linear-gradient(135deg,rgba(45,27,105,.75),rgba(76,29,149,.7) 25%,rgba(49,46,129,.65) 50%,rgba(99,102,241,.6) 75%,rgba(45,27,105,.7)),linear-gradient(45deg,rgba(255,255,255,.2),rgba(139,92,246,.15) 50%,rgba(255,255,255,.1));
+  border-color: rgba(139,92,246,.8);
+  backdrop-filter: blur(80px) saturate(300%) brightness(130%);
+  box-shadow: inset 0 4px 0 rgba(255,255,255,.4),inset 0 -2px 0 rgba(139,92,246,.3),inset 2px 0 0 rgba(255,255,255,.15),inset -2px 0 0 rgba(139,92,246,.2),0 32px 100px rgba(45,27,105,.8),0 24px 60px rgba(76,29,149,.7),0 16px 40px rgba(139,92,246,.6),0 0 200px rgba(139,92,246,.5),0 0 0 3px rgba(255,255,255,.25);
+  transform: translateY(-12px) scale(1.02);
+}
+
+{% endstyle %}

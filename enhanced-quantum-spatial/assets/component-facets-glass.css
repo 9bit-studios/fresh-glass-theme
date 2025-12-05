@@ -1,0 +1,233 @@
+/* ========================================
+   GLASS ENHANCEMENTS FOR FACETS COMPONENTS
+   Stage 1: CSS Specificity & DOM Alignment Fixes
+   Based on login modal glass design patterns
+======================================== */
+
+/* STAGE 1 CORE ENHANCEMENTS - HIGH SPECIFICITY FOR DOM ALIGNMENT */
+
+/* Enhanced Facets Container - Core glass backdrop */
+.facets.facets--horizontal,
+.facets.facets--drawer,
+.facets.facets--vertical {
+  background: linear-gradient(180deg, 
+    rgba(30, 27, 75, 0.95) 0%, 
+    rgba(45, 27, 105, 0.9) 25%, 
+    rgba(49, 46, 129, 0.85) 50%, 
+    rgba(76, 29, 149, 0.8) 75%, 
+    rgba(30, 27, 75, 0.95) 100%
+  ) !important;
+  backdrop-filter: blur(40px) saturate(200%) brightness(110%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(110%) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(76, 29, 149, 0.3) !important;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(76, 29, 149, 0.2),
+    0 8px 32px rgba(45, 27, 105, 0.4),
+    0 0 40px rgba(76, 29, 149, 0.2) !important;
+}
+
+/* Enhanced Facets Form Wrapper */
+.facets__form-wrapper {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-radius: 14px !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+}
+
+/* Enhanced Facets Form */
+.facets__form {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(15px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(15px) saturate(140%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Enhanced Facets Filters Wrapper */
+.facets__filters-wrapper {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-radius: 10px !important;
+  backdrop-filter: blur(10px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(130%) !important;
+}
+
+/* Enhanced Facets Toggle Button - Desktop slide-out trigger */
+.facets-toggle__button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(25px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(160%) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 16px rgba(45, 27, 105, 0.2) !important;
+}
+
+.facets-toggle__button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 8px 24px rgba(45, 27, 105, 0.3),
+    0 0 20px rgba(76, 29, 149, 0.2) !important;
+}
+
+/* Enhanced Active Facets Buttons */
+span.active-facets__button-inner {
+  color: rgba(255, 255, 255, 0.9) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%) !important;
+  border: 0.5px solid rgba(84, 84, 88, 0.6) !important;
+  backdrop-filter: blur(30px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+              0 1px 4px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 14px !important;
+  padding: 6px 12px !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden;
+}
+
+.active-facets__button:hover .active-facets__button-inner {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+              0 2px 8px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Enhanced Facet Filters Summary */
+.facet-filters__summary {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.facet-filters__summary:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-1px) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+              0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Enhanced Sort Filter */
+.facet-filters__sort {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 6px !important;
+  padding: 6px 12px !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.facet-filters__sort:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  transform: translateY(-1px) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12),
+              0 2px 6px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Enhanced Mobile Facets */
+.mobile-facets__open {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.mobile-facets__open:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+              0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Enhanced Mobile Facets Inner */
+.mobile-facets__inner {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(20, 15, 40, 0.9) 100%) !important;
+  backdrop-filter: blur(30px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(30px) saturate(180%) !important;
+  border-left: 0.5px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.mobile-facets__header {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Enhanced Button States */
+button.facets__button {
+  background: linear-gradient(135deg, rgb(0, 122, 255) 0%, rgb(88, 86, 214) 100%) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 8px !important;
+  color: rgba(255, 255, 255, 1) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+              rgba(0, 0, 0, 0.07) 0px 4px 6px, 
+              rgba(0, 0, 0, 0.06) 0px 2px 4px !important;
+}
+
+button.facets__button:hover {
+  transform: translateY(-1px) scale(1.02) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25),
+              rgba(0, 122, 255, 0.3) 0px 6px 12px,
+              rgba(0, 0, 0, 0.06) 0px 2px 4px !important;
+}
+
+/* Stage 1 Glass Enhancement - Ready for Animation Layer */
+.facets.glass-enhanced {
+  position: relative;
+  overflow: hidden;
+}
+
+.facets.glass-enhanced::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    rgba(76, 29, 149, 0.1) 0%,
+    rgba(99, 102, 241, 0.1) 25%,
+    rgba(139, 92, 246, 0.1) 50%,
+    rgba(76, 29, 149, 0.1) 100%
+  );
+  border-radius: 18px;
+  z-index: -1;
+  animation: glassShimmer 3s ease-in-out infinite;
+}
+
+@keyframes glassShimmer {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* STAGE 1 COMPLETE - Ready for Stage 2 Animation Layer */

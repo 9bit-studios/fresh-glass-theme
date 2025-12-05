@@ -1,0 +1,218 @@
+/* ========================================
+   CLEAR ALL BUTTON COMPREHENSIVE FIXES
+   Resolving alignment, visibility, and functionality issues
+   ======================================== */
+
+/* CRITICAL FIX: Override problematic transform and visibility rules from facets-actions.liquid */
+.facets__clear-all {
+  /* Force visibility and proper positioning - overrides existing CSS */
+  display: flex !important;
+  opacity: 1 !important;
+  transform: none !important;
+  position: relative !important;
+  
+  /* Style matching Framer secondary buttons but with quantum theme */
+  background: var(--unified-quantum-primary, #6366F1) !important;
+  color: white !important;
+  border-radius: 10px !important;
+  border: none !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3) !important;
+  min-height: 44px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+  /* Override Framer button conflicting styles */
+  will-change: auto !important;
+  font-family: var(--framer-font-family, -apple-system, system-ui, sans-serif) !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  
+  /* Ensure proper flex behavior */
+  flex-grow: 1 !important;
+  flex-shrink: 0 !important;
+}
+
+/* CRITICAL: Clear All button active state - no transform conflicts */
+.facets__clear-all.active {
+  display: flex !important;
+  opacity: 1 !important;
+  transform: none !important;
+  position: relative !important;
+}
+
+/* CRITICAL: Override @starting-style that causes viewport issues */
+@supports not (animation-timeline: auto) {
+  .facets__clear-all {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Override starting-style conflicts completely */
+.facets__clear-all {
+  animation: none !important;
+}
+
+@starting-style {
+  .facets__clear-all {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  
+  .facets__clear-all.active {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Clear All hover effects - override Framer conflicts */
+.facets__clear-all:hover {
+  background: var(--unified-quantum-secondary, #8B5CF6) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4) !important;
+  /* Prevent Framer secondary button transform conflicts */
+  will-change: transform !important;
+}
+
+/* Clear All active/pressed state - prevent viewport issues */
+.facets__clear-all:active {
+  transform: translateY(0) scale(0.98) !important;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* DESKTOP FIX: Force show Clear All button in horizontal layout */
+.facets--horizontal .facets__clear-all {
+  @media screen and (min-width: 750px) {
+    /* Show as link-style in horizontal desktop layout */
+    background: transparent !important;
+    color: var(--unified-quantum-primary, #6366F1) !important;
+    box-shadow: none !important;
+    padding: 0.5rem 1rem !important;
+    text-decoration: underline transparent !important;
+    text-underline-offset: 0.25rem !important;
+    border-radius: 6px !important;
+    min-height: 44px !important;
+    
+    /* CRITICAL: Ensure visibility in desktop horizontal view */
+    display: flex !important;
+    opacity: 1 !important;
+    transform: none !important;
+    position: relative !important;
+    
+    /* Override any conflicting display: none rules */
+    flex-grow: 0 !important;
+    visibility: visible !important;
+  }
+}
+
+.facets--horizontal .facets__clear-all:hover {
+  @media screen and (min-width: 750px) {
+    color: var(--unified-quantum-secondary, #8B5CF6) !important;
+    text-decoration-color: var(--unified-quantum-secondary, #8B5CF6) !important;
+    background: rgba(99, 102, 241, 0.1) !important;
+    transform: none !important;
+  }
+}
+
+/* CRITICAL: Force show facets actions container in desktop horizontal view */
+.facets--horizontal .facets__actions {
+  @media screen and (min-width: 750px) {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    gap: 1rem !important;
+    align-items: center !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    visibility: visible !important;
+    order: 1 !important;
+  }
+}
+
+/* FUNCTIONALITY FIX: Ensure Clear All button click events work */
+.facets__clear-all[data-url],
+facet-remove-component .facets__clear-all {
+  /* Ensure click events work properly */
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+  
+  /* Visual feedback for functionality */
+  position: relative !important;
+}
+
+/* Focus state for accessibility */
+.facets__clear-all:focus {
+  outline: 2px solid var(--unified-quantum-primary, #6366F1) !important;
+  outline-offset: 2px !important;
+  border-radius: 6px !important;
+}
+
+/* Ensure the facet-remove-component wrapper doesn't interfere */
+facet-remove-component {
+  display: contents !important;
+  position: relative !important;
+}
+
+/* Debug: Ensure proper DOM flow */
+.facets__actions--active {
+  position: relative !important;
+}
+
+.facets__actions--active .facets__clear-all {
+  display: flex !important;
+  opacity: 1 !important;
+  transform: none !important;
+  position: relative !important;
+}
+
+/* Mobile fixes */
+@media (max-width: 749px) {
+  .facets__clear-all {
+    flex-basis: auto !important;
+    max-width: none !important;
+  }
+  
+  .mobile-facets__footer .facets__clear-all,
+  .facets__footer .facets__clear-all {
+    min-width: 120px !important;
+  }
+}
+
+/* Additional Framer button override to prevent conflicts */
+.facets__clear-all.button-secondary {
+  /* Force override Framer secondary button styles that might interfere */
+  background: var(--unified-quantum-primary, #6366F1) !important;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3) !important;
+}
+
+.facets__clear-all.button-secondary:hover {
+  background: var(--unified-quantum-secondary, #8B5CF6) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Desktop horizontal specific overrides for Framer secondary styling */
+.facets--horizontal .facets__clear-all.button-secondary {
+  @media screen and (min-width: 750px) {
+    background: transparent !important;
+    box-shadow: none !important;
+    color: var(--unified-quantum-primary, #6366F1) !important;
+  }
+}
+
+/* Final critical override for any lingering display issues */
+.facets__clear-all,
+.facets__clear-all.active,
+.facets__clear-all.button-secondary {
+  visibility: visible !important;
+  display: flex !important;
+  opacity: 1 !important;
+}

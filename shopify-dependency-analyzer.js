@@ -10,7 +10,7 @@ const path = require('path');
 
 class ShopifyDependencyAnalyzer {
   constructor(themeDir) {
-    this.themeDir = themeDir || '/Users/pennyplatt/9bit-studios/petersen-portal/petersen-glass-theme';
+    this.themeDir = themeDir || '/Users/pennyplatt/Documents/9BitStudios/petersen-portal/petersen-glass-theme';
     this.dependencies = new Map();
     this.usageMap = new Map();
     this.redundancies = new Map();

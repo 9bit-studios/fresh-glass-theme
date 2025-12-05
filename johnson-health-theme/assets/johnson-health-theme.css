@@ -1,0 +1,420 @@
+/**
+ * JOHNSON HEALTH TECH ENTERPRISE THEME
+ * Apple HIG Dark Mode with Glass Blur Effects
+ * Based on Figma Dark Mode Design System
+ */
+
+:root {
+  /* === BRAND COLORS (Johnson Health Tech Red - Use Sparingly) === */
+  --jht-red: #CC0000;
+  --jht-red-hover: #761616;
+
+  /* === RICH BLACK BACKGROUNDS (Apple Enterprise Style) === */
+  --black-pure: #080808;
+  --black-rich: #0B010D;
+  --black-container: #160918;
+
+  /* === GLASS OVERLAY OPACITIES === */
+  --glass-2: rgba(255, 255, 255, 0.02);
+  --glass-4: rgba(255, 255, 255, 0.04);
+  --glass-7: rgba(255, 255, 255, 0.07);
+  --glass-8: rgba(255, 255, 255, 0.08);
+  --glass-10: rgba(255, 255, 255, 0.10);
+  --glass-11: rgba(255, 255, 255, 0.11);
+  --glass-20: rgba(255, 255, 255, 0.20);
+
+  /* === TEXT HIERARCHY (Translucent for Glass Effect) === */
+  --text-primary: rgba(255, 255, 255, 0.90);
+  --text-secondary: rgba(255, 255, 255, 0.76);
+  --text-tertiary: rgba(255, 255, 255, 0.60);
+  --text-muted: rgba(255, 255, 255, 0.50);
+  --text-subtle: rgba(255, 255, 255, 0.20);
+
+  /* === BORDERS (Subtle Glass Edges) === */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-default: rgba(255, 255, 255, 0.10);
+  --border-prominent: rgba(255, 255, 255, 0.20);
+  --border-ghost: rgba(255, 255, 255, 0.40);
+  --border-solid: rgba(255, 255, 255, 0.90);
+
+  /* === BLUR EFFECTS (Apple Liquid Glass) === */
+  --blur-light: blur(10px);
+  --blur-medium: blur(20px);
+  --blur-heavy: blur(50px);
+
+  /* === SYSTEM BLUE (For Cart & Secondary UI Only) === */
+  --system-blue: #007AFF;
+  --system-blue-hover: #0063CC;
+
+  /* === SHADOWS (Apple HIG with Inset Highlights) === */
+  --shadow-sm: 0px 1px 1px rgba(0, 0, 0, 0.03),
+               0px 0px 2px rgba(0, 0, 0, 0.1),
+               0px 5px 5px rgba(0, 0, 0, 0.03);
+  --shadow-glass: 0px 1px 1px rgba(0, 0, 0, 0.03),
+                  0px 0px 2px rgba(0, 0, 0, 0.1),
+                  0px 5px 5px rgba(0, 0, 0, 0.03),
+                  inset 0px 8px 10px rgba(246, 249, 255, 0.2);
+
+  /* === TRANSITIONS (Smooth, Not Blinky) === */
+  --transition-smooth: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* === SPACING === */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 48px;
+}
+
+/* === BODY === */
+body {
+  background: var(--black-pure) !important;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'SF Compact', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  font-weight: 457;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: -0.014em;
+}
+
+/* === TYPOGRAPHY === */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: 556;
+  letter-spacing: -0.025em;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+/* === PRIMARY RED BUTTONS (Add to Cart, Buy Now, Checkout ONLY) === */
+.product-form__submit,
+button[name="add"],
+.cart__checkout-button.button,
+input[type="submit"][name="checkout"],
+.shopify-payment-button__button--unbranded {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px !important;
+  gap: 8px;
+  min-height: 48px;
+
+  background: var(--jht-red) !important;
+  border: none !important;
+  border-radius: 8px;
+
+  font-family: 'SF Compact', -apple-system, sans-serif;
+  font-style: normal;
+  font-weight: 457;
+  font-size: 13px;
+  line-height: 20px;
+  color: #FFFFFF !important;
+  text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: var(--blur-light);
+
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+}
+
+.product-form__submit:hover,
+button[name="add"]:hover,
+.cart__checkout-button.button:hover,
+input[type="submit"][name="checkout"]:hover,
+.shopify-payment-button__button--unbranded:hover {
+  background: var(--jht-red-hover) !important;
+  transform: translateY(-1px);
+}
+
+.product-form__submit:active,
+button[name="add"]:active,
+.cart__checkout-button.button:active {
+  transform: translateY(0) scale(0.98);
+  transition: all var(--transition-fast);
+}
+
+/* === GLASS BUTTONS (Secondary, Ghost, All Other Buttons) === */
+.button,
+.button--secondary,
+.quantity-selector .quantity-plus,
+.quantity-selector .quantity-minus,
+.product-details .quantity-selector .quantity-plus,
+.search-modal__button.button-unstyled,
+.header-actions__action,
+.cart-items__remove.button--tertiary,
+.shopify-payment-button__more-options,
+.variant-picker button,
+.header__icon,
+input[type="button"],
+input[type="submit"]:not([name="checkout"]),
+button:not([name="add"]):not(.cart__checkout-button):not(.product-form__submit) {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6px 16px;
+  gap: 8px;
+
+  background: var(--glass-8) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: 8px;
+
+  font-family: 'SF Compact', -apple-system, sans-serif;
+  font-style: normal;
+  font-weight: 457;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--text-primary) !important;
+
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: var(--blur-light);
+
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+}
+
+.button:hover,
+.button--secondary:hover,
+.quantity-selector .quantity-plus:hover,
+.quantity-selector .quantity-minus:hover,
+.search-modal__button:hover,
+.header-actions__action:hover,
+.cart-items__remove:hover,
+.variant-picker button:hover,
+.header__icon:hover,
+button:not([name="add"]):not(.cart__checkout-button):not(.product-form__submit):hover {
+  background: var(--glass-10) !important;
+  border-color: var(--border-prominent) !important;
+  color: var(--text-primary) !important;
+}
+
+/* === GHOST BUTTONS (Border Only, Transparent) === */
+.button--ghost,
+a.button--link {
+  background: transparent !important;
+  border: 1px solid var(--border-solid) !important;
+  color: var(--text-primary) !important;
+}
+
+.button--ghost:hover,
+a.button--link:hover {
+  background: var(--glass-8) !important;
+  border-color: var(--border-subtle) !important;
+  color: var(--text-muted) !important;
+}
+
+/* === SELECTED STATE (Glass Container Background) === */
+.button--selected,
+.variant-picker button.selected,
+.tab-button--active {
+  background: var(--black-container) !important;
+  border: none !important;
+  color: var(--text-primary) !important;
+}
+
+/* === CART BUBBLE (System Blue) === */
+.cart-bubble,
+.cart-count-bubble,
+[class*="cart-notification-bubble"] {
+  background: var(--system-blue) !important;
+  color: #FFFFFF !important;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 2px 6px;
+  min-width: 18px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 122, 255, 0.4);
+}
+
+/* === LINKS (Neutral Hover, No Red) === */
+a:not(.button):hover {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-smooth);
+}
+
+/* === INPUTS === */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+textarea,
+select,
+.field__input {
+  background: var(--glass-7);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text-primary);
+  font-size: 16px;
+  transition: all var(--transition-smooth);
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  background: var(--glass-10);
+  border-color: var(--border-prominent);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  background: var(--glass-10);
+  border-color: var(--system-blue);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.12);
+}
+
+/* === HEADER === */
+.header,
+.header-wrapper {
+  background: var(--glass-8);
+  backdrop-filter: var(--blur-heavy);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* === PRODUCT & CART SPACING === */
+.product,
+.product__info-wrapper {
+  padding: var(--space-3xl) var(--space-xl);
+}
+
+.cart {
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+.product__title {
+  margin-bottom: var(--space-xl);
+  font-size: clamp(28px, 4vw, 42px);
+}
+
+.product-form {
+  margin-top: var(--space-xl);
+}
+
+.product-form__buttons {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.cart-item {
+  margin-bottom: var(--space-lg);
+}
+
+.cart__footer {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border-default);
+}
+
+/* === GLASS EFFECT CONTAINERS === */
+.modal,
+.drawer,
+.popover,
+.dropdown-menu {
+  background: var(--black-container);
+  backdrop-filter: var(--blur-heavy);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  box-shadow: var(--shadow-glass);
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--glass-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-10);
+  border-radius: 7px;
+  border: 3px solid var(--black-pure);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--glass-20);
+}
+
+/* === SELECTION === */
+::selection {
+  background: rgba(204, 0, 0, 0.25);
+  color: #ffffff;
+}
+
+/* === FOCUS VISIBLE === */
+*:focus-visible {
+  outline: 2px solid var(--system-blue);
+  outline-offset: 3px;
+}
+
+/* === BADGES === */
+.badge--sale {
+  background: var(--jht-red);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+/* === QUANTITY INPUT === */
+.quantity__input {
+  background: var(--glass-7);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  text-align: center;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 8px;
+  min-width: 60px;
+}
+
+/* === MEDIA QUERIES === */
+@media (max-width: 768px) {
+  .product,
+  .cart {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .product-form__buttons {
+    flex-direction: column;
+  }
+
+  .product-form__buttons > * {
+    width: 100%;
+  }
+}
+
+/* === UTILITY: Remove Gradient Overlays === */
+.button::before,
+.button::after,
+button::before,
+button::after {
+  display: none !important;
+}
+
+/* === APPLE ENTERPRISE AESTHETIC === */
+.page-container,
+.main-content {
+  background: linear-gradient(180deg,
+    var(--black-pure) 0%,
+    var(--black-rich) 50%,
+    var(--black-pure) 100%
+  );
+}

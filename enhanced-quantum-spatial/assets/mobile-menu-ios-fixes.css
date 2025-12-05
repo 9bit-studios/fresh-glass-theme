@@ -1,0 +1,652 @@
+/* ========================================
+   MOBILE MENU iOS FIXES
+   Specific fixes for iPhone touch interactions and visibility issues
+   ======================================== */
+
+/* ========================================
+   CRITICAL iOS SAFARI FIXES
+   ======================================== */
+
+/* Ensure mobile menu elements are visible and clickable on iOS */
+.mega-dropdown,
+.mobile-menu-panel,
+.mobile-menu-overlay {
+  -webkit-transform: translateZ(0) !important;
+  transform: translateZ(0) !important;
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+  will-change: transform, opacity !important;
+}
+
+/* Fix iOS touch event handling */
+.dropdown-toggle,
+.mobile-menu-toggle,
+.hamburger-line,
+.menu-close,
+.menu-link {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  cursor: pointer !important;
+  touch-action: manipulation !important;
+}
+
+/* ========================================
+   MOBILE MENU VISIBILITY FIXES
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Force mobile dropdown visibility */
+  .mega-dropdown {
+    position: fixed !important;
+    top: 60px !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    height: calc(100vh - 60px) !important;
+    max-height: calc(100vh - 60px) !important;
+    background: rgba(10, 10, 10, 0.98) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    z-index: 9999 !important;
+    
+    /* Critical iOS fixes */
+    -webkit-overflow-scrolling: touch !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    
+    /* Ensure content is visible */
+    display: none !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding: 24px !important;
+    
+    /* iOS safe area support */
+    padding-top: max(24px, env(safe-area-inset-top)) !important;
+    padding-bottom: max(24px, env(safe-area-inset-bottom)) !important;
+  }
+  
+  /* Show when active with proper animation */
+  .mega-dropdown.active {
+    display: grid !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+    animation: mobileSlideIn 0.3s ease-out !important;
+  }
+  
+  @keyframes mobileSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Enhanced dropdown columns for mobile */
+  .dropdown-column,
+  .glass-dropdown-column {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+  
+  /* Ensure column headers are visible */
+  .column-header,
+  .glass-column-header {
+    color: #6366F1 !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.8px !important;
+    margin-bottom: 16px !important;
+    padding-bottom: 8px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* Fix dropdown item visibility and interaction */
+  .dropdown-item,
+  .glass-dropdown-item {
+    display: flex !important;
+    align-items: center !important;
+    padding: 16px 20px !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 12px !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    min-height: 52px !important;
+    
+    /* Critical iOS visibility fixes */
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+  
+  .dropdown-item:hover,
+  .glass-dropdown-item:hover,
+  .dropdown-item:focus,
+  .glass-dropdown-item:focus,
+  .dropdown-item:active,
+  .glass-dropdown-item:active {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: rgba(255, 255, 255, 1) !important;
+    transform: translateX(4px) !important;
+  }
+  
+  /* ========================================
+     HAMBURGER BUTTON FIXES
+     ======================================== */
+  
+  /* Ensure hamburger button is visible and clickable */
+  .dropdown-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    
+    /* iOS touch fixes */
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1) !important;
+    position: relative !important;
+    z-index: 100 !important;
+    cursor: pointer !important;
+    
+    /* Remove text content on mobile */
+    font-size: 0 !important;
+    overflow: hidden !important;
+  }
+  
+  /* Hide text content in hamburger button */
+  .dropdown-toggle span:not(.hamburger-lines) {
+    display: none !important;
+  }
+  
+  .dropdown-toggle .dropdown-arrow {
+    display: none !important;
+  }
+  
+  /* Create hamburger lines if they don't exist */
+  .dropdown-toggle::before,
+  .dropdown-toggle::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1px;
+    transition: all 0.3s ease;
+  }
+  
+  .dropdown-toggle::before {
+    top: 16px;
+    box-shadow: 0 6px 0 rgba(255, 255, 255, 0.9);
+  }
+  
+  .dropdown-toggle::after {
+    bottom: 16px;
+  }
+  
+  /* Animate hamburger when active */
+  .dropdown-toggle[aria-expanded="true"]::before {
+    transform: rotate(45deg) translate(4px, 4px);
+    box-shadow: none;
+  }
+  
+  .dropdown-toggle[aria-expanded="true"]::after {
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+  
+  /* ========================================
+     PREVENT BODY SCROLL WHEN MENU OPEN
+     ======================================== */
+  
+  body.mobile-menu-open {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    overflow: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    height: 100vh !important;
+    width: 100vw !important;
+  }
+  
+  /* ========================================
+     Z-INDEX LAYERING
+     ======================================== */
+  
+  .glass-top-header {
+    z-index: 100 !important;
+  }
+  
+  .sliding-nav-container {
+    z-index: 95 !important;
+  }
+  
+  .mega-dropdown {
+    z-index: 9999 !important;
+  }
+  
+  .mobile-menu-overlay {
+    z-index: 9998 !important;
+  }
+}
+
+/* ========================================
+   ADDITIONAL iOS SPECIFIC FIXES
+   ======================================== */
+
+/* Fix viewport issues on iOS */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    .mega-dropdown {
+      min-height: -webkit-fill-available !important;
+      height: -webkit-fill-available !important;
+    }
+    
+    /* Fix iOS keyboard issues */
+    .mega-dropdown {
+      position: fixed !important;
+      top: 60px !important;
+      bottom: 0 !important;
+      height: auto !important;
+    }
+  }
+}
+
+/* ========================================
+   HIGH CONTRAST AND ACCESSIBILITY
+   ======================================== */
+
+@media (prefers-contrast: high) {
+  @media (max-width: 768px) {
+    .dropdown-item,
+    .glass-dropdown-item {
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    }
+    
+    .column-header,
+    .glass-column-header {
+      border-bottom-color: rgba(255, 255, 255, 0.5) !important;
+    }
+  }
+}
+
+/* ========================================
+   SLIDING NAV WRAPPER BACKGROUND FIXES
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Default sliding nav container - subtle background to prevent content bleeding */
+  body .sliding-nav-container,
+  .shopify-section .sliding-nav-container,
+  #sliding-nav.sliding-nav-container {
+    background: #0A0A0A !important; /* Match page background exactly */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    padding: 0.75rem 0 !important;
+    margin: 0 !important;
+    transition: all 0.2s ease !important; /* Faster transition */
+  }
+
+  /* When nav becomes sticky (header hidden), add background and adjust body padding */
+  body.header-hidden {
+    padding-top: 70px !important; /* Slightly more padding to account for nav height */
+  }
+
+  /* Filters prominent state - minimal padding to prevent excessive spacing */
+  body.filters-prominent {
+    padding-top: 70px !important; /* Reduced: just enough for sticky nav */
+  }
+
+  /* Minimal padding in filters mode - remove excessive spacing */
+  body.nav-state-filters .sliding-nav-container {
+    padding: 0.25rem 0 0 0 !important; /* Minimal top padding, no bottom padding */
+    margin-bottom: 0 !important; /* Remove any margin that creates gap */
+  }
+
+  /* Ensure nav tabs wrapper has minimal padding */
+  body.nav-state-filters .nav-tabs-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  body.nav-state-filters .nav-tabs-scroll {
+    padding: 0 1rem !important; /* Only horizontal padding for tabs */
+    margin: 0 !important;
+  }
+
+  /* Ensure sticky nav has proper background when fixed */
+  body .sliding-nav-container[style*="position: fixed"],
+  body .sliding-nav-container.nav-sticky-mode,
+  .shopify-section .sliding-nav-container.nav-sticky-mode,
+  #sliding-nav.sliding-nav-container.nav-sticky-mode {
+    background: rgba(8, 4, 21, 0.9) !important;
+    backdrop-filter: blur(20px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1600 !important; /* Much higher to compete with facets (1500) */
+    padding: 0.75rem 0 !important; /* Ensure proper padding */
+  }
+
+  /* Ensure nav tabs are visible when sticky */
+  .sliding-nav-container.nav-sticky-mode .nav-tabs-scroll,
+  .sliding-nav-container[style*="position: fixed"] .nav-tabs-scroll {
+    padding: 0 1rem !important;
+    position: relative !important;
+    z-index: 1601 !important;
+  }
+
+  .sliding-nav-container.nav-sticky-mode .nav-tab,
+  .sliding-nav-container.nav-sticky-mode .glass-tab,
+  .sliding-nav-container[style*="position: fixed"] .nav-tab,
+  .sliding-nav-container[style*="position: fixed"] .glass-tab {
+    position: relative !important;
+    z-index: 1602 !important;
+  }
+
+  /* Special styling for filters mode */
+  .sliding-nav-container.filters-mode {
+    background: rgba(8, 4, 21, 0.85) !important;
+    backdrop-filter: blur(15px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(15px) saturate(130%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    z-index: 1550 !important; /* Slightly lower to allow filters on top */
+  }
+
+  /* CRITICAL: Keep filter elements visible and positioned below nav tabs in FILTERS state */
+  body.nav-state-filters .facets-container,
+  body.nav-state-filters .glass-filter-bar-container,
+  body.nav-state-filters .facets-block-wrapper,
+  body.nav-state-filters .collection-filters,
+  body.nav-state-filters .facets-toggle__button,
+  body.nav-state-filters .mobile-facets,
+  body.nav-state-filters .facets,
+  body.nav-state-filters .facets-toggle {
+    position: static !important; /* Ensure normal document flow */
+    top: auto !important;
+    z-index: 1520 !important; /* Below nav tabs but above content */
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important; /* Prevent any transforms that hide elements */
+    margin-top: 0 !important;
+    padding: 0.5rem 1rem !important;
+    background: rgba(10, 10, 10, 0.95) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: none !important; /* Remove red border line */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  }
+
+  /* Ensure facets toggle button is clearly visible and accessible - prevent jumps */
+  body.nav-state-filters .facets-toggle__button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important; /* Changed from static to prevent layout shifts */
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin: 0.25rem 1rem 0.5rem 1rem !important; /* Reduced top margin to prevent jump */
+    padding: 0.75rem 1.25rem !important;
+    background: rgba(8, 4, 21, 0.9) !important;
+    border: 1px solid rgba(93, 90, 246, 0.4) !important;
+    border-radius: 8px !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    min-height: 44px !important; /* Apple HIG compliance */
+    cursor: pointer !important;
+    z-index: 1525 !important;
+    transform: none !important; /* Prevent any transforms */
+    transition: none !important; /* Remove transitions that cause jumps */
+  }
+
+  /* Container for filter elements - ensure proper spacing and no overlap */
+  body.nav-state-filters .facets-wrapper,
+  body.nav-state-filters .collection-filters-wrapper {
+    margin-top: 0 !important;
+    padding-top: 0.5rem !important;
+    background: transparent !important;
+    z-index: 1520 !important;
+  }
+
+  .sliding-nav-inner {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+  }
+
+  .nav-tabs-wrapper {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .nav-tabs-scroll {
+    background: transparent !important;
+    padding: 0 1rem !important;
+  }
+
+  /* Clean tab styling with minimal glass borders */
+  .nav-tab,
+  .glass-tab {
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0.5rem 1rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-size: 0.875rem !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .nav-tab:hover,
+  .glass-tab:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    transform: none !important;
+    box-shadow: none !important;
+    color: rgba(255, 255, 255, 1) !important;
+  }
+
+  .nav-tab.active,
+  .glass-tab.active {
+    background: rgba(93, 90, 246, 0.2) !important;
+    border: 1px solid rgba(93, 90, 246, 0.4) !important;
+    color: rgba(255, 255, 255, 1) !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 2px 8px rgba(93, 90, 246, 0.2) !important;
+  }
+}
+
+/* ========================================
+   PURPLE MARGIN/BACKGROUND FIX
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Ensure no purple margins/backgrounds show through */
+  body {
+    background: #0A0A0A !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  html {
+    background: #0A0A0A !important;
+  }
+
+  /* Fix viewport issues */
+  .shopify-section,
+  .section {
+    background: transparent !important;
+  }
+
+  /* Ensure header container has proper background */
+  .glass-header-container {
+    background: transparent !important;
+    padding: 12px 16px !important;
+  }
+}
+
+/* ========================================
+   ENHANCED HAMBURGER TOUCH TARGETS
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Improve hamburger menu touch targets - Apple HIG compliant */
+  .dropdown-toggle {
+    padding: 16px 20px !important;
+    min-height: 44px !important;
+    min-width: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+
+    /* Improve touch responsiveness */
+    touch-action: manipulation !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+
+  .dropdown-toggle:hover,
+  .dropdown-toggle:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 1) !important;
+    transform: none !important;
+  }
+
+  .dropdown-toggle:active {
+    background: rgba(255, 255, 255, 0.15) !important;
+    transform: scale(0.98) !important;
+  }
+
+  /* Ensure hamburger icon is properly sized */
+  .dropdown-toggle svg {
+    width: 20px !important;
+    height: 20px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Improve dropdown arrow visibility */
+  .dropdown-arrow {
+    width: 16px !important;
+    height: 16px !important;
+    opacity: 0.8 !important;
+  }
+
+  /* Better spacing for hamburger text */
+  .dropdown-toggle span {
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* ========================================
+   THREE-STATE NAVIGATION DEBUG
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Debug: Visual indicators for navigation states */
+  body.nav-state-full::before {
+    content: "NAV STATE: FULL";
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: green;
+    color: white;
+    padding: 4px 8px;
+    font-size: 10px;
+    z-index: 9999;
+    border-radius: 4px;
+  }
+
+  body.nav-state-nav-only::before {
+    content: "NAV STATE: NAV ONLY";
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: orange;
+    color: white;
+    padding: 4px 8px;
+    font-size: 10px;
+    z-index: 9999;
+    border-radius: 4px;
+  }
+
+  body.nav-state-filters::before {
+    content: "NAV STATE: FILTERS";
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: purple;
+    color: white;
+    padding: 4px 8px;
+    font-size: 10px;
+    z-index: 9999;
+    border-radius: 4px;
+  }
+
+  /* Debug: Minimal highlight for sticky nav - reduced visual impact */
+  .sliding-nav-container.nav-sticky-mode {
+    box-shadow: 0 0 0 1px rgba(255, 0, 0, 0.3) !important; /* Subtle red outline */
+  }
+
+  /* Debug: Minimal highlight for filters mode - reduced visual impact */
+  .sliding-nav-container.filters-mode {
+    box-shadow: 0 0 0 1px rgba(128, 0, 128, 0.3) !important; /* Subtle purple outline */
+  }
+}
+
+/* ========================================
+   DEBUGGING HELPERS
+   ======================================== */
+
+/* Temporary debug outline - remove in production */
+/*.mega-dropdown * {
+  outline: 1px solid rgba(255, 0, 0, 0.3) !important;
+}*/

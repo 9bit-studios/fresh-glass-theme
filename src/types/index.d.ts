@@ -1,5 +1,5 @@
 /**
- * Unified Type Definitions for Petersen Games Fresh Glass Theme
+ * Unified Type Definitions for Shopify Fresh Glass Theme
  * Priority Order: Apple Intelligence → Foundation → Glass → Shopify
  * 
  * This file consolidates all type definitions with proper priority chain

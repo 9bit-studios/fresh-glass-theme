@@ -1,0 +1,675 @@
+{% comment %}
+  Quantum Spatial Component Showcase
+  Displays all 11 Framer components + Glass Navigation System
+{% endcomment %}
+
+<div class="component-showcase-page">
+  
+  <!-- Page Header -->
+  <div class="showcase-header">
+    <h1 class="hig-title-large showcase-title">Quantum Spatial Design System</h1>
+    <p class="hig-body showcase-description">Complete showcase of 11 Framer components with Apple HIG typography and oil slick glass styling</p>
+  </div>
+
+  <!-- Component Grid -->
+  <div class="showcase-grid">
+
+    <!-- Section 1: Buttons -->
+    <section class="showcase-section">
+      <h2 class="hig-headline section-title">Button Components</h2>
+      <div class="showcase-row">
+        
+        <!-- Component 1: Framer Purple Button -->
+        <div class="showcase-card">
+          <h3 class="hig-title3 component-title">1. Framer Purple Button</h3>
+          <div class="component-demo">
+            <button class="btn-framer-purple">Get Started</button>
+            <button class="btn-framer-purple" style="opacity: 0.7;">Hover State</button>
+            <button class="btn-framer-purple" style="transform: scale(0.98);">Active State</button>
+          </div>
+          <div class="component-specs">
+            <span class="spec-item">rgb(97, 63, 231)</span>
+            <span class="spec-item">10px vertical padding</span>
+            <span class="spec-item">3D shadow</span>
+          </div>
+        </div>
+
+        <!-- Component 2: Secondary Oil Slick Button -->
+        <div class="showcase-card">
+          <h3 class="hig-title3 component-title">2. Secondary Oil Slick Button</h3>
+          <div class="component-demo">
+            <button class="btn-secondary-oil-slick">Secondary Action</button>
+            <button class="btn-secondary-oil-slick" style="background: rgba(139, 69, 19, 0.15);">Hover State</button>
+            <button class="btn-secondary-oil-slick" style="transform: scale(0.98);">Active State</button>
+          </div>
+          <div class="component-specs">
+            <span class="spec-item">Deep purple gradient</span>
+            <span class="spec-item">Glassmorphic border</span>
+            <span class="spec-item">Backdrop blur</span>
+          </div>
+        </div>
+
+        <!-- Component 3: Blue Glow Button -->
+        <div class="showcase-card">
+          <h3 class="hig-title3 component-title">3. Blue Glow Button</h3>
+          <div class="component-demo">
+            <button class="btn-blue-glow">Blue Glow</button>
+            <button class="btn-blue-glow" style="box-shadow: 0 0 20px rgba(0, 122, 255, 0.6);">Hover State</button>
+            <button class="btn-blue-glow" style="transform: scale(0.98);">Active State</button>
+          </div>
+          <div class="component-specs">
+            <span class="spec-item">Multi-layer glow</span>
+            <span class="spec-item">Inset borders</span>
+            <span class="spec-item">3D depth</span>
+          </div>
+        </div>
+
+        <!-- Component 4: Compact Gradient Button -->
+        <div class="showcase-card">
+          <h3 class="hig-title3 component-title">4. Compact Gradient Button</h3>
+          <div class="component-demo">
+            <button class="btn-compact-gradient">Compact</button>
+            <button class="btn-compact-gradient" style="opacity: 0.8;">Hover State</button>
+            <button class="btn-compact-gradient" style="transform: scale(0.98);">Active State</button>
+          </div>
+          <div class="component-specs">
+            <span class="spec-item">Purple-to-blue gradient</span>
+            <span class="spec-item">8px vertical padding</span>
+            <span class="spec-item">Compact sizing</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Cards -->
+    <section class="showcase-section">
+      <h2 class="hig-headline section-title">Card Components</h2>
+      <div class="showcase-row">
+        
+        <!-- Component 5: Continue Watching Card -->
+        <div class="showcase-card wide">
+          <h3 class="hig-title3 component-title">5. Continue Watching Card</h3>
+          <div class="component-demo">
+            <div class="continue-watching-card">
+              <div class="watching-card-image">
+                <div style="background: linear-gradient(45deg, #667eea, #764ba2); height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">Sample Content</div>
+              </div>
+              <div class="watching-card-content">
+                <h4 class="watching-card-title">Sample Video Title</h4>
+                <p class="watching-card-meta">12:34 / 45:67</p>
+                <div class="watching-progress-bar">
+                  <div class="watching-progress-fill" style="width: 65%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="component-specs">
+            <span class="spec-item">Progress tracking</span>
+            <span class="spec-item">280px width</span>
+            <span class="spec-item">Glassmorphic styling</span>
+          </div>
+        </div>
+
+        <!-- Component 8: Product Card System -->
+        <div class="showcase-card wide">
+          <h3 class="hig-title3 component-title">8. Product Card System</h3>
+          <div class="component-demo">
+            <div class="product-card-framer">
+              <div class="product-image-container">
+                <div style="background: linear-gradient(45deg, #f093fb, #f5576c); height: 200px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">Product Image</div>
+                <span class="product-badge sale-badge">Sale</span>
+              </div>
+              <div class="product-info">
+                <h4 class="product-title">Sample Product Title</h4>
+                <div class="product-meta">
+                  <span class="product-vendor">Petersen Games</span>
+                </div>
+                <div class="product-pricing">
+                  <span class="product-price">$29.99</span>
+                </div>
+                <button class="btn-add-to-cart">
+                  <span class="btn-text">Add to Cart</span>
+                  <span class="btn-icon">🛒</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="component-specs">
+            <span class="spec-item">Dual variant system</span>
+            <span class="spec-item">300px base width</span>
+            <span class="spec-item">State management</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Navigation & Interaction -->
+    <section class="showcase-section">
+      <h2 class="hig-headline section-title">Navigation Components</h2>
+      <div class="showcase-row">
+        
+        <!-- Component 6: Pill Filter Button -->
+        <div class="showcase-card">
+          <h3 class="hig-title3 component-title">6. Pill Filter Button</h3>
+          <div class="component-demo">
+            <button class="pill-filter-btn">All Games</button>
+            <button class="pill-filter-btn active">Active Filter</button>
+            <button class="pill-filter-btn" style="opacity: 0.7;">Miniatures</button>
+          </div>
+          <div class="component-specs">
+            <span class="spec-item">Pill shape</span>
+            <span class="spec-item">6px vertical padding</span>
+            <span class="spec-item">Selection states</span>
+          </div>
+        </div>
+
+        <!-- Component 9: Horizontal Navigation Menu -->
+        <div class="showcase-card wide">
+          <h3 class="hig-title3 component-title">9. Horizontal Navigation Menu</h3>
+          <div class="component-demo">
+            <nav class="horizontal-nav-menu">
+              <div class="nav-tabs-container">
+                <div class="nav-tab active">Home</div>
+                <div class="nav-tab">Products</div>
+                <div class="nav-tab">Collections</div>
+                <div class="nav-tab">About</div>
+              </div>
+              <button class="mobile-menu-toggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+              </button>
+            </nav>
+          </div>
+          <div class="component-specs">
+            <span class="spec-item">Responsive collapse</span>
+            <span class="spec-item">Scrollable tabs</span>
+            <span class="spec-item">Mobile hamburger</span>
+          </div>
+        </div>
+
+        <!-- Component 11: Menu Item List -->
+        <div class="showcase-card">
+          <h3 class="hig-title3 component-title">11. Menu Item List</h3>
+          <div class="component-demo">
+            <div class="menu-item-container">
+              <div class="menu-item selected">
+                <div class="menu-item-content">
+                  <div class="menu-item-logo figma visible">
+                    <div class="logo-part-1"></div>
+                    <div class="logo-part-2"></div>
+                    <div class="logo-part-3"></div>
+                  </div>
+                  <div class="menu-item-title">Design System</div>
+                </div>
+                <div class="menu-item-checkbox checked">
+                  <div class="menu-item-check"></div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-item-container">
+              <div class="menu-item unselected">
+                <div class="menu-item-content">
+                  <div class="menu-item-title">Dashboard</div>
+                </div>
+                <div class="menu-item-checkbox">
+                  <div class="menu-item-check"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="component-specs">
+            <span class="spec-item">Three states</span>
+            <span class="spec-item">Figma logo CSS</span>
+            <span class="spec-item">232px × 44px</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: E-commerce -->
+    <section class="showcase-section">
+      <h2 class="hig-headline section-title">E-commerce Components</h2>
+      <div class="showcase-row">
+        
+        <!-- Component 7: Add to Cart Button -->
+        <div class="showcase-card">
+          <h3 class="hig-title3 component-title">7. Add to Cart Button</h3>
+          <div class="component-demo">
+            <button class="btn-add-to-cart">
+              <span class="btn-text">Add to Cart</span>
+              <span class="btn-icon">🛒</span>
+            </button>
+            <button class="btn-add-to-cart loading">
+              <span class="loading-spinner">⏳</span>
+              <span class="btn-text">Adding...</span>
+            </button>
+            <button class="btn-add-to-cart success">
+              <span class="success-checkmark">✓</span>
+              <span class="btn-text">Added!</span>
+            </button>
+          </div>
+          <div class="component-specs">
+            <span class="spec-item">5 states</span>
+            <span class="spec-item">E-commerce optimized</span>
+            <span class="spec-item">Loading spinner</span>
+          </div>
+        </div>
+
+        <!-- Component 10: Filter Sidebar -->
+        <div class="showcase-card wide">
+          <h3 class="hig-title3 component-title">10. Filter Sidebar</h3>
+          <div class="component-demo">
+            <div class="filter-sidebar" style="position: relative; transform: none; height: 400px; overflow: hidden;">
+              <div class="filter-panel">
+                <div class="filter-header">
+                  <h3 class="filter-title">Filters</h3>
+                  <button class="filter-collapse-btn"></button>
+                </div>
+                
+                <div class="filter-section">
+                  <h4 class="filter-section-title">Projects</h4>
+                  <div class="brand-options">
+                    <div class="brand-option">
+                      <div class="brand-icon figma"></div>
+                      <span class="filter-label">Figma</span>
+                    </div>
+                    <div class="brand-option">
+                      <div class="brand-icon photoshop"></div>
+                      <span class="filter-label">Photoshop</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="filter-section">
+                  <h4 class="filter-section-title">Time</h4>
+                  <div class="time-chips">
+                    <button class="time-chip active">Last 7 days</button>
+                    <button class="time-chip">Last 30 days</button>
+                  </div>
+                </div>
+
+                <div class="filter-section">
+                  <h4 class="filter-section-title">Tags</h4>
+                  <div class="tag-pills">
+                    <button class="tag-pill">Gaming</button>
+                    <button class="tag-pill active">Miniatures</button>
+                    <button class="tag-pill">Strategy</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="component-specs">
+            <span class="spec-item">Multi-section filtering</span>
+            <span class="spec-item">CSS brand icons</span>
+            <span class="spec-item">320px desktop width</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Layout & Typography Test -->
+    <section class="showcase-section">
+      <h2 class="hig-headline section-title">Layout & Typography System</h2>
+      
+      <!-- Typography Scale -->
+      <div class="showcase-card full-width">
+        <h3 class="hig-title3 component-title">Apple HIG Typography Scale</h3>
+        <div class="typography-demo">
+          <div class="typo-sample">
+            <h1 class="hig-title-large">Large Title (34px/41px)</h1>
+            <span class="spec-label">--typo-large-title-size: 34px, weight: 400</span>
+          </div>
+          <div class="typo-sample">
+            <h2 class="hig-title">Title 1 (28px/34px)</h2>
+            <span class="spec-label">--typo-title1-size: 28px, weight: 400</span>
+          </div>
+          <div class="typo-sample">
+            <h3 class="hig-headline">Headline (22px/28px)</h3>
+            <span class="spec-label">--typo-title2-size: 22px, weight: 400</span>
+          </div>
+          <div class="typo-sample">
+            <p class="hig-body">Body text optimized for 5K displays with Quartz Filter rendering (14px/20px)</p>
+            <span class="spec-label">--typo-body-size: 14px, weight: 400</span>
+          </div>
+          <div class="typo-sample">
+            <p class="hig-callout">Callout text for emphasis (16px/22px)</p>
+            <span class="spec-label">--typo-callout-size: 16px, weight: 400</span>
+          </div>
+          <div class="typo-sample">
+            <p class="hig-footnote">Footnote for additional information (13px/18px)</p>
+            <span class="spec-label">--typo-footnote-size: 13px, weight: 400</span>
+          </div>
+          <div class="typo-sample">
+            <p class="hig-caption">Caption text for labels (12px/16px)</p>
+            <span class="spec-label">--typo-caption1-size: 12px, weight: 400</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spacing System -->
+      <div class="showcase-card full-width">
+        <h3 class="hig-title3 component-title">Spacing Token System</h3>
+        <div class="spacing-demo">
+          <div class="spacing-sample">
+            <div class="spacing-box" style="width: var(--space-xxs); background: #ff3b30;"></div>
+            <span class="spec-label">--space-xxs: 2px</span>
+          </div>
+          <div class="spacing-sample">
+            <div class="spacing-box" style="width: var(--space-xs); background: #ff9500;"></div>
+            <span class="spec-label">--space-xs: 4px</span>
+          </div>
+          <div class="spacing-sample">
+            <div class="spacing-box" style="width: var(--space-sm); background: #ffcc00;"></div>
+            <span class="spec-label">--space-sm: 8px</span>
+          </div>
+          <div class="spacing-sample">
+            <div class="spacing-box" style="width: var(--space-md); background: #34c759;"></div>
+            <span class="spec-label">--space-md: 12px</span>
+          </div>
+          <div class="spacing-sample">
+            <div class="spacing-box" style="width: var(--space-lg); background: #007aff;"></div>
+            <span class="spec-label">--space-lg: 16px</span>
+          </div>
+          <div class="spacing-sample">
+            <div class="spacing-box" style="width: var(--space-xl); background: #5856d6;"></div>
+            <span class="spec-label">--space-xl: 20px</span>
+          </div>
+          <div class="spacing-sample">
+            <div class="spacing-box" style="width: var(--space-xxl); background: #af52de;"></div>
+            <span class="spec-label">--space-xxl: 24px</span>
+          </div>
+          <div class="spacing-sample">
+            <div class="spacing-box" style="width: var(--space-xxxl); background: #ff2d92;"></div>
+            <span class="spec-label">--space-xxxl: 32px</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Component Stats -->
+    <section class="showcase-section">
+      <h2 class="hig-headline section-title">System Statistics</h2>
+      <div class="showcase-stats">
+        <div class="stat-card">
+          <div class="stat-number hig-title-large">11</div>
+          <div class="stat-label hig-callout">Components</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number hig-title-large">35</div>
+          <div class="stat-label hig-callout">Total States</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number hig-title-large">1,637</div>
+          <div class="stat-label hig-callout">Lines of CSS</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number hig-title-large">100%</div>
+          <div class="stat-label hig-callout">Mobile Optimized</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<style>
+/* ========================================
+   COMPONENT SHOWCASE STYLING
+======================================== */
+
+.component-showcase-page {
+  min-height: 100vh;
+  background: var(--glass-deep-surface);
+  backdrop-filter: var(--glass-effect);
+  -webkit-backdrop-filter: var(--glass-effect);
+  padding: var(--space-xxxl) var(--space-lg);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.showcase-header {
+  text-align: center;
+  margin-bottom: var(--space-xxxxl);
+  padding: var(--space-xxxl) 0;
+}
+
+.showcase-title {
+  margin-bottom: var(--space-lg);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.showcase-description {
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+.showcase-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxxxl);
+}
+
+.showcase-section {
+  background: var(--glass-surface);
+  border: 0.5px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xxxl);
+  backdrop-filter: var(--glass-effect);
+  -webkit-backdrop-filter: var(--glass-effect);
+}
+
+.section-title {
+  margin-bottom: var(--space-xxxl);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.showcase-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.showcase-card {
+  background: var(--glass-surface-hover);
+  border: 0.5px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  backdrop-filter: var(--glass-effect);
+  -webkit-backdrop-filter: var(--glass-effect);
+  transition: var(--transition-quantum);
+}
+
+.showcase-card:hover {
+  background: var(--glass-surface-active);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-quantum);
+}
+
+.showcase-card.wide {
+  grid-column: span 2;
+}
+
+.showcase-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.component-title {
+  margin-bottom: var(--space-lg);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.component-demo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  background: var(--void-black);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+  min-height: 80px;
+}
+
+.component-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.spec-item {
+  background: rgba(25, 188, 254, 0.1);
+  border: 0.5px solid rgba(25, 188, 254, 0.3);
+  border-radius: var(--radius-sm);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--typo-caption1-size);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: var(--font-body-family);
+}
+
+/* Typography Demo */
+.typography-demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.typo-sample {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-sm);
+}
+
+.spec-label {
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: var(--typo-caption1-size);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Spacing Demo */
+.spacing-demo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-md);
+}
+
+.spacing-sample {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-sm);
+}
+
+.spacing-box {
+  height: 24px;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.spacing-sample:hover .spacing-box {
+  height: 32px;
+}
+
+/* Stats */
+.showcase-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-xl);
+}
+
+.stat-card {
+  text-align: center;
+  padding: var(--space-xl);
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.stat-number {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-sm);
+}
+
+.stat-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .component-showcase-page {
+    padding: var(--space-xl) var(--space-md);
+  }
+  
+  .showcase-section {
+    padding: var(--space-xl);
+  }
+  
+  .showcase-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .showcase-card.wide {
+    grid-column: span 1;
+  }
+  
+  .spacing-demo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Animation */
+.showcase-card {
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.showcase-card:nth-child(1) { animation-delay: 0.1s; }
+.showcase-card:nth-child(2) { animation-delay: 0.2s; }
+.showcase-card:nth-child(3) { animation-delay: 0.3s; }
+.showcase-card:nth-child(4) { animation-delay: 0.4s; }
+.showcase-card:nth-child(5) { animation-delay: 0.5s; }
+</style>
+
+{% schema %}
+{
+  "name": "Component Showcase",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Component Showcase Settings"
+    },
+    {
+      "type": "paragraph",
+      "content": "Displays all 11 Framer components with specifications and layout testing."
+    }
+  ]
+}
+{% endschema %}

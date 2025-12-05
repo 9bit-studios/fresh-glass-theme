@@ -1,0 +1,143 @@
+{% comment %}
+  Sliding Navigation Tabs - Full Width Section
+  Designed to work with standard header structure
+{% endcomment %}
+
+<nav class="sliding-nav-container" id="sliding-nav">
+  <div class="sliding-nav-inner">
+    <div class="nav-tabs-wrapper">
+      <div class="nav-tabs-scroll">
+        {% for block in section.blocks %}
+          {% if block.type == 'nav_tab' %}
+            <a href="{{ block.settings.link | default: '#' }}" 
+               class="nav-tab glass-tab {% if block.settings.is_active %}active{% endif %}"
+               {{ block.shopify_attributes }}>
+              {{ block.settings.title | default: 'Tab' }}
+            </a>
+          {% endif %}
+        {% endfor %}
+        
+        {% comment %} Default tabs if no blocks {% endcomment %}
+        {% if section.blocks.size == 0 %}
+          <a href="/collections/sandys-games" class="nav-tab glass-tab">Sandy's Games</a>
+          <a href="/collections/larval-games" class="nav-tab glass-tab">Larval Games</a>
+          <a href="/collections/miniatures" class="nav-tab glass-tab">Miniatures</a>
+          <a href="/collections/hyperspace" class="nav-tab glass-tab">Hyperspace</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+/* Sliding Navigation Section Styling */
+.sliding-nav-container {
+  width: 100%;
+  padding: 0 !important;
+}
+
+
+/* Mobile-specific responsive behavior */
+@media (max-width: 768px) {
+  .sliding-nav-container {
+    padding: 0 !important;
+  }
+  
+  .sliding-nav-inner {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  
+  .nav-tabs-scroll {
+    gap: 0.5rem !important;
+    padding: 0 1rem !important;
+  }
+  
+  .nav-tab,
+  .glass-tab {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Sliding Navigation",
+  "class": "sliding-nav-container",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Navigation Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_mobile",
+      "label": "Show on mobile",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_tab",
+      "name": "Navigation Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tab Title",
+          "default": "Collection"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_active",
+          "label": "Set as active tab",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sliding Navigation",
+      "blocks": [
+        {
+          "type": "nav_tab",
+          "settings": {
+            "title": "Sandy's Games",
+            "link": "/collections/sandys-games"
+          }
+        },
+        {
+          "type": "nav_tab",
+          "settings": {
+            "title": "Larval Games", 
+            "link": "/collections/larval-games"
+          }
+        },
+        {
+          "type": "nav_tab",
+          "settings": {
+            "title": "Miniatures",
+            "link": "/collections/miniatures"
+          }
+        },
+        {
+          "type": "nav_tab",
+          "settings": {
+            "title": "Hyperspace",
+            "link": "/collections/hyperspace"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

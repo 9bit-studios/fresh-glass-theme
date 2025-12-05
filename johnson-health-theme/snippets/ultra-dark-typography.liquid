@@ -1,0 +1,234 @@
+{%- comment -%}
+  ULTRA DARK MODE TYPOGRAPHY UTILITIES
+  Apple HIG compliant text hierarchy with opacity system
+  
+  Usage examples:
+  - Primary text: class="text-primary" or default styling
+  - Secondary text: class="text-secondary" (70% opacity)
+  - Tertiary text: class="text-tertiary" (50% opacity)
+  - Quaternary text: class="text-quaternary" (30% opacity)
+  
+  Interface hierarchy:
+  - Large titles: class="large-title"
+  - Titles: class="title1", "title2", "title3"
+  - Headlines: class="headline"
+  - Body: class="body-text"
+  - Captions: class="caption"
+  - Footnotes: class="footnote"
+{%- endcomment -%}
+
+{%- capture ultra_dark_typography -%}
+/* ===================================================================
+   ULTRA DARK MODE TYPOGRAPHY SYSTEM
+   Apple HIG compliant with #FCFDF2 primary and opacity hierarchy
+   =================================================================== */
+
+/* Text Hierarchy Variables */
+:root {
+  --text-ultra-dark-primary: #FCFDF2;                    /* 100% opacity */
+  --text-ultra-dark-secondary: rgba(252, 253, 242, 0.7); /* 70% opacity */
+  --text-ultra-dark-tertiary: rgba(252, 253, 242, 0.5);  /* 50% opacity */
+  --text-ultra-dark-quaternary: rgba(252, 253, 242, 0.3); /* 30% opacity */
+}
+
+/* Apple HIG Typography Scale */
+.ultra-dark-large-title {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 41px;
+  color: var(--text-ultra-dark-primary);
+  letter-spacing: -0.5px;
+}
+
+.ultra-dark-title1 {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 34px;
+  color: var(--text-ultra-dark-primary);
+  letter-spacing: -0.3px;
+}
+
+.ultra-dark-title2 {
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 28px;
+  color: var(--text-ultra-dark-primary);
+  letter-spacing: -0.2px;
+}
+
+.ultra-dark-title3 {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 25px;
+  color: var(--text-ultra-dark-primary);
+  letter-spacing: -0.1px;
+}
+
+.ultra-dark-headline {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--text-ultra-dark-primary);
+}
+
+.ultra-dark-body {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--text-ultra-dark-primary);
+  letter-spacing: -0.022em;
+}
+
+.ultra-dark-callout {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21px;
+  color: var(--text-ultra-dark-primary);
+}
+
+.ultra-dark-subheadline {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--text-ultra-dark-secondary);
+}
+
+.ultra-dark-footnote {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: var(--text-ultra-dark-tertiary);
+}
+
+.ultra-dark-caption1 {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--text-ultra-dark-secondary);
+}
+
+.ultra-dark-caption2 {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+  color: var(--text-ultra-dark-tertiary);
+}
+
+/* Hierarchy Utility Classes */
+.ultra-text-primary {
+  color: var(--text-ultra-dark-primary) !important;
+}
+
+.ultra-text-secondary {
+  color: var(--text-ultra-dark-secondary) !important;
+}
+
+.ultra-text-tertiary {
+  color: var(--text-ultra-dark-tertiary) !important;
+}
+
+.ultra-text-quaternary {
+  color: var(--text-ultra-dark-quaternary) !important;
+}
+
+/* Content Type Classes */
+.ultra-heading {
+  color: var(--text-ultra-dark-primary);
+  font-weight: 600;
+}
+
+.ultra-body-text {
+  color: var(--text-ultra-dark-primary);
+  font-weight: 400;
+}
+
+.ultra-label {
+  color: var(--text-ultra-dark-secondary);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.ultra-placeholder {
+  color: var(--text-ultra-dark-quaternary);
+  font-style: italic;
+}
+
+.ultra-disabled {
+  color: var(--text-ultra-dark-quaternary);
+  opacity: 0.6;
+}
+
+/* Glass Background Text Enhancement */
+.ultra-text-on-glass {
+  color: var(--text-ultra-dark-primary);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  font-weight: 500;
+}
+
+/* Interactive Text States */
+.ultra-link {
+  color: #007AFF;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.ultra-link:hover {
+  color: #5AC8FA;
+  text-decoration: underline;
+}
+
+.ultra-link:visited {
+  color: #613FE7;
+}
+
+/* Error and Success States */
+.ultra-error-text {
+  color: #FF3B30;
+  font-weight: 500;
+}
+
+.ultra-success-text {
+  color: #3DFF74;
+  font-weight: 500;
+}
+
+.ultra-warning-text {
+  color: #FF9500;
+  font-weight: 500;
+}
+
+/* Responsive Typography */
+@media (max-width: 744px) {
+  .ultra-dark-large-title {
+    font-size: 28px;
+    line-height: 34px;
+  }
+  
+  .ultra-dark-title1 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  
+  .ultra-dark-title2 {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .ultra-text-secondary {
+    color: rgba(252, 253, 242, 0.85) !important;
+  }
+  
+  .ultra-text-tertiary {
+    color: rgba(252, 253, 242, 0.75) !important;
+  }
+  
+  .ultra-text-quaternary {
+    color: rgba(252, 253, 242, 0.6) !important;
+  }
+}
+{%- endcapture -%}
+
+{{ ultra_dark_typography | strip }}

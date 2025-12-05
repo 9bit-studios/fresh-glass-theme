@@ -1,0 +1,470 @@
+/* ========================================
+   PRODUCTION FILTER UNIFICATION
+   Comprehensive glass/metallic styling unification
+   Ready for tomorrow's demo
+   ======================================== */
+
+/* ========================================
+   PHASE 1: CORE GLASS VARIABLES
+   Unified glass system based on working glass-filter-bar
+   ======================================== */
+
+:root {
+  /* Perfect Glass Foundation (from working glass-filter-bar) */
+  --production-glass-primary: 
+    radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(30, 27, 75, 0.95), rgba(76, 29, 149, 0.85) 50%, rgba(30, 27, 75, 0.95));
+  
+  --production-glass-secondary: 
+    radial-gradient(circle at 40% 60%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, rgba(45, 27, 105, 0.12), rgba(76, 29, 149, 0.08) 50%, rgba(45, 27, 105, 0.12));
+  
+  --production-backdrop-blur: blur(40px) saturate(200%) brightness(110%);
+  --production-backdrop-medium: blur(20px) saturate(150%) brightness(105%);
+  
+  /* Unified Borders and Shadows */
+  --production-border: 1px solid rgba(99, 102, 241, 0.3);
+  --production-border-hover: 1px solid rgba(99, 102, 241, 0.6);
+  --production-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 32px rgba(99, 102, 241, 0.15),
+    0 0 40px rgba(139, 92, 246, 0.1);
+  
+  /* Button States */
+  --production-button-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  --production-button-secondary: var(--production-glass-secondary);
+  --production-button-clear: transparent;
+}
+
+/* ========================================
+   PHASE 2: HORIZONTAL FACETS UNIFICATION
+   Apply perfect glass styling to horizontal wrapper
+   ======================================== */
+
+/* Main horizontal facets container - make it match glass-filter-bar */
+.facets.facets--horizontal {
+  background: var(--production-glass-primary) !important;
+  backdrop-filter: var(--production-backdrop-blur) !important;
+  -webkit-backdrop-filter: var(--production-backdrop-blur) !important;
+  border: var(--production-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--production-shadow) !important;
+  
+  /* Ensure proper spacing and layout */
+  padding: 1rem 2rem !important;
+  margin: 1rem 0 !important;
+  
+  /* Remove conflicting styles */
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Facets controls wrapper inside horizontal facets */
+.facets--horizontal .facets-controls-wrapper {
+  background: transparent !important;
+  padding: 0 !important;
+  gap: 1.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* ========================================
+   PHASE 3: SORTING FILTER UNIFICATION
+   Make sorting components match glass styling
+   ======================================== */
+
+/* Sorting filter component */
+.sorting-filter,
+.sorting-filter .sorting-filter-select,
+.facets--horizontal select,
+.glass-filter-select {
+  background: var(--production-glass-secondary) !important;
+  backdrop-filter: var(--production-backdrop-medium) !important;
+  -webkit-backdrop-filter: var(--production-backdrop-medium) !important;
+  border: var(--production-border) !important;
+  border-radius: 12px !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  padding: 0.75rem 1rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.sorting-filter:hover,
+.sorting-filter .sorting-filter-select:hover,
+.facets--horizontal select:hover,
+.glass-filter-select:hover {
+  border: var(--production-border-hover) !important;
+  background: var(--production-glass-primary) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Sorting filter dropdown */
+.sorting-filter__options {
+  background: var(--production-glass-primary) !important;
+  backdrop-filter: var(--production-backdrop-blur) !important;
+  -webkit-backdrop-filter: var(--production-backdrop-blur) !important;
+  border: var(--production-border) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), var(--production-shadow) !important;
+}
+
+/* ========================================
+   PHASE 4: CLEAR ALL BUTTON UNIFICATION
+   Unified styling for all Clear All variations
+   ======================================== */
+
+/* Standard Clear All buttons */
+.facets__clear-all,
+.mobile-facets__clear,
+.clear-all-filters,
+.clear-filter,
+button[data-facet-clear],
+.interactive-clear-all {
+  background: var(--production-button-clear) !important;
+  color: #6366F1 !important;
+  border: var(--production-border) !important;
+  border-radius: 10px !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 500 !important;
+  text-decoration: underline transparent !important;
+  text-underline-offset: 0.25rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  min-height: 44px !important;
+  backdrop-filter: var(--production-backdrop-medium) !important;
+  -webkit-backdrop-filter: var(--production-backdrop-medium) !important;
+}
+
+.facets__clear-all:hover,
+.mobile-facets__clear:hover,
+.clear-all-filters:hover,
+.clear-filter:hover,
+button[data-facet-clear]:hover,
+.interactive-clear-all:hover {
+  color: #8B5CF6 !important;
+  text-decoration-color: #8B5CF6 !important;
+  background: var(--production-glass-secondary) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Primary action buttons (Apply/See Results) */
+.facets__apply,
+.facets__see-results,
+.mobile-facets__apply {
+  background: var(--production-button-primary) !important;
+  color: white !important;
+  border: 1px solid #6366F1 !important;
+  border-radius: 10px !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3) !important;
+  min-height: 44px !important;
+}
+
+.facets__apply:hover,
+.facets__see-results:hover,
+.mobile-facets__apply:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* ========================================
+   PHASE 5: INTERACTIVE DESKTOP CONTROLS
+   Ensure interactive controls match glass theme
+   ======================================== */
+
+/* Interactive controls container */
+.interactive-facets-controls {
+  background: var(--production-glass-secondary) !important;
+  backdrop-filter: var(--production-backdrop-medium) !important;
+  -webkit-backdrop-filter: var(--production-backdrop-medium) !important;
+  border: var(--production-border) !important;
+  border-radius: 12px !important;
+  padding: 0.75rem 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Active filters indicator */
+.active-filters-indicator {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.active-filters-count:not(.zero) {
+  background: var(--production-button-primary) !important;
+  color: white !important;
+  border-radius: 50% !important;
+  width: 20px !important;
+  height: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+}
+
+/* Quick filter buttons */
+.quick-filter-button {
+  background: var(--production-glass-secondary) !important;
+  border: var(--production-border) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 8px !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: var(--production-backdrop-medium) !important;
+  -webkit-backdrop-filter: var(--production-backdrop-medium) !important;
+}
+
+.quick-filter-button:hover,
+.quick-filter-button.active {
+  background: var(--production-button-primary) !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Filter presets dropdown */
+.filter-presets-dropdown {
+  background: var(--production-glass-secondary) !important;
+  border: var(--production-border) !important;
+  border-radius: 8px !important;
+  backdrop-filter: var(--production-backdrop-medium) !important;
+  -webkit-backdrop-filter: var(--production-backdrop-medium) !important;
+}
+
+.filter-presets-button {
+  color: rgba(255, 255, 255, 0.8) !important;
+  padding: 0.5rem 0.75rem !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.filter-presets-menu {
+  background: var(--production-glass-primary) !important;
+  border: var(--production-border) !important;
+  border-radius: 8px !important;
+  margin-top: 0.25rem !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+  overflow: hidden !important;
+}
+
+.filter-preset-item {
+  display: block !important;
+  padding: 0.75rem 1rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1) !important;
+}
+
+.filter-preset-item:hover {
+  background: var(--production-glass-secondary) !important;
+  color: white !important;
+}
+
+/* ========================================
+   PHASE 6: MOBILE OPTIMIZATION
+   Ensure mobile components match glass theme
+   ======================================== */
+
+@media (max-width: 768px) {
+  /* Mobile facets toggle */
+  .facets-toggle__button {
+    background: var(--production-glass-primary) !important;
+    backdrop-filter: var(--production-backdrop-blur) !important;
+    -webkit-backdrop-filter: var(--production-backdrop-blur) !important;
+    border: var(--production-border) !important;
+    border-radius: 12px !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: var(--production-shadow) !important;
+  }
+  
+  .facets-toggle__button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 12px 32px rgba(99, 102, 241, 0.2) !important;
+  }
+  
+  /* Mobile facets footer */
+  .mobile-facets__footer,
+  .facets__footer {
+    background: var(--production-glass-primary) !important;
+    backdrop-filter: var(--production-backdrop-blur) !important;
+    -webkit-backdrop-filter: var(--production-backdrop-blur) !important;
+    border-top: var(--production-border) !important;
+  }
+}
+
+/* ========================================
+   PHASE 7: RESULTS COUNT AND UTILITIES
+   Style utility components consistently
+   ======================================== */
+
+.products-count-wrapper,
+.results-count {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  background: var(--production-glass-secondary) !important;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 8px !important;
+  border: var(--production-border) !important;
+  backdrop-filter: var(--production-backdrop-medium) !important;
+  -webkit-backdrop-filter: var(--production-backdrop-medium) !important;
+}
+
+/* View toggle buttons */
+.view-toggle-group {
+  display: flex !important;
+  gap: 0.25rem !important;
+  background: var(--production-glass-secondary) !important;
+  border: var(--production-border) !important;
+  border-radius: 8px !important;
+  padding: 0.25rem !important;
+  backdrop-filter: var(--production-backdrop-medium) !important;
+  -webkit-backdrop-filter: var(--production-backdrop-medium) !important;
+}
+
+.view-toggle {
+  background: transparent !important;
+  border: none !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  padding: 0.5rem !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.view-toggle.active,
+.view-toggle:hover {
+  background: var(--production-button-primary) !important;
+  color: white !important;
+}
+
+/* ========================================
+   PHASE 8: ACCESSIBILITY AND FOCUS STATES
+   Ensure all interactive elements have proper focus
+   ======================================== */
+
+/* Focus states for all interactive elements */
+.facets--horizontal button:focus-visible,
+.facets--horizontal select:focus-visible,
+.interactive-facets-controls button:focus-visible,
+.quick-filter-button:focus-visible,
+.filter-preset-item:focus-visible {
+  outline: 2px solid #6366F1 !important;
+  outline-offset: 2px !important;
+  border-radius: 6px !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --production-border: 2px solid rgba(255, 255, 255, 0.8) !important;
+    --production-glass-primary: rgba(30, 27, 75, 0.95) !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .facets--horizontal *,
+  .interactive-facets-controls *,
+  .sorting-filter * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    transform: none !important;
+  }
+}
+
+/* ========================================
+   PHASE 9: ENHANCED CLEAR ALL STYLING
+   Special styling for enhanced clear all buttons
+   ======================================== */
+
+/* Enhanced clear all button specific styling */
+.clear-all-enhanced {
+  background: var(--production-glass-secondary) !important;
+  border: var(--production-border) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-radius: 10px !important;
+  padding: 0.75rem 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: var(--production-backdrop-medium) !important;
+  -webkit-backdrop-filter: var(--production-backdrop-medium) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+.clear-all-enhanced:hover {
+  background: var(--production-glass-primary) !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  border-color: rgba(99, 102, 241, 0.6) !important;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 4px 16px rgba(99, 102, 241, 0.2) !important;
+}
+
+.clear-all-icon {
+  font-size: 1.1em !important;
+  opacity: 0.8 !important;
+  transition: all 0.3s ease !important;
+}
+
+.clear-all-enhanced:hover .clear-all-icon {
+  opacity: 1 !important;
+  animation: rotate-refresh 0.5s ease !important;
+}
+
+@keyframes rotate-refresh {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(180deg); }
+}
+
+.clear-all-enhanced-text {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  line-height: 1.2 !important;
+}
+
+.clear-all-main {
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+}
+
+.clear-all-subtitle {
+  font-size: 0.75em !important;
+  opacity: 0.7 !important;
+  margin-top: 0.1rem !important;
+}
+
+/* ========================================
+   IMPLEMENTATION COMPLETE
+   Production-ready filter unification system
+   ======================================== */
+
+/* Debug helper - remove in production */
+.debug-filter-unification {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  z-index: 9999;
+}
