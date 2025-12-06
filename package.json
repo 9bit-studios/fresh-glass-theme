@@ -86,9 +86,6 @@
     "vercel": "^48.10.2",
     "vitest": "^4.0.9"
   },
-  "peerDependencies": {
-    "@quantum-spatial/design-system": "*"
-  },
   "lint-staged": {
     "*.{js,ts,tsx}": [
       "eslint --fix",
