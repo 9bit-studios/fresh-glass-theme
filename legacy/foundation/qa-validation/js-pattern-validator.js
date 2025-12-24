@@ -14,7 +14,7 @@ const path = require('path');
 
 class JavaScriptPatternValidator {
   constructor() {
-    this.baseDir = '/Users/pennyplatt/Documents/9BitStudios/petersen-portal/fresh-glass-theme/petersen-glass-theme';
+    this.baseDir = '/Users/pennyplatt/Documents//petersen-portal/fresh-glass-theme/petersen-glass-theme';
     this.patterns = new Map();
     this.validationRules = {
       // Function patterns

@@ -8,7 +8,7 @@ const path = require('path');
 
 class LayoutDiagnostic {
   constructor() {
-    this.baseDir = '/Users/pennyplatt/Documents/9BitStudios/petersen-portal/fresh-glass-theme/petersen-glass-theme';
+    this.baseDir = '/Users/pennyplatt/Documents//petersen-portal/fresh-glass-theme/petersen-glass-theme';
     this.issues = [];
     this.fixes = [];
   }

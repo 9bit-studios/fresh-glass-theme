@@ -37,7 +37,7 @@
 
 ```bash
 # 1. Navigate to theme directory
-cd /Users/pennyplatt/Documents/9BitStudios/Oksana/quantum-spatial/fresh-glass-theme/johnson-health-theme/
+cd /Users/pennyplatt/Documents//Oksana/quantum-spatial/fresh-glass-theme/johnson-health-theme/
 
 # 2. Install Shopify CLI (if not installed)
 npm install -g @shopify/cli @shopify/theme

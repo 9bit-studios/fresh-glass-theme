@@ -858,7 +858,7 @@ if (typeof window !== 'undefined') {
     
     // CLI usage
     if (require.main === module) {
-        const projectPath = process.argv[2] || '/Users/pennyplatt/Documents/9BitStudios/petersen-portal/glass-theme-v4';
+        const projectPath = process.argv[2] || '/Users/pennyplatt/Documents//petersen-portal/glass-theme-v4';
         
         console.log('🚀 Starting Server-Side CSS Analysis...');
         analyzer.analyzeProjectCSS(projectPath)

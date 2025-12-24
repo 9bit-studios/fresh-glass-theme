@@ -20,9 +20,9 @@ export default class ThemeArchitectureAnalyzer {
         }
         
         // Default paths for comparison
-        this.designSystemPath = '/Users/pennyplatt/Documents/9BitStudios/quantum-spatial/design-system';
-        this.freshGlassThemePath = '/Users/pennyplatt/Documents/9BitStudios/quantum-spatial/fresh-glass-theme';
-        this.enhancedQuantumSpatialPath = '/Users/pennyplatt/Documents/9BitStudios/quantum-spatial/fresh-glass-theme/enhanced-quantum-spatial';
+        this.designSystemPath = '/Users/pennyplatt/Documents//quantum-spatial/design-system';
+        this.freshGlassThemePath = '/Users/pennyplatt/Documents//quantum-spatial/fresh-glass-theme';
+        this.enhancedQuantumSpatialPath = '/Users/pennyplatt/Documents//quantum-spatial/fresh-glass-theme/enhanced-quantum-spatial';
         this.currentThemePath = themePath || this.designSystemPath;
         
         this.analysisResults = {

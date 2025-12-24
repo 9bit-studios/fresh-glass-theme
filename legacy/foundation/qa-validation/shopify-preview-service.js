@@ -10,7 +10,7 @@ const { execSync } = require('child_process');
 
 class ShopifyPreviewService {
     constructor() {
-        this.projectPath = '/Users/pennyplatt/Documents/9BitStudios/petersen-portal/glass-theme';
+        this.projectPath = '/Users/pennyplatt/Documents//petersen-portal/glass-theme';
         this.previewMethods = {
             shopifyThemeEditor: {
                 available: true,
@@ -380,12 +380,12 @@ node_modules/
             },
             validation: {
                 description: 'Run QA validation before changes',
-                command: 'node /Users/pennyplatt/Documents/9BitStudios/Apple-Intelligence-Strategic-Director/services/petersen-games-qa-service.js',
+                command: 'node /Users/pennyplatt/Documents//Apple-Intelligence-Strategic-Director/services/petersen-games-qa-service.js',
                 note: 'Prevents DOM errors and inline CSS issues'
             },
             staticPreview: {
                 description: 'Generate static HTML for VS Code preview',
-                command: 'node /Users/pennyplatt/Documents/9BitStudios/Apple-Intelligence-Strategic-Director/services/shopify-preview-service.js static',
+                command: 'node /Users/pennyplatt/Documents//Apple-Intelligence-Strategic-Director/services/shopify-preview-service.js static',
                 note: 'CSS/layout testing only'
             },
             deployDev: {
@@ -429,7 +429,7 @@ echo "=============================================="
 # Function to run QA validation
 run_qa() {
     echo "🔍 Running QA validation..."
-    node "/Users/pennyplatt/Documents/9BitStudios/Apple-Intelligence-Strategic-Director/services/petersen-games-qa-service.js"
+    node "/Users/pennyplatt/Documents//Apple-Intelligence-Strategic-Director/services/petersen-games-qa-service.js"
     if [ $? -ne 0 ]; then
         echo "❌ QA validation failed. Fix errors before proceeding."
         exit 1
@@ -440,7 +440,7 @@ run_qa() {
 # Function to generate static preview
 generate_preview() {
     echo "🎨 Generating static preview..."
-    node "/Users/pennyplatt/Documents/9BitStudios/Apple-Intelligence-Strategic-Director/services/shopify-preview-service.js" static
+    node "/Users/pennyplatt/Documents//Apple-Intelligence-Strategic-Director/services/shopify-preview-service.js" static
     echo "💡 Open preview-static.html in VS Code with Live Preview extension"
 }
 
